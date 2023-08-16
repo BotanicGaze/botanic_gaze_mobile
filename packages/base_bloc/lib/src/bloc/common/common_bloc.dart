@@ -1,8 +1,6 @@
 import 'dart:async';
 
-import 'package:base_bloc/src/bloc/base_bloc.dart';
-import 'package:base_bloc/src/bloc/common/common_event.dart';
-import 'package:base_bloc/src/bloc/common/common_state.dart';
+import 'package:base_bloc/base_bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 import 'package:shared/shared.dart';
@@ -56,9 +54,7 @@ class CommonBloc extends BaseBloc<CommonEvent, CommonState> {
   ) {
     return runBlocCatching(
       action: () async {
-        // await _clearCurrentUserDataUseCase
-        //     .execute(const ClearCurrentUserDataInput());
-        // await navigator.replace(const AppRouteInfo.login());
+        BaseBlocConfig.instance.onForceLogoutButtonPressed?.call();
       },
     );
   }

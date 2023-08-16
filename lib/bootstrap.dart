@@ -1,12 +1,11 @@
 import 'dart:async';
 import 'dart:developer';
 
-import 'package:base_bloc/base_bloc.dart' as base_bloc;
+import 'package:base_bloc/base_bloc.dart';
 import 'package:bloc/bloc.dart';
-import 'package:flutter/widgets.dart';
-import 'package:shared/shared.dart' as shared;
-
 import 'package:botanic_gaze/di/di.dart';
+import 'package:flutter/widgets.dart';
+import 'package:shared/shared.dart';
 
 class AppBlocObserver extends BlocObserver {
   const AppBlocObserver();
@@ -32,8 +31,8 @@ Future<void> bootstrap(FutureOr<Widget> Function() builder) async {
   Bloc.observer = const AppBlocObserver();
 
   WidgetsFlutterBinding.ensureInitialized();
-  await shared.SharedConfig.getInstance().init();
-  base_bloc.configureInjection();
+  await SharedConfig.getInstance().init();
+  await BaseBlocConfig.getInstance().init();
   configureInjection();
 
   // Add cross-flavor configuration here

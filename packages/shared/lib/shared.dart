@@ -1,3 +1,5 @@
+library shared;
+
 export 'src/config/config.dart';
 export 'src/config/log_config.dart';
 export 'src/config/shared_config.dart';
@@ -22,8 +24,6 @@ export 'src/constants/ui/paging_constants.dart';
 export 'src/constants/ui/ui_constants.dart';
 export 'src/constants/uni_links_constants.dart';
 export 'src/constants/url_constants.dart';
-export 'src/di/di.config.dart';
-export 'src/di/di.dart';
 export 'src/exception/base/app_exception.dart';
 export 'src/exception/base/app_exception_wrapper.dart';
 export 'src/exception/base/exception_mapper.dart';
