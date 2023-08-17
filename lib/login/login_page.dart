@@ -63,11 +63,11 @@ class _LoginPageState extends BasePageState<LoginPage, LoginBloc> {
                     previous.isLoginButtonEnabled !=
                     current.isLoginButtonEnabled,
                 builder: (context, state) {
-                  return const ElevatedButton(
-                    // onPressed: () => bloc.add(const LoginButtonPressed()),
-                    onPressed: null,
+                  return ElevatedButton(
+                    onPressed: () => bloc.add(const LoginButtonPressed()),
+                    // onPressed: null,
 
-                    child: Text('Loading'),
+                    child: const Text('Loading'),
                   );
                 },
               ),
