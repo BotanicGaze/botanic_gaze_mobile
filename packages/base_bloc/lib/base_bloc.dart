@@ -1,5 +1,7 @@
 library base_bloc;
 
+export 'package:flutter_gen/gen_l10n/base_bloc_localizations.dart';
+
 export 'src/base_bloc_config.dart';
 export 'src/base_page_state.dart';
 export 'src/bloc/app_bloc_observer.dart';
@@ -17,4 +19,3 @@ export 'src/exception_handler/exception_message_mapper.dart';
 export 'src/navigation/app_navigator.dart';
 export 'src/navigation/app_popup_info.dart';
 export 'src/navigation/app_route_info.dart';
-export 'src/l10n/generated/base_bloc_localizations.dart';

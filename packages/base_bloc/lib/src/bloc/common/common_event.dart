@@ -17,13 +17,15 @@ class ExceptionEmitted extends CommonEvent with _$ExceptionEmitted {
 }
 
 @freezed
-class LoadingVisibilityEmitted extends CommonEvent with _$LoadingVisibilityEmitted {
+class LoadingVisibilityEmitted extends CommonEvent
+    with _$LoadingVisibilityEmitted {
   const factory LoadingVisibilityEmitted({
     required bool isLoading,
   }) = _LoadingVisibilityEmitted;
 }
 
 @freezed
-class ForceLogoutButtonPressed extends CommonEvent with _$ForceLogoutButtonPressed {
+class ForceLogoutButtonPressed extends CommonEvent
+    with _$ForceLogoutButtonPressed {
   const factory ForceLogoutButtonPressed() = _ForceLogoutButtonPressed;
 }

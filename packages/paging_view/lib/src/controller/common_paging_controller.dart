@@ -5,7 +5,8 @@ import 'package:paging_view/src/paging_constants.dart';
 
 class CommonPagingController<T> {
   CommonPagingController({
-    this.invisibleItemsThreshold = PagingConstants.defaultInvisibleItemsThreshold,
+    this.invisibleItemsThreshold =
+        PagingConstants.defaultInvisibleItemsThreshold,
     this.firstPageKey = PagingConstants.initialPage,
   }) : pagingController = PagingController<int, T>(
           firstPageKey: firstPageKey,

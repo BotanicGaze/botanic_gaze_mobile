@@ -6,7 +6,8 @@ class IntentUtils {
     bool inApp = false,
   }) async {
     return await canLaunch(url)
-        ? await launch(url, forceSafariVC: inApp, forceWebView: inApp, enableJavaScript: true)
+        ? await launch(url,
+            forceSafariVC: inApp, forceWebView: inApp, enableJavaScript: true)
         : false;
   }
 }

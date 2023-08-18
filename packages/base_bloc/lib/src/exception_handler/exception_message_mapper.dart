@@ -1,6 +1,5 @@
+import 'package:base_bloc/l10n/l10n.dart';
 import 'package:shared/shared.dart';
-
-import '../l10n/l10n.dart';
 
 class ExceptionMessageMapper {
   const ExceptionMessageMapper();
@@ -11,47 +10,49 @@ class ExceptionMessageMapper {
         final exception = appException as RemoteException;
         switch (exception.kind) {
           case RemoteExceptionKind.badCertificate:
-            return S.current.badCertificateException;
+            return BaseBlocLocalization.current.badCertificateException;
           case RemoteExceptionKind.noInternet:
-            return S.current.noInternetException;
+            return BaseBlocLocalization.current.noInternetException;
           case RemoteExceptionKind.network:
-            return S.current.canNotConnectToHost;
+            return BaseBlocLocalization.current.canNotConnectToHost;
           case RemoteExceptionKind.serverDefined:
-            return exception.generalServerMessage ?? S.current.unknownException;
+            return exception.generalServerMessage ??
+                BaseBlocLocalization.current.unknownException;
           case RemoteExceptionKind.serverUndefined:
-            return exception.generalServerMessage ?? S.current.unknownException;
+            return exception.generalServerMessage ??
+                BaseBlocLocalization.current.unknownException;
           case RemoteExceptionKind.timeout:
-            return S.current.timeoutException;
+            return BaseBlocLocalization.current.timeoutException;
           case RemoteExceptionKind.cancellation:
-            return S.current.cancellationException;
+            return BaseBlocLocalization.current.cancellationException;
           case RemoteExceptionKind.unknown:
-            return '${S.current.unknownException}: ${exception.rootException}';
+            return '${BaseBlocLocalization.current.unknownException}: ${exception.rootException}';
           case RemoteExceptionKind.refreshTokenFailed:
-            return S.current.tokenExpired;
+            return BaseBlocLocalization.current.tokenExpired;
         }
       case AppExceptionType.parse:
-        return S.current.parseException;
+        return BaseBlocLocalization.current.parseException;
       case AppExceptionType.remoteConfig:
-        return S.current.unknownException;
+        return BaseBlocLocalization.current.unknownException;
       case AppExceptionType.uncaught:
-        return S.current.unknownException;
+        return BaseBlocLocalization.current.unknownException;
       case AppExceptionType.validation:
         final exception = appException as ValidationException;
         switch (exception.kind) {
           case ValidationExceptionKind.emptyEmail:
-            return S.current.emptyEmail;
+            return BaseBlocLocalization.current.emptyEmail;
           case ValidationExceptionKind.invalidEmail:
-            return S.current.invalidEmail;
+            return BaseBlocLocalization.current.invalidEmail;
           case ValidationExceptionKind.invalidPassword:
-            return S.current.invalidPassword;
+            return BaseBlocLocalization.current.invalidPassword;
           case ValidationExceptionKind.invalidUserName:
-            return S.current.invalidUserName;
+            return BaseBlocLocalization.current.invalidUserName;
           case ValidationExceptionKind.invalidPhoneNumber:
-            return S.current.invalidPhoneNumber;
+            return BaseBlocLocalization.current.invalidPhoneNumber;
           case ValidationExceptionKind.invalidDateTime:
-            return S.current.invalidDateTime;
+            return BaseBlocLocalization.current.invalidDateTime;
           case ValidationExceptionKind.passwordsAreNotMatch:
-            return S.current.passwordsAreNotMatch;
+            return BaseBlocLocalization.current.passwordsAreNotMatch;
         }
     }
   }

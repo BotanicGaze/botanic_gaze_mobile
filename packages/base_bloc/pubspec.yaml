@@ -19,8 +19,6 @@ dependencies:
   injectable: ^2.2.0
   intl: ^0.18.0 
   package_info_plus: ^4.1.0
-  # resources:
-  #   path: ../resources
   rxdart: ^0.27.7
   shared:
     path: ../shared

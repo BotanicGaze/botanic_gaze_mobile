@@ -7,11 +7,12 @@ import 'package:shared/shared.dart';
 abstract class BasePageState<T extends StatefulWidget, B extends BaseBloc>
     extends BasePageStateDelegate<T, B> with LogMixin {}
 
-abstract class BasePageStateDelegate<T extends StatefulWidget, B extends BaseBloc> extends State<T>
-    implements ExceptionHandlerListener {
+abstract class BasePageStateDelegate<T extends StatefulWidget,
+    B extends BaseBloc> extends State<T> implements ExceptionHandlerListener {
   late final AppNavigator navigator = GetIt.instance.get<AppNavigator>();
   // late final AppBloc appBloc = GetIt.instance.get<AppBloc>();
-  late final ExceptionMessageMapper exceptionMessageMapper = const ExceptionMessageMapper();
+  late final ExceptionMessageMapper exceptionMessageMapper =
+      const ExceptionMessageMapper();
   late final ExceptionHandler exceptionHandler = ExceptionHandler(
     navigator: navigator,
     listener: this,
@@ -53,7 +54,8 @@ abstract class BasePageStateDelegate<T extends StatefulWidget, B extends BaseBlo
                   children: [
                     buildPage(context),
                     BlocBuilder<CommonBloc, CommonState>(
-                      buildWhen: (previous, current) => previous.isLoading != current.isLoading,
+                      buildWhen: (previous, current) =>
+                          previous.isLoading != current.isLoading,
                       builder: (context, state) => Visibility(
                         visible: state.isLoading,
                         child: buildPageLoading(),

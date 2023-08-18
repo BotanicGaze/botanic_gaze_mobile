@@ -3,6 +3,10 @@ name: basecleanflutter
 packages:
   - ./**
 
+ignore:
+  - synthetic_package
+  - .*
+
 command:
   bootstrap:
     runPubGetInParallel: false
@@ -93,7 +97,7 @@ scripts:
     description: build_runner watch shared module.
 
   l10n:
-    run: dart pub global run melos exec --fail-fast --scope="*resources*" --flutter -- flutter pub run intl_utils:generate
+    run: dart pub global run melos exec --depends-on="flutter_localizations" "flutter gen-l10n"
     description: Generates l10n for all app packages.
 
   test:

@@ -56,7 +56,8 @@ class CommonPagingScrollSnapPhysics extends ScrollPhysics {
         pixels: null,
         viewportDimension: null,
         axisDirection: AxisDirection.down,
-        devicePixelRatio: WidgetsBinding.instance.platformDispatcher.views.first.devicePixelRatio,
+        devicePixelRatio: WidgetsBinding
+            .instance.platformDispatcher.views.first.devicePixelRatio,
       ),
     );
     final target = _getTargetPixels(position, tolerance, velocity);

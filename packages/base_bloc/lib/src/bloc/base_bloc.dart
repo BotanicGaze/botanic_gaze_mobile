@@ -9,8 +9,8 @@ abstract class BaseBloc<E extends BaseBlocEvent, S extends BaseBlocState>
   BaseBloc(super.initialState);
 }
 
-abstract class BaseBlocDelegate<E extends BaseBlocEvent, S extends BaseBlocState>
-    extends Bloc<E, S> {
+abstract class BaseBlocDelegate<E extends BaseBlocEvent,
+    S extends BaseBlocState> extends Bloc<E, S> {
   BaseBlocDelegate(super.initialState);
 
   late final ExceptionHandler exceptionHandler;
@@ -22,7 +22,8 @@ abstract class BaseBlocDelegate<E extends BaseBlocEvent, S extends BaseBlocState
     _commonBloc = commonBloc;
   }
 
-  CommonBloc get commonBloc => this is CommonBloc ? this as CommonBloc : _commonBloc;
+  CommonBloc get commonBloc =>
+      this is CommonBloc ? this as CommonBloc : _commonBloc;
 
   @override
   void add(E event) {

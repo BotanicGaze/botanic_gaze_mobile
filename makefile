@@ -220,3 +220,6 @@ pub_sync:
 
 dart_fix:
 	dart fix --apply
+
+bloc_page:
+	cd lib/features && mason make flutter_bloc_feature

@@ -33,14 +33,18 @@ class CommonBloc extends BaseBloc<CommonEvent, CommonState> {
     emit(state.copyWith(
       isLoading: state.loadingCount == 0 && event.isLoading
           ? true
-          : state.loadingCount == 1 && !event.isLoading || state.loadingCount <= 0
+          : state.loadingCount == 1 && !event.isLoading ||
+                  state.loadingCount <= 0
               ? false
               : state.isLoading,
-      loadingCount: event.isLoading ? state.loadingCount.plus(1) : state.loadingCount.minus(1),
+      loadingCount: event.isLoading
+          ? state.loadingCount.plus(1)
+          : state.loadingCount.minus(1),
     ));
   }
 
-  FutureOr<void> _onExceptionEmitted(ExceptionEmitted event, Emitter<CommonState> emit) {
+  FutureOr<void> _onExceptionEmitted(
+      ExceptionEmitted event, Emitter<CommonState> emit) {
     emit(state.copyWith(appExceptionWrapper: event.appExceptionWrapper));
   }
 

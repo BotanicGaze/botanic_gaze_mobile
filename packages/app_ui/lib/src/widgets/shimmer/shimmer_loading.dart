@@ -84,7 +84,8 @@ class _ShimmerLoadingState extends State<ShimmerLoading> {
           ),
         );
       },
-      child: widget.loadingWidget != null ? widget.loadingWidget! : widget.child,
+      child:
+          widget.loadingWidget != null ? widget.loadingWidget! : widget.child,
     );
   }
 
