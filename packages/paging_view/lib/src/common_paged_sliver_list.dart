@@ -66,8 +66,7 @@ class CommonPagedSliverList<T> extends StatelessWidget {
       newPageErrorIndicatorBuilder: (_) =>
           newPageErrorIndicator ?? const CommonNewPageErrorIndicator(),
       firstPageProgressIndicatorBuilder: (_) =>
-          firstPageProgressIndicator ??
-          const CommonFirstPageProgressIndicator(),
+          firstPageProgressIndicator ?? const CommonFirstPageProgressIndicator(),
       newPageProgressIndicatorBuilder: (_) =>
           newPageProgressIndicator ?? const CommonNewPageProgressIndicator(),
       noItemsFoundIndicatorBuilder: (_) =>

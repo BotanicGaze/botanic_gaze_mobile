@@ -1,8 +1,4 @@
-import 'package:base_bloc/src/bloc/base_bloc.dart';
-import 'package:base_bloc/src/bloc/common/common_bloc.dart';
-import 'package:base_bloc/src/bloc/common/common_state.dart';
-// import 'package:base_bloc/src/exception_handler/exception_handler.dart';
-// import 'package:base_bloc/src/exception_handler/exception_message_mapper.dart';
+import 'package:base_bloc/base_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
@@ -11,27 +7,26 @@ import 'package:shared/shared.dart';
 abstract class BasePageState<T extends StatefulWidget, B extends BaseBloc>
     extends BasePageStateDelegate<T, B> with LogMixin {}
 
-abstract class BasePageStateDelegate<T extends StatefulWidget,
-    B extends BaseBloc> extends State<T> {
-  // late final AppNavigator navigator = GetIt.instance.get<AppNavigator>();
+abstract class BasePageStateDelegate<T extends StatefulWidget, B extends BaseBloc> extends State<T>
+    implements ExceptionHandlerListener {
+  late final AppNavigator navigator = GetIt.instance.get<AppNavigator>();
   // late final AppBloc appBloc = GetIt.instance.get<AppBloc>();
-  // late final ExceptionMessageMapper exceptionMessageMapper =
-  //     const ExceptionMessageMapper();
-  // late final ExceptionHandler exceptionHandler = ExceptionHandler(
-  //   navigator: navigator,
-  //   listener: this,
-  // );
+  late final ExceptionMessageMapper exceptionMessageMapper = const ExceptionMessageMapper();
+  late final ExceptionHandler exceptionHandler = ExceptionHandler(
+    navigator: navigator,
+    listener: this,
+  );
 
   late final CommonBloc commonBloc = GetIt.instance.get<CommonBloc>()
-    ..disposeBag = disposeBag;
-  // ..exceptionHandler = exceptionHandler
-  // ..exceptionMessageMapper = exceptionMessageMapper;
+    ..disposeBag = disposeBag
+    ..exceptionHandler = exceptionHandler
+    ..exceptionMessageMapper = exceptionMessageMapper;
 
   late final B bloc = GetIt.instance.get<B>()
     ..disposeBag = disposeBag
-    ..commonBloc = commonBloc;
-  // ..exceptionHandler = exceptionHandler
-  // ..exceptionMessageMapper = exceptionMessageMapper;
+    ..commonBloc = commonBloc
+    ..exceptionHandler = exceptionHandler
+    ..exceptionMessageMapper = exceptionMessageMapper;
 
   late final DisposeBag disposeBag = DisposeBag();
 
@@ -49,7 +44,7 @@ abstract class BasePageStateDelegate<T extends StatefulWidget,
             previous.appExceptionWrapper != current.appExceptionWrapper &&
             current.appExceptionWrapper != null,
         listener: (context, state) {
-          // handleException(state.appExceptionWrapper!);
+          handleException(state.appExceptionWrapper!);
         },
         child: buildPageListeners(
           child: isAppWidget
@@ -58,8 +53,7 @@ abstract class BasePageStateDelegate<T extends StatefulWidget,
                   children: [
                     buildPage(context),
                     BlocBuilder<CommonBloc, CommonState>(
-                      buildWhen: (previous, current) =>
-                          previous.isLoading != current.isLoading,
+                      buildWhen: (previous, current) => previous.isLoading != current.isLoading,
                       builder: (context, state) => Visibility(
                         visible: state.isLoading,
                         child: buildPageLoading(),
@@ -86,23 +80,23 @@ abstract class BasePageStateDelegate<T extends StatefulWidget,
     disposeBag.dispose();
   }
 
-  // void handleException(AppExceptionWrapper appExceptionWrapper) {
-  //   exceptionHandler
-  //       .handleException(
-  //     appExceptionWrapper,
-  //     handleExceptionMessage(appExceptionWrapper.appException),
-  //   )
-  //       .then((value) {
-  //     appExceptionWrapper.exceptionCompleter?.complete();
-  //   });
-  // }
+  void handleException(AppExceptionWrapper appExceptionWrapper) {
+    exceptionHandler
+        .handleException(
+      appExceptionWrapper,
+      handleExceptionMessage(appExceptionWrapper.appException),
+    )
+        .then((value) {
+      appExceptionWrapper.exceptionCompleter?.complete();
+    });
+  }
 
-  // String handleExceptionMessage(AppException appException) {
-  //   return exceptionMessageMapper.map(appException);
-  // }
+  String handleExceptionMessage(AppException appException) {
+    return exceptionMessageMapper.map(appException);
+  }
 
-  // @override
-  // void onRefreshTokenFailed() {
-  //   commonBloc.add(const ForceLogoutButtonPressed());
-  // }
+  @override
+  void onRefreshTokenFailed() {
+    commonBloc.add(const ForceLogoutButtonPressed());
+  }
 }

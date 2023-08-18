@@ -1,4 +1,5 @@
 import 'package:app_ui/app_ui.dart';
+import 'package:base_bloc/base_bloc.dart';
 import 'package:botanic_gaze/l10n/l10n.dart';
 import 'package:botanic_gaze/login/login_page.dart';
 import 'package:flutter/material.dart';
@@ -18,7 +19,10 @@ class App extends StatelessWidget {
       builder: (context, _) {
         return MaterialApp(
           theme: AppTheme.standard,
-          localizationsDelegates: AppLocalizations.localizationsDelegates,
+          localizationsDelegates: const [
+            ...AppLocalizations.localizationsDelegates,
+            BaseBlocLocalizations.delegate,
+          ],
           supportedLocales: AppLocalizations.supportedLocales,
           home: const LoginPage(),
         );

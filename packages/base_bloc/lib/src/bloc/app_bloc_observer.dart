@@ -59,8 +59,7 @@ class AppBlocObserver extends BlocObserver {
   }
 
   @override
-  void onTransition(
-      Bloc<dynamic, dynamic> bloc, Transition<dynamic, dynamic> transition) {
+  void onTransition(Bloc<dynamic, dynamic> bloc, Transition<dynamic, dynamic> transition) {
     super.onTransition(bloc, transition);
     if (logOnTransition) {
       Log.d('onTransition $transition', name: bloc.runtimeType.toString());

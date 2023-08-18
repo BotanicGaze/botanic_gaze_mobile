@@ -1,27 +1,20 @@
 import 'dart:async';
 
-import 'package:base_bloc/src/bloc/base_bloc_event.dart';
-import 'package:base_bloc/src/bloc/base_bloc_state.dart';
-import 'package:base_bloc/src/bloc/common/common_event.dart';
-import 'package:base_bloc/src/bloc/mixin/event_transformer_mixin.dart';
-// import 'package:base_bloc/src/exception_handler/exception_handler.dart';
-// import 'package:base_bloc/src/exception_handler/exception_message_mapper.dart';
+import 'package:base_bloc/base_bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shared/shared.dart';
-
-import 'common/common_bloc.dart';
 
 abstract class BaseBloc<E extends BaseBlocEvent, S extends BaseBlocState>
     extends BaseBlocDelegate<E, S> with EventTransformerMixin, LogMixin {
   BaseBloc(super.initialState);
 }
 
-abstract class BaseBlocDelegate<E extends BaseBlocEvent,
-    S extends BaseBlocState> extends Bloc<E, S> {
+abstract class BaseBlocDelegate<E extends BaseBlocEvent, S extends BaseBlocState>
+    extends Bloc<E, S> {
   BaseBlocDelegate(super.initialState);
 
-  // late final ExceptionHandler exceptionHandler;
-  // late final ExceptionMessageMapper exceptionMessageMapper;
+  late final ExceptionHandler exceptionHandler;
+  late final ExceptionMessageMapper exceptionMessageMapper;
   late final DisposeBag disposeBag;
   late final CommonBloc _commonBloc;
 
@@ -29,8 +22,7 @@ abstract class BaseBlocDelegate<E extends BaseBlocEvent,
     _commonBloc = commonBloc;
   }
 
-  CommonBloc get commonBloc =>
-      this is CommonBloc ? this as CommonBloc : _commonBloc;
+  CommonBloc get commonBloc => this is CommonBloc ? this as CommonBloc : _commonBloc;
 
   @override
   void add(E event) {

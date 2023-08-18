@@ -11,6 +11,10 @@ abstract class AppNavigator {
 
   String getCurrentRouteName({bool useRootNavigator = false});
 
+  GlobalKey<NavigatorState> get navigatorKey;
+
+  BuildContext get globalContext => navigatorKey.currentState!.context;
+
   // void popUntilRootOfCurrentBottomTab();
 
   // void navigateToBottomTab(int index, {bool notify = true});
@@ -56,10 +60,8 @@ abstract class AppNavigator {
 
   Future<T?> showGeneralDialog<T extends Object?>(
     AppPopupInfo appPopupInfo, {
-    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
-        transitionBuilder,
-    Duration transitionDuration =
-        DurationConstants.defaultGeneralDialogTransitionDuration,
+    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)? transitionBuilder,
+    Duration transitionDuration = DurationConstants.defaultGeneralDialogTransitionDuration,
     bool barrierDismissible = true,
     Color barrierColor = const Color(0x80000000),
     bool useRootNavigator = true,

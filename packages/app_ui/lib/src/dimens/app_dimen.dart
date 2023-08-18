@@ -44,12 +44,10 @@ class AppDimen {
         return mobile.w;
       case ScreenType.tablet:
         return tablet?.w ??
-            ((mobile * DeviceConstants.maxMobileWidth) /
-                DeviceConstants.designDeviceWidth);
+            ((mobile * DeviceConstants.maxMobileWidth) / DeviceConstants.designDeviceWidth);
       case ScreenType.ultraTablet:
         return ultraTablet?.w ??
-            ((mobile * DeviceConstants.maxMobileWidth) /
-                DeviceConstants.designDeviceWidth);
+            ((mobile * DeviceConstants.maxMobileWidth) / DeviceConstants.designDeviceWidth);
     }
   }
 

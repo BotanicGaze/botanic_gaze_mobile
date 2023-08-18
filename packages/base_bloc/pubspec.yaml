@@ -12,12 +12,15 @@ dependencies:
   flutter:
     sdk: flutter
   flutter_bloc: ^8.1.3
+  flutter_localizations:
+    sdk: flutter
   freezed_annotation: ^2.4.1
   go_router: ^10.0.0
   injectable: ^2.2.0
+  intl: ^0.18.0 
   package_info_plus: ^4.1.0
-  resources:
-    path: ../resources
+  # resources:
+  #   path: ../resources
   rxdart: ^0.27.7
   shared:
     path: ../shared
@@ -33,7 +36,8 @@ dev_dependencies:
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
 # The following section is specific to Flutter packages.
-flutter: null
+flutter:
+  generate: true # Add this line
 # This section identifies this Flutter project as a plugin project.
 # The 'pluginClass' specifies the class (in Java, Kotlin, Swift, Objective-C, etc.)
 # which should be registered in the plugin registry. This is required for

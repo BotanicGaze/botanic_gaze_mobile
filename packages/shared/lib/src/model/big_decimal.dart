@@ -3,11 +3,9 @@ import 'package:decimal/decimal.dart';
 class BigDecimal implements Comparable<BigDecimal> {
   const BigDecimal._([this._decimal]);
   factory BigDecimal.parse(String value) => BigDecimal._(Decimal.parse(value));
-  factory BigDecimal.fromBigInt(BigInt value) =>
-      BigDecimal._(Decimal.fromBigInt(value));
+  factory BigDecimal.fromBigInt(BigInt value) => BigDecimal._(Decimal.fromBigInt(value));
   factory BigDecimal.fromInt(int value) => BigDecimal._(Decimal.fromInt(value));
-  factory BigDecimal.fromJson(String value) =>
-      BigDecimal._(Decimal.fromJson(value));
+  factory BigDecimal.fromJson(String value) => BigDecimal._(Decimal.fromJson(value));
 
   static const zero = BigDecimal._();
 
@@ -37,8 +35,7 @@ class BigDecimal implements Comparable<BigDecimal> {
   }
 
   @override
-  bool operator ==(Object other) =>
-      other is BigDecimal && decimal == other.decimal;
+  bool operator ==(Object other) => other is BigDecimal && decimal == other.decimal;
 
   @override
   String toString() => decimal.toString();
@@ -46,22 +43,17 @@ class BigDecimal implements Comparable<BigDecimal> {
   @override
   int compareTo(BigDecimal other) => decimal.compareTo(other.decimal);
 
-  BigDecimal operator +(BigDecimal other) =>
-      BigDecimal._(decimal + other.decimal);
+  BigDecimal operator +(BigDecimal other) => BigDecimal._(decimal + other.decimal);
 
-  BigDecimal operator -(BigDecimal other) =>
-      BigDecimal._(decimal - other.decimal);
+  BigDecimal operator -(BigDecimal other) => BigDecimal._(decimal - other.decimal);
 
-  BigDecimal operator *(BigDecimal other) =>
-      BigDecimal._(decimal * other.decimal);
+  BigDecimal operator *(BigDecimal other) => BigDecimal._(decimal * other.decimal);
 
-  BigDecimal operator %(BigDecimal other) =>
-      BigDecimal._(decimal % other.decimal);
+  BigDecimal operator %(BigDecimal other) => BigDecimal._(decimal % other.decimal);
 
   BigDecimal operator -() => BigDecimal._(-decimal);
 
-  BigDecimal remainder(BigDecimal other) =>
-      BigDecimal._(decimal.remainder(other.decimal));
+  BigDecimal remainder(BigDecimal other) => BigDecimal._(decimal.remainder(other.decimal));
 
   bool operator <(BigDecimal other) => decimal < other.decimal;
 
@@ -88,14 +80,11 @@ class BigDecimal implements Comparable<BigDecimal> {
 
   double toDouble() => decimal.toDouble();
 
-  String toStringAsFixed(int fractionDigits) =>
-      decimal.toStringAsFixed(fractionDigits);
+  String toStringAsFixed(int fractionDigits) => decimal.toStringAsFixed(fractionDigits);
 
-  String toStringAsExponential(int fractionDigits) =>
-      decimal.toStringAsExponential(fractionDigits);
+  String toStringAsExponential(int fractionDigits) => decimal.toStringAsExponential(fractionDigits);
 
-  String toStringAsPrecision(int precision) =>
-      decimal.toStringAsPrecision(precision);
+  String toStringAsPrecision(int precision) => decimal.toStringAsPrecision(precision);
 
   // BigDecimal pow(int exponent) => BigDecimal._(decimal.pow(exponent));
   BigDecimal plus(BigDecimal other) => this + other;

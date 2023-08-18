@@ -1,0 +1,6 @@
+arb-dir: lib/src/l10n
+template-arb-file: app_en.arb
+output-class: BaseBlocLocalizations
+output-localization-file: base_bloc_localizations.dart
+synthetic-package: false # important, if you want to import the delegate in another package or app
+output-dir: lib/src/l10n/generated # this is optional, if synthetic-package=false and not stated, defaults to arb-dir location
