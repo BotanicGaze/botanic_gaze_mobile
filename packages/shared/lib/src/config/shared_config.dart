@@ -14,7 +14,7 @@ class SharedConfig extends Config {
   static final SharedConfig _instance = SharedConfig._();
 
   @override
-  Future<void> config() async {
+  Future<void> config({ConfigArgument? configArgument}) async {
     di.configureInjection();
     await getIt<AppInfo>().init();
   }

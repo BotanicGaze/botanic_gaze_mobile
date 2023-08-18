@@ -19,7 +19,15 @@ class BaseBlocConfig extends Config {
   VoidCallback? get onForceLogoutButtonPressed => _onForceLogoutButtonPressed;
 
   @override
-  Future<void> config() async {
+  Future<void> config({ConfigArgument? configArgument}) async {
     di.configureInjection();
   }
+}
+
+class BaseBlocConfigArgument implements ConfigArgument {
+  final VoidCallback? onForceLogoutButtonPressed;
+
+  BaseBlocConfigArgument({
+    this.onForceLogoutButtonPressed,
+  });
 }
