@@ -1,4 +1,5 @@
 import 'package:base_bloc/base_bloc.dart';
+import 'package:base_bloc/l10n/generated/base_bloc_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 

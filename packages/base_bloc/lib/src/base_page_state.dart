@@ -1,6 +1,5 @@
 import 'package:base_bloc/base_bloc.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
 import 'package:shared/shared.dart';
 
@@ -8,7 +7,8 @@ abstract class BasePageState<T extends StatefulWidget, B extends BaseBloc>
     extends BasePageStateDelegate<T, B> with LogMixin {}
 
 abstract class BasePageStateDelegate<T extends StatefulWidget,
-    B extends BaseBloc> extends State<T> implements ExceptionHandlerListener {
+        B extends BaseBloc> extends State<T>
+    with ExceptionHandlerListener, AutomaticKeepAliveClientMixin {
   late final AppNavigator navigator = GetIt.instance.get<AppNavigator>();
   // late final AppBloc appBloc = GetIt.instance.get<AppBloc>();
   late final ExceptionMessageMapper exceptionMessageMapper =
@@ -35,6 +35,7 @@ abstract class BasePageStateDelegate<T extends StatefulWidget,
 
   @override
   Widget build(BuildContext context) {
+    super.build(context);
     return MultiBlocProvider(
       providers: [
         BlocProvider(create: (_) => bloc),
@@ -101,4 +102,7 @@ abstract class BasePageStateDelegate<T extends StatefulWidget,
   void onRefreshTokenFailed() {
     commonBloc.add(const ForceLogoutButtonPressed());
   }
+
+  @override
+  bool get wantKeepAlive => false;
 }

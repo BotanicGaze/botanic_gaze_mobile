@@ -1,34 +1,59 @@
 import 'package:base_bloc/base_bloc.dart';
+import 'package:botanic_gaze/features/dash_board/view/view.dart';
+import 'package:botanic_gaze/features/search/view/view.dart';
+import 'package:botanic_gaze/features/splash/splash.dart';
+import 'package:botanic_gaze/navigation/navigation_contains.dart';
 import 'package:flutter/material.dart';
 import 'package:injectable/injectable.dart';
 import 'package:shared/shared.dart';
 
+GlobalKey<NavigatorState> appNavigatorKey = GlobalKey<NavigatorState>();
+
 @LazySingleton(as: AppNavigator)
 class AppNavigatorImpl extends AppNavigator with LogMixin {
   @override
-  // TODO: implement canPopSelfOrChildren
+  GoRouter get router => GoRouter(
+        navigatorKey: appNavigatorKey,
+        debugLogDiagnostics: true,
+        routes: [
+          GoRoute(
+            path: NavigationContains.rootPage,
+            name: NavigationContains.rootPage,
+            builder: (context, state) => const SplashPage(),
+          ),
+          GoRoute(
+            path: NavigationContains.dashBoardPage,
+            name: NavigationContains.dashBoardPage,
+            builder: (context, state) => const DashBoardPage(),
+          ),
+          GoRoute(
+            path: NavigationContains.searchPage,
+            name: NavigationContains.searchPage,
+            builder: (context, state) => const SearchPage(),
+          ),
+        ],
+      );
+
+  @override
   bool get canPopSelfOrChildren => throw UnimplementedError();
 
   @override
-  // TODO: implement currentBottomTab
   int get currentBottomTab => throw UnimplementedError();
 
   @override
   String getCurrentRouteName({bool useRootNavigator = false}) {
-    // TODO: implement getCurrentRouteName
     throw UnimplementedError();
+    // return GoRouterState.of(navigatorKey.currentState!.context).name ?? '';
   }
 
   @override
-  // TODO: implement navigatorKey
-  GlobalKey<NavigatorState> get navigatorKey => throw UnimplementedError();
+  GlobalKey<NavigatorState> get navigatorKey => appNavigatorKey;
 
   @override
   Future<bool> pop<T extends Object?>({
     T? result,
     bool useRootNavigator = false,
   }) {
-    // TODO: implement pop
     throw UnimplementedError();
   }
 
@@ -39,14 +64,11 @@ class AppNavigatorImpl extends AppNavigator with LogMixin {
     bool useSafeArea = false,
     bool useRootNavigator = true,
   }) {
-    // TODO: implement showDialog
     throw UnimplementedError();
   }
 
   @override
-  void showErrorSnackBar(String message, {Duration? duration}) {
-    // TODO: implement showErrorSnackBar
-  }
+  void showErrorSnackBar(String message, {Duration? duration}) {}
 
   @override
   Future<T?> showGeneralDialog<T extends Object?>(
@@ -63,7 +85,6 @@ class AppNavigatorImpl extends AppNavigator with LogMixin {
     Color barrierColor = const Color(0x80000000),
     bool useRootNavigator = true,
   }) {
-    // TODO: implement showGeneralDialog
     throw UnimplementedError();
   }
 
@@ -77,12 +98,9 @@ class AppNavigatorImpl extends AppNavigator with LogMixin {
     Color barrierColor = Colors.black54,
     Color? backgroundColor,
   }) {
-    // TODO: implement showModalBottomSheet
     throw UnimplementedError();
   }
 
   @override
-  void showSuccessSnackBar(String message, {Duration? duration}) {
-    // TODO: implement showSuccessSnackBar
-  }
+  void showSuccessSnackBar(String message, {Duration? duration}) {}
 }

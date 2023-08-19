@@ -93,6 +93,6 @@ class ExceptionHandler {
   }
 }
 
-abstract class ExceptionHandlerListener {
+mixin ExceptionHandlerListener {
   void onRefreshTokenFailed();
 }

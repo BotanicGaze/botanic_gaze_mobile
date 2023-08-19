@@ -2,3 +2,5 @@ arb-dir: lib/l10n
 template-arb-file: app_en.arb
 output-class: BaseBlocLocalizations
 output-localization-file: base_bloc_localizations.dart
+synthetic-package: false
+output-dir: lib/l10n/generated

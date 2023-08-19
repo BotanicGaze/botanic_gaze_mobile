@@ -1,9 +1,11 @@
-import 'package:base_bloc/src/navigation/app_popup_info.dart';
+import 'package:base_bloc/base_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:shared/shared.dart';
 
 abstract class AppNavigator {
   const AppNavigator();
+
+  GoRouter get router;
 
   bool get canPopSelfOrChildren;
 

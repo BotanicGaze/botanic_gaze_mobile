@@ -1,8 +1,8 @@
 import 'dart:async';
 
 import 'package:base_bloc/base_bloc.dart';
-import 'package:botanic_gaze/login/bloc/login_event.dart';
-import 'package:botanic_gaze/login/bloc/login_state.dart';
+import 'package:botanic_gaze/features/login/bloc/login_event.dart';
+import 'package:botanic_gaze/features/login/bloc/login_state.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 

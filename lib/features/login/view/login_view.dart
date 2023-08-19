@@ -1,9 +1,7 @@
 import 'package:app_ui/app_ui.dart';
 import 'package:base_bloc/base_bloc.dart';
-import 'package:botanic_gaze/common_view/common_scaffold.dart';
-import 'package:botanic_gaze/login/bloc/login_bloc.dart';
-import 'package:botanic_gaze/login/bloc/login_event.dart';
-import 'package:botanic_gaze/login/bloc/login_state.dart';
+import 'package:botanic_gaze/features/login/login.dart';
+import 'package:botanic_gaze/widgets/common_scaffold.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
