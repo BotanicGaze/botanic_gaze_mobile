@@ -1,3 +1,4 @@
+import 'package:app_ui/app_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:shared/shared.dart';
 
@@ -24,9 +25,8 @@ class CommonScaffold extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final scaffold = Scaffold(
-      extendBody: true,
       backgroundColor: backgroundColor,
-      body: body,
+      body: Shimmer(child: body),
       appBar: appBar,
       drawer: drawer,
       floatingActionButton: floatingActionButton,

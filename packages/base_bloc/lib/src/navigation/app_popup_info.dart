@@ -1,4 +1,3 @@
-import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:shared/shared.dart';
 
 part 'app_popup_info.freezed.dart';

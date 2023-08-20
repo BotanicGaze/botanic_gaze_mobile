@@ -60,15 +60,18 @@ import 'base_bloc_localizations_ja.dart';
 /// be consistent with the languages listed in the BaseBlocLocalizations.supportedLocales
 /// property.
 abstract class BaseBlocLocalizations {
-  BaseBlocLocalizations(String locale) : localeName = intl.Intl.canonicalizedLocale(locale.toString());
+  BaseBlocLocalizations(String locale)
+      : localeName = intl.Intl.canonicalizedLocale(locale.toString());
 
   final String localeName;
 
   static BaseBlocLocalizations? of(BuildContext context) {
-    return Localizations.of<BaseBlocLocalizations>(context, BaseBlocLocalizations);
+    return Localizations.of<BaseBlocLocalizations>(
+        context, BaseBlocLocalizations);
   }
 
-  static const LocalizationsDelegate<BaseBlocLocalizations> delegate = _BaseBlocLocalizationsDelegate();
+  static const LocalizationsDelegate<BaseBlocLocalizations> delegate =
+      _BaseBlocLocalizationsDelegate();
 
   /// A list of this localizations delegate along with the default localizations
   /// delegates.
@@ -80,7 +83,8 @@ abstract class BaseBlocLocalizations {
   /// Additional delegates can be added by appending to this list in
   /// MaterialApp. This list does not have to be used at all if a custom list
   /// of delegates is preferred or required.
-  static const List<LocalizationsDelegate<dynamic>> localizationsDelegates = <LocalizationsDelegate<dynamic>>[
+  static const List<LocalizationsDelegate<dynamic>> localizationsDelegates =
+      <LocalizationsDelegate<dynamic>>[
     delegate,
     GlobalMaterialLocalizations.delegate,
     GlobalCupertinoLocalizations.delegate,
@@ -256,34 +260,36 @@ abstract class BaseBlocLocalizations {
   String get japanese;
 }
 
-class _BaseBlocLocalizationsDelegate extends LocalizationsDelegate<BaseBlocLocalizations> {
+class _BaseBlocLocalizationsDelegate
+    extends LocalizationsDelegate<BaseBlocLocalizations> {
   const _BaseBlocLocalizationsDelegate();
 
   @override
   Future<BaseBlocLocalizations> load(Locale locale) {
-    return SynchronousFuture<BaseBlocLocalizations>(lookupBaseBlocLocalizations(locale));
+    return SynchronousFuture<BaseBlocLocalizations>(
+        lookupBaseBlocLocalizations(locale));
   }
 
   @override
-  bool isSupported(Locale locale) => <String>['en', 'ja'].contains(locale.languageCode);
+  bool isSupported(Locale locale) =>
+      <String>['en', 'ja'].contains(locale.languageCode);
 
   @override
   bool shouldReload(_BaseBlocLocalizationsDelegate old) => false;
 }
 
 BaseBlocLocalizations lookupBaseBlocLocalizations(Locale locale) {
-
-
   // Lookup logic when only language code is specified.
   switch (locale.languageCode) {
-    case 'en': return BaseBlocLocalizationsEn();
-    case 'ja': return BaseBlocLocalizationsJa();
+    case 'en':
+      return BaseBlocLocalizationsEn();
+    case 'ja':
+      return BaseBlocLocalizationsJa();
   }
 
   throw FlutterError(
-    'BaseBlocLocalizations.delegate failed to load unsupported locale "$locale". This is likely '
-    'an issue with the localizations generation tool. Please file an issue '
-    'on GitHub with a reproducible sample app and the gen-l10n configuration '
-    'that was used.'
-  );
+      'BaseBlocLocalizations.delegate failed to load unsupported locale "$locale". This is likely '
+      'an issue with the localizations generation tool. Please file an issue '
+      'on GitHub with a reproducible sample app and the gen-l10n configuration '
+      'that was used.');
 }

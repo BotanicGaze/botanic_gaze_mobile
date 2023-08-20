@@ -1,6 +1,5 @@
 import 'package:botanic_gaze/di/di.config.dart';
-import 'package:get_it/get_it.dart';
-import 'package:injectable/injectable.dart';
+import 'package:shared/shared.dart';
 
 final GetIt getIt = GetIt.instance;
 

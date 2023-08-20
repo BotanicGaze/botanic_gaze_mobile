@@ -1,10 +1,10 @@
-import 'package:flutter/material.dart';
+// import 'package:flutter/material.dart';
 
-class CommonNoMoreItemsIndicator extends StatelessWidget {
-  const CommonNoMoreItemsIndicator({super.key});
+// class CommonNoMoreItemsIndicator extends StatelessWidget {
+//   const CommonNoMoreItemsIndicator({super.key});
 
-  @override
-  Widget build(BuildContext context) {
-    return const SizedBox.shrink();
-  }
-}
+//   @override
+//   Widget build(BuildContext context) {
+//     return const SizedBox.shrink();
+//   }
+// }

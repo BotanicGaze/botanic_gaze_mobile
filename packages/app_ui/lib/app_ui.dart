@@ -1,10 +1,19 @@
 library app_ui;
 
 export 'package:flutter_screenutil/flutter_screenutil.dart';
-
 export 'src/colors.dart';
-export 'src/dimens/index.dart';
+export 'src/dimens/app_dimen.dart';
+export 'src/dimens/device_constants.dart';
+export 'src/dimens/dimens.dart';
+export 'src/layout/breakpoints.dart';
 export 'src/layout/layout.dart';
 export 'src/theme.dart';
+export 'src/typography/font_weights.dart';
+export 'src/typography/text_styles.dart';
 export 'src/typography/typography.dart';
+export 'src/widgets/responsive_layout_builder.dart';
+export 'src/widgets/shimmer/circle_shimmer.dart';
+export 'src/widgets/shimmer/rounded_rectangle_shimmer.dart';
+export 'src/widgets/shimmer/shimmer.dart';
+export 'src/widgets/shimmer/shimmer_loading.dart';
 export 'src/widgets/widgets.dart';

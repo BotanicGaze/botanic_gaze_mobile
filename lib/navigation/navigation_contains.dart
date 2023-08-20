@@ -1,4 +1,5 @@
 import 'package:botanic_gaze/features/dash_board/dash_board.dart';
+import 'package:botanic_gaze/features/scan/index.dart';
 import 'package:botanic_gaze/features/search/index.dart';
 
 import 'package:botanic_gaze/features/splash/splash.dart';
@@ -17,4 +18,7 @@ class NavigationContains {
 
   ///go to [SearchPage]
   static const String searchPage = '/search_page';
+
+  ///go to [ScanPage]
+  static const String scanPage = '/scan_page';
 }

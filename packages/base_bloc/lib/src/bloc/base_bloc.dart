@@ -1,7 +1,6 @@
 import 'dart:async';
 
 import 'package:base_bloc/base_bloc.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shared/shared.dart';
 
 abstract class BaseBloc<E extends BaseBlocEvent, S extends BaseBlocState>

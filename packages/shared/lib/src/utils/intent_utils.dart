@@ -2,12 +2,14 @@ import 'package:url_launcher/url_launcher.dart';
 
 class IntentUtils {
   static Future<bool> openBrowserURL({
-    required String url,
+    required Uri url,
     bool inApp = false,
   }) async {
-    return await canLaunch(url)
-        ? await launch(url,
-            forceSafariVC: inApp, forceWebView: inApp, enableJavaScript: true)
+    return await canLaunchUrl(url)
+        ? await launchUrl(
+            url,
+            mode: inApp ? LaunchMode.inAppWebView : LaunchMode.platformDefault,
+          )
         : false;
   }
 }

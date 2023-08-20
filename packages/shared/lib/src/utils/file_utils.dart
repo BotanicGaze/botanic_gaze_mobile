@@ -90,9 +90,9 @@ class FileUtils {
       await File(filePath).delete(recursive: true);
 
       return true;
-    } catch (e) {}
-
-    return false;
+    } catch (e) {
+      return false;
+    }
   }
 
   /// Get temporary directory for App. If `defaultDir` is not set, all files will not be save into

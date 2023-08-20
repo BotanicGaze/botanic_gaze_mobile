@@ -1,6 +1,6 @@
 import 'package:base_bloc/base_bloc.dart';
+import 'package:base_bloc/src/di/di.dart';
 import 'package:flutter/material.dart';
-import 'package:get_it/get_it.dart';
 import 'package:shared/shared.dart';
 
 abstract class BasePageState<T extends StatefulWidget, B extends BaseBloc>
@@ -9,8 +9,7 @@ abstract class BasePageState<T extends StatefulWidget, B extends BaseBloc>
 abstract class BasePageStateDelegate<T extends StatefulWidget,
         B extends BaseBloc> extends State<T>
     with ExceptionHandlerListener, AutomaticKeepAliveClientMixin {
-  late final AppNavigator navigator = GetIt.instance.get<AppNavigator>();
-  // late final AppBloc appBloc = GetIt.instance.get<AppBloc>();
+  late final AppNavigator navigator = getIt<AppNavigator>();
   late final ExceptionMessageMapper exceptionMessageMapper =
       const ExceptionMessageMapper();
   late final ExceptionHandler exceptionHandler = ExceptionHandler(
@@ -18,12 +17,12 @@ abstract class BasePageStateDelegate<T extends StatefulWidget,
     listener: this,
   );
 
-  late final CommonBloc commonBloc = GetIt.instance.get<CommonBloc>()
+  late final CommonBloc commonBloc = getIt<CommonBloc>()
     ..disposeBag = disposeBag
     ..exceptionHandler = exceptionHandler
     ..exceptionMessageMapper = exceptionMessageMapper;
 
-  late final B bloc = GetIt.instance.get<B>()
+  late final B bloc = getIt<B>()
     ..disposeBag = disposeBag
     ..commonBloc = commonBloc
     ..exceptionHandler = exceptionHandler

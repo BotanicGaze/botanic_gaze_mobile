@@ -1,8 +1,6 @@
 import 'dart:async';
 
 import 'package:base_bloc/base_bloc.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:injectable/injectable.dart';
 import 'package:shared/shared.dart';
 
 @Injectable()
@@ -23,8 +21,6 @@ class CommonBloc extends BaseBloc<CommonEvent, CommonState> {
       transformer: log(),
     );
   }
-
-  // final ClearCurrentUserDataUseCase _clearCurrentUserDataUseCase;
 
   FutureOr<void> _onLoadingVisibilityEmitted(
     LoadingVisibilityEmitted event,

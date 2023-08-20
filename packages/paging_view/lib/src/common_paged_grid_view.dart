@@ -3,14 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 
 import 'package:paging_view/src/controller/common_paging_controller.dart';
-import 'package:paging_view/src/error_view/common_first_page_error_indicator.dart';
-import 'package:paging_view/src/error_view/common_new_page_error_indicator.dart';
-import 'package:paging_view/src/loading_view/common_first_page_progress_indicator.dart';
-import 'package:paging_view/src/loading_view/common_new_page_progress_indicator.dart';
-import 'package:paging_view/src/no_items_found_view/common_no_items_found_indicator.dart';
-import 'package:paging_view/src/no_more_items_view/common_no_more_items_indicator.dart';
 
 import 'package:paging_view/src/paging_constants.dart';
+
+import 'package:paging_view/src/paging_view_config.dart';
 
 class CommonPagedGridView<T> extends StatelessWidget {
   const CommonPagedGridView({
@@ -92,19 +88,24 @@ class CommonPagedGridView<T> extends StatelessWidget {
       itemBuilder: itemBuilder,
       animateTransitions: animateTransitions,
       transitionDuration: transitionDuration,
-      firstPageErrorIndicatorBuilder: (_) =>
-          firstPageErrorIndicator ?? const CommonFirstPageErrorIndicator(),
-      newPageErrorIndicatorBuilder: (_) =>
-          newPageErrorIndicator ?? const CommonNewPageErrorIndicator(),
-      firstPageProgressIndicatorBuilder: (_) =>
-          firstPageProgressIndicator ??
-          const CommonFirstPageProgressIndicator(),
-      newPageProgressIndicatorBuilder: (_) =>
-          newPageProgressIndicator ?? const CommonNewPageProgressIndicator(),
-      noItemsFoundIndicatorBuilder: (_) =>
-          noItemsFoundIndicator ?? const CommonNoItemsFoundIndicator(),
-      noMoreItemsIndicatorBuilder: (_) =>
-          noMoreItemsIndicator ?? const CommonNoMoreItemsIndicator(),
+      firstPageErrorIndicatorBuilder: firstPageErrorIndicator != null
+          ? (_) => firstPageErrorIndicator!
+          : PagingViewConfig.instance.firstPageErrorIndicatorBuilder,
+      newPageErrorIndicatorBuilder: newPageErrorIndicator != null
+          ? (_) => newPageErrorIndicator!
+          : PagingViewConfig.instance.newPageErrorIndicatorBuilder,
+      firstPageProgressIndicatorBuilder: firstPageProgressIndicator != null
+          ? (_) => firstPageProgressIndicator!
+          : PagingViewConfig.instance.firstPageProgressIndicatorBuilder,
+      newPageProgressIndicatorBuilder: newPageProgressIndicator != null
+          ? (_) => newPageProgressIndicator!
+          : PagingViewConfig.instance.newPageProgressIndicatorBuilder,
+      noItemsFoundIndicatorBuilder: noItemsFoundIndicator != null
+          ? (_) => noItemsFoundIndicator!
+          : PagingViewConfig.instance.noItemsFoundIndicatorBuilder,
+      noMoreItemsIndicatorBuilder: noMoreItemsIndicator != null
+          ? (_) => noMoreItemsIndicator!
+          : PagingViewConfig.instance.noMoreItemsIndicatorBuilder,
     );
 
     final pagedView = PagedGridView<int, T>(

@@ -1,4 +1,3 @@
-import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:shared/shared.dart';
 import '../base_bloc_state.dart';
 part 'common_state.freezed.dart';

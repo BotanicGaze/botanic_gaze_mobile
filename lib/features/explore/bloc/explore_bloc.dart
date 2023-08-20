@@ -8,8 +8,6 @@ part 'explore_state.dart';
 @Injectable()
 class ExploreBloc extends BaseBloc<ExploreEvent, ExploreState> {
   ExploreBloc() : super(const ExploreState()) {
-    on<ExploreEvent>((event, emit) {
-      // TODO: implement event handler
-    });
+    on<ExploreEvent>((event, emit) {});
   }
 }

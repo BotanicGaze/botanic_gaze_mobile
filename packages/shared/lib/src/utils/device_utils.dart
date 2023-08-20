@@ -1,9 +1,7 @@
 import 'dart:io';
 
-import 'package:android_id/android_id.dart';
 import 'package:device_info_plus/device_info_plus.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_udid/flutter_udid.dart';
 import 'package:shared/src/constants/ui/device_constants.dart';
 import 'package:shared/src/model/shared_enum.dart';
 
@@ -12,14 +10,15 @@ class DeviceUtils {
   static DeviceType deviceType = _getDeviceType();
 
   static Future<String> getDeviceId() async {
+    final DeviceInfoPlugin deviceInfo = DeviceInfoPlugin();
     if (Platform.isIOS) {
-      return await FlutterUdid.udid; // unique ID on iOS
+      final IosDeviceInfo iosInfo = await deviceInfo.iosInfo;
+
+      return iosInfo.identifierForVendor ?? "Unknown device";
     } else {
-      const androidIdPlugin = AndroidId();
+      final AndroidDeviceInfo androidInfo = await deviceInfo.androidInfo;
 
-      final androidID = await androidIdPlugin.getId();
-
-      return androidID ?? ''; // unique ID on Android
+      return androidInfo.id;
     }
   }
 

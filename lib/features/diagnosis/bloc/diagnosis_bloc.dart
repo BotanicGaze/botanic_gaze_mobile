@@ -8,8 +8,6 @@ part 'diagnosis_state.dart';
 @Injectable()
 class DiagnosisBloc extends BaseBloc<DiagnosisEvent, DiagnosisState> {
   DiagnosisBloc() : super(const DiagnosisState()) {
-    on<DiagnosisEvent>((event, emit) {
-      // TODO: implement event handler
-    });
+    on<DiagnosisEvent>((event, emit) {});
   }
 }

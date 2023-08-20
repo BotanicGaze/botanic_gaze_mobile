@@ -3,7 +3,6 @@ import 'dart:async';
 import 'package:base_bloc/base_bloc.dart';
 import 'package:botanic_gaze/features/login/bloc/login_event.dart';
 import 'package:botanic_gaze/features/login/bloc/login_state.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 
 @Injectable()
@@ -69,12 +68,7 @@ class LoginBloc extends BaseBloc<LoginEvent, LoginState> {
     Emitter<LoginState> emit,
   ) {
     return runBlocCatching(
-      action: () async {
-        await Future.delayed(const Duration(seconds: 10));
-        // await _loginUseCase
-        //     .execute(LoginInput(email: state.email, password: state.password));
-        // await navigator.replace(const AppRouteInfo.main());
-      },
+      action: () async {},
       handleError: false,
       doOnError: (e) async {
         // emit(state.copyWith(onPageError: exceptionMessageMapper.map(e)));

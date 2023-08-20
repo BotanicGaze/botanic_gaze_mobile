@@ -1,5 +1,5 @@
 import 'package:base_bloc/base_bloc.dart';
-import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:shared/shared.dart';
 
 part 'login_event.freezed.dart';
 

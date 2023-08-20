@@ -2,7 +2,6 @@ import 'package:base_bloc/src/bloc/base_bloc.dart';
 import 'package:base_bloc/src/bloc/base_bloc_event.dart';
 import 'package:base_bloc/src/bloc/base_bloc_state.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:rxdart/rxdart.dart';
 import 'package:shared/shared.dart';
 
 mixin EventTransformerMixin<E extends BaseBlocEvent, S extends BaseBlocState>

@@ -1,6 +1,5 @@
 import 'package:dartx/dartx.dart';
 import 'package:intl/intl.dart';
-import 'package:shared/src/constants/locale_constants.dart';
 import 'package:shared/src/utils/string_utils.dart';
 import 'package:timezone/data/latest.dart' as tz;
 import 'package:timezone/timezone.dart' as tz;
@@ -88,7 +87,7 @@ class DateTimeUtils {
   static DateTime? tryParse({
     String? date,
     String? format,
-    String locale = LocaleConstants.defaultLocale,
+    String locale = 'en',
   }) {
     if (date == null) {
       return null;

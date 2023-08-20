@@ -31,6 +31,17 @@ class _SearchTabPageState extends BasePageState<SearchTabPage, SearchTabBloc> {
                 color: Colors.amber,
               ),
             ),
+          ),
+          const SizedBox(height: 50),
+          GestureDetector(
+            onTap: () {
+              context.pushNamed(NavigationContains.scanPage);
+            },
+            child: Container(
+              width: 50,
+              height: 50,
+              color: Colors.amber,
+            ),
           )
         ],
       ),

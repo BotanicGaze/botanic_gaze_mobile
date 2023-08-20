@@ -1,7 +1,3 @@
-/// *****
-/// Link description and example:
-/// https://bitbucket.org/nal-solutions/nmtb-nals-mobile-team-brain/pull-requests/13
-/// *****
 import 'dart:math';
 
 import 'package:flutter/material.dart';
@@ -75,7 +71,7 @@ class CommonPagingScrollSnapPhysics extends ScrollPhysics {
     return null;
   }
 
-  /// Caltulator padding item anchor
+  /// Calculator padding item anchor
   /// maxWidth or maxHeight depending on axis
   /// maxWidth if axis is horizontal
   /// maxHeight if axis is vertical
@@ -98,7 +94,8 @@ class CommonPagingScrollSnapPhysics extends ScrollPhysics {
   ///
   /// `pixels  = page * itemSize`
   ///
-  /// But we want that item to always be in the middle then we should calculate padding by function _getPadding()
+  /// But we want that item to always be in the middle
+  /// then we should calculate padding by function _getPadding()
   ///
   /// Example:
   ///
@@ -117,7 +114,7 @@ class CommonPagingScrollSnapPhysics extends ScrollPhysics {
     );
   }
 
-  /// Caltulator target pixels
+  /// Calculator target pixels
   double _getTargetPixels(
     ScrollMetrics position,
     Tolerance tolerance,

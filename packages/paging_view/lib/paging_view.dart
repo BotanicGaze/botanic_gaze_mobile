@@ -1,7 +1,6 @@
 /// A Very Good Project created by Very Good CLI.
 library paging_view;
 
-export 'paging_view.dart';
 export 'src/common_paged_grid_view.dart';
 export 'src/common_paged_list_view.dart';
 export 'src/common_paged_sliver_grid.dart';
@@ -15,4 +14,5 @@ export 'src/loading_view/common_new_page_progress_indicator.dart';
 export 'src/no_items_found_view/common_no_items_found_indicator.dart';
 export 'src/no_more_items_view/common_no_more_items_indicator.dart';
 export 'src/paging_constants.dart';
+export 'src/paging_view_config.dart';
 export 'src/physics/common_paging_scroll_snap_physics.dart';

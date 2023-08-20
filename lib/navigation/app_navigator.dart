@@ -1,5 +1,6 @@
 import 'package:base_bloc/base_bloc.dart';
 import 'package:botanic_gaze/features/dash_board/view/view.dart';
+import 'package:botanic_gaze/features/scan/index.dart';
 import 'package:botanic_gaze/features/search/view/view.dart';
 import 'package:botanic_gaze/features/splash/splash.dart';
 import 'package:botanic_gaze/navigation/navigation_contains.dart';
@@ -19,17 +20,34 @@ class AppNavigatorImpl extends AppNavigator with LogMixin {
           GoRoute(
             path: NavigationContains.rootPage,
             name: NavigationContains.rootPage,
-            builder: (context, state) => const SplashPage(),
+            pageBuilder: (context, state) => CustomTransitionPage<void>(
+              key: state.pageKey,
+              child: const SplashPage(),
+              transitionsBuilder:
+                  (context, animation, secondaryAnimation, child) =>
+                      FadeTransition(opacity: animation, child: child),
+            ),
           ),
           GoRoute(
             path: NavigationContains.dashBoardPage,
             name: NavigationContains.dashBoardPage,
-            builder: (context, state) => const DashBoardPage(),
+            pageBuilder: (context, state) => CustomTransitionPage<void>(
+              key: state.pageKey,
+              child: const DashBoardPage(),
+              transitionsBuilder:
+                  (context, animation, secondaryAnimation, child) =>
+                      FadeTransition(opacity: animation, child: child),
+            ),
           ),
           GoRoute(
             path: NavigationContains.searchPage,
             name: NavigationContains.searchPage,
             builder: (context, state) => const SearchPage(),
+          ),
+          GoRoute(
+            path: NavigationContains.scanPage,
+            name: NavigationContains.scanPage,
+            builder: (context, state) => const ScanPage(),
           ),
         ],
       );
