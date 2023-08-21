@@ -1,21 +1,27 @@
-// ignore_for_file: invalid_annotation_target
-
-import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:shared/shared.dart';
 
 part 'results_response.g.dart';
 
 @JsonSerializable(genericArgumentFactories: true)
 class ResultsListResponse<T> {
-  ResultsListResponse({
-    @JsonKey(name: 'results') this.results,
-  });
-
   factory ResultsListResponse.fromJson(
     Map<String, dynamic> json,
-    // ignore: avoid-dynamic
     T Function(dynamic) fromJsonT,
   ) =>
       _$ResultsListResponseFromJson(json, fromJsonT);
 
-  final List<T>? results;
+  @JsonKey(defaultValue: [])
+  final List<T> results;
+  @JsonKey(defaultValue: false)
+  final bool? success;
+  final String? message;
+  @JsonKey(defaultValue: 0)
+  final int? totalResult;
+
+  ResultsListResponse({
+    required this.results,
+    this.success,
+    this.message,
+    this.totalResult,
+  });
 }

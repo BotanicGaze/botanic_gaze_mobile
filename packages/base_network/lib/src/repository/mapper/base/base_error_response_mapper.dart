@@ -8,7 +8,8 @@ import '../base_error_response_mapper/line_error_response_mapper.dart';
 import '../base_error_response_mapper/twitter_error_response_mapper.dart';
 import 'base_data_mapper.dart';
 
-abstract class BaseErrorResponseMapper<T> extends BaseDataMapper<T, ServerError> {
+abstract class BaseErrorResponseMapper<T>
+    extends BaseDataMapper<T, ServerError> {
   const BaseErrorResponseMapper();
 
   factory BaseErrorResponseMapper.fromType(ErrorResponseMapperType type) {
@@ -24,7 +25,8 @@ abstract class BaseErrorResponseMapper<T> extends BaseDataMapper<T, ServerError>
       case ErrorResponseMapperType.goong:
         return GoongErrorResponseMapper() as BaseErrorResponseMapper<T>;
       case ErrorResponseMapperType.firebaseStorage:
-        return FirebaseStorageErrorResponseMapper() as BaseErrorResponseMapper<T>;
+        return FirebaseStorageErrorResponseMapper()
+            as BaseErrorResponseMapper<T>;
     }
   }
 }
