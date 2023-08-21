@@ -12,6 +12,8 @@ dependencies:
   auto_route: ^7.8.0
   base_bloc:
     path: ./packages/base_bloc
+  base_network:
+    path: ./packages/base_network
   bloc: ^8.1.2
   equatable: ^2.0.5
   flutter:
@@ -25,7 +27,8 @@ dependencies:
     path: ./packages/paging_view
   shared:
     path: ./packages/shared
-
+  syncfusion_flutter_gauges: ^22.2.9
+  talker: ^3.1.1
 
 dev_dependencies:
   auto_route_generator: ^7.3.1

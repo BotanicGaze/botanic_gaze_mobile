@@ -77,6 +77,11 @@ class AppDimen {
       return ScreenType.ultraTablet;
     }
   }
+
+  @override
+  String toString() {
+    return 'AppDimen(screenWidth: $screenWidth, screenHeight: $screenHeight, devicePixelRatio: $devicePixelRatio, screenType: $screenType)';
+  }
 }
 
 extension ResponsiveDoubleExtension on double {

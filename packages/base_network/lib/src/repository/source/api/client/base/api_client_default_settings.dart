@@ -1,9 +1,6 @@
+import 'package:base_network/base_network.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
-
-import '../../middleware/connectivity_interceptor.dart';
-import '../../middleware/custom_log_interceptor.dart';
-import '../../middleware/retry_on_error_interceptor.dart';
 
 class ApiClientDefaultSetting {
   const ApiClientDefaultSetting._();
@@ -12,6 +9,6 @@ class ApiClientDefaultSetting {
   static List<Interceptor> requiredInterceptors(Dio dio) => [
         if (kDebugMode) CustomLogInterceptor(),
         ConnectivityInterceptor(),
-        RetryOnErrorInterceptor(dio),
+        // RetryOnErrorInterceptor(dio),
       ];
 }

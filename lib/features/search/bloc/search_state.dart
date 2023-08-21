@@ -7,7 +7,7 @@ class SearchState extends BaseBlocState with EquatableMixin {
     this.loadTaskException,
   });
 
-  final LoadMoreOutput tasks;
+  final LoadMoreOutput<PlantSearchResponse> tasks;
   final bool isShimmerLoading;
   final AppException? loadTaskException;
 
@@ -15,7 +15,7 @@ class SearchState extends BaseBlocState with EquatableMixin {
   List<Object?> get props => [tasks, isShimmerLoading, loadTaskException];
 
   SearchState copyWith({
-    LoadMoreOutput? tasks,
+    LoadMoreOutput<PlantSearchResponse>? tasks,
     bool? isShimmerLoading,
     AppException? loadTaskException,
   }) {

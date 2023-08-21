@@ -11,7 +11,7 @@ ResultsListResponse<T> _$ResultsListResponseFromJson<T>(
   T Function(Object? json) fromJsonT,
 ) =>
     ResultsListResponse<T>(
-      results: (json['results'] as List<dynamic>?)?.map(fromJsonT).toList(),
+      results: (json['hits'] as List<dynamic>?)?.map(fromJsonT).toList(),
     );
 
 Map<String, dynamic> _$ResultsListResponseToJson<T>(

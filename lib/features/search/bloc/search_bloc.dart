@@ -1,8 +1,9 @@
 import 'dart:async';
 
 import 'package:base_bloc/base_bloc.dart';
-import 'package:equatable/equatable.dart';
-import 'package:injectable/injectable.dart';
+import 'package:base_network/base_network.dart';
+import 'package:botanic_gaze/data_source/app_api_service.dart';
+import 'package:botanic_gaze/models/index.dart';
 import 'package:paging_view/paging_view.dart';
 import 'package:shared/shared.dart';
 
@@ -42,11 +43,11 @@ class SearchBloc extends BaseBloc<SearchEvent, SearchState> {
     );
   }
 
-  FutureOr<void> _onSearchPageLoadMore(
+  Future<void> _onSearchPageLoadMore(
     SearchPageLoadMore event,
     Emitter<SearchState> emit,
-  ) {
-    _getTask(emit: emit, isInitialLoad: false);
+  ) async {
+    await _getTask(emit: emit, isInitialLoad: false);
   }
 
   Future<FutureOr<void>> _onSearchPageRefreshed(
@@ -74,8 +75,15 @@ class SearchBloc extends BaseBloc<SearchEvent, SearchState> {
   }) async {
     return runBlocCatching(
       action: () async {
-        // final output = List.generate(20, (index) => Task(id: index.toString()));
-        // emit(state.copyWith(tasks: LoadMoreOutput<Task>(data: output)));
+        final output = await getIt<AppApiService>()
+            .getListPlant(const PlantSearchRequest());
+        emit(
+          state.copyWith(
+            tasks: LoadMoreOutput<PlantSearchResponse>(
+              data: output.results ?? [],
+            ),
+          ),
+        );
       },
       doOnError: (e) async {
         emit(state.copyWith(loadTaskException: e));
@@ -83,6 +91,7 @@ class SearchBloc extends BaseBloc<SearchEvent, SearchState> {
       doOnSubscribe: doOnSubscribe,
       doOnSuccessOrError: doOnSuccessOrError,
       handleLoading: false,
+      handleRetry: false,
     );
   }
 }

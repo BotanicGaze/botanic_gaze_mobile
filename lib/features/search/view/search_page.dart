@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:app_ui/app_ui.dart';
 import 'package:base_bloc/base_bloc.dart';
 import 'package:botanic_gaze/features/search/index.dart';
+import 'package:botanic_gaze/models/index.dart';
 import 'package:botanic_gaze/widgets/index.dart';
 import 'package:flutter/material.dart';
 import 'package:paging_view/paging_view.dart';
@@ -18,7 +19,7 @@ class SearchPage extends StatefulWidget {
 }
 
 class _SearchPageState extends BasePageState<SearchPage, SearchBloc> {
-  late final _pagingController = CommonPagingController()
+  late final _pagingController = CommonPagingController<PlantSearchResponse>()
     ..disposeBy(disposeBag);
 
   @override

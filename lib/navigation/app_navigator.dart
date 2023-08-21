@@ -5,7 +5,6 @@ import 'package:botanic_gaze/features/search/view/view.dart';
 import 'package:botanic_gaze/features/splash/splash.dart';
 import 'package:botanic_gaze/navigation/navigation_contains.dart';
 import 'package:flutter/material.dart';
-import 'package:injectable/injectable.dart';
 import 'package:shared/shared.dart';
 
 GlobalKey<NavigatorState> appNavigatorKey = GlobalKey<NavigatorState>();
