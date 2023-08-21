@@ -1,0 +1,2 @@
+# # melos_managed_dependency_overrides: shared
+dependency_overrides:    injectable: 2.2.0

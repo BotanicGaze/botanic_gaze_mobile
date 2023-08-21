@@ -50,10 +50,12 @@ class DioExceptionMapper extends ExceptionMapper<RemoteException> {
             rootException: exception,
           );
         case DioExceptionType.connectionError:
-          return RemoteException(kind: RemoteExceptionKind.network, rootException: exception);
+          return RemoteException(
+              kind: RemoteExceptionKind.network, rootException: exception);
         case DioExceptionType.unknown:
           if (exception is SocketException) {
-            return RemoteException(kind: RemoteExceptionKind.network, rootException: exception);
+            return RemoteException(
+                kind: RemoteExceptionKind.network, rootException: exception);
           }
 
           if (exception.error is RemoteException) {
@@ -62,6 +64,7 @@ class DioExceptionMapper extends ExceptionMapper<RemoteException> {
       }
     }
 
-    return RemoteException(kind: RemoteExceptionKind.unknown, rootException: exception);
+    return RemoteException(
+        kind: RemoteExceptionKind.unknown, rootException: exception);
   }
 }

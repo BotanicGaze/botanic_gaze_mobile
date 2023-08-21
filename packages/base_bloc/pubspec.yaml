@@ -4,7 +4,6 @@ version: 0.0.1
 homepage: null
 publish_to: none
 
-
 environment:
   sdk: ">=3.0.5 <4.0.0"
   flutter: ">=3.3.0"
