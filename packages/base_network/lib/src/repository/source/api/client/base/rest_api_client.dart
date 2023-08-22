@@ -52,10 +52,10 @@ class RestApiClient {
   Future<T> request<T, D>({
     required RestMethod method,
     required String path,
+    required Decoder<D>? decoder,
     Map<String, dynamic>? queryParameters,
     // ignore: avoid-dynamic
     dynamic body,
-    Decoder<D>? decoder,
     SuccessResponseMapperType? successResponseMapperType,
     ErrorResponseMapperType? errorResponseMapperType,
     BaseErrorResponseMapper? errorResponseMapper,

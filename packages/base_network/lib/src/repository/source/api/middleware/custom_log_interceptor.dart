@@ -1,110 +1,138 @@
+import 'dart:async';
+import 'dart:collection';
+import 'dart:convert';
+import 'dart:developer';
+
 import 'package:dio/dio.dart';
-import 'package:shared/shared.dart';
+import 'package:flutter/foundation.dart';
 
 import 'base_interceptor.dart';
 
 class CustomLogInterceptor extends BaseInterceptor {
-  CustomLogInterceptor({
-    this.enableLogRequestInfo = LogConfig.enableLogRequestInfo,
-    this.enableLogSuccessResponse = LogConfig.enableLogSuccessResponse,
-    this.enableLogErrorResponse = LogConfig.enableLogErrorResponse,
-  });
+  DateTime _startTime = DateTime.now();
+  DateTime _endTime = DateTime.now();
 
-  final bool enableLogRequestInfo;
-  final bool enableLogSuccessResponse;
-  final bool enableLogErrorResponse;
+  @override
+  Future onRequest(
+    RequestOptions options,
+    RequestInterceptorHandler handler,
+  ) async {
+    _startTime = DateTime.now();
+    logPrint("*** API Request - Start ***");
 
-  static const _enableLogInterceptor = LogConfig.enableLogInterceptor;
+    printKV("URI", options.uri);
+    printKV("METHOD", options.method);
+    logPrint("HEADERS:");
+    options.headers.forEach((String key, v) => printKV(" - $key", v));
+    logPrint("BODY:");
+    printAll(options.data ?? "");
+
+    logPrint("*** API Request - End ***");
+    super.onRequest(options, handler);
+  }
+
+  @override
+  Future onError(DioException err, ErrorInterceptorHandler handler) async {
+    logPrint("*** Api Error - Start ***:");
+
+    logPrint("URI: ${err.response?.realUri}");
+    if (err.response != null) {
+      logPrint("STATUS CODE: ${err.response?.statusCode?.toString()}");
+    }
+    logPrint("$err");
+    if (err.response != null) {
+      printKV("REDIRECT", err.response?.realUri);
+      logPrint("BODY:");
+      printAll(err.response?.toString());
+    }
+
+    logPrint("*** Api Error - End ***:");
+    // return err;
+    super.onError(err, handler);
+  }
+
+  @override
+  Future onResponse(
+    Response response,
+    ResponseInterceptorHandler handler,
+  ) async {
+    _endTime = DateTime.now();
+    logPrint("*** Api Response - Start ***");
+    int milliSeconds = _endTime.difference(_startTime).inMilliseconds;
+    printKV("URI", response.realUri);
+    printKV("STATUS CODE", response.statusCode);
+    printKV("TIME REQUEST", "$milliSeconds ms");
+    printKV("REDIRECT", response.isRedirect);
+    logPrint("BODY:");
+    printAll(
+      json.encode(response.data).length > 500
+          ? "${json.encode(response.data).substring(0, 500)} ..."
+          : json.encode(response.data),
+    );
+    logPrint("*** Api Response - End ***");
+
+    // return response;
+    super.onResponse(response, handler);
+  }
+
+  void printKV(String key, Object? v) {
+    logPrint("$key: $v");
+  }
+
+  void printAll(msg) {
+    msg.toString().split("\n").forEach(logPrint);
+  }
+
+  void logPrint(String? message, {int? wrapWidth}) {
+    final List<String> messageLines = message?.split("\n") ?? <String>["null"];
+    if (wrapWidth != null) {
+      _debugPrintBuffer.addAll(
+        messageLines
+            .expand<String>((String line) => debugWordWrap(line, wrapWidth)),
+      );
+    } else {
+      _debugPrintBuffer.addAll(messageLines);
+    }
+    if (!_debugPrintScheduled) _debugPrintTask();
+  }
+
+  int _debugPrintedCharacters = 0;
+  final int _kDebugPrintCapacity = 12 * 1024;
+  final Duration _kDebugPrintPauseTime = const Duration(seconds: 1);
+  final Queue<String> _debugPrintBuffer = Queue<String>();
+  final Stopwatch _debugPrintStopwatch = Stopwatch();
+  Completer<void>? _debugPrintCompleter;
+  bool _debugPrintScheduled = false;
+
+  void _debugPrintTask() {
+    _debugPrintScheduled = false;
+    if (_debugPrintStopwatch.elapsed > _kDebugPrintPauseTime) {
+      _debugPrintStopwatch
+        ..stop()
+        ..reset();
+      _debugPrintedCharacters = 0;
+    }
+    while (_debugPrintedCharacters < _kDebugPrintCapacity &&
+        _debugPrintBuffer.isNotEmpty) {
+      final String line = _debugPrintBuffer.removeFirst();
+      _debugPrintedCharacters += line.length;
+      log(
+          // line
+          '\x1B[37m$line\x1B[0m',
+          name: "DIO API");
+    }
+    if (_debugPrintBuffer.isNotEmpty) {
+      _debugPrintScheduled = true;
+      _debugPrintedCharacters = 0;
+      Timer(_kDebugPrintPauseTime, _debugPrintTask);
+      _debugPrintCompleter ??= Completer<void>();
+    } else {
+      _debugPrintStopwatch.start();
+      _debugPrintCompleter?.complete();
+      _debugPrintCompleter = null;
+    }
+  }
 
   @override
   int get priority => BaseInterceptor.customLogPriority;
-
-  @override
-  void onRequest(RequestOptions options, RequestInterceptorHandler handler) {
-    if (!_enableLogInterceptor || !enableLogRequestInfo) {
-      handler.next(options);
-
-      return;
-    }
-
-    final log = <String>[];
-    log.add('************ Request ************');
-    log.add('🌐 Request: ${options.method} ${options.uri}');
-    if (options.headers.isNotEmpty) {
-      log.add('🌐 Request Headers:');
-      log.add('🌐 ${_prettyResponse(options.headers)}');
-    }
-
-    if (options.data != null) {
-      log.add('🌐 Request Body:');
-      if (options.data is FormData) {
-        final data = options.data as FormData;
-        if (data.fields.isNotEmpty) {
-          log.add('🌐 Fields: ${_prettyResponse(data.fields)}');
-        }
-        if (data.files.isNotEmpty) {
-          log.add(
-            '🌐 Files: ${_prettyResponse(data.files.map((e) => MapEntry(e.key, 'File name: ${e.value.filename}, Content type: ${e.value.contentType}, Length: ${e.value.length}')))}',
-          );
-        }
-      } else {
-        log.add('🌐 ${_prettyResponse(options.data)}');
-      }
-    }
-
-    Log.d(log.join('\n'));
-    handler.next(options);
-  }
-
-  @override
-  void onResponse(Response response, ResponseInterceptorHandler handler) {
-    if (!_enableLogInterceptor || !enableLogSuccessResponse) {
-      handler.next(response);
-
-      return;
-    }
-
-    final log = <String>[];
-
-    log.add('************ Request Response ************');
-    log.add(
-      '🎉 ${response.requestOptions.method} ${response.requestOptions.uri}',
-    );
-    log.add(
-        '🎉 Request Body: ${_prettyResponse(response.requestOptions.data)}');
-    log.add('🎉 Success Code: ${response.statusCode}');
-    log.add('🎉 ${_prettyResponse(response.data)}');
-
-    Log.d(log.join('\n'));
-    handler.next(response);
-  }
-
-  @override
-  void onError(DioException err, ErrorInterceptorHandler handler) {
-    if (!_enableLogInterceptor || !enableLogErrorResponse) {
-      handler.next(err);
-
-      return;
-    }
-
-    final log = <String>[];
-
-    log.add('************ Request Error ************');
-    log.add('⛔️ ${err.requestOptions.method} ${err.requestOptions.uri}');
-    log.add(
-        '⛔️ Error Code: ${err.response?.statusCode ?? 'unknown status code'}');
-    log.add('⛔️ Json: ${err.response}');
-
-    Log.e(log.join('\n'));
-    handler.next(err);
-  }
-
-  // ignore: avoid-dynamic
-  String _prettyResponse(dynamic data) {
-    if (data is Map) {
-      return Log.prettyJson(data as Map<String, dynamic>);
-    }
-
-    return data.toString();
-  }
 }

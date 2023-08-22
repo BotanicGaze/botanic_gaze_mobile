@@ -11,12 +11,8 @@ dependencies:
     path: ./packages/app_ui
   base_bloc:
     path: ./packages/base_bloc
-<<<<<<< HEAD
   base_network:
     path: ./packages/base_network
-  bloc: ^8.1.2
-=======
->>>>>>> 1f3d265b9ec9b6236d95f654db1ced0c602d84e1
   equatable: ^2.0.5
   flutter:
     sdk: flutter
