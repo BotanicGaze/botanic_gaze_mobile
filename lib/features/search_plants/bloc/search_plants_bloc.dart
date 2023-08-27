@@ -7,12 +7,12 @@ import 'package:botanic_gaze/models/index.dart';
 import 'package:paging_view/paging_view.dart';
 import 'package:shared/shared.dart';
 
-part 'search_event.dart';
-part 'search_state.dart';
+part 'search_plants_event.dart';
+part 'search_plants_state.dart';
 
 @Injectable()
-class SearchBloc extends BaseBloc<SearchEvent, SearchState> {
-  SearchBloc() : super(SearchState()) {
+class SearchPlantsBloc extends BaseBloc<SearchPlantsEvent, SearchPlantsState> {
+  SearchPlantsBloc() : super(SearchPlantsState()) {
     on<SearchPageInitiated>(
       _onSearchPageInitiated,
       transformer: log(),
@@ -33,7 +33,7 @@ class SearchBloc extends BaseBloc<SearchEvent, SearchState> {
 
   Future<void> _onSearchPageInitiated(
     SearchPageInitiated event,
-    Emitter<SearchState> emit,
+    Emitter<SearchPlantsState> emit,
   ) async {
     await _getPlantDatas(
       emit: emit,
@@ -50,7 +50,7 @@ class SearchBloc extends BaseBloc<SearchEvent, SearchState> {
 
   Future<void> _onSearchPageLoadMore(
     SearchPageLoadMore event,
-    Emitter<SearchState> emit,
+    Emitter<SearchPlantsState> emit,
   ) async {
     await _getPlantDatas(
       emit: emit,
@@ -61,7 +61,7 @@ class SearchBloc extends BaseBloc<SearchEvent, SearchState> {
 
   Future<FutureOr<void>> _onSearchPageRefreshed(
     SearchPageRefreshed event,
-    Emitter<SearchState> emit,
+    Emitter<SearchPlantsState> emit,
   ) async {
     await _getPlantDatas(
       emit: emit,
@@ -79,7 +79,7 @@ class SearchBloc extends BaseBloc<SearchEvent, SearchState> {
 
   Future<void> _onSearchTextFieldChanged(
     SearchTextFieldChanged event,
-    Emitter<SearchState> emit,
+    Emitter<SearchPlantsState> emit,
   ) async {
     await _getPlantDatas(
       emit: emit,
@@ -89,7 +89,7 @@ class SearchBloc extends BaseBloc<SearchEvent, SearchState> {
   }
 
   Future<void> _getPlantDatas({
-    required Emitter<SearchState> emit,
+    required Emitter<SearchPlantsState> emit,
     required bool isInitialLoad,
     required PlantSearchRequest request,
     Future<void> Function()? doOnSubscribe,

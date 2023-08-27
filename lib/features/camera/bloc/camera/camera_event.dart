@@ -18,3 +18,8 @@ class TakeImageButtonPressed extends CameraEvent {
   @override
   List<Object?> get props => [];
 }
+
+class PickImageButtonPressed extends CameraEvent {
+  @override
+  List<Object?> get props => [];
+}

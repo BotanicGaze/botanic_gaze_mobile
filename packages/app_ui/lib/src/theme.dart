@@ -159,8 +159,9 @@ class AppTheme {
 
   static AppBarTheme get _appBarTheme {
     return const AppBarTheme(
-      color: AppColors.primary,
+      color: AppColors.white,
       scrolledUnderElevation: 0,
+      centerTitle: true,
     );
   }
 

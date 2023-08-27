@@ -22,6 +22,7 @@ dependencies:
     sdk: flutter
   flutter_localizations:
     sdk: flutter
+  image_picker: ^1.0.2
   injectable: ^2.2.0
   intl: ^0.18.0
   paging_view:

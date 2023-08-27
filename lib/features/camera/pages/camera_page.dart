@@ -15,9 +15,6 @@ class CameraPage extends StatefulWidget {
 
 class _CameraPageState extends BasePageState<CameraPage, CameraBloc>
     with WidgetsBindingObserver {
-  final bool _showFlash = false;
-  String? imagePath;
-
   @override
   void initState() {
     super.initState();
@@ -61,13 +58,13 @@ class _CameraPageState extends BasePageState<CameraPage, CameraBloc>
             if (!state.permissionStatus.isGranted) {
               return const CameraPermissionDeniedView();
             }
-            return CameraScanView(
-              bloc: bloc,
-              showFlash: _showFlash,
-            );
+            return const CameraPreviewView(
+                // bloc: bloc,
+                // showFlash: _showFlash,
+                );
           },
         ),
-        bottomNavigationBar: CameraBottomButtonView(bloc: bloc),
+        bottomNavigationBar: const CameraBottomButtonView(),
       ),
     );
   }

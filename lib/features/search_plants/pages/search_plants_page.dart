@@ -3,7 +3,7 @@ import 'dart:async';
 import 'package:app_ui/app_ui.dart';
 import 'package:base_bloc/base_bloc.dart';
 import 'package:botanic_gaze/constants/index.dart';
-import 'package:botanic_gaze/features/search/index.dart';
+import 'package:botanic_gaze/features/search_plants/index.dart';
 import 'package:botanic_gaze/models/index.dart';
 import 'package:botanic_gaze/widgets/index.dart';
 import 'package:flutter/material.dart';
@@ -11,16 +11,17 @@ import 'package:flutter/services.dart';
 import 'package:paging_view/paging_view.dart';
 import 'package:shared/shared.dart';
 
-class SearchPage extends StatefulWidget {
-  const SearchPage({super.key});
+class SearchPlantsPage extends StatefulWidget {
+  const SearchPlantsPage({super.key});
 
   @override
   State<StatefulWidget> createState() {
-    return _SearchPageState();
+    return _SearchPlantsPageState();
   }
 }
 
-class _SearchPageState extends BasePageState<SearchPage, SearchBloc> {
+class _SearchPlantsPageState
+    extends BasePageState<SearchPlantsPage, SearchPlantsBloc> {
   late final _pagingController = CommonPagingController<PlantSearchResponse>()
     ..disposeBy(disposeBag);
   late PlantSearchRequest plantsRequest;
@@ -41,14 +42,14 @@ class _SearchPageState extends BasePageState<SearchPage, SearchBloc> {
   Widget buildPageListeners({required Widget child}) {
     return MultiBlocListener(
       listeners: [
-        BlocListener<SearchBloc, SearchState>(
+        BlocListener<SearchPlantsBloc, SearchPlantsState>(
           listenWhen: (previous, current) =>
               previous.plantDatas != current.plantDatas,
           listener: (context, state) {
             _pagingController.appendLoadMoreOutput(state.plantDatas);
           },
         ),
-        BlocListener<SearchBloc, SearchState>(
+        BlocListener<SearchPlantsBloc, SearchPlantsState>(
           listenWhen: (previous, current) =>
               previous.loadTaskException != current.loadTaskException,
           listener: (context, state) {
@@ -72,8 +73,8 @@ class _SearchPageState extends BasePageState<SearchPage, SearchBloc> {
         title: const Text('Search plants'),
       ),
       otherBackground: otherBackground(),
-      body: SafeArea(
-        child: BlocBuilder<SearchBloc, SearchState>(
+      body: AppSafeArea(
+        child: BlocBuilder<SearchPlantsBloc, SearchPlantsState>(
           buildWhen: (previous, current) =>
               previous.plantDatas != current.plantDatas ||
               previous.isShimmerLoading != current.isShimmerLoading,

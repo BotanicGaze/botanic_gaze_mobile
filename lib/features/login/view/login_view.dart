@@ -2,6 +2,7 @@ import 'package:app_ui/app_ui.dart';
 import 'package:base_bloc/base_bloc.dart';
 import 'package:botanic_gaze/features/login/login.dart';
 import 'package:botanic_gaze/widgets/common_scaffold.dart';
+import 'package:botanic_gaze/widgets/index.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -18,7 +19,6 @@ class _LoginViewState extends BasePageState<LoginView, LoginBloc> {
   @override
   Widget buildPage(BuildContext context) {
     return CommonScaffold(
-      hideKeyboardWhenTouchOutside: true,
       // appBar: CommonAppBar(
       //   leadingIcon: LeadingIcon.close,
       //   // leadingIconColor: AppColors.current.secondaryColor,
@@ -27,7 +27,7 @@ class _LoginViewState extends BasePageState<LoginView, LoginBloc> {
       //   backgroundColor: AppColors.current.primaryColor,
       //   titleTextStyle: AppTextStyles.s14w400Primary(),
       // ),
-      body: SafeArea(
+      body: AppSafeArea(
         child: SingleChildScrollView(
           padding: EdgeInsets.all(Dimens.d16.responsive()),
           child: Column(

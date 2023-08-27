@@ -1,10 +1,10 @@
-part of 'search_bloc.dart';
+part of 'search_plants_bloc.dart';
 
-sealed class SearchEvent extends BaseBlocEvent with EquatableMixin {
-  const SearchEvent();
+sealed class SearchPlantsEvent extends BaseBlocEvent with EquatableMixin {
+  const SearchPlantsEvent();
 }
 
-class SearchPageInitiated extends SearchEvent {
+class SearchPageInitiated extends SearchPlantsEvent {
   SearchPageInitiated({required this.request});
 
   final PlantSearchRequest request;
@@ -12,7 +12,7 @@ class SearchPageInitiated extends SearchEvent {
   List<Object?> get props => [request];
 }
 
-class SearchPageLoadMore extends SearchEvent {
+class SearchPageLoadMore extends SearchPlantsEvent {
   SearchPageLoadMore({required this.request});
 
   final PlantSearchRequest request;
@@ -21,7 +21,7 @@ class SearchPageLoadMore extends SearchEvent {
   List<Object?> get props => [request];
 }
 
-class SearchPageRefreshed extends SearchEvent {
+class SearchPageRefreshed extends SearchPlantsEvent {
   SearchPageRefreshed({
     required this.completer,
     required this.request,
@@ -34,7 +34,7 @@ class SearchPageRefreshed extends SearchEvent {
   List<Object?> get props => [completer, request];
 }
 
-class SearchTextFieldChanged extends SearchEvent {
+class SearchTextFieldChanged extends SearchPlantsEvent {
   SearchTextFieldChanged({
     required this.request,
   });

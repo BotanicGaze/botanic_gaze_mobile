@@ -1,1 +1,1 @@
-export './scan_page.dart';
+export '../pages/camera_page.dart';

@@ -25,7 +25,7 @@ class Plant extends Equatable {
         providerName: json['providerName'] as String?,
         providerPlantName: json['providerPlantName'] as String?,
         providerPreferredCommonPlantName:
-            json['providerPreferredCommonPlantName'] as dynamic,
+            json['providerPreferredCommonPlantName'] as String?,
         score: (json['score'] as num?)?.toDouble(),
         scoreConfidenceCode: json['scoreConfidenceCode'] as String?,
         isTopMatch: json['isTopMatch'] as bool?,
@@ -36,14 +36,14 @@ class Plant extends Equatable {
         rhsPlantId: json['rhsPlantId'] as String?,
         rhsPlantEntityNumber: json['rhsPlantEntityNumber'] as String?,
         rhsPlantName: json['rhsPlantName'] as String?,
-        rhsPreferredCommonName: json['rhsPreferredCommonName'] as dynamic,
+        rhsPreferredCommonName: json['rhsPreferredCommonName'] as String?,
         rhsPlantProfileUrl: json['rhsPlantProfileUrl'] as String?,
-        rhsPlantImageUrl: json['rhsPlantImageUrl'] as dynamic,
+        rhsPlantImageUrl: json['rhsPlantImageUrl'] as String?,
       );
   final String? providerPlantId;
   final String? providerName;
   final String? providerPlantName;
-  final dynamic providerPreferredCommonPlantName;
+  final String? providerPreferredCommonPlantName;
   final double? score;
   final String? scoreConfidenceCode;
   final bool? isTopMatch;
@@ -52,9 +52,18 @@ class Plant extends Equatable {
   final String? rhsPlantId;
   final String? rhsPlantEntityNumber;
   final String? rhsPlantName;
-  final dynamic rhsPreferredCommonName;
+  final String? rhsPreferredCommonName;
   final String? rhsPlantProfileUrl;
-  final dynamic rhsPlantImageUrl;
+  final String? rhsPlantImageUrl;
+
+  String get scoreFormat => '${((score ?? 0) * 100).toStringAsFixed(2)}%';
+  String get featureImage {
+    try {
+      return images?.first.originalImageUrl ?? '';
+    } catch (e) {
+      return '';
+    }
+  }
 
   Map<String, dynamic> toJson() => {
         'providerPlantId': providerPlantId,
@@ -73,44 +82,6 @@ class Plant extends Equatable {
         'rhsPlantProfileUrl': rhsPlantProfileUrl,
         'rhsPlantImageUrl': rhsPlantImageUrl,
       };
-
-  Plant copyWith({
-    String? providerPlantId,
-    String? providerName,
-    String? providerPlantName,
-    dynamic providerPreferredCommonPlantName,
-    double? score,
-    String? scoreConfidenceCode,
-    bool? isTopMatch,
-    List<ImagePlant>? images,
-    bool? isFoundRhsMapping,
-    String? rhsPlantId,
-    String? rhsPlantEntityNumber,
-    String? rhsPlantName,
-    dynamic rhsPreferredCommonName,
-    String? rhsPlantProfileUrl,
-    dynamic rhsPlantImageUrl,
-  }) {
-    return Plant(
-      providerPlantId: providerPlantId ?? this.providerPlantId,
-      providerName: providerName ?? this.providerName,
-      providerPlantName: providerPlantName ?? this.providerPlantName,
-      providerPreferredCommonPlantName: providerPreferredCommonPlantName ??
-          this.providerPreferredCommonPlantName,
-      score: score ?? this.score,
-      scoreConfidenceCode: scoreConfidenceCode ?? this.scoreConfidenceCode,
-      isTopMatch: isTopMatch ?? this.isTopMatch,
-      images: images ?? this.images,
-      isFoundRhsMapping: isFoundRhsMapping ?? this.isFoundRhsMapping,
-      rhsPlantId: rhsPlantId ?? this.rhsPlantId,
-      rhsPlantEntityNumber: rhsPlantEntityNumber ?? this.rhsPlantEntityNumber,
-      rhsPlantName: rhsPlantName ?? this.rhsPlantName,
-      rhsPreferredCommonName:
-          rhsPreferredCommonName ?? this.rhsPreferredCommonName,
-      rhsPlantProfileUrl: rhsPlantProfileUrl ?? this.rhsPlantProfileUrl,
-      rhsPlantImageUrl: rhsPlantImageUrl ?? this.rhsPlantImageUrl,
-    );
-  }
 
   @override
   bool get stringify => true;
@@ -134,5 +105,43 @@ class Plant extends Equatable {
       rhsPlantProfileUrl,
       rhsPlantImageUrl,
     ];
+  }
+
+  Plant copyWith({
+    String? providerPlantId,
+    String? providerName,
+    String? providerPlantName,
+    String? providerPreferredCommonPlantName,
+    double? score,
+    String? scoreConfidenceCode,
+    bool? isTopMatch,
+    List<ImagePlant>? images,
+    bool? isFoundRhsMapping,
+    String? rhsPlantId,
+    String? rhsPlantEntityNumber,
+    String? rhsPlantName,
+    String? rhsPreferredCommonName,
+    String? rhsPlantProfileUrl,
+    String? rhsPlantImageUrl,
+  }) {
+    return Plant(
+      providerPlantId: providerPlantId ?? this.providerPlantId,
+      providerName: providerName ?? this.providerName,
+      providerPlantName: providerPlantName ?? this.providerPlantName,
+      providerPreferredCommonPlantName: providerPreferredCommonPlantName ??
+          this.providerPreferredCommonPlantName,
+      score: score ?? this.score,
+      scoreConfidenceCode: scoreConfidenceCode ?? this.scoreConfidenceCode,
+      isTopMatch: isTopMatch ?? this.isTopMatch,
+      images: images ?? this.images,
+      isFoundRhsMapping: isFoundRhsMapping ?? this.isFoundRhsMapping,
+      rhsPlantId: rhsPlantId ?? this.rhsPlantId,
+      rhsPlantEntityNumber: rhsPlantEntityNumber ?? this.rhsPlantEntityNumber,
+      rhsPlantName: rhsPlantName ?? this.rhsPlantName,
+      rhsPreferredCommonName:
+          rhsPreferredCommonName ?? this.rhsPreferredCommonName,
+      rhsPlantProfileUrl: rhsPlantProfileUrl ?? this.rhsPlantProfileUrl,
+      rhsPlantImageUrl: rhsPlantImageUrl ?? this.rhsPlantImageUrl,
+    );
   }
 }

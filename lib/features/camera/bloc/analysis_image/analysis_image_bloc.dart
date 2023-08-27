@@ -11,24 +11,24 @@ part 'analysis_image_event.dart';
 part 'analysis_image_state.dart';
 
 @Injectable()
-class AnalysisImageBlocBloc
-    extends BaseBloc<AnalysisImageBlocEvent, AnalysisImageBlocState> {
-  AnalysisImageBlocBloc() : super(AnalysisImageBlocState()) {
+class AnalysisImageBloc
+    extends BaseBloc<AnalysisImageEvent, AnalysisImageState> {
+  AnalysisImageBloc() : super(AnalysisImageState()) {
     on<AnalyzingImage>(_onAnalyzingImage);
   }
 
   Future<void> _onAnalyzingImage(
     AnalyzingImage event,
-    Emitter<AnalysisImageBlocState> emit,
+    Emitter<AnalysisImageState> emit,
   ) async {
     await runBlocCatching(
       action: () async {
         final output = await getIt<AppApiService>().identifyPlant(event.file);
         emit(state.copyWith(identifyData: output.data));
       },
-      doOnError: (e) async => emit(state.copyWith(isAnalyzing: false)),
-      doOnSubscribe: () async => emit(state.copyWith(isAnalyzing: false)),
-      doOnSuccessOrError: () async => emit(state.copyWith(isAnalyzing: true)),
+      doOnError: (e) async => emit(state.copyWith()),
+      doOnSubscribe: () async => emit(state.copyWith()),
+      doOnSuccessOrError: () async => emit(state.copyWith()),
       handleLoading: false,
       handleRetry: false,
     );

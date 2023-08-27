@@ -1,10 +1,10 @@
 part of 'analysis_image_bloc.dart';
 
-sealed class AnalysisImageBlocEvent extends BaseBlocEvent with EquatableMixin {
-  const AnalysisImageBlocEvent();
+sealed class AnalysisImageEvent extends BaseBlocEvent with EquatableMixin {
+  const AnalysisImageEvent();
 }
 
-class AnalyzingImage extends AnalysisImageBlocEvent {
+class AnalyzingImage extends AnalysisImageEvent {
   AnalyzingImage(this.file);
 
   final File file;

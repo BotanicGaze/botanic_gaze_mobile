@@ -1,11 +1,11 @@
 // ignore_for_file: use_build_context_synchronously
-
 import 'dart:async';
 
 import 'package:base_bloc/base_bloc.dart';
 import 'package:botanic_gaze/di/di.dart';
 import 'package:botanic_gaze/widgets/index.dart';
 import 'package:camera/camera.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:permission_client/permission_client.dart';
 import 'package:shared/shared.dart';
 
@@ -15,12 +15,13 @@ part 'camera_state.dart';
 @Injectable()
 class CameraBloc extends BaseBloc<CameraEvent, CameraState> {
   CameraBloc() : super(const CameraState()) {
-    on<CheckPermissionCamera>(_initCameraScan);
-    on<InitializeCamera>(_initializeCamera);
-    on<TakeImageButtonPressed>(_takeImageButtonPressed);
+    on<CheckPermissionCamera>(_onCheckPermissionCamera);
+    on<InitializeCamera>(_onInitializeCamera);
+    on<TakeImageButtonPressed>(_onTakeImageButtonPressed);
+    on<PickImageButtonPressed>(_onPickImageButtonPressed);
   }
 
-  Future<void> _initCameraScan(
+  Future<void> _onCheckPermissionCamera(
     CheckPermissionCamera event,
     Emitter<CameraState> emit,
   ) async {
@@ -30,7 +31,7 @@ class CameraBloc extends BaseBloc<CameraEvent, CameraState> {
     );
   }
 
-  Future<FutureOr<void>> _initializeCamera(
+  Future<FutureOr<void>> _onInitializeCamera(
     InitializeCamera event,
     Emitter<CameraState> emit,
   ) async {
@@ -57,7 +58,7 @@ class CameraBloc extends BaseBloc<CameraEvent, CameraState> {
     );
   }
 
-  Future<void> _takeImageButtonPressed(
+  Future<void> _onTakeImageButtonPressed(
     TakeImageButtonPressed event,
     Emitter<CameraState> emit,
   ) async {
@@ -70,7 +71,6 @@ class CameraBloc extends BaseBloc<CameraEvent, CameraState> {
 
     try {
       final file = await cameraController.takePicture();
-      // await cameraController.pausePreview();
       emit(state.copyWith(imageTaken: file));
       Log.d('Image path: ${file.path}');
     } on CameraException catch (e) {
@@ -95,6 +95,17 @@ class CameraBloc extends BaseBloc<CameraEvent, CameraState> {
       }
 
       return PermissionStatus.denied;
+    }
+  }
+
+  Future<void> _onPickImageButtonPressed(
+    PickImageButtonPressed event,
+    Emitter<CameraState> emit,
+  ) async {
+    final picker = ImagePicker();
+    final image = await picker.pickImage(source: ImageSource.gallery);
+    if (image != null) {
+      emit(state.copyWith(imageTaken: image));
     }
   }
 }

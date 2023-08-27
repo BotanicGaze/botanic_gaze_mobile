@@ -1,6 +1,6 @@
 import 'package:botanic_gaze/features/camera/index.dart';
 import 'package:botanic_gaze/features/dash_board/dash_board.dart';
-import 'package:botanic_gaze/features/search/index.dart';
+import 'package:botanic_gaze/features/search_plants/index.dart';
 import 'package:botanic_gaze/features/splash/index.dart';
 
 class NavigationContains {
@@ -15,7 +15,7 @@ class NavigationContains {
   ///go to [DashBoardPage]
   static const String dashBoardPage = '/dash_board_page';
 
-  ///go to [SearchPage]
+  ///go to [SearchPlantsPage]
   static const String searchPage = '/search_page';
 
   ///go to [CameraPage]

@@ -45,7 +45,7 @@ class _SplashPageState extends BasePageState<SplashPage, SplashBloc> {
                 );
               },
             ),
-            SafeArea(
+            AppSafeArea(
               child: Column(
                 children: [
                   SizedBox(

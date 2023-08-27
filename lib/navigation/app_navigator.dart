@@ -1,9 +1,8 @@
 import 'package:base_bloc/base_bloc.dart';
 import 'package:botanic_gaze/features/camera/index.dart';
 import 'package:botanic_gaze/features/dash_board/view/view.dart';
-import 'package:botanic_gaze/features/search/view/view.dart';
+import 'package:botanic_gaze/features/search_plants/index.dart';
 import 'package:botanic_gaze/features/splash/index.dart';
-
 import 'package:botanic_gaze/navigation/navigation_contains.dart';
 import 'package:flutter/material.dart';
 import 'package:shared/shared.dart';
@@ -42,7 +41,7 @@ class AppNavigatorImpl extends AppNavigator with LogMixin {
           GoRoute(
             path: NavigationContains.searchPage,
             name: NavigationContains.searchPage,
-            builder: (context, state) => const SearchPage(),
+            builder: (context, state) => const SearchPlantsPage(),
           ),
           GoRoute(
             path: NavigationContains.scanPage,
