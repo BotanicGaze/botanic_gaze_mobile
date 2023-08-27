@@ -46,3 +46,30 @@ flutter:
         - asset: assets/fonts/OpenSans-Italic.ttf
           weight: 400
           style: italic
+    - family: Petrona
+      fonts:
+        - asset: assets/fonts/Petrona/Petrona-ExtraBold.ttf
+          weight: 800
+        - asset: assets/fonts/Petrona/Petrona-ExtraBoldItalic.ttf
+          weight: 800
+          style: italic
+        - asset: assets/fonts/Petrona/Petrona-Bold.ttf
+          weight: 700
+        - asset: assets/fonts/Petrona/Petrona-BoldItalic.ttf
+          weight: 700
+          style: italic
+        - asset: assets/fonts/Petrona/Petrona-SemiBold.ttf
+          weight: 600
+        - asset: assets/fonts/Petrona/Petrona-SemiBoldItalic.ttf
+          weight: 600
+          style: italic
+        - asset: assets/fonts/Petrona/Petrona-Medium.ttf
+          weight: 500
+        - asset: assets/fonts/Petrona/Petrona-MediumItalic.ttf
+          weight: 500
+          style: italic
+        - asset: assets/fonts/Petrona/Petrona-Regular.ttf
+          weight: 400
+        - asset: assets/fonts/Petrona/Petrona-Italic.ttf
+          weight: 400
+          style: italic

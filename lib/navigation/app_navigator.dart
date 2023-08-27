@@ -1,8 +1,9 @@
 import 'package:base_bloc/base_bloc.dart';
+import 'package:botanic_gaze/features/camera/index.dart';
 import 'package:botanic_gaze/features/dash_board/view/view.dart';
-import 'package:botanic_gaze/features/scan/index.dart';
 import 'package:botanic_gaze/features/search/view/view.dart';
-import 'package:botanic_gaze/features/splash/splash.dart';
+import 'package:botanic_gaze/features/splash/index.dart';
+
 import 'package:botanic_gaze/navigation/navigation_contains.dart';
 import 'package:flutter/material.dart';
 import 'package:shared/shared.dart';
@@ -46,7 +47,17 @@ class AppNavigatorImpl extends AppNavigator with LogMixin {
           GoRoute(
             path: NavigationContains.scanPage,
             name: NavigationContains.scanPage,
-            builder: (context, state) => const ScanPage(),
+            builder: (context, state) => const CameraPage(),
+          ),
+          GoRoute(
+            path: NavigationContains.analysisImagePage,
+            name: NavigationContains.analysisImagePage,
+            builder: (context, state) {
+              final extra = state.extra as Map<String, String?>?;
+              return AnalysisImagePage(
+                imagePath: extra?['image_path'] ?? '',
+              );
+            },
           ),
         ],
       );
@@ -75,20 +86,38 @@ class AppNavigatorImpl extends AppNavigator with LogMixin {
   }
 
   @override
-  Future<T?> showDialog<T extends Object?>(
+  Future<T?> showAppDialog<T extends Object?>(
     AppPopupInfo appPopupInfo, {
     bool barrierDismissible = true,
     bool useSafeArea = false,
     bool useRootNavigator = true,
-  }) {
-    throw UnimplementedError();
+  }) async {
+    return appPopupInfo.when(
+      errorWithRetryDialog: (message, onRetryPressed) {
+        return null;
+      },
+      requiredLoginDialog: () {
+        return null;
+      },
+      confirmDialog: (
+        String title,
+        String message,
+        void Function()? onPositive,
+        void Function()? onNegative,
+        bool showButtonNegative,
+        String? positiveTitle,
+        String? negativeTitle,
+      ) async {
+        return null;
+      },
+    );
   }
 
   @override
   void showErrorSnackBar(String message, {Duration? duration}) {}
 
   @override
-  Future<T?> showGeneralDialog<T extends Object?>(
+  Future<T?> showAppGeneralDialog<T extends Object?>(
     AppPopupInfo appPopupInfo, {
     Widget Function(
       BuildContext p1,
@@ -106,7 +135,7 @@ class AppNavigatorImpl extends AppNavigator with LogMixin {
   }
 
   @override
-  Future<T?> showModalBottomSheet<T extends Object?>(
+  Future<T?> showAppModalBottomSheet<T extends Object?>(
     AppPopupInfo appPopupInfo, {
     bool isScrollControlled = false,
     bool useRootNavigator = false,
@@ -120,4 +149,24 @@ class AppNavigatorImpl extends AppNavigator with LogMixin {
 
   @override
   void showSuccessSnackBar(String message, {Duration? duration}) {}
+
+  // Future<T?> showRequestPermission<T extends Object?>(
+  //   PermissionType type, {
+  //   bool barrierDismissible = true,
+  //   bool useSafeArea = false,
+  //   bool useRootNavigator = true,
+  // }) async {
+  //   final context = navigatorKey.currentContext!;
+  //   await showDialog<T>(
+  //     barrierDismissible: barrierDismissible,
+  //     useSafeArea: useSafeArea,
+  //     useRootNavigator: useRootNavigator,
+  //     barrierColor: AppColors.black.withOpacity(0.2),
+  //     context: context,
+  //     builder: (context) {
+  //       return PermissionPopup(type: type);
+  //     },
+  //   );
+  //   return null;
+  // }
 }

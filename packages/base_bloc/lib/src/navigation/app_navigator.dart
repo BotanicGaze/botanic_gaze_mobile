@@ -22,14 +22,14 @@ abstract class AppNavigator {
     bool useRootNavigator = false,
   });
 
-  Future<T?> showDialog<T extends Object?>(
+  Future<T?> showAppDialog<T extends Object?>(
     AppPopupInfo appPopupInfo, {
     bool barrierDismissible = true,
     bool useSafeArea = false,
     bool useRootNavigator = true,
   });
 
-  Future<T?> showGeneralDialog<T extends Object?>(
+  Future<T?> showAppGeneralDialog<T extends Object?>(
     AppPopupInfo appPopupInfo, {
     Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
         transitionBuilder,
@@ -40,7 +40,7 @@ abstract class AppNavigator {
     bool useRootNavigator = true,
   });
 
-  Future<T?> showModalBottomSheet<T extends Object?>(
+  Future<T?> showAppModalBottomSheet<T extends Object?>(
     AppPopupInfo appPopupInfo, {
     bool isScrollControlled = false,
     bool useRootNavigator = false,

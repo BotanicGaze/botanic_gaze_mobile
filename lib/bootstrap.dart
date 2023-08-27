@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:developer';
 
 import 'package:base_bloc/base_bloc.dart';
+import 'package:botanic_gaze/data_source/index.dart';
 import 'package:botanic_gaze/di/di.dart';
 import 'package:flutter/material.dart';
 import 'package:paging_view/paging_view.dart';
@@ -34,9 +35,8 @@ Future<void> bootstrap(FutureOr<Widget> Function() builder) async {
   await SharedConfig.getInstance().init();
   await BaseBlocConfig.getInstance().init();
   await PagingViewConfig.getInstance().init();
+  await SpUtil.getInstance();
   configureInjection();
-
-  // Add cross-flavor configuration here
 
   runApp(await builder());
 }

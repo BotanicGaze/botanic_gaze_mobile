@@ -11,8 +11,7 @@ ResultsListResponse<T> _$ResultsListResponseFromJson<T>(
   T Function(Object? json) fromJsonT,
 ) =>
     ResultsListResponse<T>(
-      results:
-          (json['results'] as List<dynamic>?)?.map(fromJsonT).toList() ?? [],
+      data: (json['data'] as List<dynamic>?)?.map(fromJsonT).toList() ?? [],
       success: json['success'] as bool? ?? false,
       message: json['message'] as String?,
       totalResult: json['totalResult'] as int? ?? 0,
@@ -23,7 +22,7 @@ Map<String, dynamic> _$ResultsListResponseToJson<T>(
   Object? Function(T value) toJsonT,
 ) =>
     <String, dynamic>{
-      'results': instance.results.map(toJsonT).toList(),
+      'data': instance.data.map(toJsonT).toList(),
       'success': instance.success,
       'message': instance.message,
       'totalResult': instance.totalResult,

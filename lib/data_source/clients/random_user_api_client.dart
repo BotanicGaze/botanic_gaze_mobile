@@ -6,6 +6,6 @@ import 'package:shared/shared.dart';
 class PlantApiClient extends RestApiClient {
   PlantApiClient()
       : super(
-          baseUrl: 'https://lwapp-uks-prod-psearch-01.azurewebsites.net',
+          baseUrl: 'https://fb27-27-78-70-5.ngrok-free.app',
         );
 }

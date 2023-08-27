@@ -1,5 +1,6 @@
 import 'package:base_bloc/src/navigation/app_navigator.dart';
 import 'package:base_bloc/src/navigation/app_popup_info.dart';
+import 'package:flutter/material.dart';
 import 'package:shared/shared.dart';
 
 class ExceptionHandler {
@@ -67,13 +68,13 @@ class ExceptionHandler {
 
   Future<void> _showErrorDialog({
     required String message,
-    Func0<void>? onPressed,
+    VoidCallback? onPressed,
     bool isRefreshTokenFailed = false,
   }) async {
     await navigator
-        .showDialog(AppPopupInfo.confirmDialog(
+        .showAppDialog(AppPopupInfo.confirmDialog(
       message: message,
-      onPressed: onPressed,
+      onPositive: onPressed,
     ))
         .then((value) {
       if (isRefreshTokenFailed) {
@@ -86,7 +87,7 @@ class ExceptionHandler {
     required String message,
     required Func0<void>? onRetryPressed,
   }) async {
-    await navigator.showDialog(AppPopupInfo.errorWithRetryDialog(
+    await navigator.showAppDialog(AppPopupInfo.errorWithRetryDialog(
       message: message,
       onRetryPressed: onRetryPressed,
     ));

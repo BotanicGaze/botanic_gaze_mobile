@@ -82,52 +82,49 @@ class _DashBoardViewState extends State<DashBoardView> {
               return tabView[index];
             },
           ),
-          bottomNavigationBar: SafeArea(
-            minimum: EdgeInsets.all(bottomNavPadding),
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(32),
-              child: BackdropFilter(
-                filter: ImageFilter.blur(
-                  sigmaX: 5,
-                  sigmaY: 5,
-                ),
-                child: Stack(
-                  children: [
-                    BottomNavigationBar(
-                      elevation: 0,
-                      backgroundColor: Colors.white.withOpacity(0.75),
-                      type: BottomNavigationBarType.fixed,
-                      showSelectedLabels: true,
-                      showUnselectedLabels: true,
-                      items: bottomNavigationBarItems,
-                      currentIndex: currentIndex,
-                      onTap: (value) {
-                        setState(() {
-                          currentIndex = value;
-                        });
-                        pageController.jumpToPage(value);
-                      },
-                    ),
-                    AnimatedPositioned(
-                      duration: const Duration(milliseconds: 200),
-                      // bottom: 0,
-                      left: indicatorWidth * currentIndex,
-                      child: SizedBox(
-                        width: indicatorWidth,
-                        child: Padding(
-                          padding: EdgeInsets.symmetric(
-                            horizontal: indicatorWidth * 0.35,
-                          ),
-                          child: Container(
-                            height: indicatorHeight,
-                            color: Colors.amber,
-                          ),
+          bottomNavigationBar: ClipRRect(
+            borderRadius: BorderRadius.circular(32),
+            child: BackdropFilter(
+              filter: ImageFilter.blur(
+                sigmaX: 5,
+                sigmaY: 5,
+              ),
+              child: Stack(
+                children: [
+                  BottomNavigationBar(
+                    elevation: 0,
+                    backgroundColor: Colors.white.withOpacity(0.75),
+                    type: BottomNavigationBarType.fixed,
+                    showSelectedLabels: true,
+                    showUnselectedLabels: true,
+                    items: bottomNavigationBarItems,
+                    currentIndex: currentIndex,
+                    onTap: (value) {
+                      setState(() {
+                        currentIndex = value;
+                      });
+                      pageController.jumpToPage(value);
+                    },
+                  ),
+                  AnimatedPositioned(
+                    duration: const Duration(milliseconds: 200),
+                    // bottom: 0,
+                    left: indicatorWidth * currentIndex,
+                    child: SizedBox(
+                      width: indicatorWidth,
+                      child: Padding(
+                        padding: EdgeInsets.symmetric(
+                          horizontal: indicatorWidth * 0.35,
                         ),
-                        // color: Colors.amber,
+                        child: Container(
+                          height: indicatorHeight,
+                          color: Colors.amber,
+                        ),
                       ),
-                    )
-                  ],
-                ),
+                      // color: Colors.amber,
+                    ),
+                  )
+                ],
               ),
             ),
           ),

@@ -1,5 +1,4 @@
-import 'package:app_ui/src/colors.dart';
-import 'package:app_ui/src/typography/typography.dart';
+import 'package:app_ui/app_ui.dart';
 import 'package:flutter/material.dart';
 
 const _smallTextScaleFactor = 0.80;
@@ -10,18 +9,30 @@ class AppTheme {
   /// Standard `ThemeData` for App UI.
   static ThemeData get standard {
     return ThemeData(
-      colorScheme: ColorScheme.fromSwatch(accentColor: AppColors.primary),
+      // primaryColor: AppColors.primary,
+      colorScheme: ColorScheme.fromSeed(
+        seedColor: AppColors.primary,
+        primary: AppColors.primary,
+      ),
+      scaffoldBackgroundColor: AppColors.scaffoldBackgroundColor,
+      iconTheme: const IconThemeData(
+        color: AppColors.iconPrimaryColor,
+      ),
       useMaterial3: true,
       appBarTheme: _appBarTheme,
       elevatedButtonTheme: _elevatedButtonTheme,
+      filledButtonTheme: _filledButtonTheme,
       outlinedButtonTheme: _outlinedButtonTheme,
+      textButtonTheme: _textButtonThemeData,
+      iconButtonTheme: _iconButtonThemeData,
       textTheme: _textTheme,
-      dialogBackgroundColor: AppColors.whiteBackground,
+      dialogBackgroundColor: AppColors.white,
       dialogTheme: _dialogTheme,
       tooltipTheme: _tooltipTheme,
       bottomSheetTheme: _bottomSheetTheme,
       tabBarTheme: _tabBarTheme,
       dividerTheme: _dividerTheme,
+      splashColor: AppColors.splashColor,
     );
   }
 
@@ -147,7 +158,10 @@ class AppTheme {
   }
 
   static AppBarTheme get _appBarTheme {
-    return const AppBarTheme(color: AppColors.primary);
+    return const AppBarTheme(
+      color: AppColors.primary,
+      scrolledUnderElevation: 0,
+    );
   }
 
   static ElevatedButtonThemeData get _elevatedButtonTheme {
@@ -159,6 +173,48 @@ class AppTheme {
           borderRadius: BorderRadius.all(Radius.circular(30)),
         ),
         fixedSize: const Size(208, 54),
+      ),
+    );
+  }
+
+  static IconButtonThemeData get _iconButtonThemeData {
+    return IconButtonThemeData(
+      style: IconButton.styleFrom(
+        elevation: 0,
+        padding: EdgeInsets.all(Dimens.d12.responsive()),
+        shape: RoundedRectangleBorder(
+          borderRadius:
+              BorderRadius.all(Radius.circular(Dimens.d12.responsive())),
+          // side: const BorderSide(),
+        ),
+        fixedSize: Size(Dimens.d44.responsive(), Dimens.d44.responsive()),
+      ),
+    );
+  }
+
+  static FilledButtonThemeData get _filledButtonTheme {
+    return FilledButtonThemeData(
+      style: ElevatedButton.styleFrom(
+        elevation: 0,
+        backgroundColor: AppColors.primary,
+        shape: RoundedRectangleBorder(
+          borderRadius:
+              BorderRadius.all(Radius.circular(Dimens.d12.responsive())),
+        ),
+        minimumSize: Size(Dimens.d100.responsive(), Dimens.d48.responsive()),
+      ),
+    );
+  }
+
+  static TextButtonThemeData get _textButtonThemeData {
+    return TextButtonThemeData(
+      style: ElevatedButton.styleFrom(
+        elevation: 0,
+        shape: RoundedRectangleBorder(
+          borderRadius:
+              BorderRadius.all(Radius.circular(Dimens.d12.responsive())),
+        ),
+        minimumSize: Size(Dimens.d100.responsive(), Dimens.d48.responsive()),
       ),
     );
   }
@@ -220,9 +276,9 @@ class AppTheme {
 
   static DividerThemeData get _dividerTheme {
     return const DividerThemeData(
-      space: 0,
-      thickness: 1,
-      color: AppColors.black25,
+      // space: 0,
+      // thickness: 1,
+      color: AppColors.dividerColor,
     );
   }
 }

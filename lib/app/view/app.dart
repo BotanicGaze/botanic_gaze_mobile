@@ -39,6 +39,7 @@ class _AppState extends State<App> {
             BaseBlocLocalization.delegate,
           ],
           supportedLocales: AppLocalizations.supportedLocales,
+          debugShowCheckedModeBanner: false,
           // home: const LoginPage(),
         );
       },

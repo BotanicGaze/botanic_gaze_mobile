@@ -18,7 +18,14 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$AppPopupInfo {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String message, Func0<void>? onPressed)
+    required TResult Function(
+            String title,
+            String message,
+            VoidCallback? onPositive,
+            VoidCallback? onNegative,
+            bool showButtonNegative,
+            String? positiveTitle,
+            String? negativeTitle)
         confirmDialog,
     required TResult Function(String message, Func0<void>? onRetryPressed)
         errorWithRetryDialog,
@@ -27,7 +34,15 @@ mixin _$AppPopupInfo {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String message, Func0<void>? onPressed)? confirmDialog,
+    TResult? Function(
+            String title,
+            String message,
+            VoidCallback? onPositive,
+            VoidCallback? onNegative,
+            bool showButtonNegative,
+            String? positiveTitle,
+            String? negativeTitle)?
+        confirmDialog,
     TResult? Function(String message, Func0<void>? onRetryPressed)?
         errorWithRetryDialog,
     TResult? Function()? requiredLoginDialog,
@@ -35,7 +50,15 @@ mixin _$AppPopupInfo {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String message, Func0<void>? onPressed)? confirmDialog,
+    TResult Function(
+            String title,
+            String message,
+            VoidCallback? onPositive,
+            VoidCallback? onNegative,
+            bool showButtonNegative,
+            String? positiveTitle,
+            String? negativeTitle)?
+        confirmDialog,
     TResult Function(String message, Func0<void>? onRetryPressed)?
         errorWithRetryDialog,
     TResult Function()? requiredLoginDialog,
@@ -90,7 +113,14 @@ abstract class _$$_ConfirmDialogCopyWith<$Res> {
           _$_ConfirmDialog value, $Res Function(_$_ConfirmDialog) then) =
       __$$_ConfirmDialogCopyWithImpl<$Res>;
   @useResult
-  $Res call({String message, Func0<void>? onPressed});
+  $Res call(
+      {String title,
+      String message,
+      VoidCallback? onPositive,
+      VoidCallback? onNegative,
+      bool showButtonNegative,
+      String? positiveTitle,
+      String? negativeTitle});
 }
 
 /// @nodoc
@@ -104,36 +134,94 @@ class __$$_ConfirmDialogCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? title = null,
     Object? message = null,
-    Object? onPressed = freezed,
+    Object? onPositive = freezed,
+    Object? onNegative = freezed,
+    Object? showButtonNegative = null,
+    Object? positiveTitle = freezed,
+    Object? negativeTitle = freezed,
   }) {
     return _then(_$_ConfirmDialog(
+      title: null == title
+          ? _value.title
+          : title // ignore: cast_nullable_to_non_nullable
+              as String,
       message: null == message
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
               as String,
-      onPressed: freezed == onPressed
-          ? _value.onPressed
-          : onPressed // ignore: cast_nullable_to_non_nullable
-              as Func0<void>?,
+      onPositive: freezed == onPositive
+          ? _value.onPositive
+          : onPositive // ignore: cast_nullable_to_non_nullable
+              as VoidCallback?,
+      onNegative: freezed == onNegative
+          ? _value.onNegative
+          : onNegative // ignore: cast_nullable_to_non_nullable
+              as VoidCallback?,
+      showButtonNegative: null == showButtonNegative
+          ? _value.showButtonNegative
+          : showButtonNegative // ignore: cast_nullable_to_non_nullable
+              as bool,
+      positiveTitle: freezed == positiveTitle
+          ? _value.positiveTitle
+          : positiveTitle // ignore: cast_nullable_to_non_nullable
+              as String?,
+      negativeTitle: freezed == negativeTitle
+          ? _value.negativeTitle
+          : negativeTitle // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
 
 /// @nodoc
 
-class _$_ConfirmDialog implements _ConfirmDialog {
-  const _$_ConfirmDialog({this.message = '', this.onPressed});
+class _$_ConfirmDialog with DiagnosticableTreeMixin implements _ConfirmDialog {
+  const _$_ConfirmDialog(
+      {this.title = '',
+      this.message = '',
+      this.onPositive,
+      this.onNegative,
+      this.showButtonNegative = false,
+      this.positiveTitle,
+      this.negativeTitle});
 
+  @override
+  @JsonKey()
+  final String title;
   @override
   @JsonKey()
   final String message;
   @override
-  final Func0<void>? onPressed;
+  final VoidCallback? onPositive;
+  @override
+  final VoidCallback? onNegative;
+  @override
+  @JsonKey()
+  final bool showButtonNegative;
+  @override
+  final String? positiveTitle;
+  @override
+  final String? negativeTitle;
 
   @override
-  String toString() {
-    return 'AppPopupInfo.confirmDialog(message: $message, onPressed: $onPressed)';
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return 'AppPopupInfo.confirmDialog(title: $title, message: $message, onPositive: $onPositive, onNegative: $onNegative, showButtonNegative: $showButtonNegative, positiveTitle: $positiveTitle, negativeTitle: $negativeTitle)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'AppPopupInfo.confirmDialog'))
+      ..add(DiagnosticsProperty('title', title))
+      ..add(DiagnosticsProperty('message', message))
+      ..add(DiagnosticsProperty('onPositive', onPositive))
+      ..add(DiagnosticsProperty('onNegative', onNegative))
+      ..add(DiagnosticsProperty('showButtonNegative', showButtonNegative))
+      ..add(DiagnosticsProperty('positiveTitle', positiveTitle))
+      ..add(DiagnosticsProperty('negativeTitle', negativeTitle));
   }
 
   @override
@@ -141,13 +229,23 @@ class _$_ConfirmDialog implements _ConfirmDialog {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_ConfirmDialog &&
+            (identical(other.title, title) || other.title == title) &&
             (identical(other.message, message) || other.message == message) &&
-            (identical(other.onPressed, onPressed) ||
-                other.onPressed == onPressed));
+            (identical(other.onPositive, onPositive) ||
+                other.onPositive == onPositive) &&
+            (identical(other.onNegative, onNegative) ||
+                other.onNegative == onNegative) &&
+            (identical(other.showButtonNegative, showButtonNegative) ||
+                other.showButtonNegative == showButtonNegative) &&
+            (identical(other.positiveTitle, positiveTitle) ||
+                other.positiveTitle == positiveTitle) &&
+            (identical(other.negativeTitle, negativeTitle) ||
+                other.negativeTitle == negativeTitle));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, message, onPressed);
+  int get hashCode => Object.hash(runtimeType, title, message, onPositive,
+      onNegative, showButtonNegative, positiveTitle, negativeTitle);
 
   @JsonKey(ignore: true)
   @override
@@ -158,37 +256,63 @@ class _$_ConfirmDialog implements _ConfirmDialog {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String message, Func0<void>? onPressed)
+    required TResult Function(
+            String title,
+            String message,
+            VoidCallback? onPositive,
+            VoidCallback? onNegative,
+            bool showButtonNegative,
+            String? positiveTitle,
+            String? negativeTitle)
         confirmDialog,
     required TResult Function(String message, Func0<void>? onRetryPressed)
         errorWithRetryDialog,
     required TResult Function() requiredLoginDialog,
   }) {
-    return confirmDialog(message, onPressed);
+    return confirmDialog(title, message, onPositive, onNegative,
+        showButtonNegative, positiveTitle, negativeTitle);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String message, Func0<void>? onPressed)? confirmDialog,
+    TResult? Function(
+            String title,
+            String message,
+            VoidCallback? onPositive,
+            VoidCallback? onNegative,
+            bool showButtonNegative,
+            String? positiveTitle,
+            String? negativeTitle)?
+        confirmDialog,
     TResult? Function(String message, Func0<void>? onRetryPressed)?
         errorWithRetryDialog,
     TResult? Function()? requiredLoginDialog,
   }) {
-    return confirmDialog?.call(message, onPressed);
+    return confirmDialog?.call(title, message, onPositive, onNegative,
+        showButtonNegative, positiveTitle, negativeTitle);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String message, Func0<void>? onPressed)? confirmDialog,
+    TResult Function(
+            String title,
+            String message,
+            VoidCallback? onPositive,
+            VoidCallback? onNegative,
+            bool showButtonNegative,
+            String? positiveTitle,
+            String? negativeTitle)?
+        confirmDialog,
     TResult Function(String message, Func0<void>? onRetryPressed)?
         errorWithRetryDialog,
     TResult Function()? requiredLoginDialog,
     required TResult orElse(),
   }) {
     if (confirmDialog != null) {
-      return confirmDialog(message, onPressed);
+      return confirmDialog(title, message, onPositive, onNegative,
+          showButtonNegative, positiveTitle, negativeTitle);
     }
     return orElse();
   }
@@ -230,10 +354,21 @@ class _$_ConfirmDialog implements _ConfirmDialog {
 
 abstract class _ConfirmDialog implements AppPopupInfo {
   const factory _ConfirmDialog(
-      {final String message, final Func0<void>? onPressed}) = _$_ConfirmDialog;
+      {final String title,
+      final String message,
+      final VoidCallback? onPositive,
+      final VoidCallback? onNegative,
+      final bool showButtonNegative,
+      final String? positiveTitle,
+      final String? negativeTitle}) = _$_ConfirmDialog;
 
+  String get title;
   String get message;
-  Func0<void>? get onPressed;
+  VoidCallback? get onPositive;
+  VoidCallback? get onNegative;
+  bool get showButtonNegative;
+  String? get positiveTitle;
+  String? get negativeTitle;
   @JsonKey(ignore: true)
   _$$_ConfirmDialogCopyWith<_$_ConfirmDialog> get copyWith =>
       throw _privateConstructorUsedError;
@@ -277,7 +412,9 @@ class __$$_ErrorWithRetryDialogCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_ErrorWithRetryDialog implements _ErrorWithRetryDialog {
+class _$_ErrorWithRetryDialog
+    with DiagnosticableTreeMixin
+    implements _ErrorWithRetryDialog {
   const _$_ErrorWithRetryDialog({this.message = '', this.onRetryPressed});
 
   @override
@@ -287,8 +424,17 @@ class _$_ErrorWithRetryDialog implements _ErrorWithRetryDialog {
   final Func0<void>? onRetryPressed;
 
   @override
-  String toString() {
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
     return 'AppPopupInfo.errorWithRetryDialog(message: $message, onRetryPressed: $onRetryPressed)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'AppPopupInfo.errorWithRetryDialog'))
+      ..add(DiagnosticsProperty('message', message))
+      ..add(DiagnosticsProperty('onRetryPressed', onRetryPressed));
   }
 
   @override
@@ -314,7 +460,14 @@ class _$_ErrorWithRetryDialog implements _ErrorWithRetryDialog {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String message, Func0<void>? onPressed)
+    required TResult Function(
+            String title,
+            String message,
+            VoidCallback? onPositive,
+            VoidCallback? onNegative,
+            bool showButtonNegative,
+            String? positiveTitle,
+            String? negativeTitle)
         confirmDialog,
     required TResult Function(String message, Func0<void>? onRetryPressed)
         errorWithRetryDialog,
@@ -326,7 +479,15 @@ class _$_ErrorWithRetryDialog implements _ErrorWithRetryDialog {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String message, Func0<void>? onPressed)? confirmDialog,
+    TResult? Function(
+            String title,
+            String message,
+            VoidCallback? onPositive,
+            VoidCallback? onNegative,
+            bool showButtonNegative,
+            String? positiveTitle,
+            String? negativeTitle)?
+        confirmDialog,
     TResult? Function(String message, Func0<void>? onRetryPressed)?
         errorWithRetryDialog,
     TResult? Function()? requiredLoginDialog,
@@ -337,7 +498,15 @@ class _$_ErrorWithRetryDialog implements _ErrorWithRetryDialog {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String message, Func0<void>? onPressed)? confirmDialog,
+    TResult Function(
+            String title,
+            String message,
+            VoidCallback? onPositive,
+            VoidCallback? onNegative,
+            bool showButtonNegative,
+            String? positiveTitle,
+            String? negativeTitle)?
+        confirmDialog,
     TResult Function(String message, Func0<void>? onRetryPressed)?
         errorWithRetryDialog,
     TResult Function()? requiredLoginDialog,
@@ -414,12 +583,21 @@ class __$$_RequiredLoginDialogCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_RequiredLoginDialog implements _RequiredLoginDialog {
+class _$_RequiredLoginDialog
+    with DiagnosticableTreeMixin
+    implements _RequiredLoginDialog {
   const _$_RequiredLoginDialog();
 
   @override
-  String toString() {
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
     return 'AppPopupInfo.requiredLoginDialog()';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+        .add(DiagnosticsProperty('type', 'AppPopupInfo.requiredLoginDialog'));
   }
 
   @override
@@ -434,7 +612,14 @@ class _$_RequiredLoginDialog implements _RequiredLoginDialog {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String message, Func0<void>? onPressed)
+    required TResult Function(
+            String title,
+            String message,
+            VoidCallback? onPositive,
+            VoidCallback? onNegative,
+            bool showButtonNegative,
+            String? positiveTitle,
+            String? negativeTitle)
         confirmDialog,
     required TResult Function(String message, Func0<void>? onRetryPressed)
         errorWithRetryDialog,
@@ -446,7 +631,15 @@ class _$_RequiredLoginDialog implements _RequiredLoginDialog {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String message, Func0<void>? onPressed)? confirmDialog,
+    TResult? Function(
+            String title,
+            String message,
+            VoidCallback? onPositive,
+            VoidCallback? onNegative,
+            bool showButtonNegative,
+            String? positiveTitle,
+            String? negativeTitle)?
+        confirmDialog,
     TResult? Function(String message, Func0<void>? onRetryPressed)?
         errorWithRetryDialog,
     TResult? Function()? requiredLoginDialog,
@@ -457,7 +650,15 @@ class _$_RequiredLoginDialog implements _RequiredLoginDialog {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String message, Func0<void>? onPressed)? confirmDialog,
+    TResult Function(
+            String title,
+            String message,
+            VoidCallback? onPositive,
+            VoidCallback? onNegative,
+            bool showButtonNegative,
+            String? positiveTitle,
+            String? negativeTitle)?
+        confirmDialog,
     TResult Function(String message, Func0<void>? onRetryPressed)?
         errorWithRetryDialog,
     TResult Function()? requiredLoginDialog,

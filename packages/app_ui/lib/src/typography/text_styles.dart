@@ -6,7 +6,7 @@ import 'package:flutter/widgets.dart';
 class AppTextStyle {
   static const _baseTextStyle = TextStyle(
     package: 'app_ui',
-    fontFamily: 'OpenSans',
+    fontFamily: 'Petrona',
     color: AppColors.black,
     fontWeight: AppFontWeight.regular,
   );

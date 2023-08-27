@@ -11,7 +11,7 @@ class ResultsListResponse<T> {
       _$ResultsListResponseFromJson(json, fromJsonT);
 
   @JsonKey(defaultValue: [])
-  final List<T> results;
+  final List<T> data;
   @JsonKey(defaultValue: false)
   final bool? success;
   final String? message;
@@ -19,7 +19,7 @@ class ResultsListResponse<T> {
   final int? totalResult;
 
   ResultsListResponse({
-    required this.results,
+    required this.data,
     this.success,
     this.message,
     this.totalResult,

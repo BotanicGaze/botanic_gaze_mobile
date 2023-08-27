@@ -29,11 +29,11 @@ class CommonPagingController<T> implements Disposable {
 
   // call when initState to listen to trigger load more
   void listen({
-    required VoidCallback onLoadMore,
+    required ValueChanged<int> onLoadMore,
   }) {
     pagingController.addPageRequestListener((pageKey) {
       if (pageKey > PagingConstants.initialPage) {
-        onLoadMore();
+        onLoadMore(pageKey);
       }
     });
   }

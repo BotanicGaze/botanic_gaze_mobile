@@ -1,10 +1,11 @@
 import 'package:app_ui/app_ui.dart';
 import 'package:base_bloc/base_bloc.dart';
+import 'package:botanic_gaze/constants/index.dart';
 import 'package:botanic_gaze/features/search_tab/index.dart';
 import 'package:botanic_gaze/navigation/index.dart';
 import 'package:botanic_gaze/widgets/index.dart';
 import 'package:flutter/material.dart';
-import 'package:syncfusion_flutter_gauges/gauges.dart';
+import 'package:flutter/services.dart';
 
 class SearchTabPage extends StatefulWidget {
   const SearchTabPage({super.key});
@@ -48,51 +49,97 @@ class _SearchTabPageState extends BasePageState<SearchTabPage, SearchTabBloc>
   @override
   Widget buildPage(BuildContext context) {
     return CommonScaffold(
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
+      appBar: AppBar(
+        backgroundColor: Colors.transparent,
+        systemOverlayStyle: SystemUiOverlayStyle.dark,
+        toolbarHeight: 0,
+      ),
+      body: Stack(
         children: [
-          GestureDetector(
-            onTap: () {
-              context.pushNamed(NavigationContains.searchPage);
-            },
-            child: Hero(
-              tag: 'search_tab_page',
-              child: Container(
-                width: ScreenUtil().screenWidth,
-                height: 50,
-                color: Colors.amber,
-              ),
-            ),
+          // const SizedBox.expand(),
+          Align(
+            alignment: Alignment.bottomCenter,
+            child: Image.asset(AppImages.imageBgScanSearch),
           ),
-          const SizedBox(height: 50),
-          SfRadialGauge(
-            axes: <RadialAxis>[
-              RadialAxis(
-                showLabels: false,
-                showTicks: false,
-                startAngle: 0,
-                endAngle: 360,
-                radiusFactor: 1,
-                axisLineStyle: AxisLineStyle(
-                  thickness: 0.05,
-                  color: Colors.blue.withOpacity(0.15),
-                  thicknessUnit: GaugeSizeUnit.factor,
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: Dimens.d16.responsive()),
+            child: Column(
+              // crossAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Row(
+                  children: [
+                    Expanded(
+                      child: GestureDetector(
+                        onTap: () {
+                          context.pushNamed(NavigationContains.searchPage);
+                        },
+                        child: AppTextField(
+                          hintText: 'Monstera Albo',
+                          enabled: false,
+                          prefixIcon: Hero(
+                            tag: AppIcons.iconSearch,
+                            child: Image.asset(
+                              AppIcons.iconSearch,
+                              width: Dimens.d16.responsive(),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                    SizedBox(width: Dimens.d8.responsive()),
+                    IconButton.outlined(
+                      onPressed: () {},
+                      icon: Image.asset(AppIcons.iconFilter),
+                    )
+                  ],
                 ),
-              ),
-              RadialAxis(
-                showLabels: false,
-                showTicks: false,
-                startAngle: animationValue,
-                endAngle: animationValue + 260,
-                radiusFactor: 1,
-                axisLineStyle: const AxisLineStyle(
-                  thickness: 0.05,
-                  cornerStyle: CornerStyle.bothCurve,
-                  color: Colors.blue,
-                  thicknessUnit: GaugeSizeUnit.factor,
+                SizedBox(height: Dimens.d72.responsive()),
+                const Align(
+                  alignment: Alignment.centerRight,
+                  child: CircleAvatar(
+                    backgroundColor: Color(0xFF343434),
+                    child: Icon(
+                      Icons.question_mark,
+                      color: AppColors.white,
+                    ),
+                  ),
                 ),
-              ),
-            ],
+                SizedBox(height: Dimens.d39.responsive()),
+                Column(
+                  children: [
+                    SizedBox(
+                      width: Dimens.d116.responsive(),
+                      height: Dimens.d116.responsive(),
+                      child: GestureDetector(
+                        onTap: () {
+                          context.pushNamed(NavigationContains.scanPage);
+                        },
+                        child: CircleAvatar(
+                          backgroundColor: Theme.of(context).primaryColor,
+                          child: Padding(
+                            padding: EdgeInsets.only(
+                              top: Dimens.d26.responsive(),
+                              bottom: Dimens.d26.responsive(),
+                              left: Dimens.d31.responsive(),
+                              right: Dimens.d21.responsive(),
+                            ),
+                            child: Image.asset(
+                              AppIcons.iconCamera,
+                              // width: Dimens.d64.responsive(),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                    SizedBox(height: Dimens.d8.responsive()),
+                    Text(
+                      'Scan to identify',
+                      style: Theme.of(context).textTheme.titleMedium,
+                    ),
+                  ],
+                ),
+              ],
+            ),
           ),
         ],
       ),

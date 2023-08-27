@@ -25,21 +25,26 @@ class SearchBloc extends BaseBloc<SearchEvent, SearchState> {
       _onSearchPageRefreshed,
       transformer: log(),
     );
+    on<SearchTextFieldChanged>(
+      _onSearchTextFieldChanged,
+      transformer: debounceTime(),
+    );
   }
 
   Future<void> _onSearchPageInitiated(
     SearchPageInitiated event,
     Emitter<SearchState> emit,
   ) async {
-    await _getTask(
+    await _getPlantDatas(
       emit: emit,
-      isInitialLoad: true,
+      request: event.request,
       doOnSubscribe: () async => emit(state.copyWith(isShimmerLoading: true)),
       doOnSuccessOrError: () async => emit(
         state.copyWith(
           isShimmerLoading: false,
         ),
       ),
+      isInitialLoad: true,
     );
   }
 
@@ -47,15 +52,20 @@ class SearchBloc extends BaseBloc<SearchEvent, SearchState> {
     SearchPageLoadMore event,
     Emitter<SearchState> emit,
   ) async {
-    await _getTask(emit: emit, isInitialLoad: false);
+    await _getPlantDatas(
+      emit: emit,
+      request: event.request,
+      isInitialLoad: false,
+    );
   }
 
   Future<FutureOr<void>> _onSearchPageRefreshed(
     SearchPageRefreshed event,
     Emitter<SearchState> emit,
   ) async {
-    await _getTask(
+    await _getPlantDatas(
       emit: emit,
+      request: event.request,
       isInitialLoad: true,
       doOnSubscribe: () async => emit(state.copyWith(isShimmerLoading: true)),
       doOnSuccessOrError: () async {
@@ -67,20 +77,33 @@ class SearchBloc extends BaseBloc<SearchEvent, SearchState> {
     );
   }
 
-  Future<void> _getTask({
+  Future<void> _onSearchTextFieldChanged(
+    SearchTextFieldChanged event,
+    Emitter<SearchState> emit,
+  ) async {
+    await _getPlantDatas(
+      emit: emit,
+      request: event.request,
+      isInitialLoad: true,
+    );
+  }
+
+  Future<void> _getPlantDatas({
     required Emitter<SearchState> emit,
     required bool isInitialLoad,
+    required PlantSearchRequest request,
     Future<void> Function()? doOnSubscribe,
     Future<void> Function()? doOnSuccessOrError,
   }) async {
     return runBlocCatching(
       action: () async {
-        final output = await getIt<AppApiService>()
-            .getListPlant(const PlantSearchRequest());
+        final output = await getIt<AppApiService>().getListPlant(request);
         emit(
           state.copyWith(
-            tasks: LoadMoreOutput<PlantSearchResponse>(
-              data: output.results ?? [],
+            plantDatas: LoadMoreOutput<PlantSearchResponse>(
+              data: output.data,
+              isRefreshSuccess: isInitialLoad,
+              isLastPage: output.data.isEmpty,
             ),
           ),
         );

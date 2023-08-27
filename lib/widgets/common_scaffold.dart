@@ -9,9 +9,11 @@ class CommonScaffold extends StatelessWidget {
     this.floatingActionButton,
     this.drawer,
     this.backgroundColor,
-    this.hideKeyboardWhenTouchOutside = false,
+    this.hideKeyboardWhenTouchOutside = true,
     super.key,
     this.bottomNavigationBar,
+    this.extendBody = false,
+    this.otherBackground = const [],
   });
 
   final Widget body;
@@ -21,16 +23,37 @@ class CommonScaffold extends StatelessWidget {
   final Color? backgroundColor;
   final bool hideKeyboardWhenTouchOutside;
   final Widget? bottomNavigationBar;
+  final bool extendBody;
+  final List<Widget> otherBackground;
 
   @override
   Widget build(BuildContext context) {
-    final scaffold = Scaffold(
-      backgroundColor: backgroundColor,
-      body: Shimmer(child: body),
-      appBar: appBar,
-      drawer: drawer,
-      floatingActionButton: floatingActionButton,
-      bottomNavigationBar: bottomNavigationBar,
+    final scaffold = Stack(
+      children: [
+        const SizedBox.expand(),
+        Container(
+          decoration: const BoxDecoration(
+            gradient: LinearGradient(
+              begin: Alignment.topCenter,
+              end: Alignment.bottomCenter,
+              colors: [
+                Color(0xFFFFFFFF),
+                Color(0xFFF2F8F6),
+              ],
+            ),
+          ),
+        ),
+        ...otherBackground,
+        Scaffold(
+          backgroundColor: backgroundColor ?? Colors.transparent,
+          extendBody: extendBody,
+          body: Shimmer(child: body),
+          appBar: appBar,
+          drawer: drawer,
+          floatingActionButton: floatingActionButton,
+          bottomNavigationBar: bottomNavigationBar,
+        ),
+      ],
     );
 
     return hideKeyboardWhenTouchOutside

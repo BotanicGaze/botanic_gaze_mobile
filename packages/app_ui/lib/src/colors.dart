@@ -1,4 +1,4 @@
-import 'package:flutter/widgets.dart';
+import 'package:flutter/material.dart';
 
 /// Defines the color palette for the App UI.
 abstract class AppColors {
@@ -27,7 +27,7 @@ abstract class AppColors {
   static const Color transparent = Color(0x00000000);
 
   /// Primary
-  static const Color primary = Color(0xFF0000FF);
+  static const Color primary = Color(0xFF339371);
 
   /// Secondary
   static const Color secondary = Color(0xFFFB5246);
@@ -40,4 +40,13 @@ abstract class AppColors {
 
   /// Charcoal
   static const Color charcoal = Color(0xBF202124);
+
+  /// ScaffoldBackgroundColor
+  static const Color scaffoldBackgroundColor = Color(0xFFFFFFFF);
+
+  static const Color iconPrimaryColor = Color(0xFF343434);
+
+  static const Color dividerColor = Color(0xFFF3F3F3);
+
+  static const Color splashColor = Color(0xFFF2F8F6);
 }

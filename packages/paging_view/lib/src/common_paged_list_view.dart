@@ -1,11 +1,7 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
-import 'package:paging_view/src/controller/common_paging_controller.dart';
-import 'package:paging_view/src/paging_constants.dart';
-import 'package:paging_view/src/paging_view_config.dart';
-
-import 'package:paging_view/src/physics/common_paging_scroll_snap_physics.dart';
+import 'package:paging_view/paging_view.dart';
 
 class CommonPagedListView<T> extends StatelessWidget {
   const CommonPagedListView({
@@ -111,7 +107,8 @@ class CommonPagedListView<T> extends StatelessWidget {
           : PagingViewConfig.instance.firstPageProgressIndicatorBuilder,
       newPageProgressIndicatorBuilder: newPageProgressIndicator != null
           ? (_) => newPageProgressIndicator!
-          : PagingViewConfig.instance.newPageProgressIndicatorBuilder,
+          : PagingViewConfig.instance.newPageProgressIndicatorBuilder ??
+              (_) => const CommonNewPageProgressIndicator(),
       noItemsFoundIndicatorBuilder: noItemsFoundIndicator != null
           ? (_) => noItemsFoundIndicator!
           : PagingViewConfig.instance.noItemsFoundIndicatorBuilder,

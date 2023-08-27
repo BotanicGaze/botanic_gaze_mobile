@@ -2,25 +2,25 @@ part of 'search_bloc.dart';
 
 class SearchState extends BaseBlocState with EquatableMixin {
   SearchState({
-    this.tasks = const LoadMoreOutput(data: []),
+    this.plantDatas = const LoadMoreOutput(data: []),
     this.isShimmerLoading = false,
     this.loadTaskException,
   });
 
-  final LoadMoreOutput<PlantSearchResponse> tasks;
+  final LoadMoreOutput<PlantSearchResponse> plantDatas;
   final bool isShimmerLoading;
   final AppException? loadTaskException;
 
   @override
-  List<Object?> get props => [tasks, isShimmerLoading, loadTaskException];
+  List<Object?> get props => [plantDatas, isShimmerLoading, loadTaskException];
 
   SearchState copyWith({
-    LoadMoreOutput<PlantSearchResponse>? tasks,
+    LoadMoreOutput<PlantSearchResponse>? plantDatas,
     bool? isShimmerLoading,
     AppException? loadTaskException,
   }) {
     return SearchState(
-      tasks: tasks ?? this.tasks,
+      plantDatas: plantDatas ?? this.plantDatas,
       isShimmerLoading: isShimmerLoading ?? this.isShimmerLoading,
       loadTaskException: loadTaskException ?? this.loadTaskException,
     );

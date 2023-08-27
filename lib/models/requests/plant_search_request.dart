@@ -2,43 +2,58 @@ import 'package:equatable/equatable.dart';
 
 class PlantSearchRequest extends Equatable {
   const PlantSearchRequest({
-    this.startFrom = 0,
-    this.pageSize = 20,
+    this.page = 1,
+    this.perPage = 20,
     this.includeAggregation = false,
+    this.q,
+    this.plantTypes,
   });
 
   factory PlantSearchRequest.fromJson(Map<String, dynamic> json) {
     return PlantSearchRequest(
-      startFrom: json['startFrom'] as int?,
-      pageSize: json['pageSize'] as int?,
+      page: json['page'] as int?,
+      perPage: json['perPage'] as int?,
       includeAggregation: json['includeAggregation'] as bool?,
     );
   }
-  final int? startFrom;
-  final int? pageSize;
+  final int? page;
+  final int? perPage;
   final bool? includeAggregation;
+  final String? q;
+  final int? plantTypes;
 
-  Map<String, dynamic> toJson() => {
-        'startFrom': startFrom,
-        'pageSize': pageSize,
-        'includeAggregation': includeAggregation,
-      };
+  Map<String, dynamic> toJson() {
+    final jsonData = {
+      'page': page,
+      'perPage': perPage,
+      'includeAggregation': includeAggregation,
+      'q': q,
+      'plantTypes': plantTypes,
+    };
 
-  PlantSearchRequest copyWith({
-    int? startFrom,
-    int? pageSize,
-    bool? includeAggregation,
-  }) {
-    return PlantSearchRequest(
-      startFrom: startFrom ?? this.startFrom,
-      pageSize: pageSize ?? this.pageSize,
-      includeAggregation: includeAggregation ?? this.includeAggregation,
-    );
+    jsonData.removeWhere((k, v) => v == null || v.toString().isEmpty);
+    return jsonData;
   }
 
   @override
   bool get stringify => true;
 
   @override
-  List<Object?> get props => [startFrom, pageSize, includeAggregation];
+  List<Object?> get props => [page, perPage, includeAggregation];
+
+  PlantSearchRequest copyWith({
+    int? page,
+    int? perPage,
+    bool? includeAggregation,
+    String? q,
+    int? plantTypes,
+  }) {
+    return PlantSearchRequest(
+      page: page ?? this.page,
+      perPage: perPage ?? this.perPage,
+      includeAggregation: includeAggregation ?? this.includeAggregation,
+      q: q ?? this.q,
+      plantTypes: plantTypes ?? this.plantTypes,
+    );
+  }
 }

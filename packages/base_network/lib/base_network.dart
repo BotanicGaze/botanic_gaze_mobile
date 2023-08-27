@@ -52,4 +52,5 @@ export 'src/repository/source/api/middleware/custom_log_interceptor.dart';
 export 'src/repository/source/api/middleware/header_interceptor.dart';
 export 'src/repository/source/api/middleware/refresh_token_interceptor.dart';
 export 'src/repository/source/api/middleware/retry_on_error_interceptor.dart';
+export 'src/repository/source/api/middleware/cookie_manager_interceptor.dart';
 export 'src/repository/source/api/refresh_token_api_service.dart';
