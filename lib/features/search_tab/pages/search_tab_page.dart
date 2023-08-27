@@ -49,99 +49,96 @@ class _SearchTabPageState extends BasePageState<SearchTabPage, SearchTabBloc>
   @override
   Widget buildPage(BuildContext context) {
     return CommonScaffold(
+      otherBackground: [
+        Align(
+          alignment: Alignment.bottomCenter,
+          child: Image.asset(AppImages.imageBgScanSearch),
+        ),
+      ],
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         systemOverlayStyle: SystemUiOverlayStyle.dark,
         toolbarHeight: 0,
       ),
-      body: Stack(
-        children: [
-          // const SizedBox.expand(),
-          Align(
-            alignment: Alignment.bottomCenter,
-            child: Image.asset(AppImages.imageBgScanSearch),
-          ),
-          Padding(
-            padding: EdgeInsets.symmetric(horizontal: Dimens.d16.responsive()),
-            child: Column(
-              // crossAxisAlignment: MainAxisAlignment.center,
+      body: Padding(
+        padding: EdgeInsets.symmetric(horizontal: Dimens.d16.responsive()),
+        child: Column(
+          // crossAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Row(
               children: [
-                Row(
-                  children: [
-                    Expanded(
-                      child: GestureDetector(
-                        onTap: () {
-                          context.pushNamed(NavigationContains.searchPage);
-                        },
-                        child: AppTextField(
-                          hintText: 'Monstera Albo',
-                          enabled: false,
-                          prefixIcon: Hero(
-                            tag: AppIcons.iconSearch,
-                            child: Image.asset(
-                              AppIcons.iconSearch,
-                              width: Dimens.d16.responsive(),
-                            ),
-                          ),
+                Expanded(
+                  child: GestureDetector(
+                    onTap: () {
+                      context.pushNamed(NavigationContains.searchPage);
+                    },
+                    child: AppTextField(
+                      hintText: 'Monstera Albo',
+                      enabled: false,
+                      prefixIcon: Hero(
+                        tag: AppIcons.iconSearch,
+                        child: Image.asset(
+                          AppIcons.iconSearch,
+                          width: Dimens.d16.responsive(),
                         ),
                       ),
-                    ),
-                    SizedBox(width: Dimens.d8.responsive()),
-                    IconButton.outlined(
-                      onPressed: () {},
-                      icon: Image.asset(AppIcons.iconFilter),
-                    )
-                  ],
-                ),
-                SizedBox(height: Dimens.d72.responsive()),
-                const Align(
-                  alignment: Alignment.centerRight,
-                  child: CircleAvatar(
-                    backgroundColor: Color(0xFF343434),
-                    child: Icon(
-                      Icons.question_mark,
-                      color: AppColors.white,
                     ),
                   ),
                 ),
-                SizedBox(height: Dimens.d39.responsive()),
-                Column(
-                  children: [
-                    SizedBox(
-                      width: Dimens.d116.responsive(),
-                      height: Dimens.d116.responsive(),
-                      child: GestureDetector(
-                        onTap: () {
-                          context.pushNamed(NavigationContains.scanPage);
-                        },
-                        child: CircleAvatar(
-                          backgroundColor: Theme.of(context).primaryColor,
-                          child: Padding(
-                            padding: EdgeInsets.only(
-                              top: Dimens.d26.responsive(),
-                              bottom: Dimens.d26.responsive(),
-                              left: Dimens.d31.responsive(),
-                              right: Dimens.d21.responsive(),
-                            ),
-                            child: Image.asset(
-                              AppIcons.iconCamera,
-                              // width: Dimens.d64.responsive(),
-                            ),
-                          ),
+                SizedBox(width: Dimens.d8.responsive()),
+                IconButton.outlined(
+                  onPressed: () {},
+                  icon: Image.asset(AppIcons.iconFilter),
+                )
+              ],
+            ),
+            SizedBox(height: Dimens.d72.responsive()),
+            const Align(
+              alignment: Alignment.centerRight,
+              child: CircleAvatar(
+                backgroundColor: Color(0xFF343434),
+                child: Icon(
+                  Icons.question_mark,
+                  color: AppColors.white,
+                ),
+              ),
+            ),
+            SizedBox(height: Dimens.d39.responsive()),
+            Column(
+              children: [
+                SizedBox(
+                  width: Dimens.d116.responsive(),
+                  height: Dimens.d116.responsive(),
+                  child: GestureDetector(
+                    onTap: () {
+                      context.pushNamed(NavigationContains.scanPage);
+                    },
+                    child: CircleAvatar(
+                      backgroundColor: Theme.of(context).primaryColor,
+                      child: Padding(
+                        padding: EdgeInsets.only(
+                          top: Dimens.d26.responsive(),
+                          bottom: Dimens.d26.responsive(),
+                          left: Dimens.d31.responsive(),
+                          right: Dimens.d21.responsive(),
+                        ),
+                        child: Image.asset(
+                          AppIcons.iconCamera,
+                          // width: Dimens.d64.responsive(),
                         ),
                       ),
                     ),
-                    SizedBox(height: Dimens.d8.responsive()),
-                    Text(
-                      'Scan to identify',
-                      style: Theme.of(context).textTheme.titleMedium,
-                    ),
-                  ],
+                  ),
+                ),
+                SizedBox(height: Dimens.d8.responsive()),
+                Text(
+                  'Scan to identify',
+                  style: Theme.of(context).textTheme.titleMedium,
                 ),
               ],
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

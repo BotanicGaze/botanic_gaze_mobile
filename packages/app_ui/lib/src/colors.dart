@@ -49,4 +49,6 @@ abstract class AppColors {
   static const Color dividerColor = Color(0xFFF3F3F3);
 
   static const Color splashColor = Color(0xFFF2F8F6);
+
+  static const Color textColor = Color(0xFF343434);
 }

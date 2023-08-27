@@ -53,61 +53,61 @@ class AppTheme {
 
   static TextTheme get _textTheme {
     return TextTheme(
-      displayLarge: AppTextStyle.headline1,
-      displayMedium: AppTextStyle.headline2,
-      displaySmall: AppTextStyle.headline3,
-      headlineMedium: AppTextStyle.headline4,
-      headlineSmall: AppTextStyle.headline5,
-      titleLarge: AppTextStyle.headline6,
-      titleMedium: AppTextStyle.subtitle1,
-      titleSmall: AppTextStyle.subtitle2,
-      bodyLarge: AppTextStyle.bodyText1,
-      bodyMedium: AppTextStyle.bodyText2,
-      bodySmall: AppTextStyle.caption,
-      labelSmall: AppTextStyle.overline,
-      labelLarge: AppTextStyle.button,
+      displayLarge: AppTextStyle.displayLarge,
+      displayMedium: AppTextStyle.displayMedium,
+      displaySmall: AppTextStyle.displaySmall,
+      headlineMedium: AppTextStyle.headlineMedium,
+      headlineSmall: AppTextStyle.headlineSmall,
+      titleLarge: AppTextStyle.titleLarge,
+      titleMedium: AppTextStyle.titleMedium,
+      titleSmall: AppTextStyle.titleSmall,
+      bodyLarge: AppTextStyle.bodyLarge,
+      bodyMedium: AppTextStyle.bodyMedium,
+      bodySmall: AppTextStyle.bodySmall,
+      labelSmall: AppTextStyle.labelSmall,
+      labelLarge: AppTextStyle.labelLarge,
     );
   }
 
   static TextTheme get _smallTextTheme {
     return TextTheme(
-      displayLarge: AppTextStyle.headline1.copyWith(
+      displayLarge: AppTextStyle.displayLarge.copyWith(
         fontSize: _textTheme.displayLarge!.fontSize! * _smallTextScaleFactor,
       ),
-      displayMedium: AppTextStyle.headline2.copyWith(
+      displayMedium: AppTextStyle.displayMedium.copyWith(
         fontSize: _textTheme.displayMedium!.fontSize! * _smallTextScaleFactor,
       ),
-      displaySmall: AppTextStyle.headline3.copyWith(
+      displaySmall: AppTextStyle.displaySmall.copyWith(
         fontSize: _textTheme.displaySmall!.fontSize! * _smallTextScaleFactor,
       ),
-      headlineMedium: AppTextStyle.headline4.copyWith(
+      headlineMedium: AppTextStyle.headlineMedium.copyWith(
         fontSize: _textTheme.headlineMedium!.fontSize! * _smallTextScaleFactor,
       ),
-      headlineSmall: AppTextStyle.headline5.copyWith(
+      headlineSmall: AppTextStyle.headlineSmall.copyWith(
         fontSize: _textTheme.headlineSmall!.fontSize! * _smallTextScaleFactor,
       ),
-      titleLarge: AppTextStyle.headline6.copyWith(
+      titleLarge: AppTextStyle.titleLarge.copyWith(
         fontSize: _textTheme.titleLarge!.fontSize! * _smallTextScaleFactor,
       ),
-      titleMedium: AppTextStyle.subtitle1.copyWith(
+      titleMedium: AppTextStyle.titleMedium.copyWith(
         fontSize: _textTheme.titleMedium!.fontSize! * _smallTextScaleFactor,
       ),
-      titleSmall: AppTextStyle.subtitle2.copyWith(
+      titleSmall: AppTextStyle.titleSmall.copyWith(
         fontSize: _textTheme.titleSmall!.fontSize! * _smallTextScaleFactor,
       ),
-      bodyLarge: AppTextStyle.bodyText1.copyWith(
+      bodyLarge: AppTextStyle.bodyLarge.copyWith(
         fontSize: _textTheme.bodyLarge!.fontSize! * _smallTextScaleFactor,
       ),
-      bodyMedium: AppTextStyle.bodyText2.copyWith(
+      bodyMedium: AppTextStyle.bodyMedium.copyWith(
         fontSize: _textTheme.bodyMedium!.fontSize! * _smallTextScaleFactor,
       ),
-      bodySmall: AppTextStyle.caption.copyWith(
+      bodySmall: AppTextStyle.bodySmall.copyWith(
         fontSize: _textTheme.bodySmall!.fontSize! * _smallTextScaleFactor,
       ),
-      labelSmall: AppTextStyle.overline.copyWith(
+      labelSmall: AppTextStyle.labelSmall.copyWith(
         fontSize: _textTheme.labelSmall!.fontSize! * _smallTextScaleFactor,
       ),
-      labelLarge: AppTextStyle.button.copyWith(
+      labelLarge: AppTextStyle.labelLarge.copyWith(
         fontSize: _textTheme.labelLarge!.fontSize! * _smallTextScaleFactor,
       ),
     );
@@ -115,43 +115,43 @@ class AppTheme {
 
   static TextTheme get _largeTextTheme {
     return TextTheme(
-      displayLarge: AppTextStyle.headline1.copyWith(
+      displayLarge: AppTextStyle.displayLarge.copyWith(
         fontSize: _textTheme.displayLarge!.fontSize! * _largeTextScaleFactor,
       ),
-      displayMedium: AppTextStyle.headline2.copyWith(
+      displayMedium: AppTextStyle.displayMedium.copyWith(
         fontSize: _textTheme.displayMedium!.fontSize! * _largeTextScaleFactor,
       ),
-      displaySmall: AppTextStyle.headline3.copyWith(
+      displaySmall: AppTextStyle.displaySmall.copyWith(
         fontSize: _textTheme.displaySmall!.fontSize! * _largeTextScaleFactor,
       ),
-      headlineMedium: AppTextStyle.headline4.copyWith(
+      headlineMedium: AppTextStyle.headlineMedium.copyWith(
         fontSize: _textTheme.headlineMedium!.fontSize! * _largeTextScaleFactor,
       ),
-      headlineSmall: AppTextStyle.headline5.copyWith(
+      headlineSmall: AppTextStyle.headlineSmall.copyWith(
         fontSize: _textTheme.headlineSmall!.fontSize! * _largeTextScaleFactor,
       ),
-      titleLarge: AppTextStyle.headline6.copyWith(
+      titleLarge: AppTextStyle.titleLarge.copyWith(
         fontSize: _textTheme.titleLarge!.fontSize! * _largeTextScaleFactor,
       ),
-      titleMedium: AppTextStyle.subtitle1.copyWith(
+      titleMedium: AppTextStyle.titleMedium.copyWith(
         fontSize: _textTheme.titleMedium!.fontSize! * _largeTextScaleFactor,
       ),
-      titleSmall: AppTextStyle.subtitle2.copyWith(
+      titleSmall: AppTextStyle.titleSmall.copyWith(
         fontSize: _textTheme.titleSmall!.fontSize! * _largeTextScaleFactor,
       ),
-      bodyLarge: AppTextStyle.bodyText1.copyWith(
+      bodyLarge: AppTextStyle.bodyLarge.copyWith(
         fontSize: _textTheme.bodyLarge!.fontSize! * _largeTextScaleFactor,
       ),
-      bodyMedium: AppTextStyle.bodyText2.copyWith(
+      bodyMedium: AppTextStyle.bodyMedium.copyWith(
         fontSize: _textTheme.bodyMedium!.fontSize! * _largeTextScaleFactor,
       ),
-      bodySmall: AppTextStyle.caption.copyWith(
+      bodySmall: AppTextStyle.bodySmall.copyWith(
         fontSize: _textTheme.bodySmall!.fontSize! * _largeTextScaleFactor,
       ),
-      labelSmall: AppTextStyle.overline.copyWith(
+      labelSmall: AppTextStyle.labelSmall.copyWith(
         fontSize: _textTheme.labelSmall!.fontSize! * _largeTextScaleFactor,
       ),
-      labelLarge: AppTextStyle.button.copyWith(
+      labelLarge: AppTextStyle.labelLarge.copyWith(
         fontSize: _textTheme.labelLarge!.fontSize! * _largeTextScaleFactor,
       ),
     );

@@ -7,12 +7,12 @@ class AppTextStyle {
   static const _baseTextStyle = TextStyle(
     package: 'app_ui',
     fontFamily: 'Petrona',
-    color: AppColors.black,
+    color: AppColors.textColor,
     fontWeight: AppFontWeight.regular,
   );
 
   /// Headline 1 Text Style
-  static TextStyle get headline1 {
+  static TextStyle get displayLarge {
     return _baseTextStyle.copyWith(
       fontSize: 56,
       fontWeight: AppFontWeight.medium,
@@ -20,7 +20,7 @@ class AppTextStyle {
   }
 
   /// Headline 2 Text Style
-  static TextStyle get headline2 {
+  static TextStyle get displayMedium {
     return _baseTextStyle.copyWith(
       fontSize: 30,
       fontWeight: AppFontWeight.regular,
@@ -28,7 +28,7 @@ class AppTextStyle {
   }
 
   /// Headline 3 Text Style
-  static TextStyle get headline3 {
+  static TextStyle get displaySmall {
     return _baseTextStyle.copyWith(
       fontSize: 28,
       fontWeight: AppFontWeight.regular,
@@ -36,7 +36,7 @@ class AppTextStyle {
   }
 
   /// Headline 4 Text Style
-  static TextStyle get headline4 {
+  static TextStyle get headlineMedium {
     return _baseTextStyle.copyWith(
       fontSize: 22,
       fontWeight: AppFontWeight.bold,
@@ -44,7 +44,7 @@ class AppTextStyle {
   }
 
   /// Headline 5 Text Style
-  static TextStyle get headline5 {
+  static TextStyle get headlineSmall {
     return _baseTextStyle.copyWith(
       fontSize: 20,
       fontWeight: AppFontWeight.medium,
@@ -52,7 +52,7 @@ class AppTextStyle {
   }
 
   /// Headline 6 Text Style
-  static TextStyle get headline6 {
+  static TextStyle get titleLarge {
     return _baseTextStyle.copyWith(
       fontSize: 22,
       fontWeight: AppFontWeight.bold,
@@ -60,7 +60,7 @@ class AppTextStyle {
   }
 
   /// Subtitle 1 Text Style
-  static TextStyle get subtitle1 {
+  static TextStyle get titleMedium {
     return _baseTextStyle.copyWith(
       fontSize: 16,
       fontWeight: AppFontWeight.bold,
@@ -68,7 +68,7 @@ class AppTextStyle {
   }
 
   /// Subtitle 2 Text Style
-  static TextStyle get subtitle2 {
+  static TextStyle get titleSmall {
     return _baseTextStyle.copyWith(
       fontSize: 14,
       fontWeight: AppFontWeight.bold,
@@ -76,7 +76,7 @@ class AppTextStyle {
   }
 
   /// Body Text 1 Text Style
-  static TextStyle get bodyText1 {
+  static TextStyle get bodyLarge {
     return _baseTextStyle.copyWith(
       fontSize: 18,
       fontWeight: AppFontWeight.medium,
@@ -84,7 +84,7 @@ class AppTextStyle {
   }
 
   /// Body Text 2 Text Style (the default)
-  static TextStyle get bodyText2 {
+  static TextStyle get bodyMedium {
     return _baseTextStyle.copyWith(
       fontSize: 16,
       fontWeight: AppFontWeight.regular,
@@ -92,7 +92,7 @@ class AppTextStyle {
   }
 
   /// Caption Text Style
-  static TextStyle get caption {
+  static TextStyle get bodySmall {
     return _baseTextStyle.copyWith(
       fontSize: 14,
       fontWeight: AppFontWeight.regular,
@@ -100,7 +100,7 @@ class AppTextStyle {
   }
 
   /// Overline Text Style
-  static TextStyle get overline {
+  static TextStyle get labelSmall {
     return _baseTextStyle.copyWith(
       fontSize: 16,
       fontWeight: AppFontWeight.regular,
@@ -108,7 +108,7 @@ class AppTextStyle {
   }
 
   /// Button Text Style
-  static TextStyle get button {
+  static TextStyle get labelLarge {
     return _baseTextStyle.copyWith(
       fontSize: 18,
       fontWeight: AppFontWeight.medium,
