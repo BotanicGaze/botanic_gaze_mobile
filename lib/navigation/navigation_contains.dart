@@ -18,6 +18,9 @@ class NavigationContains {
   ///go to [SearchPlantsPage]
   static const String searchPage = '/search_page';
 
+  ///go to [SearchPlantsFilterPage]
+  static const String searchPlantsFilterPage = 'search_plants_filter_page';
+
   ///go to [CameraPage]
   static const String scanPage = '/scan_page';
 

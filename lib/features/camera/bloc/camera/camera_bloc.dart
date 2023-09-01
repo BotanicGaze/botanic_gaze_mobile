@@ -98,14 +98,36 @@ class CameraBloc extends BaseBloc<CameraEvent, CameraState> {
     }
   }
 
+  Future<PermissionStatus> getPhotosPermission() async {
+    await const PermissionClient().requestPhotos();
+    final status = await const PermissionClient().photosStatus();
+    if (status.isGranted) {
+      Log.d('Photo Permission: GRANTED');
+      return status;
+    } else {
+      Log.d('Photo Permission: DENIED');
+      if (getIt<AppNavigator>().globalContext.mounted) {
+        await PermissionPopup.show(
+          getIt<AppNavigator>().globalContext,
+          type: PermissionType.camera,
+        );
+      }
+
+      return PermissionStatus.denied;
+    }
+  }
+
   Future<void> _onPickImageButtonPressed(
     PickImageButtonPressed event,
     Emitter<CameraState> emit,
   ) async {
-    final picker = ImagePicker();
-    final image = await picker.pickImage(source: ImageSource.gallery);
-    if (image != null) {
-      emit(state.copyWith(imageTaken: image));
+    final permissionStatus = await getPhotosPermission();
+    if (permissionStatus.isGranted) {
+      final picker = ImagePicker();
+      final image = await picker.pickImage(source: ImageSource.gallery);
+      if (image != null) {
+        emit(state.copyWith(imageTaken: image));
+      }
     }
   }
 }

@@ -44,3 +44,16 @@ class SearchTextFieldChanged extends SearchPlantsEvent {
   @override
   List<Object?> get props => [request];
 }
+
+class ApplyFilter extends SearchPlantsEvent {
+  ApplyFilter({
+    required this.request,
+    required this.hasFilter,
+  });
+
+  final PlantSearchRequest request;
+  final bool hasFilter;
+
+  @override
+  List<Object?> get props => [request, hasFilter];
+}

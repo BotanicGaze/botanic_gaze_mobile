@@ -5,6 +5,7 @@ import 'package:base_bloc/base_bloc.dart';
 import 'package:botanic_gaze/constants/index.dart';
 import 'package:botanic_gaze/features/search_plants/index.dart';
 import 'package:botanic_gaze/models/index.dart';
+import 'package:botanic_gaze/navigation/index.dart';
 import 'package:botanic_gaze/widgets/index.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -25,6 +26,7 @@ class _SearchPlantsPageState
   late final _pagingController = CommonPagingController<PlantSearchResponse>()
     ..disposeBy(disposeBag);
   late PlantSearchRequest plantsRequest;
+  final TextEditingController _searchController = TextEditingController();
 
   @override
   void initState() {
@@ -81,148 +83,187 @@ class _SearchPlantsPageState
           builder: (context, state) {
             return Column(
               children: [
-                Padding(
-                  padding: EdgeInsets.symmetric(
-                    horizontal: Dimens.d16.responsive(),
-                  ).copyWith(bottom: Dimens.d12.responsive()),
-                  child: Row(
-                    children: [
-                      Expanded(
-                        child: AppTextField(
-                          hintText: 'Search plants',
-                          textInputAction: TextInputAction.search,
-                          onChanged: (value) {
-                            plantsRequest =
-                                plantsRequest.copyWith(page: 1, q: value);
-                            bloc.add(
-                              SearchTextFieldChanged(
-                                request: plantsRequest,
-                              ),
-                            );
-                          },
-                          prefixIcon: Hero(
-                            tag: AppIcons.iconSearch,
-                            child: Image.asset(
-                              AppIcons.iconSearch,
-                              width: Dimens.d20.responsive(),
-                            ),
-                          ),
-                        ),
-                      ),
-                      SizedBox(width: Dimens.d8.responsive()),
-                      IconButton.outlined(
-                        onPressed: () {},
-                        icon: Image.asset(AppIcons.iconFilter),
-                      )
-                    ],
-                  ),
-                ),
-                Expanded(
-                  child: RefreshIndicator(
-                    onRefresh: () {
-                      final completer = Completer<void>();
-                      plantsRequest = plantsRequest.copyWith(page: 1);
-                      bloc.add(
-                        SearchPageRefreshed(
-                          completer: completer,
-                          request: plantsRequest,
-                        ),
-                      );
-
-                      return completer.future;
-                    },
-                    child: state.isShimmerLoading &&
-                            state.plantDatas.data.isNullOrEmpty
-                        ? const _ListViewLoader()
-                        : CommonPagedListView(
-                            animateTransitions: false,
-                            pagingController: _pagingController,
-                            separatorBuilder: (context, index) {
-                              return SizedBox(
-                                height: Dimens.d4.responsive(),
-                              );
-                            },
-                            itemBuilder: (context, plantData, index) {
-                              return ShimmerLoading(
-                                isLoading: state.isShimmerLoading,
-                                loadingWidget: const _LoadingItem(),
-                                child: InkWell(
-                                  onTap: () {},
-                                  child: Padding(
-                                    padding: EdgeInsets.symmetric(
-                                      horizontal: Dimens.d16.responsive(),
-                                      vertical: Dimens.d8.responsive(),
-                                    ),
-                                    child: IntrinsicHeight(
-                                      child: Row(
-                                        children: [
-                                          CachedImageWidget(
-                                            imageUrl:
-                                                'https://apps.rhs.org.uk/plantselectorimages/detail/${plantData.image}',
-                                            width: Dimens.d75.responsive(),
-                                            height: Dimens.d75.responsive(),
-                                            fit: BoxFit.cover,
-                                            borderRadius: BorderRadius.circular(
-                                              Dimens.d6.responsive(),
-                                            ),
-                                          ),
-                                          SizedBox(
-                                            width: Dimens.d12.responsive(),
-                                          ),
-                                          Expanded(
-                                            child: Column(
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.start,
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.spaceAround,
-                                              children: [
-                                                Text(
-                                                  (plantData.botanicalName ??
-                                                          '')
-                                                      .parseHtmlString(),
-                                                  style: Theme.of(context)
-                                                      .textTheme
-                                                      .titleMedium,
-                                                  maxLines: 1,
-                                                  overflow:
-                                                      TextOverflow.ellipsis,
-                                                ),
-                                                Text(
-                                                  (plantData.entityDescription ??
-                                                          '')
-                                                      .parseHtmlString(),
-                                                  style: Theme.of(context)
-                                                      .textTheme
-                                                      .bodySmall,
-                                                  maxLines: 2,
-                                                  overflow:
-                                                      TextOverflow.ellipsis,
-                                                ),
-                                              ],
-                                            ),
-                                          ),
-                                          SizedBox(
-                                            width: Dimens.d12.responsive(),
-                                          ),
-                                          Image.asset(
-                                            AppIcons.iconChevronRight,
-                                            width: Dimens.d24.responsive(),
-                                            height: Dimens.d24.responsive(),
-                                          )
-                                        ],
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              );
-                            },
-                          ),
-                  ),
-                ),
+                _buildSearchField(),
+                _buildSearchResult(state),
               ],
             );
           },
         ),
+      ),
+    );
+  }
+
+  Widget _buildSearchResult(SearchPlantsState state) {
+    return Expanded(
+      child: RefreshIndicator(
+        onRefresh: _onRefresh,
+        child: state.isShimmerLoading && state.plantDatas.data.isNullOrEmpty
+            ? const _ListViewLoader()
+            : CommonPagedListView(
+                animateTransitions: false,
+                pagingController: _pagingController,
+                noItemsFoundIndicator: NoItemsFoundIndicator(
+                  searchKeyword: _searchController.text.trim(),
+                ),
+                separatorBuilder: (context, index) {
+                  return SizedBox(
+                    height: Dimens.d4.responsive(),
+                  );
+                },
+                itemBuilder: (context, plantData, index) {
+                  return ShimmerLoading(
+                    isLoading: state.isShimmerLoading,
+                    loadingWidget: const _LoadingItem(),
+                    child: PlantItemWidget(plantData: plantData),
+                  );
+                },
+              ),
+      ),
+    );
+  }
+
+  Future<void> _onRefresh() {
+    final completer = Completer<void>();
+    plantsRequest = plantsRequest.copyWith(page: 1);
+    bloc.add(
+      SearchPageRefreshed(
+        completer: completer,
+        request: plantsRequest,
+      ),
+    );
+
+    return completer.future;
+  }
+
+  Widget _buildSearchField() {
+    return Padding(
+      padding: EdgeInsets.symmetric(
+        horizontal: Dimens.d16.responsive(),
+      ).copyWith(bottom: Dimens.d12.responsive()),
+      child: Row(
+        children: [
+          Expanded(
+            child: AppTextField(
+              hintText: 'Search plants',
+              textInputAction: TextInputAction.search,
+              controller: _searchController,
+              onClear: () {
+                plantsRequest = plantsRequest.copyWith(page: 1, q: '');
+                bloc.add(
+                  SearchTextFieldChanged(request: plantsRequest),
+                );
+              },
+              onChanged: (value) {
+                plantsRequest = plantsRequest.copyWith(page: 1, q: value);
+                bloc.add(
+                  SearchTextFieldChanged(request: plantsRequest),
+                );
+              },
+              prefixIcon: Hero(
+                tag: AppIcons.iconSearch,
+                child: Image.asset(
+                  AppIcons.iconSearch,
+                  width: Dimens.d20.responsive(),
+                ),
+              ),
+            ),
+          ),
+          SizedBox(width: Dimens.d8.responsive()),
+          ClipRRect(
+            borderRadius: BorderRadius.circular(Dimens.d12.responsive()),
+            child: BlocBuilder<SearchPlantsBloc, SearchPlantsState>(
+              builder: (context, state) {
+                final isActive = state.hasFilter;
+                final color = isActive ? Theme.of(context).primaryColor : null;
+                return Stack(
+                  alignment: AlignmentDirectional.topEnd,
+                  children: [
+                    IconButton.outlined(
+                      style: IconButton.styleFrom(
+                        shape: RoundedRectangleBorder(
+                          borderRadius:
+                              BorderRadius.circular(Dimens.d12.responsive()),
+                        ),
+                        side: isActive
+                            ? BorderSide(
+                                color: Theme.of(context).primaryColor,
+                                width: Dimens.d2.responsive(),
+                              )
+                            : null,
+                      ),
+                      onPressed: () async {
+                        final result = await context.pushNamed(
+                          NavigationContains.searchPlantsFilterPage,
+                          extra: {
+                            'init_filter': SearchPlantsFilter(
+                              sunlightSelected: SunlightX.dataFromId(
+                                state.plantSearchRequest?.sunlight ?? [],
+                              ),
+                              soilTypeSelected: SoilTypeX.dataFromId(
+                                state.plantSearchRequest?.soilType ?? [],
+                              ),
+                              seasonOfInterestSelected:
+                                  SeasonOfInterestX.dataFromId(
+                                state.plantSearchRequest?.seasonOfInterest ??
+                                    [],
+                              ),
+                              plantTypesSelected: PlantTypesX.dataFromId(
+                                state.plantSearchRequest?.plantTypes ?? [],
+                              ),
+                            ),
+                          },
+                        );
+                        if (result != null && result is SearchPlantsFilter) {
+                          plantsRequest = plantsRequest.copyWith(
+                            page: 1,
+                            q: _searchController.text.trim(),
+                            sunlight: result.sunlightSelected
+                                .map((e) => e.id)
+                                .toList(),
+                            soilType: result.soilTypeSelected
+                                .map((e) => e.id)
+                                .toList(),
+                            seasonOfInterest: result.seasonOfInterestSelected
+                                .map((e) => e.id)
+                                .toList(),
+                            plantTypes: result.plantTypesSelected
+                                .map((e) => e.id)
+                                .toList(),
+                          );
+                          bloc.add(
+                            ApplyFilter(
+                              request: plantsRequest,
+                              hasFilter: result.hasFilter,
+                            ),
+                          );
+                        }
+                      },
+                      icon: Image.asset(
+                        AppIcons.iconFilter,
+                        color: color,
+                      ),
+                    ),
+                    Visibility(
+                      visible: isActive,
+                      child: Container(
+                        width: Dimens.d15.responsive(),
+                        height: Dimens.d15.responsive(),
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          color: Theme.of(context).primaryColor,
+                          border: Border.all(
+                            color: Theme.of(context).cardColor,
+                            width: Dimens.d3.responsive(),
+                          ),
+                        ),
+                      ),
+                    )
+                  ],
+                );
+              },
+            ),
+          )
+        ],
       ),
     );
   }
@@ -257,49 +298,6 @@ class _SearchPlantsPageState
         ),
       )
     ];
-  }
-}
-
-class PlantTypeView extends StatelessWidget {
-  const PlantTypeView({
-    super.key,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return GridView.count(
-      crossAxisCount: 2,
-      childAspectRatio: 174 / 100,
-      mainAxisSpacing: Dimens.d16.responsive(),
-      crossAxisSpacing: Dimens.d16.responsive(),
-      padding: EdgeInsets.symmetric(
-        horizontal: Dimens.d16.responsive(),
-      ),
-      children: List.generate(PlantTypes.values.length, (index) {
-        return Stack(
-          children: [
-            Image.asset(
-              PlantTypes.values[index].imagePath,
-            ),
-            Padding(
-              padding: EdgeInsets.only(
-                top: Dimens.d24.responsive(),
-                bottom: Dimens.d24.responsive(),
-                left: Dimens.d12.responsive(),
-                right: Dimens.d24.responsive(),
-              ),
-              child: Text(
-                PlantTypes.values[index].title,
-                style: Theme.of(context).textTheme.labelSmall?.copyWith(
-                      color: AppColors.white,
-                      fontWeight: FontWeight.bold,
-                    ),
-              ),
-            ),
-          ],
-        );
-      }),
-    );
   }
 }
 

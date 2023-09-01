@@ -13,6 +13,8 @@ class AppTheme {
       colorScheme: ColorScheme.fromSeed(
         seedColor: AppColors.primary,
         primary: AppColors.primary,
+        primaryContainer: AppColors.white,
+        secondary: AppColors.splashColor,
       ),
       scaffoldBackgroundColor: AppColors.scaffoldBackgroundColor,
       iconTheme: const IconThemeData(
@@ -20,6 +22,7 @@ class AppTheme {
       ),
       useMaterial3: true,
       appBarTheme: _appBarTheme,
+      cardColor: AppColors.white,
       elevatedButtonTheme: _elevatedButtonTheme,
       filledButtonTheme: _filledButtonTheme,
       outlinedButtonTheme: _outlinedButtonTheme,
@@ -223,12 +226,13 @@ class AppTheme {
   static OutlinedButtonThemeData get _outlinedButtonTheme {
     return OutlinedButtonThemeData(
       style: OutlinedButton.styleFrom(
-        foregroundColor: AppColors.white,
-        shape: const RoundedRectangleBorder(
-          borderRadius: BorderRadius.all(Radius.circular(30)),
+        // foregroundColor: AppColors.white,
+        shape: RoundedRectangleBorder(
+          borderRadius:
+              BorderRadius.all(Radius.circular(Dimens.d12.responsive())),
         ),
-        side: const BorderSide(color: AppColors.white, width: 2),
-        fixedSize: const Size(208, 54),
+        side: const BorderSide(color: AppColors.primary, width: 2),
+        minimumSize: Size(Dimens.d100.responsive(), Dimens.d48.responsive()),
       ),
     );
   }

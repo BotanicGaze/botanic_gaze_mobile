@@ -15,6 +15,7 @@ class SplashPage extends StatefulWidget {
 }
 
 class _SplashPageState extends BasePageState<SplashPage, SplashBloc> {
+  int count = 0;
   @override
   void initState() {
     super.initState();
@@ -27,7 +28,10 @@ class _SplashPageState extends BasePageState<SplashPage, SplashBloc> {
       listenWhen: (previous, current) =>
           previous.appInitializedFinish != current.appInitializedFinish,
       listener: (context, state) {
-        context.go(NavigationContains.dashBoardPage);
+        count++;
+        if (count == 2) {
+          context.go(NavigationContains.dashBoardPage);
+        }
       },
       child: CommonScaffold(
         body: Stack(
@@ -74,9 +78,12 @@ class _SplashPageState extends BasePageState<SplashPage, SplashBloc> {
                     child: Center(
                       child: AnimatedTextKit(
                         isRepeatingAnimation: false,
-                        // onFinished: () {
-                        //   context.go(NavigationContains.dashBoardPage);
-                        // },
+                        onFinished: () {
+                          count++;
+                          if (count == 2) {
+                            context.go(NavigationContains.dashBoardPage);
+                          }
+                        },
                         animatedTexts: [
                           TypewriterAnimatedText(
                             ' Botanic Gaze',

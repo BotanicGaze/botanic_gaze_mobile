@@ -42,6 +42,19 @@ class AppNavigatorImpl extends AppNavigator with LogMixin {
             path: NavigationContains.searchPage,
             name: NavigationContains.searchPage,
             builder: (context, state) => const SearchPlantsPage(),
+            routes: [
+              GoRoute(
+                path: NavigationContains.searchPlantsFilterPage,
+                name: NavigationContains.searchPlantsFilterPage,
+                builder: (context, state) {
+                  final extra = state.extra as Map<String, dynamic>?;
+                  return SearchPlantsFilterPage(
+                    initFilter: extra?['init_filter'] as SearchPlantsFilter? ??
+                        const SearchPlantsFilter(),
+                  );
+                },
+              ),
+            ],
           ),
           GoRoute(
             path: NavigationContains.scanPage,

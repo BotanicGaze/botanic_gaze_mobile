@@ -29,6 +29,7 @@ class SearchPlantsBloc extends BaseBloc<SearchPlantsEvent, SearchPlantsState> {
       _onSearchTextFieldChanged,
       transformer: debounceTime(),
     );
+    on<ApplyFilter>(_onApplyFilter);
   }
 
   Future<void> _onSearchPageInitiated(
@@ -85,6 +86,9 @@ class SearchPlantsBloc extends BaseBloc<SearchPlantsEvent, SearchPlantsState> {
       emit: emit,
       request: event.request,
       isInitialLoad: true,
+      doOnSubscribe: () async => emit(state.copyWith(isShimmerLoading: true)),
+      doOnSuccessOrError: () async =>
+          emit(state.copyWith(isShimmerLoading: false)),
     );
   }
 
@@ -115,6 +119,26 @@ class SearchPlantsBloc extends BaseBloc<SearchPlantsEvent, SearchPlantsState> {
       doOnSuccessOrError: doOnSuccessOrError,
       handleLoading: false,
       handleRetry: false,
+    );
+  }
+
+  Future<void> _onApplyFilter(
+    ApplyFilter event,
+    Emitter<SearchPlantsState> emit,
+  ) async {
+    await _getPlantDatas(
+      emit: emit,
+      request: event.request,
+      isInitialLoad: true,
+      doOnSubscribe: () async => emit(
+        state.copyWith(
+          isShimmerLoading: true,
+          hasFilter: event.hasFilter,
+          plantSearchRequest: event.request,
+        ),
+      ),
+      doOnSuccessOrError: () async =>
+          emit(state.copyWith(isShimmerLoading: false)),
     );
   }
 }

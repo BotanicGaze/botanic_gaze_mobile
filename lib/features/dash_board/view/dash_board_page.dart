@@ -1,6 +1,5 @@
-import 'dart:ui';
-
 import 'package:app_ui/app_ui.dart';
+import 'package:botanic_gaze/constants/index.dart';
 import 'package:botanic_gaze/features/dash_board/dash_board.dart';
 import 'package:botanic_gaze/features/diagnosis/pages/diagnosis_page.dart';
 import 'package:botanic_gaze/features/explore/pages/view.dart';
@@ -36,10 +35,9 @@ class _DashBoardViewState extends State<DashBoardView> {
 
   double get bottomNavPadding => Dimens.d16.w;
 
-  double get indicatorWidth =>
-      (width - bottomNavPadding * 2) / bottomNavigationBarItems.length;
+  double get indicatorWidth => width / bottomNavigationBarItems.length;
 
-  double get indicatorHeight => Dimens.d3;
+  double get indicatorHeight => Dimens.d3.responsive();
 
   final PageController pageController = PageController();
 
@@ -50,24 +48,38 @@ class _DashBoardViewState extends State<DashBoardView> {
     const ProfilePage()
   ];
 
-  List<BottomNavigationBarItem> bottomNavigationBarItems = [
-    const BottomNavigationBarItem(
-      icon: Icon(Icons.ac_unit_outlined),
-      label: 'Search tab',
-    ),
-    const BottomNavigationBarItem(
-      icon: Icon(Icons.ac_unit_outlined),
-      label: 'Diagnosis tab',
-    ),
-    const BottomNavigationBarItem(
-      icon: Icon(Icons.ac_unit_outlined),
-      label: 'Explore tab',
-    ),
-    const BottomNavigationBarItem(
-      icon: Icon(Icons.ac_unit_outlined),
-      label: 'Profile tab',
-    ),
-  ];
+  List<BottomNavigationBarItem> get bottomNavigationBarItems => [
+        BottomNavigationBarItem(
+          icon: _bottomIcon(AppIcons.iconIdentifyTab, 0),
+          label: 'Identify',
+        ),
+        BottomNavigationBarItem(
+          icon: _bottomIcon(AppIcons.iconDiagnoseTab, 1),
+          label: 'Diagnosis',
+        ),
+        BottomNavigationBarItem(
+          icon: _bottomIcon(AppIcons.iconExploreTab, 2),
+          label: 'Explore',
+        ),
+        BottomNavigationBarItem(
+          icon: _bottomIcon(AppIcons.iconProfileTab, 3),
+          label: 'Profile',
+        ),
+      ];
+
+  SizedBox _bottomIcon(String imagePath, int index) {
+    return SizedBox(
+      width: Dimens.d24.responsive(),
+      height: Dimens.d24.responsive(),
+      child: Padding(
+        padding: EdgeInsets.all(Dimens.d3.responsive()),
+        child: Image.asset(
+          imagePath,
+          color: currentIndex == index ? Theme.of(context).primaryColor : null,
+        ),
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -82,51 +94,39 @@ class _DashBoardViewState extends State<DashBoardView> {
               return tabView[index];
             },
           ),
-          bottomNavigationBar: ClipRRect(
-            borderRadius: BorderRadius.circular(32),
-            child: BackdropFilter(
-              filter: ImageFilter.blur(
-                sigmaX: 5,
-                sigmaY: 5,
+          bottomNavigationBar: Stack(
+            children: [
+              BottomNavigationBar(
+                elevation: 0,
+                backgroundColor: Colors.white.withOpacity(0.75),
+                type: BottomNavigationBarType.fixed,
+                showSelectedLabels: true,
+                showUnselectedLabels: true,
+                items: bottomNavigationBarItems,
+                currentIndex: currentIndex,
+                selectedFontSize: 12,
+                onTap: (value) {
+                  setState(() {
+                    currentIndex = value;
+                  });
+                  pageController.jumpToPage(value);
+                },
               ),
-              child: Stack(
-                children: [
-                  BottomNavigationBar(
-                    elevation: 0,
-                    backgroundColor: Colors.white.withOpacity(0.75),
-                    type: BottomNavigationBarType.fixed,
-                    showSelectedLabels: true,
-                    showUnselectedLabels: true,
-                    items: bottomNavigationBarItems,
-                    currentIndex: currentIndex,
-                    onTap: (value) {
-                      setState(() {
-                        currentIndex = value;
-                      });
-                      pageController.jumpToPage(value);
-                    },
+              AnimatedPositioned(
+                duration: const Duration(milliseconds: 200),
+                // bottom: 0,
+                left: indicatorWidth * currentIndex,
+                child: SizedBox(
+                  width: indicatorWidth,
+                  child: Container(
+                    height: indicatorHeight,
+                    // color: Colors.amber,
+                    color: Theme.of(context).primaryColor,
                   ),
-                  AnimatedPositioned(
-                    duration: const Duration(milliseconds: 200),
-                    // bottom: 0,
-                    left: indicatorWidth * currentIndex,
-                    child: SizedBox(
-                      width: indicatorWidth,
-                      child: Padding(
-                        padding: EdgeInsets.symmetric(
-                          horizontal: indicatorWidth * 0.35,
-                        ),
-                        child: Container(
-                          height: indicatorHeight,
-                          color: Colors.amber,
-                        ),
-                      ),
-                      // color: Colors.amber,
-                    ),
-                  )
-                ],
-              ),
-            ),
+                  // color: Colors.amber,
+                ),
+              )
+            ],
           ),
         );
       },

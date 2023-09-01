@@ -7,6 +7,9 @@ class PlantSearchRequest extends Equatable {
     this.includeAggregation = false,
     this.q,
     this.plantTypes,
+    this.soilType,
+    this.seasonOfInterest,
+    this.sunlight,
   });
 
   factory PlantSearchRequest.fromJson(Map<String, dynamic> json) {
@@ -20,7 +23,10 @@ class PlantSearchRequest extends Equatable {
   final int? perPage;
   final bool? includeAggregation;
   final String? q;
-  final int? plantTypes;
+  final List<int>? plantTypes;
+  final List<int>? soilType;
+  final List<int>? seasonOfInterest;
+  final List<int>? sunlight;
 
   Map<String, dynamic> toJson() {
     final jsonData = {
@@ -29,6 +35,9 @@ class PlantSearchRequest extends Equatable {
       'includeAggregation': includeAggregation,
       'q': q,
       'plantTypes': plantTypes,
+      'soilType': soilType,
+      'seasonOfInterest': seasonOfInterest,
+      'sunlight': sunlight
     };
 
     jsonData.removeWhere((k, v) => v == null || v.toString().isEmpty);
@@ -46,7 +55,10 @@ class PlantSearchRequest extends Equatable {
     int? perPage,
     bool? includeAggregation,
     String? q,
-    int? plantTypes,
+    List<int>? plantTypes,
+    List<int>? soilType,
+    List<int>? seasonOfInterest,
+    List<int>? sunlight,
   }) {
     return PlantSearchRequest(
       page: page ?? this.page,
@@ -54,6 +66,9 @@ class PlantSearchRequest extends Equatable {
       includeAggregation: includeAggregation ?? this.includeAggregation,
       q: q ?? this.q,
       plantTypes: plantTypes ?? this.plantTypes,
+      soilType: soilType ?? this.soilType,
+      seasonOfInterest: seasonOfInterest ?? this.seasonOfInterest,
+      sunlight: sunlight ?? this.sunlight,
     );
   }
 }

@@ -76,4 +76,13 @@ extension PlantTypesX on PlantTypes {
   String get title => _titles[index];
   String get imagePath =>
       'assets/images/plant_type/${ReCase(name).snakeCase}.png';
+
+  static List<PlantTypes> dataFromId(List<int> ids) {
+    final data = <PlantTypes>[];
+    for (final e in ids) {
+      final index = _ids.indexOf(e);
+      data.add(PlantTypes.values[index]);
+    }
+    return data;
+  }
 }

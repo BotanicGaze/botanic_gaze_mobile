@@ -26,6 +26,13 @@ class PermissionClient {
   /// Returns a permission status for the device's camera.
   Future<PermissionStatus> cameraStatus() => Permission.camera.status;
 
+  /// Request access to the device's photos,
+  /// if access hasn't been previously granted.
+  Future<PermissionStatus> requestPhotos() => Permission.photos.request();
+
+  /// Returns a permission status for the device's photos.
+  Future<PermissionStatus> photosStatus() => Permission.photos.status;
+
   /// Opens the app settings page.
   ///
   /// Returns true if the settings could be opened, otherwise false.
