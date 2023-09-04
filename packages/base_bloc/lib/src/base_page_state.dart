@@ -70,7 +70,9 @@ abstract class BasePageStateDelegate<T extends StatefulWidget,
 
   Widget buildPageListeners({required Widget child}) => child;
 
-  Widget buildPageLoading() => const Center(
+  Widget buildPageLoading() =>
+      BaseBlocConfig.instance.buildPageLoading ??
+      const Center(
         child: CircularProgressIndicator(),
       );
 

@@ -13,7 +13,9 @@ import 'package:paging_view/paging_view.dart';
 import 'package:shared/shared.dart';
 
 class SearchPlantsPage extends StatefulWidget {
-  const SearchPlantsPage({super.key});
+  const SearchPlantsPage({super.key, this.searchPlantsFilter});
+
+  final SearchPlantsFilter? searchPlantsFilter;
 
   @override
   State<StatefulWidget> createState() {
@@ -31,8 +33,18 @@ class _SearchPlantsPageState
   @override
   void initState() {
     super.initState();
-    plantsRequest = const PlantSearchRequest();
-    bloc.add(SearchPageInitiated(request: plantsRequest));
+    plantsRequest = PlantSearchRequest(
+      plantTypes: widget.searchPlantsFilter?.plantTypesId,
+      soilType: widget.searchPlantsFilter?.soilTypeId,
+      seasonOfInterest: widget.searchPlantsFilter?.seasonOfInterestId,
+      sunlight: widget.searchPlantsFilter?.sunlightId,
+    );
+    bloc.add(
+      SearchPageInitiated(
+        request: plantsRequest,
+        hasFilter: widget.searchPlantsFilter?.hasFilter ?? false,
+      ),
+    );
     _pagingController.listen(
       onLoadMore: (pageKey) => bloc.add(
         SearchPageLoadMore(request: plantsRequest.copyWith(page: pageKey)),
@@ -196,18 +208,18 @@ class _SearchPlantsPageState
                           NavigationContains.searchPlantsFilterPage,
                           extra: {
                             'init_filter': SearchPlantsFilter(
-                              sunlightSelected: SunlightX.dataFromId(
+                              sunlightSelected: SunlightX.datasFromListId(
                                 state.plantSearchRequest?.sunlight ?? [],
                               ),
-                              soilTypeSelected: SoilTypeX.dataFromId(
+                              soilTypeSelected: SoilTypeX.datasFromListId(
                                 state.plantSearchRequest?.soilType ?? [],
                               ),
                               seasonOfInterestSelected:
-                                  SeasonOfInterestX.dataFromId(
+                                  SeasonOfInterestX.datasFromListId(
                                 state.plantSearchRequest?.seasonOfInterest ??
                                     [],
                               ),
-                              plantTypesSelected: PlantTypesX.dataFromId(
+                              plantTypesSelected: PlantTypesX.datasFromListId(
                                 state.plantSearchRequest?.plantTypes ?? [],
                               ),
                             ),

@@ -1,6 +1,8 @@
 import 'package:base_bloc/base_bloc.dart';
 import 'package:botanic_gaze/features/camera/index.dart';
 import 'package:botanic_gaze/features/dash_board/view/view.dart';
+import 'package:botanic_gaze/features/gallery/index.dart';
+import 'package:botanic_gaze/features/plant_detail/index.dart';
 import 'package:botanic_gaze/features/search_plants/index.dart';
 import 'package:botanic_gaze/features/splash/index.dart';
 import 'package:botanic_gaze/navigation/navigation_contains.dart';
@@ -41,7 +43,13 @@ class AppNavigatorImpl extends AppNavigator with LogMixin {
           GoRoute(
             path: NavigationContains.searchPage,
             name: NavigationContains.searchPage,
-            builder: (context, state) => const SearchPlantsPage(),
+            builder: (context, state) {
+              final extra = state.extra as Map<String, dynamic>?;
+              return SearchPlantsPage(
+                searchPlantsFilter:
+                    extra?['search_plants_filter'] as SearchPlantsFilter?,
+              );
+            },
             routes: [
               GoRoute(
                 path: NavigationContains.searchPlantsFilterPage,
@@ -68,6 +76,28 @@ class AppNavigatorImpl extends AppNavigator with LogMixin {
               final extra = state.extra as Map<String, String?>?;
               return AnalysisImagePage(
                 imagePath: extra?['image_path'] ?? '',
+              );
+            },
+          ),
+          GoRoute(
+            path: '${NavigationContains.plantDetailPage}:id',
+            name: NavigationContains.plantDetailPage,
+            builder: (context, state) {
+              return PlantDetailPage(
+                plantId: int.tryParse(state.pathParameters['id'] ?? '') ?? 0,
+              );
+            },
+          ),
+          GoRoute(
+            path: NavigationContains.galleryPhotoWrapper,
+            name: NavigationContains.galleryPhotoWrapper,
+            builder: (context, state) {
+              final extra = state.extra as Map<String, dynamic>?;
+
+              return GalleryPhotoWrapper(
+                initialIndex: extra?['initial_index'] as int? ?? 0,
+                galleryImages:
+                    extra?['gallery_images'] as List<String>? ?? <String>[],
               );
             },
           ),

@@ -12,6 +12,9 @@ class AppImages {
   static const String imageBackground1 = 'assets/images/image_background_1.png';
   static const String imageBackground2 = 'assets/images/image_background_2.png';
   static const String imageBackground3 = 'assets/images/image_background_3.png';
+  static const String imageBackground4 = 'assets/images/image_background_4.png';
+  static const String imageBackground5 = 'assets/images/image_background_5.png';
+
   static const String imageNotFound = 'assets/images/image_not_found.png';
   static const String imageFullSun = 'assets/images/image_full_sun.png';
   static const String imageFullShade = 'assets/images/image_full_shade.png';
@@ -24,6 +27,7 @@ class AppImages {
   static const String imageSummer = 'assets/images/image_summer.png';
   static const String imageAutumn = 'assets/images/image_autumn.png';
   static const String imageWinter = 'assets/images/image_winter.png';
+  static const String imagePickImage = 'assets/images/image_pick_image.png';
 }
 
 class AppIcons {
@@ -31,8 +35,6 @@ class AppIcons {
 
   static const String iconCamera = 'assets/icons/icon_camera.png';
   static const String iconFilter = 'assets/icons/icon_filter.png';
-  // static const String iconFilter = 'assets/icons/icon_filter.png';
-
   static const String iconSearch = 'assets/icons/icon_search.png';
   static const String iconClose = 'assets/icons/icon_close.png';
   static const String iconFlash = 'assets/icons/icon_flash.png';
@@ -43,4 +45,33 @@ class AppIcons {
   static const String iconIdentifyTab = 'assets/icons/icon_identify_tab.png';
   static const String iconProfileTab = 'assets/icons/icon_profile_tab.png';
   static const String iconClean = 'assets/icons/icon_clean.png';
+  static const String iconMoisture = 'assets/icons/icon_moisture.png';
+  static const String iconPh = 'assets/icons/icon_ph.png';
+  static const String iconSoil = 'assets/icons/icon_soil.png';
+  static const String iconAspect = 'assets/icons/icon_aspect.png';
+  static const String iconCultivation = 'assets/icons/icon_cultivation.png';
+  static const String iconExposure = 'assets/icons/icon_exposure.png';
+  static const String iconFlower = 'assets/icons/icon_flower.png';
+  static const String iconFoliage = 'assets/icons/icon_foliage.png';
+  static const String iconFruit = 'assets/icons/icon_fruit.png';
+  static const String iconHardiness = 'assets/icons/icon_hardiness.png';
+  static const String iconBloom = 'assets/icons/icon_bloom.png';
+  static const String iconMapleLeaves = 'assets/icons/icon_maple_leaves.png';
+  static const String iconArrowLeft = 'assets/icons/icon_arrow_left.png';
+  static const String iconSeasonOfInterest =
+      'assets/icons/icon_season_of_interest.png';
+  static const String iconPestsDiseases =
+      'assets/icons/icon_pests_diseases.png';
+  static const String iconPropagation = 'assets/icons/icon_propagation.png';
+  static const String iconPruning = 'assets/icons/icon_pruning.png';
+  static const String iconStem = 'assets/icons/icon_stem.png';
+  static const String iconSun = 'assets/icons/icon_sun.png';
+  static const String iconSuggestedPlantingLocation =
+      'assets/icons/icon_suggested_planting_location.png';
+  static const String iconTimeUltimateHeight =
+      'assets/icons/icon_time_ultimate_height.png';
+  static const String iconUltimateHeight =
+      'assets/icons/icon_ultimate_height.png';
+  static const String iconUltimateSpread =
+      'assets/icons/icon_ultimate_spread.png';
 }

@@ -1,6 +1,6 @@
 import 'package:shared/shared.dart';
 
-enum PlantTypes {
+enum PlantType {
   herbaceousPerennial,
   climberWallShrub,
   bedding,
@@ -24,7 +24,7 @@ enum PlantTypes {
   palms,
 }
 
-extension PlantTypesX on PlantTypes {
+extension PlantTypesX on PlantType {
   static const List<int> _ids = [
     1,
     2,
@@ -49,26 +49,26 @@ extension PlantTypesX on PlantTypes {
     21
   ];
   static const List<String> _titles = [
-    'Herbaceous\nPerennial',
-    'Climber\nWall\nShrub',
+    'Herbaceous Perennial',
+    'Climber Wall Shrub',
     'Bedding',
     'Bulbs',
     'Ferns',
     'Shrubs',
-    'Annual\nBiennial',
-    'Alpine\nRockery',
+    'Annual Biennial',
+    'Alpine Rockery',
     'Roses',
-    'Grass\nLike',
-    'Conservatory\nGreenhouse',
-    'Fruit\nEdible',
+    'Grass Like',
+    'Conservatory Greenhouse',
+    'Fruit Edible',
     'Trees',
     'Houseplants',
-    'Cactus\nSucculent',
+    'Cactus Succulent',
     'Aquatic',
     'Bamboos',
     'Bogs',
     'Conifers',
-    'Herbs\nCulinary',
+    'Herbs Culinary',
     'Palms',
   ];
 
@@ -77,11 +77,11 @@ extension PlantTypesX on PlantTypes {
   String get imagePath =>
       'assets/images/plant_type/${ReCase(name).snakeCase}.png';
 
-  static List<PlantTypes> dataFromId(List<int> ids) {
-    final data = <PlantTypes>[];
+  static List<PlantType> datasFromListId(List<int> ids) {
+    final data = <PlantType>[];
     for (final e in ids) {
       final index = _ids.indexOf(e);
-      data.add(PlantTypes.values[index]);
+      data.add(PlantType.values[index]);
     }
     return data;
   }

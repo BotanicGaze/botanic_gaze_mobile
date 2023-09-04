@@ -11,7 +11,7 @@ class SearchPlantsFilterState extends BaseBlocState with EquatableMixin {
   final List<Sunlight> sunlightSelected;
   final List<SoilType> soilTypeSelected;
   final List<SeasonOfInterest> seasonOfInterestSelected;
-  final List<PlantTypes> plantTypesSelected;
+  final List<PlantType> plantTypesSelected;
 
   @override
   List<Object?> get props => [
@@ -25,7 +25,7 @@ class SearchPlantsFilterState extends BaseBlocState with EquatableMixin {
     List<Sunlight>? sunlightSelected,
     List<SoilType>? soilTypeSelected,
     List<SeasonOfInterest>? seasonOfInterestSelected,
-    List<PlantTypes>? plantTypesSelected,
+    List<PlantType>? plantTypesSelected,
   }) {
     return SearchPlantsFilterState(
       sunlightSelected: sunlightSelected ?? this.sunlightSelected,
@@ -48,7 +48,13 @@ class SearchPlantsFilter {
   final List<Sunlight> sunlightSelected;
   final List<SoilType> soilTypeSelected;
   final List<SeasonOfInterest> seasonOfInterestSelected;
-  final List<PlantTypes> plantTypesSelected;
+  final List<PlantType> plantTypesSelected;
+
+  List<int> get plantTypesId => plantTypesSelected.map((e) => e.id).toList();
+  List<int> get sunlightId => sunlightSelected.map((e) => e.id).toList();
+  List<int> get soilTypeId => soilTypeSelected.map((e) => e.id).toList();
+  List<int> get seasonOfInterestId =>
+      seasonOfInterestSelected.map((e) => e.id).toList();
 
   bool get hasFilter =>
       sunlightSelected.isNotEmpty ||

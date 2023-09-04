@@ -51,7 +51,7 @@ class _AnalyzingImageViewState extends State<AnalyzingImageView>
 
   @override
   Widget build(BuildContext context) {
-    final width = ScreenUtil().screenWidth * 0.75;
+    final width = ScreenUtil().screenWidth * 0.9;
 
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
@@ -75,13 +75,14 @@ class _AnalyzingImageViewState extends State<AnalyzingImageView>
               animation: linearAnimationController,
               builder: (context, child) {
                 return SfRadialGauge(
+                  // backgroundColor: Colors.black,
                   axes: <RadialAxis>[
                     RadialAxis(
                       showLabels: false,
                       showTicks: false,
                       startAngle: 0,
                       endAngle: 360,
-                      // radiusFactor: 0.5,
+                      radiusFactor: 1,
                       axisLineStyle: const AxisLineStyle(
                         thickness: 0.05,
                         color: Color(0xFFE6F2ED),
@@ -91,9 +92,9 @@ class _AnalyzingImageViewState extends State<AnalyzingImageView>
                     RadialAxis(
                       showLabels: false,
                       showTicks: false,
-                      startAngle: linearAnimation.value,
-                      endAngle: linearAnimation.value + 200,
-                      // radiusFactor: 0.5,
+                      startAngle: linearAnimation.value * 360,
+                      endAngle: (linearAnimation.value * 360) + 200,
+                      radiusFactor: 1,
                       axisLineStyle: AxisLineStyle(
                         thickness: 0.05,
                         cornerStyle: CornerStyle.bothCurve,

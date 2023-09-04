@@ -9,7 +9,7 @@ class ApiClientDefaultSetting {
   static List<Interceptor> requiredInterceptors(Dio dio) {
     final cookieJar = CookieJar();
     return [
-      // CookieManager(cookieJar),
+      CookieManager(cookieJar),
       CustomLogInterceptor(),
       ConnectivityInterceptor(),
       RetryOnErrorInterceptor(dio),

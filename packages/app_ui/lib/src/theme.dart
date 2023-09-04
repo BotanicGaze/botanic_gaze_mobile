@@ -36,6 +36,8 @@ class AppTheme {
       tabBarTheme: _tabBarTheme,
       dividerTheme: _dividerTheme,
       splashColor: AppColors.splashColor,
+      dividerColor: AppColors.dividerColor,
+      chipTheme: _chipTheme,
     );
   }
 
@@ -156,6 +158,21 @@ class AppTheme {
       ),
       labelLarge: AppTextStyle.labelLarge.copyWith(
         fontSize: _textTheme.labelLarge!.fontSize! * _largeTextScaleFactor,
+      ),
+    );
+  }
+
+  /// `ThemeData` for App UI for small screens.
+  static ChipThemeData get _chipTheme {
+    return ChipThemeData(
+      backgroundColor: AppColors.white,
+      labelStyle: AppTextStyle.bodyMedium,
+      padding: EdgeInsets.all(Dimens.d4.responsive()),
+      side: const BorderSide(
+        color: AppColors.borderColor,
+      ),
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(Dimens.d6.responsive()),
       ),
     );
   }

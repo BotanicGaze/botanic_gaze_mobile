@@ -121,13 +121,14 @@ class CameraBloc extends BaseBloc<CameraEvent, CameraState> {
     PickImageButtonPressed event,
     Emitter<CameraState> emit,
   ) async {
-    final permissionStatus = await getPhotosPermission();
-    if (permissionStatus.isGranted) {
-      final picker = ImagePicker();
-      final image = await picker.pickImage(source: ImageSource.gallery);
-      if (image != null) {
-        emit(state.copyWith(imageTaken: image));
-      }
+    // final permissionStatus = await getPhotosPermission();
+    // if (permissionStatus.isGranted) {
+
+    // }
+    final picker = ImagePicker();
+    final image = await picker.pickImage(source: ImageSource.gallery);
+    if (image != null) {
+      emit(state.copyWith(imageTaken: image));
     }
   }
 }

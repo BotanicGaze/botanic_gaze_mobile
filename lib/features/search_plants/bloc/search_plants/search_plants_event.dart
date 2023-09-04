@@ -5,11 +5,16 @@ sealed class SearchPlantsEvent extends BaseBlocEvent with EquatableMixin {
 }
 
 class SearchPageInitiated extends SearchPlantsEvent {
-  SearchPageInitiated({required this.request});
+  SearchPageInitiated({
+    required this.request,
+    this.hasFilter = false,
+  });
 
   final PlantSearchRequest request;
+  final bool hasFilter;
+
   @override
-  List<Object?> get props => [request];
+  List<Object?> get props => [request, hasFilter];
 }
 
 class SearchPageLoadMore extends SearchPlantsEvent {

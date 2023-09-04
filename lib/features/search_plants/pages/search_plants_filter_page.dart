@@ -379,7 +379,7 @@ class PlantingTypeSelected extends StatelessWidget {
   Widget build(BuildContext context) {
     final bloc = context.read<SearchPlantsFilterBloc>();
     return BlocSelector<SearchPlantsFilterBloc, SearchPlantsFilterState,
-        List<PlantTypes>>(
+        List<PlantType>>(
       selector: (state) {
         return state.plantTypesSelected;
       },
@@ -418,8 +418,8 @@ class PlantingTypeSelected extends StatelessWidget {
                 child: Wrap(
                   spacing: Dimens.d8.responsive(),
                   runSpacing: Dimens.d8.responsive(),
-                  children: List.generate(PlantTypes.values.length, (index) {
-                    final value = PlantTypes.values[index];
+                  children: List.generate(PlantType.values.length, (index) {
+                    final value = PlantType.values[index];
                     final isSelected = state.any((e) => e.id == value.id);
                     return CustomRawChip(
                       label: Text(value.title),

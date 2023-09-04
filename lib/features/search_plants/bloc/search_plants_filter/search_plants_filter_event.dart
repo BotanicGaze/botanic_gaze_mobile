@@ -56,7 +56,7 @@ class SelectedPlantingType extends SearchPlantsFilterEvent {
     this.clearAll = false,
   });
 
-  final PlantTypes? data;
+  final PlantType? data;
   final bool clearAll;
 
   @override

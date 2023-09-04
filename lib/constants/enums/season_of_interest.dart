@@ -17,12 +17,17 @@ extension SeasonOfInterestX on SeasonOfInterest {
   int get id => _ids[index];
   String get image => _images[index];
 
-  static List<SeasonOfInterest> dataFromId(List<int> ids) {
+  static List<SeasonOfInterest> datasFromListId(List<int> ids) {
     final data = <SeasonOfInterest>[];
     for (final e in ids) {
       final index = _ids.indexOf(e);
       data.add(SeasonOfInterest.values[index]);
     }
     return data;
+  }
+
+  static SeasonOfInterest? dataFromId(int? id) {
+    if (id == null) return null;
+    return SeasonOfInterest.values[_ids.indexOf(id)];
   }
 }

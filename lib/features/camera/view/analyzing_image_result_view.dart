@@ -1,5 +1,7 @@
 import 'package:app_ui/app_ui.dart';
+import 'package:base_bloc/base_bloc.dart';
 import 'package:botanic_gaze/models/index.dart';
+import 'package:botanic_gaze/navigation/index.dart';
 import 'package:botanic_gaze/widgets/index.dart';
 import 'package:flutter/material.dart';
 
@@ -57,38 +59,46 @@ class _AnalyzingImageResultViewState extends State<AnalyzingImageResultView> {
               ),
               child: Align(
                 alignment: Alignment.bottomCenter,
-                child: Container(
-                  height: size.height * 0.15,
-                  padding: EdgeInsets.all(Dimens.d8.responsive()),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Row(
-                        children: [
-                          Expanded(
-                            child: Text(
-                              plant?.providerPlantName ?? '',
-                              style: Theme.of(context).textTheme.titleLarge,
+                child: GestureDetector(
+                  onTap: () {
+                    context.pushNamed(
+                      NavigationContains.plantDetailPage,
+                      pathParameters: {'id': plant?.rhsPlantId ?? ''},
+                    );
+                  },
+                  child: Container(
+                    height: size.height * 0.15,
+                    padding: EdgeInsets.all(Dimens.d8.responsive()),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Row(
+                          children: [
+                            Expanded(
+                              child: Text(
+                                plant?.providerPlantName ?? '',
+                                style: Theme.of(context).textTheme.titleLarge,
+                              ),
                             ),
-                          ),
-                          Text(
-                            '${((plant?.score ?? 0) * 100).toStringAsFixed(2)}%',
-                            style: Theme.of(context)
-                                .textTheme
-                                .titleLarge
-                                ?.copyWith(
-                                  color: Colors.red.shade700,
-                                ),
-                          )
-                        ],
-                      ),
-                      SizedBox(height: Dimens.d8.responsive()),
-                      Text(
-                        plant?.providerPreferredCommonPlantName.toString() ??
-                            '',
-                        style: Theme.of(context).textTheme.bodyMedium,
-                      ),
-                    ],
+                            Text(
+                              '${((plant?.score ?? 0) * 100).toStringAsFixed(2)}%',
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .titleLarge
+                                  ?.copyWith(
+                                    color: Colors.red.shade700,
+                                  ),
+                            )
+                          ],
+                        ),
+                        SizedBox(height: Dimens.d8.responsive()),
+                        Text(
+                          plant?.providerPreferredCommonPlantName.toString() ??
+                              '',
+                          style: Theme.of(context).textTheme.bodyMedium,
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ),
@@ -96,14 +106,22 @@ class _AnalyzingImageResultViewState extends State<AnalyzingImageResultView> {
             AnimatedPositioned(
               duration: const Duration(milliseconds: 500),
               top: isExpanded ? size.height * 0.1 : size.height * 0.15,
-              child: ClipRRect(
-                borderRadius: borderRadius,
-                child: SizedBox(
-                  height: size.height * 0.5,
-                  width: size.width * 0.7,
-                  child: CachedImageWidget(
-                    imageUrl: plant?.featureImage ?? '',
-                    fit: BoxFit.cover,
+              child: GestureDetector(
+                onTap: () {
+                  context.pushNamed(
+                    NavigationContains.plantDetailPage,
+                    pathParameters: {'id': plant?.rhsPlantId ?? ''},
+                  );
+                },
+                child: ClipRRect(
+                  borderRadius: borderRadius,
+                  child: SizedBox(
+                    height: size.height * 0.5,
+                    width: size.width * 0.7,
+                    child: CachedImageWidget(
+                      imageUrl: plant?.featureImage ?? '',
+                      fit: BoxFit.cover,
+                    ),
                   ),
                 ),
               ),

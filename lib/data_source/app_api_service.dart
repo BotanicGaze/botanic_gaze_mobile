@@ -63,11 +63,25 @@ class AppApiService {
         'similarImages': true,
         'image': MultipartFile.fromFileSync(file.path),
       }),
+      contentType: 'multipart/form-data',
       successResponseMapperType: SuccessResponseMapperType.dataJsonObject,
       decoder: PlantIdentifyModel.fromJson,
       headers: {
         'x-csrf-token': SpUtil.getString(AppPreferencesKey.xCsrfTokenKey)
       },
+    );
+  }
+
+  Future<DataResponse<PlantDetailModel>> getPlantDetail(int id) async {
+    return plantApiClient
+        .request<DataResponse<PlantDetailModel>, PlantDetailModel>(
+      method: RestMethod.get,
+      path: '$versionPrefix${plantPrefix}detail/$id',
+      successResponseMapperType: SuccessResponseMapperType.dataJsonObject,
+      decoder: PlantDetailModel.fromJson,
+      // headers: {
+      //   'x-csrf-token': SpUtil.getString(AppPreferencesKey.xCsrfTokenKey)
+      // },
     );
   }
 }

@@ -39,7 +39,13 @@ class SearchPlantsBloc extends BaseBloc<SearchPlantsEvent, SearchPlantsState> {
     await _getPlantDatas(
       emit: emit,
       request: event.request,
-      doOnSubscribe: () async => emit(state.copyWith(isShimmerLoading: true)),
+      doOnSubscribe: () async => emit(
+        state.copyWith(
+          isShimmerLoading: true,
+          hasFilter: event.hasFilter,
+          plantSearchRequest: event.request,
+        ),
+      ),
       doOnSuccessOrError: () async => emit(
         state.copyWith(
           isShimmerLoading: false,

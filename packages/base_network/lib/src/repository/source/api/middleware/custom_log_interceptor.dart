@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:collection';
 import 'dart:convert';
+import 'dart:developer';
 
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
@@ -115,11 +116,10 @@ class CustomLogInterceptor extends BaseInterceptor {
         _debugPrintBuffer.isNotEmpty) {
       final String line = _debugPrintBuffer.removeFirst();
       _debugPrintedCharacters += line.length;
-      print(
-        // line
-        '\x1B[37m$line\x1B[0m',
-        // name: "DIO API"
-      );
+      log(
+          // line
+          '\x1B[37m$line\x1B[0m',
+          name: "DIO API");
     }
     if (_debugPrintBuffer.isNotEmpty) {
       _debugPrintScheduled = true;

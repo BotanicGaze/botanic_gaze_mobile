@@ -80,7 +80,7 @@ class SearchPlantsFilterBloc
       return;
     }
     if (event.data == null) return;
-    final data = List<PlantTypes>.from(state.plantTypesSelected);
+    final data = List<PlantType>.from(state.plantTypesSelected);
     if (data.any((e) => e.id == event.data?.id)) {
       data.removeWhere((e) => e.id == event.data?.id);
     } else {

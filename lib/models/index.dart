@@ -1,4 +1,8 @@
 export 'requests/plant_search_request.dart';
+export 'responses/plant_detail_model/colour_with_attribute.dart';
+export 'responses/plant_detail_model/image.dart';
+export 'responses/plant_detail_model/plant_detail_model.dart';
+export 'responses/plant_detail_model/synonym.dart';
 export 'responses/plant_identify_model/image_plant.dart';
 export 'responses/plant_identify_model/plant.dart';
 export 'responses/plant_identify_model/plant_identify_model.dart';

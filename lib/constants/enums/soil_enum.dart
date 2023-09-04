@@ -22,7 +22,7 @@ extension SoilTypeX on SoilType {
   int get id => _ids[index];
   String get image => _images[index];
 
-  static List<SoilType> dataFromId(List<int> ids) {
+  static List<SoilType> datasFromListId(List<int> ids) {
     final data = <SoilType>[];
     for (final e in ids) {
       final index = _ids.indexOf(e);

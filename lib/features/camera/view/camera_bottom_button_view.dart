@@ -17,9 +17,9 @@ class CameraBottomButtonView extends StatelessWidget {
     return BlocBuilder<CameraBloc, CameraState>(
       builder: (context, state) {
         if (!state.permissionStatus.isGranted) return const SizedBox();
-        return AppSafeArea(
-          child: ColoredBox(
-            color: const Color(0xFF343434),
+        return ColoredBox(
+          color: const Color(0xFF343434),
+          child: AppSafeArea(
             child: Padding(
               padding: EdgeInsets.all(Dimens.d40.responsive()),
               child: Column(
@@ -72,7 +72,10 @@ class CameraBottomButtonView extends StatelessWidget {
         width: Dimens.d52.responsive(),
         height: Dimens.d52.responsive(),
         decoration: BoxDecoration(
-          color: Colors.amber,
+          // color: Colors.amber,
+          image: const DecorationImage(
+            image: AssetImage(AppImages.imagePickImage),
+          ),
           borderRadius: BorderRadius.circular(Dimens.d8.responsive()),
         ),
       ),

@@ -1,5 +1,7 @@
 import 'package:botanic_gaze/features/camera/index.dart';
 import 'package:botanic_gaze/features/dash_board/dash_board.dart';
+import 'package:botanic_gaze/features/gallery/index.dart';
+import 'package:botanic_gaze/features/plant_detail/index.dart';
 import 'package:botanic_gaze/features/search_plants/index.dart';
 import 'package:botanic_gaze/features/splash/index.dart';
 
@@ -26,4 +28,10 @@ class NavigationContains {
 
   ///go to [AnalysisImagePage]
   static const String analysisImagePage = '/analysis_image_page';
+
+  ///go to [PlantDetailPage]
+  static const String plantDetailPage = '/plant_detail_page';
+
+  ///go to [GalleryPhotoWrapper]
+  static const String galleryPhotoWrapper = '/gallery_photo_wrapper';
 }

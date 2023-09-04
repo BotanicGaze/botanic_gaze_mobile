@@ -17,14 +17,14 @@ class CameraPreviewView extends StatelessWidget {
           children: [
             const SizedBox.expand(),
             _buildCameraPreview(state),
-            _cameraOverlay(),
+            _cameraOverlay(context),
           ],
         );
       },
     );
   }
 
-  Widget _cameraOverlay() {
+  Widget _cameraOverlay(BuildContext context) {
     return AppSafeArea(
       minimum: EdgeInsets.all(Dimens.d20.responsive()),
       child: Column(
@@ -37,7 +37,9 @@ class CameraPreviewView extends StatelessWidget {
               ),
               const Spacer(),
               IconButton(
-                onPressed: () {},
+                onPressed: () {
+                  context.pop();
+                },
                 icon: Image.asset(AppIcons.iconClose),
               )
             ],

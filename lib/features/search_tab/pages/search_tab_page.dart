@@ -1,6 +1,7 @@
 import 'package:app_ui/app_ui.dart';
 import 'package:base_bloc/base_bloc.dart';
 import 'package:botanic_gaze/constants/index.dart';
+import 'package:botanic_gaze/features/search_plants/index.dart';
 import 'package:botanic_gaze/features/search_tab/index.dart';
 import 'package:botanic_gaze/navigation/index.dart';
 import 'package:botanic_gaze/widgets/index.dart';
@@ -87,7 +88,19 @@ class _SearchTabPageState extends BasePageState<SearchTabPage, SearchTabBloc>
                 ),
                 SizedBox(width: Dimens.d8.responsive()),
                 IconButton.outlined(
-                  onPressed: () {},
+                  onPressed: () async {
+                    final result = await context.pushNamed(
+                      NavigationContains.searchPlantsFilterPage,
+                    );
+                    if (result != null && result is SearchPlantsFilter) {
+                      if (context.mounted) {
+                        await context.pushNamed(
+                          NavigationContains.searchPage,
+                          extra: {'search_plants_filter': result},
+                        );
+                      }
+                    }
+                  },
                   icon: Image.asset(AppIcons.iconFilter),
                 )
               ],

@@ -1,6 +1,8 @@
 import 'package:app_ui/app_ui.dart';
+import 'package:base_bloc/base_bloc.dart';
 import 'package:botanic_gaze/constants/index.dart';
 import 'package:botanic_gaze/models/index.dart';
+import 'package:botanic_gaze/navigation/index.dart';
 import 'package:botanic_gaze/widgets/index.dart';
 import 'package:flutter/material.dart';
 import 'package:shared/shared.dart';
@@ -15,7 +17,12 @@ class PlantItemWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () {},
+      onTap: () {
+        context.pushNamed(
+          NavigationContains.plantDetailPage,
+          pathParameters: {'id': plantData.id.toString()},
+        );
+      },
       child: Padding(
         padding: EdgeInsets.symmetric(
           horizontal: Dimens.d16.responsive(),
