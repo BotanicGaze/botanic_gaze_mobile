@@ -34,21 +34,22 @@ class _SplashPageState extends BasePageState<SplashPage, SplashBloc> {
         }
       },
       child: CommonScaffold(
+        otherBackground: otherBackground(),
         body: Stack(
           alignment: AlignmentDirectional.bottomCenter,
           children: [
             const SizedBox.expand(),
-            TweenAnimationBuilder<double>(
-              tween: Tween<double>(begin: 0, end: 1),
-              curve: Curves.ease,
-              duration: const Duration(seconds: 2),
-              builder: (BuildContext context, double opacity, Widget? child) {
-                return Opacity(
-                  opacity: opacity,
-                  child: Image.asset(AppImages.splashImage),
-                );
-              },
-            ),
+            // TweenAnimationBuilder<double>(
+            //   tween: Tween<double>(begin: 0, end: 1),
+            //   curve: Curves.ease,
+            //   duration: const Duration(seconds: 2),
+            //   builder: (BuildContext context, double opacity, Widget? child) {
+            //     return Opacity(
+            //       opacity: opacity,
+            //       child: Image.asset(AppImages.splashImage),
+            //     );
+            //   },
+            // ),
             AppSafeArea(
               child: Column(
                 children: [
@@ -107,5 +108,37 @@ class _SplashPageState extends BasePageState<SplashPage, SplashBloc> {
         ),
       ),
     );
+  }
+
+  List<Widget> otherBackground() {
+    return [
+      // Align(
+      //   alignment: Alignment.topRight,
+      //   child: Image.asset(
+      //     AppImages.imageBackground1,
+      //     width: ScreenUtil().screenHeight * 0.2,
+      //   ),
+      // ),
+      Align(
+        alignment: Alignment.bottomRight,
+        child: Opacity(
+          opacity: 0.3,
+          child: Image.asset(
+            AppImages.imageBackground2,
+            width: ScreenUtil().screenHeight * 0.2,
+          ),
+        ),
+      ),
+      Align(
+        alignment: Alignment.bottomLeft,
+        child: Opacity(
+          opacity: 0.4,
+          child: Image.asset(
+            AppImages.imageBackground3,
+            width: ScreenUtil().screenHeight * 0.2,
+          ),
+        ),
+      )
+    ];
   }
 }

@@ -61,11 +61,17 @@ class _SearchPlantsFilterPageState
           ),
           child: Row(
             children: [
-              Expanded(
-                child: OutlinedButton(
-                  onPressed: () => bloc.add(ResetAllFilter()),
-                  child: const Text('Reset all'),
-                ),
+              BlocBuilder<SearchPlantsFilterBloc, SearchPlantsFilterState>(
+                builder: (context, state) {
+                  return Expanded(
+                    child: OutlinedButton(
+                      onPressed: state.hasFilter
+                          ? () => bloc.add(ResetAllFilter())
+                          : null,
+                      child: const Text('Reset all'),
+                    ),
+                  );
+                },
               ),
               SizedBox(width: Dimens.d16.responsive()),
               Expanded(
@@ -73,17 +79,19 @@ class _SearchPlantsFilterPageState
                     SearchPlantsFilterState>(
                   builder: (context, state) {
                     return FilledButton(
-                      onPressed: () {
-                        context.pop(
-                          SearchPlantsFilter(
-                            sunlightSelected: state.sunlightSelected,
-                            soilTypeSelected: state.soilTypeSelected,
-                            seasonOfInterestSelected:
-                                state.seasonOfInterestSelected,
-                            plantTypesSelected: state.plantTypesSelected,
-                          ),
-                        );
-                      },
+                      onPressed: state.hasFilter
+                          ? () {
+                              context.pop(
+                                SearchPlantsFilter(
+                                  sunlightSelected: state.sunlightSelected,
+                                  soilTypeSelected: state.soilTypeSelected,
+                                  seasonOfInterestSelected:
+                                      state.seasonOfInterestSelected,
+                                  plantTypesSelected: state.plantTypesSelected,
+                                ),
+                              );
+                            }
+                          : null,
                       child: const Text('Apply filters'),
                     );
                   },

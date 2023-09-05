@@ -141,6 +141,7 @@ class SearchPlantsBloc extends BaseBloc<SearchPlantsEvent, SearchPlantsState> {
           isShimmerLoading: true,
           hasFilter: event.hasFilter,
           plantSearchRequest: event.request,
+          plantDatas: const LoadMoreOutput(data: []),
         ),
       ),
       doOnSuccessOrError: () async =>

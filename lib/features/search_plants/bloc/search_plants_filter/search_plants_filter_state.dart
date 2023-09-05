@@ -21,6 +21,12 @@ class SearchPlantsFilterState extends BaseBlocState with EquatableMixin {
         plantTypesSelected
       ];
 
+  bool get hasFilter =>
+      sunlightSelected.isNotEmpty ||
+      soilTypeSelected.isNotEmpty ||
+      seasonOfInterestSelected.isNotEmpty ||
+      plantTypesSelected.isNotEmpty;
+
   SearchPlantsFilterState copyWith({
     List<Sunlight>? sunlightSelected,
     List<SoilType>? soilTypeSelected,

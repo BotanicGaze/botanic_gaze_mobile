@@ -2,6 +2,7 @@ import 'package:app_ui/app_ui.dart';
 import 'package:base_bloc/base_bloc.dart';
 import 'package:botanic_gaze/constants/index.dart';
 import 'package:botanic_gaze/features/plant_detail/index.dart';
+import 'package:botanic_gaze/features/plant_detail/views/how_to_grow.dart';
 import 'package:botanic_gaze/models/index.dart';
 import 'package:botanic_gaze/navigation/index.dart';
 import 'package:botanic_gaze/widgets/index.dart';
@@ -87,10 +88,44 @@ class _PlantDetailPageState
                                 },
                                 child: Hero(
                                   tag: '${image?.baseUrl}' '${image?.image}',
-                                  child: CachedImageWidget(
-                                    imageUrl:
-                                        '${image?.baseUrl}' '${image?.image}',
-                                    fit: BoxFit.cover,
+                                  child: Stack(
+                                    alignment: AlignmentDirectional.bottomStart,
+                                    children: [
+                                      CachedImageWidget(
+                                        imageUrl: '${image?.baseUrl}'
+                                            '${image?.image}',
+                                        fit: BoxFit.cover,
+                                        width: double.infinity,
+                                        height: double.infinity,
+                                      ),
+                                      Container(
+                                        color: Colors.black.withOpacity(0.5),
+                                        padding: EdgeInsets.all(
+                                          Dimens.d8.responsive(),
+                                        ),
+                                        child: Row(
+                                          children: [
+                                            const Icon(
+                                              Icons.copyright,
+                                              color: AppColors.borderColor,
+                                            ),
+                                            SizedBox(
+                                              width: Dimens.d8.responsive(),
+                                            ),
+                                            Text(
+                                              image?.copyRight ?? '',
+                                              style: Theme.of(context)
+                                                  .textTheme
+                                                  .bodyMedium
+                                                  ?.copyWith(
+                                                    color:
+                                                        AppColors.borderColor,
+                                                  ),
+                                            )
+                                          ],
+                                        ),
+                                      )
+                                    ],
                                   ),
                                 ),
                               );
@@ -177,6 +212,13 @@ class _PlantDetailPageState
                           color: Theme.of(context).colorScheme.secondary,
                           thickness: 12,
                         ),
+                        SunlightPosition(
+                          plantDetailModel: state.plantDetailModel,
+                        ),
+                        Divider(
+                          color: Theme.of(context).colorScheme.secondary,
+                          thickness: 12,
+                        ),
                         GrowingConditions(
                           plantDetailModel: state.plantDetailModel,
                         ),
@@ -184,7 +226,7 @@ class _PlantDetailPageState
                           color: Theme.of(context).colorScheme.secondary,
                           thickness: 12,
                         ),
-                        SunlightPosition(
+                        HowToGrowView(
                           plantDetailModel: state.plantDetailModel,
                         ),
                         Divider(

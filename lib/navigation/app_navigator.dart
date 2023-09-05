@@ -91,15 +91,29 @@ class AppNavigatorImpl extends AppNavigator with LogMixin {
           GoRoute(
             path: NavigationContains.galleryPhotoWrapper,
             name: NavigationContains.galleryPhotoWrapper,
-            builder: (context, state) {
+            pageBuilder: (context, state) {
               final extra = state.extra as Map<String, dynamic>?;
-
-              return GalleryPhotoWrapper(
-                initialIndex: extra?['initial_index'] as int? ?? 0,
-                galleryImages:
-                    extra?['gallery_images'] as List<String>? ?? <String>[],
+              return CustomTransitionPage<void>(
+                key: state.pageKey,
+                child: GalleryPhotoWrapper(
+                  initialIndex: extra?['initial_index'] as int? ?? 0,
+                  galleryImages:
+                      extra?['gallery_images'] as List<String>? ?? <String>[],
+                ),
+                transitionsBuilder:
+                    (context, animation, secondaryAnimation, child) =>
+                        FadeTransition(opacity: animation, child: child),
               );
             },
+            // builder: (context, state) {
+            //   final extra = state.extra as Map<String, dynamic>?;
+
+            //   return GalleryPhotoWrapper(
+            // initialIndex: extra?['initial_index'] as int? ?? 0,
+            // galleryImages:
+            //     extra?['gallery_images'] as List<String>? ?? <String>[],
+            //   );
+            // },
           ),
         ],
       );

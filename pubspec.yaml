@@ -35,6 +35,7 @@ dependencies:
     path: ./packages/shared
   shared_preferences: ^2.2.0
   syncfusion_flutter_gauges: ^22.2.9
+  flutter_html_all: ^3.0.0-beta.2
 
 dev_dependencies:
   auto_route_generator: ^7.3.1
