@@ -1,5 +1,6 @@
 // ignore_for_file: use_build_context_synchronously
 import 'dart:async';
+import 'dart:io';
 
 import 'package:base_bloc/base_bloc.dart';
 import 'package:botanic_gaze/di/di.dart';
@@ -99,21 +100,62 @@ class CameraBloc extends BaseBloc<CameraEvent, CameraState> {
   }
 
   Future<PermissionStatus> getPhotosPermission() async {
-    await const PermissionClient().requestPhotos();
-    final status = await const PermissionClient().photosStatus();
-    if (status.isGranted) {
-      Log.d('Photo Permission: GRANTED');
-      return status;
-    } else {
-      Log.d('Photo Permission: DENIED');
-      if (getIt<AppNavigator>().globalContext.mounted) {
-        await PermissionPopup.show(
-          getIt<AppNavigator>().globalContext,
-          type: PermissionType.camera,
-        );
-      }
+    if (Platform.isIOS) {
+      await const PermissionClient().requestPhotos();
+      final status = await const PermissionClient().photosStatus();
+      if (status.isGranted) {
+        Log.d('Photo Permission: GRANTED');
+        return status;
+      } else {
+        Log.d('Photo Permission: DENIED');
+        if (getIt<AppNavigator>().globalContext.mounted) {
+          await PermissionPopup.show(
+            getIt<AppNavigator>().globalContext,
+            type: PermissionType.photo,
+          );
+        }
 
-      return PermissionStatus.denied;
+        return PermissionStatus.denied;
+      }
+    } else {
+      final deviceInfo = DeviceInfoPlugin();
+      final androidInfo = await deviceInfo.androidInfo;
+      if (androidInfo.version.sdkInt >= 33) {
+        final status = await const PermissionClient().photosStatus();
+        if (status.isGranted) {
+          Log.d('Photo Permission: GRANTED');
+          return status;
+        } else {
+          Log.d('Photo Permission: DENIED');
+          if (getIt<AppNavigator>().globalContext.mounted) {
+            await PermissionPopup.show(
+              getIt<AppNavigator>().globalContext,
+              type: PermissionType.photo,
+            );
+          }
+
+          return PermissionStatus.denied;
+        }
+      } else {
+        // isStoragePermission = await Permission.storage.status.isGranted;
+        final status = await const PermissionClient().requestStorage();
+        if (status.isGranted) {
+          Log.d('Photo Permission: GRANTED');
+          return status;
+        } else {
+          Log.d('Photo Permission: DENIED');
+          if (getIt<AppNavigator>().globalContext.mounted) {
+            await PermissionPopup.show(
+              getIt<AppNavigator>().globalContext,
+              type: PermissionType.photo,
+            );
+          }
+
+          return PermissionStatus.denied;
+        }
+      }
+      // await const PermissionClient().requestPhotos();
+      // final status = await const PermissionClient().photosStatus();
     }
   }
 
@@ -121,14 +163,13 @@ class CameraBloc extends BaseBloc<CameraEvent, CameraState> {
     PickImageButtonPressed event,
     Emitter<CameraState> emit,
   ) async {
-    // final permissionStatus = await getPhotosPermission();
-    // if (permissionStatus.isGranted) {
-
-    // }
-    final picker = ImagePicker();
-    final image = await picker.pickImage(source: ImageSource.gallery);
-    if (image != null) {
-      emit(state.copyWith(imageTaken: image));
+    final permissionStatus = await getPhotosPermission();
+    if (permissionStatus.isGranted) {
+      final picker = ImagePicker();
+      final image = await picker.pickImage(source: ImageSource.gallery);
+      if (image != null) {
+        emit(state.copyWith(imageTaken: image));
+      }
     }
   }
 }

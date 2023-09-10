@@ -84,4 +84,29 @@ class AppApiService {
       // },
     );
   }
+
+  Future<PlantNetDetail> getPlantNetDetail(
+    String plantNetName,
+  ) async {
+    try {
+      // ignore: inference_failure_on_function_invocation
+      final response = await plantApiClient.fetch(
+        RequestOptions(
+          path: '/v1/projects/k-world-flora/species/$plantNetName?lang=en',
+          baseUrl: 'https://api.plantnet.org',
+          headers: {
+            'user-agent':
+                'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/115.0.0.0 Safari/537.36'
+          },
+        ),
+      );
+      final result =
+          PlantNetDetail.fromJson(response.data as Map<String, dynamic>);
+
+      return result;
+    } catch (e, stackTrace) {
+      Log.e(e, stackTrace: stackTrace);
+      return const PlantNetDetail();
+    }
+  }
 }

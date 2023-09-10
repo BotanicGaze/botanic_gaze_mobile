@@ -104,8 +104,8 @@ class _GalleryPhotoWrapperState extends State<GalleryPhotoWrapper> {
       child: CachedImageWidget(imageUrl: widget.galleryImages[index]),
       // childSize: const Size(300, 300),
       initialScale: PhotoViewComputedScale.contained,
-      minScale: PhotoViewComputedScale.contained * (0.5 + index / 10),
-      maxScale: PhotoViewComputedScale.covered * 4.1,
+      minScale: 0.5, //PhotoViewComputedScale.contained * (0.5 + index / 10),
+      maxScale: 1.5, // PhotoViewComputedScale.covered * 4.1,
       heroAttributes: PhotoViewHeroAttributes(tag: widget.galleryImages[index]),
     );
   }

@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:app_ui/app_ui.dart';
 import 'package:botanic_gaze/constants/index.dart';
 import 'package:flutter/material.dart';
@@ -45,24 +47,17 @@ class _LoadingPageState extends State<LoadingPage>
       body: Stack(
         alignment: AlignmentDirectional.center,
         children: [
+          BackdropFilter(
+            filter: ImageFilter.blur(sigmaY: 10, sigmaX: 10),
+            child: Container(
+              color: Colors.black.withOpacity(0.1),
+            ),
+          ),
           AnimatedBuilder(
             animation: linearAnimationController,
             builder: (context, child) {
               return SfRadialGauge(
-                // backgroundColor: Colors.black,
                 axes: <RadialAxis>[
-                  // RadialAxis(
-                  //   showLabels: false,
-                  //   showTicks: false,
-                  //   startAngle: 0,
-                  //   endAngle: 360,
-                  //   radiusFactor: 0.25,
-                  //   axisLineStyle: const AxisLineStyle(
-                  //     thickness: 0.05,
-                  //     color: Color(0xFFE6F2ED),
-                  //     thicknessUnit: GaugeSizeUnit.factor,
-                  //   ),
-                  // ),
                   RadialAxis(
                     showLabels: false,
                     showTicks: false,

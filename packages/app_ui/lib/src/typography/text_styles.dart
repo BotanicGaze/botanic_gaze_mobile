@@ -1,5 +1,4 @@
-import 'package:app_ui/src/colors.dart';
-import 'package:app_ui/src/typography/typography.dart';
+import 'package:app_ui/app_ui.dart';
 import 'package:flutter/widgets.dart';
 
 /// App Text Style Definitions
@@ -14,7 +13,7 @@ class AppTextStyle {
   /// Headline 1 Text Style
   static TextStyle get displayLarge {
     return _baseTextStyle.copyWith(
-      fontSize: 56,
+      fontSize: 56.sp,
       fontWeight: AppFontWeight.medium,
     );
   }
@@ -22,7 +21,7 @@ class AppTextStyle {
   /// Headline 2 Text Style
   static TextStyle get displayMedium {
     return _baseTextStyle.copyWith(
-      fontSize: 30,
+      fontSize: 30.sp,
       fontWeight: AppFontWeight.regular,
     );
   }
@@ -30,7 +29,7 @@ class AppTextStyle {
   /// Headline 3 Text Style
   static TextStyle get displaySmall {
     return _baseTextStyle.copyWith(
-      fontSize: 28,
+      fontSize: 28.sp,
       fontWeight: AppFontWeight.regular,
     );
   }
@@ -38,7 +37,7 @@ class AppTextStyle {
   /// Headline 4 Text Style
   static TextStyle get headlineMedium {
     return _baseTextStyle.copyWith(
-      fontSize: 22,
+      fontSize: 22.sp,
       fontWeight: AppFontWeight.bold,
     );
   }
@@ -46,7 +45,7 @@ class AppTextStyle {
   /// Headline 5 Text Style
   static TextStyle get headlineSmall {
     return _baseTextStyle.copyWith(
-      fontSize: 20,
+      fontSize: 20.sp,
       fontWeight: AppFontWeight.medium,
     );
   }
@@ -54,7 +53,7 @@ class AppTextStyle {
   /// Headline 6 Text Style
   static TextStyle get titleLarge {
     return _baseTextStyle.copyWith(
-      fontSize: 22,
+      fontSize: 22.sp,
       fontWeight: AppFontWeight.bold,
     );
   }
@@ -62,7 +61,7 @@ class AppTextStyle {
   /// Subtitle 1 Text Style
   static TextStyle get titleMedium {
     return _baseTextStyle.copyWith(
-      fontSize: 16,
+      fontSize: 16.sp,
       fontWeight: AppFontWeight.bold,
     );
   }
@@ -70,7 +69,7 @@ class AppTextStyle {
   /// Subtitle 2 Text Style
   static TextStyle get titleSmall {
     return _baseTextStyle.copyWith(
-      fontSize: 14,
+      fontSize: 14.sp,
       fontWeight: AppFontWeight.bold,
     );
   }
@@ -78,7 +77,7 @@ class AppTextStyle {
   /// Body Text 1 Text Style
   static TextStyle get bodyLarge {
     return _baseTextStyle.copyWith(
-      fontSize: 18,
+      fontSize: 18.sp,
       fontWeight: AppFontWeight.medium,
     );
   }
@@ -86,7 +85,7 @@ class AppTextStyle {
   /// Body Text 2 Text Style (the default)
   static TextStyle get bodyMedium {
     return _baseTextStyle.copyWith(
-      fontSize: 16,
+      fontSize: 16.sp,
       fontWeight: AppFontWeight.regular,
     );
   }
@@ -94,7 +93,7 @@ class AppTextStyle {
   /// Caption Text Style
   static TextStyle get bodySmall {
     return _baseTextStyle.copyWith(
-      fontSize: 14,
+      fontSize: 14.sp,
       fontWeight: AppFontWeight.regular,
     );
   }
@@ -102,7 +101,7 @@ class AppTextStyle {
   /// Overline Text Style
   static TextStyle get labelSmall {
     return _baseTextStyle.copyWith(
-      fontSize: 16,
+      fontSize: 16.sp,
       fontWeight: AppFontWeight.regular,
     );
   }
@@ -110,7 +109,7 @@ class AppTextStyle {
   /// Button Text Style
   static TextStyle get labelLarge {
     return _baseTextStyle.copyWith(
-      fontSize: 18,
+      fontSize: 18.sp,
       fontWeight: AppFontWeight.medium,
     );
   }

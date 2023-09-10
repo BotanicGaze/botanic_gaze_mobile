@@ -33,9 +33,6 @@ class _PlantDetailPageState
       builder: (context, state) {
         return CommonScaffold(
           backgroundColor: Theme.of(context).cardColor,
-          // appBar: AppBar(
-          //   toolbarHeight: 0,
-          // ),
           body: state.plantDetailModel == null
               ? const SizedBox()
               : NestedScrollView(
@@ -92,8 +89,8 @@ class _PlantDetailPageState
                                     alignment: AlignmentDirectional.bottomStart,
                                     children: [
                                       CachedImageWidget(
-                                        imageUrl: '${image?.baseUrl}'
-                                            '${image?.image}',
+                                        imageUrl:
+                                            '${image?.baseUrl}${image?.image}',
                                         fit: BoxFit.cover,
                                         width: double.infinity,
                                         height: double.infinity,
@@ -205,6 +202,16 @@ class _PlantDetailPageState
                           color: Theme.of(context).colorScheme.secondary,
                           thickness: 12,
                         ),
+                        if (state.plantDetailModel?.plantNetImages != null) ...[
+                          BotanicalGallery(
+                            plantNetImages:
+                                state.plantDetailModel?.plantNetImages,
+                          ),
+                          Divider(
+                            color: Theme.of(context).colorScheme.secondary,
+                            thickness: 12,
+                          ),
+                        ],
                         BotanicalDetails(
                           plantDetailModel: state.plantDetailModel,
                         ),
@@ -233,12 +240,16 @@ class _PlantDetailPageState
                           color: Theme.of(context).colorScheme.secondary,
                           thickness: 12,
                         ),
-                        BotanicalSize(plantDetailModel: state.plantDetailModel),
+                        BotanicalSize(
+                          plantDetailModel: state.plantDetailModel,
+                        ),
                         Divider(
                           color: Theme.of(context).colorScheme.secondary,
                           thickness: 12,
                         ),
-                        ColorsScents(plantDetailModel: state.plantDetailModel),
+                        ColorsScents(
+                          plantDetailModel: state.plantDetailModel,
+                        ),
                         Divider(
                           color: Theme.of(context).colorScheme.secondary,
                           thickness: 12,

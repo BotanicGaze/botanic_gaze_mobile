@@ -74,4 +74,10 @@ class AppIcons {
       'assets/icons/icon_ultimate_height.png';
   static const String iconUltimateSpread =
       'assets/icons/icon_ultimate_spread.png';
+  static const String iconTabBark = 'assets/icons/icon_tab_bark.png';
+  static const String iconTabFlowers = 'assets/icons/icon_tab_flowers.png';
+  static const String iconTabFruits = 'assets/icons/icon_tab_fruits.png';
+  static const String iconTabHabits = 'assets/icons/icon_tab_habits.png';
+  static const String iconTabLeaves = 'assets/icons/icon_tab_leaves.png';
+  static const String iconTabOther = 'assets/icons/icon_tab_other.png';
 }

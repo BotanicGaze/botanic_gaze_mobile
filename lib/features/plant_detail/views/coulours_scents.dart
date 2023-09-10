@@ -117,11 +117,19 @@ class ColorsScents extends StatelessWidget {
                 children: List.generate(attributeData.length, (index) {
                   final data = attributeData[index];
                   return Chip(
-                    avatar: Image.asset(
-                      data.attributeType?.image ?? '',
-                      color: data.colour?.color,
+                    avatar: ShaderMask(
+                      shaderCallback: (bounds) {
+                        return LinearGradient(
+                          colors: data.colour?.color ??
+                              [Colors.black, Colors.black],
+                        ).createShader(bounds);
+                      },
+                      child: Image.asset(
+                        data.attributeType?.image ?? '',
+                        color: Colors.grey.shade100,
+                      ),
                     ),
-                    label: Text(data.attributeType?.title ?? ''),
+                    label: Text(data.colour?.title ?? ''),
                   );
                 }),
               ),

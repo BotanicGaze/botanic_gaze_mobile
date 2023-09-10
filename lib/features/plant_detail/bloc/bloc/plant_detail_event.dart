@@ -11,3 +11,12 @@ class GetPlantDetail extends PlantDetailEvent {
   @override
   List<Object?> get props => [plantId];
 }
+
+class GetPlantNetDetail extends PlantDetailEvent {
+  GetPlantNetDetail(this.plantNetName);
+
+  final String plantNetName;
+
+  @override
+  List<Object?> get props => [plantNetName];
+}

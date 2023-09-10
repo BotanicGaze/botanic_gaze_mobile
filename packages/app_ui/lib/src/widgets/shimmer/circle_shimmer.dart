@@ -18,7 +18,7 @@ class CircleShimmer extends StatelessWidget {
       width: diameter ?? Dimens.d32.responsive(),
       height: diameter ?? Dimens.d32.responsive(),
       decoration: const BoxDecoration(
-        color: Colors.black,
+        color: Colors.white,
         shape: BoxShape.circle,
       ),
     );

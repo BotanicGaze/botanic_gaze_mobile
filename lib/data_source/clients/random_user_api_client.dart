@@ -6,6 +6,6 @@ import 'package:shared/shared.dart';
 class PlantApiClient extends RestApiClient {
   PlantApiClient()
       : super(
-          baseUrl: 'https://e12e-27-78-70-5.ngrok-free.app',
+          baseUrl: 'https://lionfish-app-q9gie.ondigitalocean.app',
         );
 }

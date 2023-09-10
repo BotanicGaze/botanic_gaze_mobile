@@ -13,6 +13,7 @@ part 'plant_detail_state.dart';
 class PlantDetailBloc extends BaseBloc<PlantDetailEvent, PlantDetailState> {
   PlantDetailBloc() : super(const PlantDetailState()) {
     on<GetPlantDetail>(_onGetPlantDetail);
+    // on<GetPlantNetDetail>(_onGetPlantNetDetail);
   }
 
   Future<void> _onGetPlantDetail(
@@ -34,4 +35,25 @@ class PlantDetailBloc extends BaseBloc<PlantDetailEvent, PlantDetailState> {
       },
     );
   }
+
+  // Future<void> _onGetPlantNetDetail(
+  //   GetPlantNetDetail event,
+  //   Emitter<PlantDetailState> emit,
+  // ) async {
+  //   await runBlocCatching(
+  //     action: () async {
+  //       final output =
+  //           await getIt<AppApiService>().getPlantNetDetail(event.plantNetName);
+  //       emit(
+  //         state.copyWith(
+  //           plantNetImages: output.images,
+  //         ),
+  //       );
+  //     },
+  //     // handleLoading: false,
+  //     doOnError: (e) async {
+  //       print(e);
+  //     },
+  //   );
+  // }
 }

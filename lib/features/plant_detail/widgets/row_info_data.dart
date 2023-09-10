@@ -31,7 +31,9 @@ class RowInfoData extends StatelessWidget {
             flex: 4,
             child: Text(
               title,
-              style: Theme.of(context).textTheme.bodyLarge,
+              style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                    fontWeight: FontWeight.w500,
+                  ),
             ),
           ),
           SizedBox(width: Dimens.d8.responsive()),

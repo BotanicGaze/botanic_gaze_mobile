@@ -3,5 +3,6 @@
 /// {@endtemplate}
 enum PermissionType {
   camera,
+  photo,
   notification,
 }

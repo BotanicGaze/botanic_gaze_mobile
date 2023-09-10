@@ -57,28 +57,28 @@ extension ColourTypeX on ColourType {
     16,
   ];
 
-  static final List<Color> _colors = [
-    const Color(0xFF3b3630),
-    const Color(0xFF2d72d5),
-    const Color(0xFFd99500),
-    const Color(0xFF854800),
-    const Color(0xFFfffbc4),
-    const Color(0xFF348b57),
-    const Color(0xFFaaaaaa),
-    const Color(0xFFf55a00),
-    const Color(0xFFff61ac),
-    const Color(0xFF7b22d8),
-    const Color(0xFFcd0304),
-    const Color(0xFFadadad),
-    Colors.transparent,
-    const Color(0xFFffffff),
-    const Color(0xFFfff903),
-    const Color(0xFFdbb800),
+  static final List<List<Color>> _colors = [
+    [const Color(0xFF48433f), const Color(0xFF48433f)],
+    [const Color(0xFF2d72d5), const Color(0xFF2d72d5)],
+    [const Color(0xFFd99500), const Color(0xFFd99500)],
+    [const Color(0xFF854800), const Color(0xFF854800)],
+    [const Color(0xFFfffbc4), const Color(0xFFfffbc4)],
+    [const Color(0xFF348b57), const Color(0xFF348b57)],
+    [const Color(0xFFaaaaaa), const Color(0xFFaaaaaa)],
+    [const Color(0xFFf55a00), const Color(0xFFf55a00)],
+    [const Color(0xFFff61ac), const Color(0xFFff61ac)],
+    [const Color(0xFF7b22d8), const Color(0xFF7b22d8)],
+    [const Color(0xFFcd0304), const Color(0xFFcd0304)],
+    [const Color(0xFFd7d7d7), const Color(0xFFa9a9a9)],
+    [const Color(0xFFf2f0d8), const Color(0xFFb2d1bd)],
+    [const Color(0xFFffffff), const Color(0xFFffffff)],
+    [const Color(0xFFfaf30f), const Color(0xFFfaf30f)],
+    [const Color(0xFFdbb800), const Color(0xFFdbb800)]
   ];
 
   String get title => _titles[index];
   int get id => _ids[index];
-  Color get color => _colors[index];
+  List<Color> get color => _colors[index];
 
   static List<ColourType> datasFromListId(List<int> ids) {
     final data = <ColourType>[];

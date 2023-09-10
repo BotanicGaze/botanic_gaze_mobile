@@ -1,7 +1,5 @@
 import 'package:botanic_gaze/constants/index.dart';
-import 'package:botanic_gaze/models/responses/plant_detail_model/colour_with_attribute.dart';
-import 'package:botanic_gaze/models/responses/plant_detail_model/image.dart';
-import 'package:botanic_gaze/models/responses/plant_detail_model/synonym.dart';
+import 'package:botanic_gaze/models/index.dart';
 import 'package:equatable/equatable.dart';
 
 class PlantDetailModel extends Equatable {
@@ -66,7 +64,12 @@ class PlantDetailModel extends Equatable {
     this.hasFullProfile,
     this.seasonColourAgg,
     this.plantEntityId,
+    this.gbif,
+    this.powo,
+    this.links,
+    this.plantNetImages,
   });
+
   factory PlantDetailModel.fromJson(Map<String, dynamic> json) {
     return PlantDetailModel(
       id: json['id'] as int?,
@@ -224,6 +227,27 @@ class PlantDetailModel extends Equatable {
       seasonColourAgg:
           List.castFrom(json['seasonColourAgg'] as List<dynamic>? ?? <int>[]),
       plantEntityId: json['plantEntityId'] as String?,
+      gbif: json['gbif'] == null
+          ? null
+          : Gbif.fromJson(json['gbif'] as Map<String, dynamic>),
+      powo: json['powo'] == null
+          ? null
+          : Powo.fromJson(json['powo'] as Map<String, dynamic>),
+      links: json['links'] == null
+          ? []
+          : List.castFrom<dynamic, String>(
+              json['links'] as List<dynamic>,
+            ),
+      // plantNetImages: json['plantNetImages'] == null
+      //     ? []
+      //     : List.castFrom<dynamic, String>(
+      //         json['links'] as List<dynamic>,
+      //       ),
+      plantNetImages: json['plantNetImages'] == null
+          ? null
+          : PlantNetImages.fromJson(
+              json['plantNetImages'] as Map<String, dynamic>,
+            ),
     );
   }
 
@@ -308,6 +332,10 @@ class PlantDetailModel extends Equatable {
   final bool? hasFullProfile;
   final List<int>? seasonColourAgg;
   final String? plantEntityId;
+  final Gbif? gbif;
+  final Powo? powo;
+  final List<String>? links;
+  final PlantNetImages? plantNetImages;
 
   Map<String, dynamic> toJson() => {
         'id': id,
@@ -371,6 +399,9 @@ class PlantDetailModel extends Equatable {
         'hasFullProfile': hasFullProfile,
         'seasonColourAgg': seasonColourAgg,
         'plantEntityId': plantEntityId,
+        'gbif': gbif?.toJson(),
+        'powo': powo?.toJson(),
+        'links': links?.map((x) => x).toList()
       };
 
   PlantDetailModel copyWith({
@@ -571,4 +602,48 @@ class PlantDetailModel extends Equatable {
       plantEntityId,
     ];
   }
+}
+
+class Gbif {
+  Gbif({
+    this.id,
+  });
+
+  factory Gbif.fromJson(Map<String, dynamic> json) => Gbif(
+        id: json['id'] == null ? null : json['id'].toString(),
+      );
+  final String? id;
+
+  Gbif copyWith({
+    String? id,
+  }) =>
+      Gbif(
+        id: id ?? this.id,
+      );
+
+  Map<String, dynamic> toJson() => {
+        'id': id,
+      };
+}
+
+class Powo {
+  Powo({
+    this.id,
+  });
+
+  factory Powo.fromJson(Map<String, dynamic> json) => Powo(
+        id: json['id'] as String?,
+      );
+  final String? id;
+
+  Powo copyWith({
+    String? id,
+  }) =>
+      Powo(
+        id: id ?? this.id,
+      );
+
+  Map<String, dynamic> toJson() => {
+        'id': id,
+      };
 }

@@ -92,6 +92,7 @@ class _PermissionPopupState extends State<PermissionPopup> {
 extension PermissionTypeX on PermissionType {
   static final List<String> _titles = [
     'Oops! We can’t use your camera!',
+    'Oops! We can’t use your photos!',
     'Oops! We can’t sent notification to you!',
   ];
 
@@ -99,6 +100,7 @@ extension PermissionTypeX on PermissionType {
 
   static final List<String> _contents = [
     'Please allow us the access to your camera so we can scan objects.',
+    'Please allow us the access to your photos so we can scan objects.',
     'Please allow us the access to your camera so we can scan objects.'
   ];
 
@@ -112,6 +114,7 @@ extension PermissionTypeX on PermissionType {
   String get confirmTexts => _confirmTexts[index];
 
   static final List<String> _images = [
+    AppImages.imageCameraPermission,
     AppImages.imageCameraPermission,
     AppImages.imageCameraPermission
   ];

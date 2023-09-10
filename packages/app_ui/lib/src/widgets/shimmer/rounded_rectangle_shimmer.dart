@@ -14,7 +14,7 @@ class RoundRectangleShimmer extends StatelessWidget {
       width: width,
       height: height ?? Dimens.d16.responsive(),
       decoration: BoxDecoration(
-        color: Colors.black,
+        color: Colors.white,
         borderRadius: BorderRadius.circular(Dimens.d8.responsive()),
       ),
     );

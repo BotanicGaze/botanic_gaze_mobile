@@ -7,8 +7,8 @@ class PlantImageDetail extends Equatable {
       PlantImageDetail(
         image: json['image'] as String?,
         copyRight: json['copyRight'] as String?,
-        baseUrl:
-            'https://apps.rhs.org.uk/plantselectorimages/detail/', //json['baseURL'] as String?,
+        baseUrl: 'https://apps.rhs.org.uk/plantselectorimages/detail/',
+        // "${json['baseURL'] as String? ?? 'https://apps.rhs.org.uk/plantselectorimages/detail'}/",
       );
   final String? image;
   final String? copyRight;
