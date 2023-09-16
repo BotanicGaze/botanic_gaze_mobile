@@ -74,6 +74,7 @@ extension PlantTypesX on PlantType {
 
   int get id => _ids[index];
   String get title => _titles[index];
+  String get titleWithNewLine => _titles[index].split(' ').join('\n');
   String get imagePath =>
       'assets/images/plant_type/${ReCase(name).snakeCase}.png';
 

@@ -4,6 +4,7 @@ import 'package:base_bloc/base_bloc.dart';
 import 'package:botanic_gaze/constants/index.dart';
 import 'package:botanic_gaze/data_source/index.dart';
 import 'package:botanic_gaze/di/di.dart';
+import 'package:botanic_gaze/services/location_service.dart';
 import 'package:shared/shared.dart';
 
 part 'splash_event.dart';
@@ -21,6 +22,8 @@ class SplashBloc extends BaseBloc<SplashEvent, SplashState> {
   ) async {
     return runBlocCatching(
       action: () async {
+        final location = await getIt<LocationService>().getCurrentPosition();
+        Log.d(location.toString());
         final output = await getIt<AppApiService>().getProtected();
         emit(
           state.copyWith(

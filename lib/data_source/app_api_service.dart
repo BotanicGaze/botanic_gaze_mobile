@@ -16,6 +16,7 @@ class AppApiService {
 
   static const versionPrefix = '/api/v1';
   static const plantPrefix = '/plant/';
+  static const weatherPrefix = '/weather/';
 
   Future<DataResponse<String>> getProtected() async {
     try {
@@ -48,6 +49,20 @@ class AppApiService {
       queryParameters: request.toJson(),
       successResponseMapperType: SuccessResponseMapperType.resultsJsonArray,
       decoder: PlantSearchResponse.fromJson,
+    );
+  }
+
+  Future<ResultsListResponse<PopularPlantModel>> getPopularPlant(int page) {
+    return plantApiClient
+        .request<ResultsListResponse<PopularPlantModel>, PopularPlantModel>(
+      method: RestMethod.get,
+      path: '$versionPrefix${plantPrefix}popular',
+      queryParameters: {
+        'page': page,
+        'perPage': 20,
+      },
+      successResponseMapperType: SuccessResponseMapperType.resultsJsonArray,
+      decoder: PopularPlantModel.fromJson,
     );
   }
 
@@ -108,5 +123,19 @@ class AppApiService {
       Log.e(e, stackTrace: stackTrace);
       return const PlantNetDetail();
     }
+  }
+
+  Future<DataResponse<WeatherResponse>> getWeatherData(
+    double lat,
+    double lng,
+  ) async {
+    return plantApiClient
+        .request<DataResponse<WeatherResponse>, WeatherResponse>(
+      method: RestMethod.get,
+      path: '$versionPrefix${weatherPrefix}detail',
+      queryParameters: {'lat': lat, 'lng': lng},
+      successResponseMapperType: SuccessResponseMapperType.dataJsonObject,
+      decoder: WeatherResponse.fromJson,
+    );
   }
 }

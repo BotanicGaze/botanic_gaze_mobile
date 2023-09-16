@@ -30,10 +30,10 @@
 //               ),
 //               child: Text(
 //                 PlantTypes.values[index].title,
-//                 style: Theme.of(context).textTheme.labelSmall?.copyWith(
-//                       color: AppColors.white,
-//                       fontWeight: FontWeight.bold,
-//                     ),
+                // style: Theme.of(context).textTheme.labelSmall?.copyWith(
+                //       color: AppColors.white,
+                //       fontWeight: FontWeight.bold,
+                //     ),
 //               ),
 //             ),
 //           ],
