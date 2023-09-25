@@ -1,5 +1,6 @@
 import 'package:botanic_gaze/features/camera/index.dart';
 import 'package:botanic_gaze/features/dash_board/dash_board.dart';
+import 'package:botanic_gaze/features/explore/index.dart';
 import 'package:botanic_gaze/features/gallery/index.dart';
 import 'package:botanic_gaze/features/plant_detail/index.dart';
 import 'package:botanic_gaze/features/search_plants/index.dart';
@@ -34,4 +35,7 @@ class NavigationContains {
 
   ///go to [GalleryPhotoWrapper]
   static const String galleryPhotoWrapper = '/gallery_photo_wrapper';
+
+  ///go to [PopularPlantDetail]
+  static const String popularPlantDetail = '/popular_plant_detail';
 }

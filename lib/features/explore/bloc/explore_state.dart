@@ -2,6 +2,7 @@ part of 'explore_bloc.dart';
 
 class ExploreState extends BaseBlocState with EquatableMixin {
   const ExploreState({
+    required this.currentSeason,
     this.weatherResponse,
     this.flowerOfSeason,
     this.popularPlant = const LoadMoreOutput(data: []),
@@ -10,9 +11,11 @@ class ExploreState extends BaseBlocState with EquatableMixin {
   final WeatherResponse? weatherResponse;
   final List<PlantSearchResponse>? flowerOfSeason;
   final LoadMoreOutput<PopularPlantModel> popularPlant;
+  final SeasonOfInterest currentSeason;
 
   @override
-  List<Object?> get props => [weatherResponse, flowerOfSeason, popularPlant];
+  List<Object?> get props =>
+      [weatherResponse, flowerOfSeason, popularPlant, currentSeason];
 
   ExploreState copyWith({
     WeatherResponse? weatherResponse,
@@ -23,6 +26,7 @@ class ExploreState extends BaseBlocState with EquatableMixin {
       weatherResponse: weatherResponse ?? this.weatherResponse,
       flowerOfSeason: flowerOfSeason ?? this.flowerOfSeason,
       popularPlant: popularPlant ?? this.popularPlant,
+      currentSeason: currentSeason,
     );
   }
 }

@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:base_bloc/base_bloc.dart';
+import 'package:botanic_gaze/constants/index.dart';
 import 'package:botanic_gaze/data_source/index.dart';
 import 'package:botanic_gaze/di/di.dart';
 import 'package:botanic_gaze/models/index.dart';
@@ -13,7 +14,12 @@ part 'explore_state.dart';
 
 @Injectable()
 class ExploreBloc extends BaseBloc<ExploreEvent, ExploreState> {
-  ExploreBloc() : super(const ExploreState()) {
+  ExploreBloc()
+      : super(
+          ExploreState(
+            currentSeason: SeasonOfInterestX.seasonByDate(DateTime.now()),
+          ),
+        ) {
     on<GetWeatherData>(_onGetWeatherData);
     on<GetFlowerOfSeason>(_onGetFlowerOfSeason);
     on<PopularPlantInit>(

@@ -1,9 +1,6 @@
 import 'package:app_ui/app_ui.dart';
 import 'package:base_bloc/base_bloc.dart';
 import 'package:botanic_gaze/features/explore/index.dart';
-import 'package:botanic_gaze/features/explore/views/explore_plant_type.dart';
-import 'package:botanic_gaze/features/explore/views/flower_of_season.dart';
-import 'package:botanic_gaze/features/explore/views/popular_plant.dart';
 import 'package:botanic_gaze/widgets/index.dart';
 import 'package:flutter/material.dart';
 
@@ -21,7 +18,6 @@ class _ExplorePageState extends BasePageState<ExplorePage, ExploreBloc> {
     bloc
       ..add(GetWeatherData())
       ..add(GetFlowerOfSeason());
-    // ..add(PopularPlantInit(page: 1));
   }
 
   @override

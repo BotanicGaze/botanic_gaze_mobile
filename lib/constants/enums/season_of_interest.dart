@@ -30,4 +30,23 @@ extension SeasonOfInterestX on SeasonOfInterest {
     if (id == null) return null;
     return SeasonOfInterest.values[_ids.indexOf(id)];
   }
+
+  static SeasonOfInterest seasonByDate(DateTime date) {
+    switch (date.month) {
+      case 1:
+      case 2:
+      case 3:
+        return SeasonOfInterest.spring;
+      case 4:
+      case 5:
+      case 6:
+        return SeasonOfInterest.summer;
+      case 7:
+      case 8:
+      case 9:
+        return SeasonOfInterest.autumn;
+      default:
+        return SeasonOfInterest.winter;
+    }
+  }
 }

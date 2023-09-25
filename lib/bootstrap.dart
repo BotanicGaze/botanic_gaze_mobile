@@ -4,7 +4,9 @@ import 'dart:developer';
 import 'package:base_bloc/base_bloc.dart';
 import 'package:botanic_gaze/data_source/index.dart';
 import 'package:botanic_gaze/di/di.dart';
+import 'package:botanic_gaze/firebase_options.dart';
 import 'package:botanic_gaze/widgets/index.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:paging_view/paging_view.dart';
 import 'package:shared/shared.dart';
@@ -33,6 +35,9 @@ Future<void> bootstrap(FutureOr<Widget> Function() builder) async {
   // Bloc.observer = const AppBlocObserver();
 
   WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   await SharedConfig.getInstance().init();
   await BaseBlocConfig.getInstance().init(
     configArgument: BaseBlocConfigArgument(

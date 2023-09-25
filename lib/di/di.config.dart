@@ -10,7 +10,7 @@
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:base_bloc/base_bloc.dart' as _i4;
-import 'package:botanic_gaze/data_source/app_api_service.dart' as _i18;
+import 'package:botanic_gaze/data_source/app_api_service.dart' as _i19;
 import 'package:botanic_gaze/data_source/clients/random_user_api_client.dart'
     as _i11;
 import 'package:botanic_gaze/features/camera/bloc/analysis_image/analysis_image_bloc.dart'
@@ -20,17 +20,19 @@ import 'package:botanic_gaze/features/camera/bloc/camera/camera_bloc.dart'
 import 'package:botanic_gaze/features/diagnosis/bloc/diagnosis_bloc.dart'
     as _i7;
 import 'package:botanic_gaze/features/explore/bloc/explore_bloc.dart' as _i8;
+import 'package:botanic_gaze/features/explore/bloc/popular_plant_detail/popular_plant_detail_bloc.dart'
+    as _i13;
 import 'package:botanic_gaze/features/login/bloc/login_bloc.dart' as _i10;
 import 'package:botanic_gaze/features/plant_detail/bloc/bloc/plant_detail_bloc.dart'
     as _i12;
-import 'package:botanic_gaze/features/profile/bloc/profile_bloc.dart' as _i13;
+import 'package:botanic_gaze/features/profile/bloc/profile_bloc.dart' as _i14;
 import 'package:botanic_gaze/features/search_plants/bloc/search_plants/search_plants_bloc.dart'
-    as _i14;
-import 'package:botanic_gaze/features/search_plants/bloc/search_plants_filter/search_plants_filter_bloc.dart'
     as _i15;
-import 'package:botanic_gaze/features/search_tab/bloc/search_tab_bloc.dart'
+import 'package:botanic_gaze/features/search_plants/bloc/search_plants_filter/search_plants_filter_bloc.dart'
     as _i16;
-import 'package:botanic_gaze/features/splash/bloc/splash_bloc.dart' as _i17;
+import 'package:botanic_gaze/features/search_tab/bloc/search_tab_bloc.dart'
+    as _i17;
+import 'package:botanic_gaze/features/splash/bloc/splash_bloc.dart' as _i18;
 import 'package:botanic_gaze/navigation/app_navigator.dart' as _i5;
 import 'package:botanic_gaze/services/location_service.dart' as _i9;
 import 'package:get_it/get_it.dart' as _i1;
@@ -56,14 +58,16 @@ extension GetItInjectableX on _i1.GetIt {
     gh.factory<_i10.LoginBloc>(() => _i10.LoginBloc());
     gh.lazySingleton<_i11.PlantApiClient>(() => _i11.PlantApiClient());
     gh.factory<_i12.PlantDetailBloc>(() => _i12.PlantDetailBloc());
-    gh.factory<_i13.ProfileBloc>(() => _i13.ProfileBloc());
-    gh.factory<_i14.SearchPlantsBloc>(() => _i14.SearchPlantsBloc());
-    gh.factory<_i15.SearchPlantsFilterBloc>(
-        () => _i15.SearchPlantsFilterBloc());
-    gh.factory<_i16.SearchTabBloc>(() => _i16.SearchTabBloc());
-    gh.factory<_i17.SplashBloc>(() => _i17.SplashBloc());
-    gh.lazySingleton<_i18.AppApiService>(
-        () => _i18.AppApiService(gh<_i11.PlantApiClient>()));
+    gh.factory<_i13.PopularPlantListDetailBloc>(
+        () => _i13.PopularPlantListDetailBloc());
+    gh.factory<_i14.ProfileBloc>(() => _i14.ProfileBloc());
+    gh.factory<_i15.SearchPlantsBloc>(() => _i15.SearchPlantsBloc());
+    gh.factory<_i16.SearchPlantsFilterBloc>(
+        () => _i16.SearchPlantsFilterBloc());
+    gh.factory<_i17.SearchTabBloc>(() => _i17.SearchTabBloc());
+    gh.factory<_i18.SplashBloc>(() => _i18.SplashBloc());
+    gh.lazySingleton<_i19.AppApiService>(
+        () => _i19.AppApiService(gh<_i11.PlantApiClient>()));
     return this;
   }
 }

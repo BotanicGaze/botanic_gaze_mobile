@@ -1,10 +1,12 @@
 import 'package:base_bloc/base_bloc.dart';
 import 'package:botanic_gaze/features/camera/index.dart';
 import 'package:botanic_gaze/features/dash_board/view/view.dart';
+import 'package:botanic_gaze/features/explore/index.dart';
 import 'package:botanic_gaze/features/gallery/index.dart';
 import 'package:botanic_gaze/features/plant_detail/index.dart';
 import 'package:botanic_gaze/features/search_plants/index.dart';
 import 'package:botanic_gaze/features/splash/index.dart';
+import 'package:botanic_gaze/models/index.dart';
 import 'package:botanic_gaze/navigation/navigation_contains.dart';
 import 'package:flutter/material.dart';
 import 'package:shared/shared.dart';
@@ -105,15 +107,17 @@ class AppNavigatorImpl extends AppNavigator with LogMixin {
                         FadeTransition(opacity: animation, child: child),
               );
             },
-            // builder: (context, state) {
-            //   final extra = state.extra as Map<String, dynamic>?;
+          ),
+          GoRoute(
+            path: NavigationContains.popularPlantDetail,
+            name: NavigationContains.popularPlantDetail,
+            builder: (context, state) {
+              final extra = state.extra as Map<String, dynamic>?;
 
-            //   return GalleryPhotoWrapper(
-            // initialIndex: extra?['initial_index'] as int? ?? 0,
-            // galleryImages:
-            //     extra?['gallery_images'] as List<String>? ?? <String>[],
-            //   );
-            // },
+              return PopularPlantDetail(
+                data: extra?['popular_plant_model'] as PopularPlantModel,
+              );
+            },
           ),
         ],
       );

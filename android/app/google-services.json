@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "544238475290",
+    "project_id": "botanic-gaze",
+    "storage_bucket": "botanic-gaze.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:544238475290:android:56ea0e5859e5a33282d9a3",
+        "android_client_info": {
+          "package_name": "com.example.verygoodcore.botanic_gaze"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAa4A0VnHb8NZ9hUg3OmvFMUUB4IDadjKA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

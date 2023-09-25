@@ -1,5 +1,9 @@
 export 'bloc/explore_bloc.dart';
-
+export 'bloc/popular_plant_detail/popular_plant_detail_bloc.dart';
 export 'pages/explore_page.dart';
+export 'pages/popular_plant_detail.dart';
 export 'pages/view.dart';
+export 'views/explore_plant_type.dart';
+export 'views/flower_of_season.dart';
+export 'views/popular_plant.dart';
 export 'views/weather_view.dart';

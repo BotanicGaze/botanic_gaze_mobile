@@ -2,6 +2,7 @@ import 'package:app_ui/app_ui.dart';
 import 'package:base_bloc/base_bloc.dart';
 import 'package:botanic_gaze/features/explore/index.dart';
 import 'package:botanic_gaze/models/index.dart';
+import 'package:botanic_gaze/navigation/navigation_contains.dart';
 import 'package:botanic_gaze/widgets/index.dart';
 import 'package:flutter/material.dart';
 import 'package:paging_view/paging_view.dart';
@@ -54,44 +55,60 @@ class _PopularPlantViewState extends State<PopularPlantView> {
               crossAxisSpacing: Dimens.d16.responsive(),
             ),
             itemBuilder: (context, item, index) {
-              return Stack(
-                alignment: AlignmentDirectional.bottomCenter,
-                children: [
-                  CachedImageWidget(
-                    imageUrl: 'https://www.rhs.org.uk${item.heroImage?.url}',
-                    width: double.infinity,
-                    height: double.infinity,
-                    fit: BoxFit.cover,
-                    borderRadius: BorderRadius.circular(Dimens.d8.responsive()),
+              return GestureDetector(
+                onTap: () {
+                  context.pushNamed(
+                    NavigationContains.popularPlantDetail,
+                    extra: {'popular_plant_model': item},
+                  );
+                },
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(Dimens.d8.responsive()),
+                  child: Stack(
+                    alignment: AlignmentDirectional.bottomCenter,
+                    children: [
+                      CachedImageWidget(
+                        imageUrl:
+                            'https://www.rhs.org.uk${item.heroImage?.url}',
+                        width: double.infinity,
+                        height: double.infinity,
+                        fit: BoxFit.cover,
+                        borderRadius:
+                            BorderRadius.circular(Dimens.d8.responsive()),
+                      ),
+                      Container(
+                        width: double.infinity,
+                        decoration: BoxDecoration(
+                          gradient: LinearGradient(
+                            begin: Alignment.topCenter,
+                            end: Alignment.bottomCenter,
+                            colors: [
+                              Colors.transparent,
+                              Colors.black.withOpacity(0.25),
+                              Colors.black.withOpacity(0.5),
+                              Colors.black.withOpacity(0.75),
+                              Colors.black
+                            ],
+                          ),
+                        ),
+                        child: Padding(
+                          padding: EdgeInsets.all(Dimens.d8.responsive())
+                              .copyWith(top: Dimens.d42.responsive()),
+                          child: Text(
+                            item.name ?? '',
+                            textAlign: TextAlign.center,
+                            style: Theme.of(context)
+                                .textTheme
+                                .bodyMedium
+                                ?.copyWith(
+                                  color: AppColors.white,
+                                ),
+                          ),
+                        ),
+                      )
+                    ],
                   ),
-                  Container(
-                    width: double.infinity,
-                    decoration: BoxDecoration(
-                      gradient: LinearGradient(
-                        begin: Alignment.topCenter,
-                        end: Alignment.bottomCenter,
-                        colors: [
-                          Colors.transparent,
-                          Colors.black.withOpacity(0.25),
-                          Colors.black.withOpacity(0.5),
-                          Colors.black.withOpacity(0.75),
-                          Colors.black
-                        ],
-                      ),
-                    ),
-                    child: Padding(
-                      padding: EdgeInsets.all(Dimens.d8.responsive())
-                          .copyWith(top: Dimens.d42.responsive()),
-                      child: Text(
-                        item.name ?? '',
-                        textAlign: TextAlign.center,
-                        style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                              color: AppColors.white,
-                            ),
-                      ),
-                    ),
-                  )
-                ],
+                ),
               );
             },
           ),

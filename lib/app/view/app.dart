@@ -6,6 +6,8 @@ import 'package:botanic_gaze/di/di.dart';
 import 'package:botanic_gaze/l10n/l10n.dart';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:shared/shared.dart' hide DeviceConstants;
 
 class App extends StatefulWidget {
   const App({super.key});
@@ -16,6 +18,14 @@ class App extends StatefulWidget {
 
 class _AppState extends State<App> {
   final GoRouter router = getIt<AppNavigator>().router;
+
+  @override
+  void initState() {
+    super.initState();
+    ViewUtils.setPreferredOrientations(
+      [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown],
+    );
+  }
 
   @override
   Widget build(BuildContext context) {

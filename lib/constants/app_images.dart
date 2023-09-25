@@ -28,6 +28,17 @@ class AppImages {
   static const String imageAutumn = 'assets/images/image_autumn.png';
   static const String imageWinter = 'assets/images/image_winter.png';
   static const String imagePickImage = 'assets/images/image_pick_image.png';
+  static const String imageDroughtResistance =
+      'assets/images/image_drought_resistance.png';
+  static const String imageLowMaintenance =
+      'assets/images/image_low_maintenance.png';
+  static const String imageNotedForFragrances =
+      'assets/images/image_noted_for_fragrances.png';
+  static const String imagePlantsForPollinators =
+      'assets/images/image_plants_for_pollinators.png';
+  static const String imageToxic = 'assets/images/image_toxic.png';
+  static const String imageMyPlantEmpty =
+      'assets/images/image_my_plant_empty.jpg';
 }
 
 class AppIcons {

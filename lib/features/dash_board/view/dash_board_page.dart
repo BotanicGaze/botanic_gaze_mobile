@@ -1,8 +1,8 @@
 import 'package:app_ui/app_ui.dart';
 import 'package:botanic_gaze/constants/index.dart';
 import 'package:botanic_gaze/features/dash_board/dash_board.dart';
-import 'package:botanic_gaze/features/diagnosis/pages/diagnosis_page.dart';
 import 'package:botanic_gaze/features/explore/pages/view.dart';
+import 'package:botanic_gaze/features/my_plants/index.dart';
 import 'package:botanic_gaze/features/profile/index.dart';
 import 'package:botanic_gaze/features/search_tab/index.dart';
 import 'package:botanic_gaze/widgets/index.dart';
@@ -43,7 +43,7 @@ class _DashBoardViewState extends State<DashBoardView> {
 
   List<Widget> tabView = [
     const SearchTabPage(),
-    const DiagnosisPage(),
+    const MyPlantsPage(),
     const ExplorePage(),
     const ProfilePage()
   ];

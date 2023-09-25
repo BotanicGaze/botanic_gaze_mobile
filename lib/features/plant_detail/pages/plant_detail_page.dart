@@ -171,6 +171,66 @@ class _PlantDetailPageState
                                       '',
                                   style: Theme.of(context).textTheme.bodySmall,
                                 ),
+                                SizedBox(height: Dimens.d4.responsive()),
+                                SizedBox(
+                                  width: double.infinity,
+                                  child: Wrap(
+                                    // alignment: WrapAlignment.center,
+                                    spacing: Dimens.d8.responsive(),
+                                    children: [
+                                      if (state.plantDetailModel
+                                              ?.isLowMaintenance ??
+                                          false)
+                                        Chip(
+                                          avatar: Image.asset(
+                                            AppImages.imageLowMaintenance,
+                                          ),
+                                          label: const Text('Low maintenance'),
+                                        ),
+                                      if (state.plantDetailModel
+                                              ?.isDroughtResistance ??
+                                          false)
+                                        Chip(
+                                          avatar: Image.asset(
+                                            AppImages.imageDroughtResistance,
+                                          ),
+                                          label:
+                                              const Text('Drought resistance'),
+                                        ),
+                                      if (state.plantDetailModel
+                                              ?.isPlantsForPollinators ??
+                                          false)
+                                        Chip(
+                                          avatar: Image.asset(
+                                            AppImages.imagePlantsForPollinators,
+                                          ),
+                                          label: const Text(
+                                            'Plants for pollinators',
+                                          ),
+                                        ),
+                                      if (state.plantDetailModel
+                                              ?.notedForFragrance ??
+                                          false)
+                                        Chip(
+                                          avatar: Image.asset(
+                                            AppImages.imageNotedForFragrances,
+                                          ),
+                                          label: const Text(
+                                            'Noted for fragrances',
+                                          ),
+                                        ),
+                                      if (state.plantDetailModel?.toxicity
+                                              ?.isNotEmpty ??
+                                          false)
+                                        Chip(
+                                          avatar: Image.asset(
+                                            AppImages.imageToxic,
+                                          ),
+                                          label: const Text('Toxic'),
+                                        ),
+                                    ],
+                                  ),
+                                )
                               ],
                             ),
                           ),
@@ -257,6 +317,15 @@ class _PlantDetailPageState
                         const HelpfulContentView(),
                       ],
                     ),
+                  ),
+                ),
+          bottomNavigationBar: state.plantDetailModel == null
+              ? const SizedBox()
+              : AppSafeArea(
+                  minimum: EdgeInsets.all(Dimens.d16.responsive()),
+                  child: FilledButton(
+                    onPressed: () {},
+                    child: const Text('Add to my garden'),
                   ),
                 ),
         );

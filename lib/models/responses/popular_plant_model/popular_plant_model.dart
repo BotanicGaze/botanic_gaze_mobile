@@ -1,8 +1,11 @@
+import 'dart:convert';
+
 import 'package:botanic_gaze/models/responses/popular_plant_model/genus_type.dart';
 import 'package:botanic_gaze/models/responses/popular_plant_model/gg_image.dart';
 import 'package:botanic_gaze/models/responses/popular_plant_model/gg_link.dart';
 import 'package:botanic_gaze/models/responses/popular_plant_model/hero_image.dart';
 import 'package:botanic_gaze/models/responses/popular_plant_model/hero_mobile_image.dart';
+import 'package:botanic_gaze/models/responses/popular_plant_model/popular_recommend/popular_recommend.dart';
 import 'package:equatable/equatable.dart';
 
 class PopularPlantModel extends Equatable {
@@ -56,7 +59,12 @@ class PopularPlantModel extends Equatable {
       likesDescription: json['likesDescription'] as String?,
       dislikesDescription: json['dislikesDescription'] as String?,
       needToKnowDescription: json['needToKnowDescription'] as String?,
-      plantsWeLove: json['plantsWeLove'] as String?,
+      plantsWeLove: json['plantsWeLove'] != null
+          ? PopularRecommend.fromJson(
+              jsonDecode(json['plantsWeLove'].toString())
+                  as Map<String, dynamic>,
+            )
+          : null,
       ggTitle: json['ggTitle'] as String?,
       ggImage: json['ggImage'] == null
           ? null
@@ -98,7 +106,7 @@ class PopularPlantModel extends Equatable {
   final String? likesDescription;
   final String? dislikesDescription;
   final String? needToKnowDescription;
-  final String? plantsWeLove;
+  final PopularRecommend? plantsWeLove;
   final String? ggTitle;
   final GgImage? ggImage;
   final String? ggSubtitle;
@@ -163,7 +171,7 @@ class PopularPlantModel extends Equatable {
     String? likesDescription,
     String? dislikesDescription,
     String? needToKnowDescription,
-    String? plantsWeLove,
+    PopularRecommend? plantsWeLove,
     String? ggTitle,
     GgImage? ggImage,
     String? ggSubtitle,

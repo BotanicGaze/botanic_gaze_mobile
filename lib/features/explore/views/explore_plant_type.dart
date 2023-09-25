@@ -1,5 +1,8 @@
 import 'package:app_ui/app_ui.dart';
+import 'package:base_bloc/base_bloc.dart';
 import 'package:botanic_gaze/constants/index.dart';
+import 'package:botanic_gaze/features/search_plants/index.dart';
+import 'package:botanic_gaze/navigation/index.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 
@@ -35,26 +38,38 @@ class ExplorePlantTypes extends StatelessWidget {
             ),
             itemCount: PlantType.values.length,
             itemBuilder: (context, index) {
-              return Stack(
-                alignment: AlignmentDirectional.centerStart,
-                children: [
-                  Image.asset(
-                    PlantType.values[index].imagePath,
-                  ),
-                  Padding(
-                    padding: EdgeInsets.only(
-                      left: Dimens.d12.responsive(),
-                      right: Dimens.d24.responsive(),
+              return GestureDetector(
+                onTap: () {
+                  context.pushNamed(
+                    NavigationContains.searchPage,
+                    extra: {
+                      'search_plants_filter': SearchPlantsFilter(
+                        plantTypesSelected: [PlantType.values[index]],
+                      ),
+                    },
+                  );
+                },
+                child: Stack(
+                  alignment: AlignmentDirectional.centerStart,
+                  children: [
+                    Image.asset(
+                      PlantType.values[index].imagePath,
                     ),
-                    child: Text(
-                      PlantType.values[index].titleWithNewLine,
-                      style: Theme.of(context).textTheme.labelSmall?.copyWith(
-                            color: AppColors.white,
-                            fontWeight: FontWeight.bold,
-                          ),
-                    ),
-                  )
-                ],
+                    Padding(
+                      padding: EdgeInsets.only(
+                        left: Dimens.d12.responsive(),
+                        right: Dimens.d24.responsive(),
+                      ),
+                      child: Text(
+                        PlantType.values[index].titleWithNewLine,
+                        style: Theme.of(context).textTheme.labelSmall?.copyWith(
+                              color: AppColors.white,
+                              fontWeight: FontWeight.bold,
+                            ),
+                      ),
+                    )
+                  ],
+                ),
               );
             },
           ),
