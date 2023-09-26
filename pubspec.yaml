@@ -40,7 +40,7 @@ dependencies:
   shared:
     path: ./packages/shared
   shared_preferences: ^2.2.0
-  syncfusion_flutter_gauges: ^22.2.9
+  syncfusion_flutter_gauges: ^23.1.38
   google_sign_in: ^6.1.5
 
 dev_dependencies:
