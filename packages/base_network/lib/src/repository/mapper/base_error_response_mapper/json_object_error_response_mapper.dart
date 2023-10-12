@@ -10,7 +10,7 @@ class JsonObjectErrorResponseMapper
     return ServerError(
       generalServerStatusCode: data?['error']?['status_code'],
       generalServerErrorId: data?['error']?['error_code'],
-      generalMessage: data?['error']?['message'],
+      generalMessage: data?['message'],
     );
   }
 }

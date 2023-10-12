@@ -39,6 +39,10 @@ class AppImages {
   static const String imageToxic = 'assets/images/image_toxic.png';
   static const String imageMyPlantEmpty =
       'assets/images/image_my_plant_empty.jpg';
+  static const String imageFacebookLogo =
+      'assets/images/image_facebook_logo.png';
+  static const String imageGoogleLogo = 'assets/images/image_google_logo.png';
+  static const String imageDefaultUser = 'assets/images/image_default_user.png';
 }
 
 class AppIcons {
@@ -91,4 +95,17 @@ class AppIcons {
   static const String iconTabHabits = 'assets/icons/icon_tab_habits.png';
   static const String iconTabLeaves = 'assets/icons/icon_tab_leaves.png';
   static const String iconTabOther = 'assets/icons/icon_tab_other.png';
+  static const String iconFaq = 'assets/icons/icon_faq.png';
+  static const String iconFeedback = 'assets/icons/icon_feedback.png';
+  static const String iconRating = 'assets/icons/icon_rating.png';
+  static const String iconContact = 'assets/icons/icon_contact.png';
+  static const String iconTermsAndConditions =
+      'assets/icons/icon_terms_and_conditions.png';
+  static const String iconPrivacyPolice =
+      'assets/icons/icon_privacy_police.png';
+  static const String iconInviteFriend = 'assets/icons/icon_invite_friend.png';
+  static const String iconLocation = 'assets/icons/icon_location.png';
+  static const String iconWeatherAlert = 'assets/icons/icon_weather_alert.png';
+  static const String iconCareReminder = 'assets/icons/icon_care_reminder.png';
+  static const String iconPlantCoin = 'assets/icons/icon_plant_coin.png';
 }

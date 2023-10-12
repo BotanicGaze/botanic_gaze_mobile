@@ -40,7 +40,7 @@ class _LoadingPageState extends State<LoadingPage>
 
   @override
   Widget build(BuildContext context) {
-    final width = ScreenUtil().screenWidth * .23;
+    final width = ScreenUtil().screenWidth * .25;
 
     return Scaffold(
       backgroundColor: Colors.black.withOpacity(0.05),
@@ -48,9 +48,9 @@ class _LoadingPageState extends State<LoadingPage>
         alignment: AlignmentDirectional.center,
         children: [
           BackdropFilter(
-            filter: ImageFilter.blur(sigmaY: 10, sigmaX: 10),
+            filter: ImageFilter.blur(sigmaY: 5, sigmaX: 5),
             child: Container(
-              color: Colors.black.withOpacity(0.1),
+              color: Colors.black.withOpacity(0.05),
             ),
           ),
           AnimatedBuilder(
@@ -63,7 +63,7 @@ class _LoadingPageState extends State<LoadingPage>
                     showTicks: false,
                     startAngle: linearAnimation.value * 360,
                     endAngle: (linearAnimation.value * 360) + 200,
-                    radiusFactor: 0.25,
+                    radiusFactor: 0.28,
                     axisLineStyle: AxisLineStyle(
                       thickness: 0.05,
                       cornerStyle: CornerStyle.bothCurve,

@@ -18,3 +18,4 @@ export 'src/navigation/app_popup_info.dart';
 export 'package:go_router/go_router.dart';
 export 'package:flutter_bloc/flutter_bloc.dart';
 export 'package:provider/provider.dart';
+export 'package:flutter_easyloading/flutter_easyloading.dart';

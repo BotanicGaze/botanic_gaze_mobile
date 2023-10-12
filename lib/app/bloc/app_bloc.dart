@@ -7,18 +7,18 @@ import 'package:botanic_gaze/di/di.dart';
 import 'package:botanic_gaze/services/location_service.dart';
 import 'package:shared/shared.dart';
 
-part 'splash_event.dart';
-part 'splash_state.dart';
+part 'app_event.dart';
+part 'app_state.dart';
 
-@Injectable()
-class SplashBloc extends BaseBloc<SplashEvent, SplashState> {
-  SplashBloc() : super(const SplashState()) {
+@LazySingleton()
+class AppBloc extends BaseBloc<AppEvent, AppState> {
+  AppBloc() : super(const AppState()) {
     on<AppInitialized>(_onAppInitialized);
   }
 
   Future<void> _onAppInitialized(
     AppInitialized event,
-    Emitter<SplashState> emit,
+    Emitter<AppState> emit,
   ) async {
     return runBlocCatching(
       action: () async {

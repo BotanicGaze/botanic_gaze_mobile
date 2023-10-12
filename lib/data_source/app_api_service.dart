@@ -17,6 +17,8 @@ class AppApiService {
   static const versionPrefix = '/api/v1';
   static const plantPrefix = '/plant/';
   static const weatherPrefix = '/weather/';
+  static const authPrefix = '/auth/';
+  static const userPrefix = '/user/';
 
   Future<DataResponse<String>> getProtected() async {
     try {
@@ -137,5 +139,75 @@ class AppApiService {
       successResponseMapperType: SuccessResponseMapperType.dataJsonObject,
       decoder: WeatherResponse.fromJson,
     );
+  }
+
+  Future<DataResponse<UserLoginResponse>> loginWithSocial(
+    AccountLoginType loginType,
+    String accessToken,
+  ) async {
+    return plantApiClient
+        .request<DataResponse<UserLoginResponse>, UserLoginResponse>(
+      method: RestMethod.post,
+      path: '$versionPrefix$authPrefix${loginType.apiEndpoint}',
+      body: {'access_token': accessToken},
+      successResponseMapperType: SuccessResponseMapperType.dataJsonObject,
+      decoder: UserLoginResponse.fromJson,
+      headers: {
+        'x-csrf-token': SpUtil.getString(AppPreferencesKey.xCsrfTokenKey)
+      },
+    );
+  }
+
+  Future<DataResponse<UserInfoResponse>> getUserInfo() async {
+    return plantApiClient
+        .request<DataResponse<UserInfoResponse>, UserInfoResponse>(
+      method: RestMethod.get,
+      path: '$versionPrefix$userPrefix/userInfo',
+      successResponseMapperType: SuccessResponseMapperType.dataJsonObject,
+      decoder: UserInfoResponse.fromJson,
+      headers: {
+        'x-csrf-token': SpUtil.getString(AppPreferencesKey.xCsrfTokenKey),
+        'Authorization':
+            SpUtil.getString(AppPreferencesKey.apiTokenAuthentication)
+      },
+    );
+  }
+
+  Future<DataResponse<UserInfoResponse>> dailyCheckIn() async {
+    return plantApiClient
+        .request<DataResponse<UserInfoResponse>, UserInfoResponse>(
+      method: RestMethod.post,
+      path: '$versionPrefix$userPrefix/checkIn',
+      successResponseMapperType: SuccessResponseMapperType.dataJsonObject,
+      decoder: UserInfoResponse.fromJson,
+      headers: {
+        'x-csrf-token': SpUtil.getString(AppPreferencesKey.xCsrfTokenKey),
+        'Authorization':
+            SpUtil.getString(AppPreferencesKey.apiTokenAuthentication)
+      },
+    );
+  }
+
+  Future<String> getLocationFromLatLng(
+    double lat,
+    double lng,
+  ) async {
+    final response = await plantApiClient.fetch<dynamic>(
+      RequestOptions(
+        path: '/data/reverse-geocode-client',
+        baseUrl: 'https://api.bigdatacloud.net',
+        queryParameters: {
+          'latitude': lat,
+          'longitude': lng,
+        },
+      ),
+    );
+
+    if (response.statusCode == HttpStatus.ok) {
+      final data = response.data as Map;
+      return '${data['locality']}';
+    }
+
+    return '';
   }
 }

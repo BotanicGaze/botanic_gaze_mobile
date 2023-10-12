@@ -1,5 +1,6 @@
 export 'app_images.dart';
 export 'app_preferences_key.dart';
+export 'enums/account_login_type.dart';
 export 'enums/aspect_enum.dart';
 export 'enums/attribute_enum.dart';
 export 'enums/colour_enum.dart';
@@ -7,6 +8,7 @@ export 'enums/foliage_enum.dart';
 export 'enums/habit_enum.dart';
 export 'enums/height_enum.dart';
 export 'enums/moisture_enum.dart';
+export 'enums/notification_type.dart';
 export 'enums/ph_level_enum.dart';
 export 'enums/plant_type_enum.dart';
 export 'enums/season_of_interest.dart';

@@ -12,7 +12,12 @@
           "package_name": "com.example.verygoodcore.botanic_gaze"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "544238475290-k0rhhls5biu38sditostclgat2k6mos5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyAa4A0VnHb8NZ9hUg3OmvFMUUB4IDadjKA"
@@ -20,7 +25,55 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "544238475290-k0rhhls5biu38sditostclgat2k6mos5.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "544238475290-sajfhjthbu6tt5e6273bl7fuausqhemn.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.verygoodcore.botanic-gaze.dev"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:544238475290:android:acf50192bb16faf682d9a3",
+        "android_client_info": {
+          "package_name": "com.example.verygoodcore.botanic_gaze.dev"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "544238475290-k0rhhls5biu38sditostclgat2k6mos5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAa4A0VnHb8NZ9hUg3OmvFMUUB4IDadjKA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "544238475290-k0rhhls5biu38sditostclgat2k6mos5.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "544238475290-sajfhjthbu6tt5e6273bl7fuausqhemn.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.verygoodcore.botanic-gaze.dev"
+              }
+            }
+          ]
         }
       }
     }

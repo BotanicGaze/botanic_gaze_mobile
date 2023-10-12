@@ -27,9 +27,9 @@
                 android:resource="@style/NormalTheme"
             />
             <meta-data android:name="com.facebook.sdk.ApplicationId"
-                android:value="@string/facebook_app_id" />
+                android:value="303880575587303" />
             <meta-data android:name="com.facebook.sdk.ClientToken"
-                android:value="@string/facebook_client_token" />
+                android:value="ee787d81646e794f71528b403151e3b9" />
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />

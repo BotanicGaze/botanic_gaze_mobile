@@ -1,7 +1,7 @@
-part of 'splash_bloc.dart';
+part of 'app_bloc.dart';
 
-class SplashState extends BaseBlocState with EquatableMixin {
-  const SplashState({
+class AppState extends BaseBlocState with EquatableMixin {
+  const AppState({
     this.appInitializedFinish = false,
     this.xCsrfToken,
   });
@@ -12,11 +12,11 @@ class SplashState extends BaseBlocState with EquatableMixin {
   @override
   List<Object> get props => [appInitializedFinish];
 
-  SplashState copyWith({
+  AppState copyWith({
     bool? appInitializedFinish,
     String? xCsrfToken,
   }) {
-    return SplashState(
+    return AppState(
       appInitializedFinish: appInitializedFinish ?? this.appInitializedFinish,
       xCsrfToken: xCsrfToken ?? this.xCsrfToken,
     );

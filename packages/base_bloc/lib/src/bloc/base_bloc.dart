@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:base_bloc/base_bloc.dart';
+import 'package:base_bloc/src/loading_screen.dart';
 import 'package:shared/shared.dart';
 
 abstract class BaseBloc<E extends BaseBlocEvent, S extends BaseBlocState>
@@ -42,11 +43,13 @@ abstract class BaseBlocDelegate<E extends BaseBlocEvent,
   }
 
   void showLoading() {
-    commonBloc.add(const LoadingVisibilityEmitted(isLoading: true));
+    // commonBloc.add(const LoadingVisibilityEmitted(isLoading: true));
+    LoadingScreen.show();
   }
 
   void hideLoading() {
-    commonBloc.add(const LoadingVisibilityEmitted(isLoading: false));
+    // commonBloc.add(const LoadingVisibilityEmitted(isLoading: false));
+    LoadingScreen.close();
   }
 
   Future<void> runBlocCatching({

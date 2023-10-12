@@ -47,23 +47,23 @@ abstract class BasePageStateDelegate<T extends StatefulWidget,
         listener: (context, state) {
           handleException(state.appExceptionWrapper!);
         },
-        child: buildPageListeners(
-          child: isAppWidget
-              ? buildPage(context)
-              : Stack(
-                  children: [
-                    buildPage(context),
-                    BlocBuilder<CommonBloc, CommonState>(
-                      buildWhen: (previous, current) =>
-                          previous.isLoading != current.isLoading,
-                      builder: (context, state) => Visibility(
-                        visible: state.isLoading,
-                        child: buildPageLoading(),
-                      ),
-                    ),
-                  ],
-                ),
-        ),
+        child: buildPageListeners(child: buildPage(context)
+            // child: isAppWidget
+            //     ? buildPage(context)
+            //     : Stack(
+            //         children: [
+            //           buildPage(context),
+            //           BlocBuilder<CommonBloc, CommonState>(
+            //             buildWhen: (previous, current) =>
+            //                 previous.isLoading != current.isLoading,
+            //             builder: (context, state) => Visibility(
+            //               visible: state.isLoading,
+            //               child: buildPageLoading(),
+            //             ),
+            //           ),
+            //         ],
+            //       ),
+            ),
       ),
     );
   }

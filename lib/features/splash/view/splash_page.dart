@@ -1,8 +1,10 @@
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:app_ui/app_ui.dart';
 import 'package:base_bloc/base_bloc.dart';
+import 'package:base_network/base_network.dart';
+import 'package:botanic_gaze/app/index.dart';
 import 'package:botanic_gaze/constants/index.dart';
-import 'package:botanic_gaze/features/splash/index.dart';
+import 'package:botanic_gaze/features/profile/index.dart';
 import 'package:botanic_gaze/navigation/index.dart';
 import 'package:botanic_gaze/widgets/index.dart';
 import 'package:flutter/material.dart';
@@ -14,23 +16,30 @@ class SplashPage extends StatefulWidget {
   State<SplashPage> createState() => _SplashPageState();
 }
 
-class _SplashPageState extends BasePageState<SplashPage, SplashBloc> {
+class _SplashPageState extends State<SplashPage> {
   int count = 0;
+  ProfileBloc get profileBloc => getIt<ProfileBloc>();
+
   @override
   void initState() {
     super.initState();
-    bloc.add(AppInitialized());
+
+    // bloc.add(AppInitialized());
   }
 
   @override
-  Widget buildPage(BuildContext context) {
-    return BlocListener<SplashBloc, SplashState>(
-      listenWhen: (previous, current) =>
-          previous.appInitializedFinish != current.appInitializedFinish,
+  Widget build(BuildContext context) {
+    return BlocListener<AppBloc, AppState>(
       listener: (context, state) {
-        count++;
-        if (count == 2) {
-          context.go(NavigationContains.dashBoardPage);
+        if (state.appInitializedFinish) {
+          // profileBloc.add(DailyCheckIn());
+          profileBloc
+            ..add(GetUserInfo())
+            ..add(DailyCheckIn());
+          count++;
+          if (count == 2) {
+            context.go(NavigationContains.dashBoardPage);
+          }
         }
       },
       child: CommonScaffold(
