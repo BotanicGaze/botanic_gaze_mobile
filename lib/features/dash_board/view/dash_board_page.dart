@@ -1,13 +1,15 @@
 import 'package:app_ui/app_ui.dart';
+import 'package:base_bloc/base_bloc.dart';
+import 'package:base_network/base_network.dart';
 import 'package:botanic_gaze/constants/index.dart';
 import 'package:botanic_gaze/features/dash_board/dash_board.dart';
 import 'package:botanic_gaze/features/explore/pages/view.dart';
-import 'package:botanic_gaze/features/my_plants/index.dart';
+import 'package:botanic_gaze/features/my_garden/index.dart';
 import 'package:botanic_gaze/features/profile/index.dart';
 import 'package:botanic_gaze/features/search_tab/index.dart';
+import 'package:botanic_gaze/services/global_callback.dart';
 import 'package:botanic_gaze/widgets/index.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 
 class DashBoardPage extends StatelessWidget {
   const DashBoardPage({super.key});
@@ -41,9 +43,20 @@ class _DashBoardViewState extends State<DashBoardView> {
 
   final PageController pageController = PageController();
 
+  @override
+  void initState() {
+    super.initState();
+    getIt<GlobalCallback>().changeDashboardTab = _changeDashboardTab;
+  }
+
+  void _changeDashboardTab(int value) {
+    setState(() => currentIndex = value);
+    pageController.jumpToPage(value);
+  }
+
   List<Widget> tabView = [
     const SearchTabPage(),
-    const MyPlantsPage(),
+    const MyGardenPage(),
     const ExplorePage(),
     const ProfilePage()
   ];

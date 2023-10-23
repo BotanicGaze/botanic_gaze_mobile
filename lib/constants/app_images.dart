@@ -108,4 +108,6 @@ class AppIcons {
   static const String iconWeatherAlert = 'assets/icons/icon_weather_alert.png';
   static const String iconCareReminder = 'assets/icons/icon_care_reminder.png';
   static const String iconPlantCoin = 'assets/icons/icon_plant_coin.png';
+  static const String iconCheck = 'assets/icons/icon_check.png';
+  static const String iconError = 'assets/icons/icon_error.png';
 }

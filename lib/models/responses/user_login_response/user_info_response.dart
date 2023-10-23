@@ -1,6 +1,5 @@
-import 'package:equatable/equatable.dart';
-
 import 'package:botanic_gaze/models/responses/user_login_response/coin.dart';
+import 'package:equatable/equatable.dart';
 
 class UserInfoResponse extends Equatable {
   const UserInfoResponse({
@@ -46,6 +45,8 @@ class UserInfoResponse extends Equatable {
   final Coin? coin;
   final DateTime? createdAt;
   final DateTime? updatedAt;
+
+  String get niceName => '${firstName ?? ""} ${lastName ?? ""}'.trim();
 
   Map<String, dynamic> toJson() => {
         'firstName': firstName,

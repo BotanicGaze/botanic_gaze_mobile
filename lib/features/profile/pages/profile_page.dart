@@ -2,6 +2,7 @@ import 'package:app_ui/app_ui.dart';
 import 'package:base_bloc/base_bloc.dart';
 import 'package:botanic_gaze/constants/index.dart';
 import 'package:botanic_gaze/features/profile/index.dart';
+import 'package:botanic_gaze/navigation/index.dart';
 import 'package:botanic_gaze/services/dynamic_link_service.dart';
 import 'package:botanic_gaze/widgets/index.dart';
 import 'package:flutter/cupertino.dart';
@@ -288,6 +289,10 @@ class _ProfilePageState extends BasePageState<ProfilePage, ProfileBloc> {
                             Icons.arrow_forward_ios_sharp,
                             size: 16,
                           ),
+                          onTap: () {
+                            context
+                                .pushNamed(NavigationContains.feedbackScreen);
+                          },
                         ),
                         // const Divider(),
                         profileSettingItem(

@@ -1,4 +1,10 @@
 export 'requests/plant_search_request.dart';
+export 'requests/reminder_request.dart';
+export 'responses/feedback_model.dart';
+export 'responses/my_plant_model/image.dart';
+export 'responses/my_plant_model/my_plant_model.dart';
+export 'responses/my_plant_model/plant_info.dart';
+export 'responses/my_plant_model/plant_reminder.dart';
 export 'responses/plant_detail_model/colour_with_attribute.dart';
 export 'responses/plant_detail_model/image.dart';
 export 'responses/plant_detail_model/plant_detail_model.dart';

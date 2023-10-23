@@ -2,12 +2,15 @@ import 'package:base_bloc/base_bloc.dart';
 import 'package:botanic_gaze/features/camera/index.dart';
 import 'package:botanic_gaze/features/dash_board/view/view.dart';
 import 'package:botanic_gaze/features/explore/index.dart';
+import 'package:botanic_gaze/features/feedback/index.dart';
 import 'package:botanic_gaze/features/gallery/index.dart';
+import 'package:botanic_gaze/features/my_garden/index.dart';
 import 'package:botanic_gaze/features/plant_detail/index.dart';
 import 'package:botanic_gaze/features/search_plants/index.dart';
 import 'package:botanic_gaze/features/splash/index.dart';
 import 'package:botanic_gaze/models/index.dart';
 import 'package:botanic_gaze/navigation/navigation_contains.dart';
+import 'package:botanic_gaze/widgets/index.dart';
 import 'package:flutter/material.dart';
 import 'package:shared/shared.dart';
 
@@ -119,6 +122,24 @@ class AppNavigatorImpl extends AppNavigator with LogMixin {
               );
             },
           ),
+          GoRoute(
+            path: NavigationContains.myPlantDetail,
+            name: NavigationContains.myPlantDetail,
+            builder: (context, state) {
+              final extra = state.extra as MyPlantModel?;
+              return MyPlantDetailScreen(
+                item: extra,
+              );
+            },
+          ),
+          GoRoute(
+            path: NavigationContains.feedbackScreen,
+            name: NavigationContains.feedbackScreen,
+            builder: (context, state) {
+              // final extra = state.extra as MyPlantModel?;
+              return const FeedbackScreen();
+            },
+          ),
         ],
       );
 
@@ -168,13 +189,29 @@ class AppNavigatorImpl extends AppNavigator with LogMixin {
         String? positiveTitle,
         String? negativeTitle,
       ) async {
+        // return null;
+        await AppConfirmDialog.show(
+          globalContext,
+          content: message,
+          positiveText: positiveTitle,
+          negativeText: negativeTitle,
+          positivePress: onPositive,
+          negativePress: onNegative,
+        );
         return null;
       },
     );
   }
 
   @override
-  void showErrorSnackBar(String message, {Duration? duration}) {}
+  void showErrorSnackBar(String message, {Duration? duration}) {
+    ViewUtils.showAppSnackBar(
+      globalContext,
+      message,
+      duration: duration,
+      // backgroundColor: AppColors.current.primaryColor,
+    );
+  }
 
   @override
   Future<T?> showAppGeneralDialog<T extends Object?>(

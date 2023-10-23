@@ -19,6 +19,7 @@ class AppApiService {
   static const weatherPrefix = '/weather/';
   static const authPrefix = '/auth/';
   static const userPrefix = '/user/';
+  static const myGardenPrefix = '/my-garden/';
 
   Future<DataResponse<String>> getProtected() async {
     try {
@@ -180,6 +181,99 @@ class AppApiService {
       path: '$versionPrefix$userPrefix/checkIn',
       successResponseMapperType: SuccessResponseMapperType.dataJsonObject,
       decoder: UserInfoResponse.fromJson,
+      headers: {
+        'x-csrf-token': SpUtil.getString(AppPreferencesKey.xCsrfTokenKey),
+        'Authorization':
+            SpUtil.getString(AppPreferencesKey.apiTokenAuthentication)
+      },
+    );
+  }
+
+  Future<ResultsListResponse<MyPlantModel>> getMyPlant({
+    int page = 1,
+    int perPage = 20,
+  }) async {
+    return plantApiClient
+        .request<ResultsListResponse<MyPlantModel>, MyPlantModel>(
+      method: RestMethod.get,
+      path: '$versionPrefix$myGardenPrefix/plants',
+      queryParameters: {
+        'page': page,
+        'perPage': perPage,
+      },
+      successResponseMapperType: SuccessResponseMapperType.resultsJsonArray,
+      decoder: MyPlantModel.fromJson,
+      headers: {
+        'x-csrf-token': SpUtil.getString(AppPreferencesKey.xCsrfTokenKey),
+        'Authorization':
+            SpUtil.getString(AppPreferencesKey.apiTokenAuthentication)
+      },
+    );
+  }
+
+  Future<DataResponse<dynamic>> addPlantToGarden({
+    required int plantId,
+  }) async {
+    return plantApiClient.request<DataResponse<dynamic>, dynamic>(
+      method: RestMethod.post,
+      path: '$versionPrefix$myGardenPrefix/plants',
+      body: {'plantId': plantId.toString()},
+      successResponseMapperType: SuccessResponseMapperType.dataJsonObject,
+      headers: {
+        'x-csrf-token': SpUtil.getString(AppPreferencesKey.xCsrfTokenKey),
+        'Authorization':
+            SpUtil.getString(AppPreferencesKey.apiTokenAuthentication)
+      },
+    );
+  }
+
+  Future<DataResponse<UserInfoResponse>> removePlantFromGarden({
+    required int plantId,
+  }) async {
+    return plantApiClient
+        .request<DataResponse<UserInfoResponse>, UserInfoResponse>(
+      method: RestMethod.delete,
+      path: '$versionPrefix$myGardenPrefix/plants/$plantId',
+      successResponseMapperType: SuccessResponseMapperType.dataJsonObject,
+      decoder: UserInfoResponse.fromJson,
+      headers: {
+        'x-csrf-token': SpUtil.getString(AppPreferencesKey.xCsrfTokenKey),
+        'Authorization':
+            SpUtil.getString(AppPreferencesKey.apiTokenAuthentication)
+      },
+    );
+  }
+
+  Future<DataResponse<PlantReminder>> addReminder({
+    required int plantId,
+    required ReminderType reminderType,
+    required DateTime date,
+    required RepeatType repeatType,
+  }) async {
+    return plantApiClient.request<DataResponse<PlantReminder>, PlantReminder>(
+      method: RestMethod.post,
+      path: '$versionPrefix$myGardenPrefix/reminders/$plantId',
+      successResponseMapperType: SuccessResponseMapperType.dataJsonObject,
+      decoder: PlantReminder.fromJson,
+      headers: {
+        'x-csrf-token': SpUtil.getString(AppPreferencesKey.xCsrfTokenKey),
+        'Authorization':
+            SpUtil.getString(AppPreferencesKey.apiTokenAuthentication)
+      },
+    );
+  }
+
+  Future<DataResponse<FeedbackModel>> sendFeedback({
+    required String email,
+    required String issueText,
+    required String title,
+    required String appVersion,
+  }) async {
+    return plantApiClient.request<DataResponse<FeedbackModel>, FeedbackModel>(
+      method: RestMethod.post,
+      path: '$versionPrefix/feedback/issue',
+      successResponseMapperType: SuccessResponseMapperType.dataJsonObject,
+      decoder: FeedbackModel.fromJson,
       headers: {
         'x-csrf-token': SpUtil.getString(AppPreferencesKey.xCsrfTokenKey),
         'Authorization':

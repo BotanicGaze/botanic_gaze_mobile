@@ -87,7 +87,7 @@ class FirebaseDynamicLinksService {
 
   static void _saveInviteId(Uri? deepLink) {
     if (deepLink == null) return;
-    final data = deepLink.toString();
+    // final data = deepLink.toString();
     // if (data.contains('referralCode')) {
     //   final invite = data.substring(
     //     data.indexOf('referralCode=') + 'referralCode='.length + 1,

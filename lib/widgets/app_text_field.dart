@@ -16,6 +16,8 @@ class AppTextField extends StatefulWidget {
     this.onChanged,
     this.onSubmitted,
     this.onClear,
+    this.maxLine,
+    this.validator,
   });
   final Widget? prefixIcon;
   final String hintText;
@@ -26,7 +28,9 @@ class AppTextField extends StatefulWidget {
   final TextInputAction? textInputAction;
   final ValueChanged<String>? onChanged;
   final ValueChanged<String>? onSubmitted;
+  final FormFieldValidator<String>? validator;
   final VoidCallback? onClear;
+  final int? maxLine;
 
   @override
   State<AppTextField> createState() => _AppTextFieldState();
@@ -42,12 +46,13 @@ class _AppTextFieldState extends State<AppTextField> {
 
   @override
   Widget build(BuildContext context) {
-    return TextField(
+    return TextFormField(
       onTap: widget.onTap,
       controller: controller,
       textInputAction: widget.textInputAction,
       onChanged: widget.onChanged,
-      onSubmitted: widget.onSubmitted,
+      maxLines: widget.maxLine,
+      validator: widget.validator,
       decoration: InputDecoration(
         hintText: widget.hintText,
         fillColor: const Color(0xFFF3F3F3),

@@ -1,7 +1,9 @@
 import 'package:botanic_gaze/features/camera/index.dart';
 import 'package:botanic_gaze/features/dash_board/dash_board.dart';
 import 'package:botanic_gaze/features/explore/index.dart';
+import 'package:botanic_gaze/features/feedback/index.dart';
 import 'package:botanic_gaze/features/gallery/index.dart';
+import 'package:botanic_gaze/features/my_garden/index.dart';
 import 'package:botanic_gaze/features/plant_detail/index.dart';
 import 'package:botanic_gaze/features/search_plants/index.dart';
 import 'package:botanic_gaze/features/splash/index.dart';
@@ -38,4 +40,10 @@ class NavigationContains {
 
   ///go to [PopularPlantDetail]
   static const String popularPlantDetail = '/popular_plant_detail';
+
+  ///go to [MyPlantDetailScreen]
+  static const String myPlantDetail = '/my_plant_detail';
+
+  ///go to [FeedbackScreen]
+  static const String feedbackScreen = '/feedback_screen';
 }

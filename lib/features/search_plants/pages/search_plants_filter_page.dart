@@ -64,7 +64,7 @@ class _SearchPlantsFilterPageState
               BlocBuilder<SearchPlantsFilterBloc, SearchPlantsFilterState>(
                 builder: (context, state) {
                   return Expanded(
-                    child: OutlinedButton(
+                    child: AppOutlineButton.normal(
                       onPressed: state.hasFilter
                           ? () => bloc.add(ResetAllFilter())
                           : null,
@@ -78,7 +78,7 @@ class _SearchPlantsFilterPageState
                 child: BlocBuilder<SearchPlantsFilterBloc,
                     SearchPlantsFilterState>(
                   builder: (context, state) {
-                    return FilledButton(
+                    return AppButton.normal(
                       onPressed: state.hasFilter
                           ? () {
                               context.pop(

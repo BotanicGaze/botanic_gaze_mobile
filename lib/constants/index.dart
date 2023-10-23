@@ -11,6 +11,8 @@ export 'enums/moisture_enum.dart';
 export 'enums/notification_type.dart';
 export 'enums/ph_level_enum.dart';
 export 'enums/plant_type_enum.dart';
+export 'enums/reminder_type.dart';
+export 'enums/repeat_type.dart';
 export 'enums/season_of_interest.dart';
 export 'enums/soil_enum.dart';
 export 'enums/spread_enum.dart';

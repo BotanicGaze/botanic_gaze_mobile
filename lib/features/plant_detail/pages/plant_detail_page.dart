@@ -1,13 +1,16 @@
 import 'package:app_ui/app_ui.dart';
 import 'package:base_bloc/base_bloc.dart';
+import 'package:base_network/base_network.dart';
 import 'package:botanic_gaze/constants/index.dart';
 import 'package:botanic_gaze/features/plant_detail/index.dart';
 import 'package:botanic_gaze/features/plant_detail/views/how_to_grow.dart';
 import 'package:botanic_gaze/models/index.dart';
 import 'package:botanic_gaze/navigation/index.dart';
+import 'package:botanic_gaze/services/global_callback.dart';
 import 'package:botanic_gaze/widgets/index.dart';
 import 'package:flutter/material.dart';
 import 'package:scroll_to_index/scroll_to_index.dart';
+import 'package:shared/shared.dart';
 
 class PlantDetailPage extends StatefulWidget {
   const PlantDetailPage({required this.plantId, super.key});
@@ -29,7 +32,21 @@ class _PlantDetailPageState
 
   @override
   Widget buildPage(BuildContext context) {
-    return BlocBuilder<PlantDetailBloc, PlantDetailState>(
+    return BlocConsumer<PlantDetailBloc, PlantDetailState>(
+      listenWhen: (previous, current) =>
+          previous.exception != current.exception && current.exception != null,
+      listener: (context, state) {
+        final exception = state.exception as RemoteException?;
+        getIt<AppNavigator>().showAppDialog(
+          AppPopupInfo.confirmDialog(
+            message: exception?.generalServerMessage ?? '',
+            onNegative: () {
+              context.pop();
+              getIt<GlobalCallback>().changeDashboardTab?.call(1);
+            },
+          ),
+        );
+      },
       builder: (context, state) {
         return CommonScaffold(
           backgroundColor: Theme.of(context).cardColor,
@@ -323,8 +340,12 @@ class _PlantDetailPageState
               ? const SizedBox()
               : AppSafeArea(
                   minimum: EdgeInsets.all(Dimens.d16.responsive()),
-                  child: FilledButton(
-                    onPressed: () {},
+                  child: AppButton.fullSize(
+                    onPressed: () {
+                      bloc.add(
+                        AddPlantToGarden(state.plantDetailModel?.id ?? 0),
+                      );
+                    },
                     child: const Text('Add to my garden'),
                   ),
                 ),

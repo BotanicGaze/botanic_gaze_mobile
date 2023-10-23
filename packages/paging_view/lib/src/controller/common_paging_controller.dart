@@ -30,12 +30,19 @@ class CommonPagingController<T> implements Disposable {
   // call when initState to listen to trigger load more
   void listen({
     required ValueChanged<int> onLoadMore,
+    VoidCallback? onRefresh,
   }) {
-    pagingController.addPageRequestListener((pageKey) {
-      if (pageKey > PagingConstants.initialPage) {
-        onLoadMore(pageKey);
-      }
-    });
+    pagingController
+      ..addPageRequestListener((pageKey) {
+        if (pageKey > PagingConstants.initialPage) {
+          onLoadMore(pageKey);
+        }
+      })
+      ..addStatusListener((status) {
+        if (status == PagingStatus.loadingFirstPage) {
+          onRefresh?.call();
+        }
+      });
   }
 
   // call append data when load first page / more page success
@@ -88,6 +95,10 @@ class CommonPagingController<T> implements Disposable {
     pagingController.itemList?.clear();
 
     pagingController.notifyListeners();
+  }
+
+  void refresh() {
+    pagingController.refresh();
   }
 
   @override
