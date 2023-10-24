@@ -3,7 +3,7 @@ import 'package:base_bloc/base_bloc.dart';
 import 'package:base_network/base_network.dart';
 import 'package:botanic_gaze/constants/index.dart';
 import 'package:botanic_gaze/features/my_garden/index.dart';
-import 'package:botanic_gaze/features/my_garden/widgets/my_plant_item_widget.dart';
+import 'package:botanic_gaze/features/profile/index.dart';
 import 'package:botanic_gaze/models/index.dart';
 import 'package:botanic_gaze/navigation/index.dart';
 import 'package:botanic_gaze/services/global_callback.dart';
@@ -70,6 +70,13 @@ class _MyGardenPageState extends BasePageState<MyGardenPage, MyGardenBloc> {
             _pagingController.error = state.exception;
           },
         ),
+        BlocListener<ProfileBloc, ProfileState>(
+          listenWhen: (previous, current) =>
+              previous.userInfo != current.userInfo,
+          listener: (context, state) {
+            _pagingController.refresh();
+          },
+        ),
       ],
       child: child,
     );
@@ -81,27 +88,6 @@ class _MyGardenPageState extends BasePageState<MyGardenPage, MyGardenBloc> {
       appBar: AppBar(
         title: const Text('My plant'),
         centerTitle: false,
-        // actions: [
-        //   FilledButton(
-        //     style: FilledButton.styleFrom(
-        //       minimumSize:
-        //           Size(Dimens.d54.responsive(), Dimens.d38.responsive()),
-        //       textStyle: Theme.of(context).textTheme.bodySmall,
-        //       padding: EdgeInsets.symmetric(
-        //         horizontal: Dimens.d16.responsive(),
-        //         vertical: Dimens.d8.responsive(),
-        //       ),
-        //       shape: RoundedRectangleBorder(
-        //         borderRadius: BorderRadius.circular(Dimens.d32.responsive()),
-        //       ),
-        //     ),
-        //     onPressed: () {},
-        //     child: const Text('Add plant'),
-        //   ),
-        //   SizedBox(
-        //     width: Dimens.d16.responsive(),
-        //   )
-        // ],
       ),
       body: Column(
         children: [

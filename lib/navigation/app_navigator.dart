@@ -6,6 +6,7 @@ import 'package:botanic_gaze/features/feedback/index.dart';
 import 'package:botanic_gaze/features/gallery/index.dart';
 import 'package:botanic_gaze/features/my_garden/index.dart';
 import 'package:botanic_gaze/features/plant_detail/index.dart';
+import 'package:botanic_gaze/features/profile/index.dart';
 import 'package:botanic_gaze/features/search_plants/index.dart';
 import 'package:botanic_gaze/features/splash/index.dart';
 import 'package:botanic_gaze/models/index.dart';
@@ -140,6 +141,14 @@ class AppNavigatorImpl extends AppNavigator with LogMixin {
               return const FeedbackScreen();
             },
           ),
+          GoRoute(
+            path: NavigationContains.frequentlyAskedQuestions,
+            name: NavigationContains.frequentlyAskedQuestions,
+            builder: (context, state) {
+              // final extra = state.extra as MyPlantModel?;
+              return const FrequentlyAskedQuestions();
+            },
+          ),
         ],
       );
 
@@ -162,8 +171,9 @@ class AppNavigatorImpl extends AppNavigator with LogMixin {
   Future<bool> pop<T extends Object?>({
     T? result,
     bool useRootNavigator = false,
-  }) {
-    throw UnimplementedError();
+  }) async {
+    globalContext.pop<T>();
+    return true;
   }
 
   @override
@@ -198,6 +208,20 @@ class AppNavigatorImpl extends AppNavigator with LogMixin {
           positivePress: onPositive,
           negativePress: onNegative,
         );
+        return null;
+      },
+      successDialog:
+          (String title, String message, VoidCallback? onButtonPressed) async {
+        await AppDialog.showSuccess(
+          globalContext,
+          content: message,
+          onClose: onButtonPressed,
+          barrierDismissible: false,
+        );
+        return null;
+      },
+      infoDialog:
+          (String title, String message, VoidCallback? onButtonPressed) {
         return null;
       },
     );

@@ -1,5 +1,6 @@
 import 'package:app_ui/app_ui.dart';
-import 'package:botanic_gaze/widgets/dialog/app_dialog_enum.dart';
+import 'package:base_bloc/base_bloc.dart';
+import 'package:botanic_gaze/widgets/index.dart';
 import 'package:flutter/material.dart';
 
 const Duration _dialogDisplayDuration = Duration(seconds: 2);
@@ -9,11 +10,13 @@ class AppDialog extends StatefulWidget {
     required this.style,
     required this.content,
     required this.duration,
+    this.title,
     super.key,
     this.onClose,
     this.largePadding = false,
   });
   final AppDialogStyle style;
+  final String? title;
   final String content;
   final Duration duration;
   final bool largePadding;
@@ -87,18 +90,18 @@ class _AppDialogState extends State<AppDialog> {
             vertical: Dimens.d24.responsive(),
           )
         : EdgeInsets.all(Dimens.d12.responsive());
-    WidgetsBinding.instance.addPostFrameCallback(
-      (timeStamp) {
-        Future.delayed(widget.duration, () {
-          if (mounted) Navigator.of(context).pop();
-        });
-      },
-    );
+    // WidgetsBinding.instance.addPostFrameCallback(
+    //   (timeStamp) {
+    //     Future.delayed(widget.duration, () {
+    //       if (mounted) Navigator.of(context).pop();
+    //     });
+    //   },
+    // );
   }
 
   @override
   void deactivate() {
-    widget.onClose?.call();
+    // widget.onClose?.call();
     super.deactivate();
   }
 
@@ -108,7 +111,9 @@ class _AppDialogState extends State<AppDialog> {
       padding: MediaQuery.of(context).viewInsets,
       alignment: Alignment.center,
       child: ConstrainedBox(
-        constraints: BoxConstraints(maxWidth: 281.w),
+        constraints: BoxConstraints(
+          maxWidth: ScreenUtil().screenWidth - Dimens.d48.responsive(),
+        ),
         child: Material(
           shape:
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(8.r)),
@@ -121,8 +126,22 @@ class _AppDialogState extends State<AppDialog> {
                 widget.style.dialogIcon,
                 SizedBox(height: 8.h),
                 Text(
+                  widget.title ?? 'Success',
+                  textAlign: TextAlign.center,
+                  style: Theme.of(context).textTheme.headlineMedium,
+                ),
+                SizedBox(height: Dimens.d16.responsive()),
+                Text(
                   widget.content,
                   textAlign: TextAlign.center,
+                ),
+                SizedBox(height: Dimens.d24.responsive()),
+                AppButton.fullSize(
+                  onPressed: () {
+                    context.pop();
+                    widget.onClose?.call();
+                  },
+                  child: const Text('Ok'),
                 )
               ],
             ),

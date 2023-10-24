@@ -1,7 +1,6 @@
 import 'package:app_ui/app_ui.dart';
 import 'package:base_bloc/base_bloc.dart';
 import 'package:botanic_gaze/constants/index.dart';
-import 'package:botanic_gaze/di/di.dart';
 import 'package:botanic_gaze/features/my_garden/index.dart';
 import 'package:botanic_gaze/models/index.dart';
 import 'package:botanic_gaze/widgets/index.dart';
@@ -90,9 +89,7 @@ class _MyPlantDetailScreenState
                               await showModalBottomSheet<dynamic>(
                                 context: context,
                                 builder: (context) {
-                                  return const Column(
-                                    children: [],
-                                  );
+                                  return const Column();
                                 },
                               );
                               // bloc.add(AddReminder(type));

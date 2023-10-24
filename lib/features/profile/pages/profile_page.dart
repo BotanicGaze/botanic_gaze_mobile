@@ -275,6 +275,11 @@ class _ProfilePageState extends BasePageState<ProfilePage, ProfileBloc> {
                           context,
                           title: 'FAQ',
                           icon: AppIcons.iconFaq,
+                          onTap: () {
+                            context.pushNamed(
+                              NavigationContains.frequentlyAskedQuestions,
+                            );
+                          },
                           rightInfo: const Icon(
                             Icons.arrow_forward_ios_sharp,
                             size: 16,

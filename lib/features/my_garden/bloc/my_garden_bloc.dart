@@ -36,12 +36,6 @@ class MyGardenBloc extends BaseBloc<MyGardenEvent, MyGardenState> {
           ),
         );
       },
-      // doOnSubscribe: () async => emit(
-      //   state.copyWith(isShimmerLoading: true),
-      // ),
-      // doOnSuccessOrError: () async => emit(
-      //   state.copyWith(isShimmerLoading: false),
-      // ),
       doOnError: (e) async {
         Log.e(e);
         emit(
@@ -51,6 +45,7 @@ class MyGardenBloc extends BaseBloc<MyGardenEvent, MyGardenState> {
         );
       },
       handleLoading: false,
+      handleError: false,
     );
   }
 
@@ -72,12 +67,6 @@ class MyGardenBloc extends BaseBloc<MyGardenEvent, MyGardenState> {
           ),
         );
       },
-      // doOnSubscribe: () async => emit(
-      //   state.copyWith(isShimmerLoading: true),
-      // ),
-      // doOnSuccessOrError: () async => emit(
-      //   state.copyWith(isShimmerLoading: false),
-      // ),
       doOnError: (e) async {
         emit(
           state.copyWith(
@@ -87,6 +76,7 @@ class MyGardenBloc extends BaseBloc<MyGardenEvent, MyGardenState> {
       },
       handleLoading: false,
       handleRetry: false,
+      handleError: false,
     );
   }
 }

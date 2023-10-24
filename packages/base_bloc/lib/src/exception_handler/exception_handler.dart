@@ -85,7 +85,7 @@ class ExceptionHandler {
 
   Future<void> _showErrorDialogWithRetry({
     required String message,
-    required Func0<void>? onRetryPressed,
+    required VoidCallback? onRetryPressed,
   }) async {
     await navigator.showAppDialog(AppPopupInfo.errorWithRetryDialog(
       message: message,

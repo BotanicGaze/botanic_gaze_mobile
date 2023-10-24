@@ -272,6 +272,12 @@ class AppApiService {
     return plantApiClient.request<DataResponse<FeedbackModel>, FeedbackModel>(
       method: RestMethod.post,
       path: '$versionPrefix/feedback/issue',
+      body: {
+        'appVersion': appVersion,
+        'email': email,
+        'issueText': issueText,
+        'title': title
+      },
       successResponseMapperType: SuccessResponseMapperType.dataJsonObject,
       decoder: FeedbackModel.fromJson,
       headers: {

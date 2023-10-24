@@ -16,9 +16,21 @@ class AppPopupInfo with _$AppPopupInfo {
     String? negativeTitle,
   }) = _ConfirmDialog;
 
+  const factory AppPopupInfo.infoDialog({
+    @Default('') String title,
+    @Default('') String message,
+    VoidCallback? onButtonPressed,
+  }) = _InfoDialog;
+
+  const factory AppPopupInfo.successDialog({
+    @Default('') String title,
+    @Default('') String message,
+    VoidCallback? onButtonPressed,
+  }) = _SuccessDialog;
+
   const factory AppPopupInfo.errorWithRetryDialog({
     @Default('') String message,
-    Func0<void>? onRetryPressed,
+    VoidCallback? onRetryPressed,
   }) = _ErrorWithRetryDialog;
 
   const factory AppPopupInfo.requiredLoginDialog() = _RequiredLoginDialog;

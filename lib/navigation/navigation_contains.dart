@@ -5,6 +5,7 @@ import 'package:botanic_gaze/features/feedback/index.dart';
 import 'package:botanic_gaze/features/gallery/index.dart';
 import 'package:botanic_gaze/features/my_garden/index.dart';
 import 'package:botanic_gaze/features/plant_detail/index.dart';
+import 'package:botanic_gaze/features/profile/index.dart';
 import 'package:botanic_gaze/features/search_plants/index.dart';
 import 'package:botanic_gaze/features/splash/index.dart';
 
@@ -46,4 +47,7 @@ class NavigationContains {
 
   ///go to [FeedbackScreen]
   static const String feedbackScreen = '/feedback_screen';
+
+  ///go to [FrequentlyAskedQuestions]
+  static const String frequentlyAskedQuestions = '/frequentlyAskedQuestions';
 }
