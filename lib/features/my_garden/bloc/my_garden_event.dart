@@ -23,3 +23,18 @@ class GetMyPlantLoadMore extends MyGardenEvent {
   @override
   List<Object?> get props => [page, perPage];
 }
+
+class GetMyPlantRefreshed extends MyGardenEvent {
+  GetMyPlantRefreshed({
+    required this.completer,
+    required this.page,
+    this.perPage = 20,
+  });
+
+  final int page;
+  final int perPage;
+  final Completer<void> completer;
+
+  @override
+  List<Object?> get props => [page, perPage, completer];
+}

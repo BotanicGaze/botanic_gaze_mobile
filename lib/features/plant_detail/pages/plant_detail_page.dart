@@ -57,6 +57,7 @@ class _PlantDetailPageState
                   headerSliverBuilder: (context, innerBoxIsScrolled) {
                     return [
                       SliverAppBar(
+                        stretch: true,
                         expandedHeight: ScreenUtil().screenWidth * 4 / 3,
                         pinned: true,
                         leading: IconButton.filled(
@@ -71,12 +72,24 @@ class _PlantDetailPageState
                           },
                           icon: Image.asset(AppIcons.iconArrowLeft),
                         ),
-                        title: Visibility(
-                          visible: innerBoxIsScrolled,
-                          child: Text(
-                            state.plantDetailModel?.botanicalNameUnFormatted ??
-                                '',
-                          ),
+                        title: AnimatedSwitcher(
+                          duration: const Duration(milliseconds: 120),
+                          transitionBuilder: (child, animation) {
+                            return SlideTransition(
+                              position: Tween<Offset>(
+                                begin: const Offset(0, -1),
+                                end: Offset.zero,
+                              ).animate(animation),
+                              child: child,
+                            );
+                          },
+                          child: !innerBoxIsScrolled
+                              ? const SizedBox()
+                              : Text(
+                                  state.plantDetailModel
+                                          ?.botanicalNameUnFormatted ??
+                                      '',
+                                ),
                         ),
                         flexibleSpace: FlexibleSpaceBar(
                           background: PageView.builder(

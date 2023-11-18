@@ -18,6 +18,8 @@ class MyPlantDetailScreen extends StatefulWidget {
 
 class _MyPlantDetailScreenState
     extends BasePageState<MyPlantDetailScreen, MyPlantDetailBloc> {
+  final ScrollController _scrollController = ScrollController();
+
   @override
   void initState() {
     super.initState();
@@ -29,36 +31,53 @@ class _MyPlantDetailScreenState
     return BlocBuilder<MyPlantDetailBloc, MyPlantDetailState>(
       builder: (context, state) {
         return CommonScaffold(
-          body: NestedScrollView(
-            headerSliverBuilder: (context, innerBoxIsScrolled) {
-              return [
-                SliverAppBar(
-                  pinned: true,
-                  title: innerBoxIsScrolled
-                      ? Text(
-                          state.myPlant?.plantInfo?.botanicalName
-                                  ?.parseHtmlString() ??
-                              '',
-                        )
-                      : null,
-                  expandedHeight: ScreenUtil().screenWidth * 9 / 16,
-                  flexibleSpace: FlexibleSpaceBar(
-                    background: CachedImageWidget(
-                      imageUrl: state.myPlant?.plantInfo?.featureImage ?? '',
-                      fit: BoxFit.cover,
-                      width: double.infinity,
-                      height: double.infinity,
-                    ),
+          body: CustomScrollView(
+            controller: _scrollController,
+            slivers: [
+              SliverAppBar(
+                pinned: true,
+                stretch: true,
+                title: ChangeNotifierProvider.value(
+                  value: _scrollController,
+                  child: Consumer<ScrollController>(
+                    builder: (context, value, child) {
+                      return AnimatedSwitcher(
+                        duration: const Duration(milliseconds: 120),
+                        transitionBuilder: (child, animation) {
+                          return SlideTransition(
+                            position: Tween<Offset>(
+                              begin: const Offset(0, -1),
+                              end: Offset.zero,
+                            ).animate(animation),
+                            child: child,
+                          );
+                        },
+                        child: value.position.pixels <
+                                ScreenUtil().screenWidth * 9 / 16
+                            ? const SizedBox()
+                            : Text(
+                                state.myPlant?.plantInfo?.botanicalName
+                                        ?.parseHtmlString() ??
+                                    '',
+                              ),
+                      );
+                    },
                   ),
                 ),
-              ];
-            },
-            body: SingleChildScrollView(
-              child: Padding(
+                expandedHeight: ScreenUtil().screenWidth * 9 / 16,
+                flexibleSpace: FlexibleSpaceBar(
+                  background: CachedImageWidget(
+                    imageUrl: state.myPlant?.plantInfo?.featureImage ?? '',
+                    fit: BoxFit.cover,
+                    width: double.infinity,
+                    height: double.infinity,
+                  ),
+                ),
+              ),
+              SliverPadding(
                 padding:
                     EdgeInsets.symmetric(horizontal: Dimens.d16.responsive()),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+                sliver: SliverList.list(
                   children: [
                     SizedBox(height: Dimens.d16.responsive()),
                     Text(
@@ -78,30 +97,33 @@ class _MyPlantDetailScreenState
                     SizedBox(height: Dimens.d16.responsive()),
                     ...List.generate(ReminderType.values.length, (index) {
                       final type = ReminderType.values[index];
-                      return GestureDetector(
-                        onTap: () {},
-                        child: ListTile(
-                          contentPadding: EdgeInsets.zero,
-                          title: Text(type.name),
-                          trailing: Switch(
-                            value: state.reminderIsActive(type),
-                            onChanged: (value) async {
-                              await showModalBottomSheet<dynamic>(
-                                context: context,
-                                builder: (context) {
-                                  return const Column();
-                                },
-                              );
-                              // bloc.add(AddReminder(type));
-                            },
-                          ),
+                      return ListTile(
+                        onTap: () {
+                          PopupReminderType.show(
+                            context,
+                            plantReminder: state.plantReminder(type) ??
+                                PlantReminder(reminderType: type),
+                          );
+                        },
+                        contentPadding: EdgeInsets.zero,
+                        title: Text(type.name),
+                        trailing: Switch(
+                          value: state.reminderIsActive(type),
+                          onChanged: (value) async {
+                            bloc.add(
+                              SwitchActiveStateReminder(
+                                state.plantReminder(type)?.id ?? '',
+                                isActive: value,
+                              ),
+                            );
+                          },
                         ),
                       );
                     })
                   ],
                 ),
-              ),
-            ),
+              )
+            ],
           ),
         );
       },

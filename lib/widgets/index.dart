@@ -9,5 +9,6 @@ export 'common_scaffold.dart';
 export 'dialog/app_confirm_dialog.dart';
 export 'dialog/app_dialog.dart';
 export 'dialog/app_dialog_enum.dart';
+export 'expanded_section.dart';
 export 'loading_page.dart';
 export 'permission_popup.dart';

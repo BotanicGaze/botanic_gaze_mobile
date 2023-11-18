@@ -79,7 +79,7 @@ class ProfileBloc extends BaseBloc<ProfileEvent, ProfileState> {
         final googleAuth = await googleUser?.authentication;
         if (googleAuth?.accessToken == null) return;
         final output = await getIt<AppApiService>().loginWithSocial(
-          AccountLoginType.facebook,
+          AccountLoginType.google,
           googleAuth?.accessToken ?? '',
         );
         emit(
@@ -90,7 +90,8 @@ class ProfileBloc extends BaseBloc<ProfileEvent, ProfileState> {
         );
       },
       doOnError: (e) async {
-        Log.e(e);
+        // Log.e(e);
+        print(e);
         emit(state.copyWith(exception: e));
       },
       handleError: false,

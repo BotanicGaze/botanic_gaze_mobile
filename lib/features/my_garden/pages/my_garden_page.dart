@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:app_ui/app_ui.dart';
 import 'package:base_bloc/base_bloc.dart';
 import 'package:base_network/base_network.dart';
@@ -35,7 +37,7 @@ class _MyGardenPageState extends BasePageState<MyGardenPage, MyGardenBloc> {
     );
     _pagingController.listen(
       onLoadMore: (pageKey) => bloc.add(GetMyPlantLoadMore(page: pageKey)),
-      onRefresh: _onRefresh,
+      // onRefresh: _onRefresh,
     );
     // _onRefresh();
   }
@@ -46,9 +48,14 @@ class _MyGardenPageState extends BasePageState<MyGardenPage, MyGardenBloc> {
     super.dispose();
   }
 
-  void _onRefresh() {
+  Future<void> _onRefresh() async {
+    final completer = Completer<void>();
     bloc.add(
-      GetMyPlant(page: _pagingController.firstPageKey, perPage: perPage),
+      GetMyPlantRefreshed(
+        page: _pagingController.firstPageKey,
+        perPage: perPage,
+        completer: completer,
+      ),
     );
   }
 
@@ -132,29 +139,32 @@ class _MyGardenPageState extends BasePageState<MyGardenPage, MyGardenBloc> {
             ),
           ),
           Expanded(
-            child: BlocBuilder<MyGardenBloc, MyGardenState>(
-              builder: (context, state) {
-                if (state.isShimmerLoading) return const _ListViewLoader();
-                return CommonPagedListView(
-                  pagingController: _pagingController,
-                  // firstPageProgressIndicator: const _LoadingItem(),
-                  firstPageErrorIndicator: MyPlantEmptyView(
-                    error: state.exception as RemoteException?,
+            child: RefreshIndicator(
+              onRefresh: _onRefresh,
+              child: BlocBuilder<MyGardenBloc, MyGardenState>(
+                builder: (context, state) {
+                  if (state.isShimmerLoading) return const _ListViewLoader();
+                  return CommonPagedListView(
                     pagingController: _pagingController,
-                  ),
-                  separatorBuilder: (context, index) {
-                    return SizedBox(
-                      height: Dimens.d8.responsive(),
-                    );
-                  },
-                  itemBuilder:
-                      (BuildContext context, MyPlantModel item, int index) {
-                    return MyPlantItemWidget(
-                      item: item,
-                    );
-                  },
-                );
-              },
+                    // firstPageProgressIndicator: const _LoadingItem(),
+                    firstPageErrorIndicator: MyPlantEmptyView(
+                      error: state.exception as RemoteException?,
+                      pagingController: _pagingController,
+                    ),
+                    separatorBuilder: (context, index) {
+                      return SizedBox(
+                        height: Dimens.d8.responsive(),
+                      );
+                    },
+                    itemBuilder:
+                        (BuildContext context, MyPlantModel item, int index) {
+                      return MyPlantItemWidget(
+                        item: item,
+                      );
+                    },
+                  );
+                },
+              ),
             ),
           ),
         ],

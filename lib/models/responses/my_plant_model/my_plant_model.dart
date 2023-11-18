@@ -16,6 +16,15 @@ class MyPlantModel extends Equatable {
                 .toList()
             : [],
       );
+
+  factory MyPlantModel.clone(MyPlantModel? data) {
+    return MyPlantModel(
+      id: data?.id,
+      plantInfo: data?.plantInfo,
+      reminder: data?.reminder,
+    );
+  }
+
   final String? id;
   final PlantInfo? plantInfo;
   final List<PlantReminder>? reminder;

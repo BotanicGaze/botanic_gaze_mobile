@@ -38,6 +38,12 @@ class AppTheme {
       splashColor: AppColors.splashColor,
       dividerColor: AppColors.dividerColor,
       chipTheme: _chipTheme,
+      pageTransitionsTheme: const PageTransitionsTheme(
+        builders: <TargetPlatform, PageTransitionsBuilder>{
+          TargetPlatform.iOS: CupertinoPageTransitionsBuilder(),
+          TargetPlatform.android: CupertinoPageTransitionsBuilder(),
+        },
+      ),
     );
   }
 

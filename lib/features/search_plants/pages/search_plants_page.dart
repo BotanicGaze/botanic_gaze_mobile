@@ -87,20 +87,18 @@ class _SearchPlantsPageState
         title: const Text('Search plants'),
       ),
       otherBackground: otherBackground(),
-      body: AppSafeArea(
-        child: BlocBuilder<SearchPlantsBloc, SearchPlantsState>(
-          buildWhen: (previous, current) =>
-              previous.plantDatas != current.plantDatas ||
-              previous.isShimmerLoading != current.isShimmerLoading,
-          builder: (context, state) {
-            return Column(
-              children: [
-                _buildSearchField(),
-                _buildSearchResult(state),
-              ],
-            );
-          },
-        ),
+      body: BlocBuilder<SearchPlantsBloc, SearchPlantsState>(
+        buildWhen: (previous, current) =>
+            previous.plantDatas != current.plantDatas ||
+            previous.isShimmerLoading != current.isShimmerLoading,
+        builder: (context, state) {
+          return Column(
+            children: [
+              _buildSearchField(),
+              _buildSearchResult(state),
+            ],
+          );
+        },
       ),
     );
   }

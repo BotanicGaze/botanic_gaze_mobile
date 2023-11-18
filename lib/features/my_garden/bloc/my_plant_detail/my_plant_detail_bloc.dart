@@ -16,23 +16,47 @@ class MyPlantDetailBloc
   MyPlantDetailBloc() : super(const MyPlantDetailState()) {
     on<InitState>(_onInitState);
     on<AddReminder>(_onAddReminder);
+    on<SwitchActiveStateReminder>(_onSwitchActiveStateReminder);
   }
 
   Future<void> _onAddReminder(
     AddReminder event,
     Emitter<MyPlantDetailState> emit,
   ) async {
-    // Log.d(event.reminderType);
-    if (state.reminderIsActive(event.reminderType)) {
-      Log.d(event.reminderType);
-    } else {
-      final output = await getIt<AppApiService>().addReminder(
-        plantId: event.plantId,
-        date: event.date,
-        reminderType: event.reminderType,
-        repeatType: event.repeatType,
-      );
-    }
+    await runBlocCatching(
+      action: () async {
+        late DataResponse<PlantReminder> output;
+        if (state.reminderAlreadyExist(event.reminderType)) {
+          output = await getIt<AppApiService>().updateReminder(
+            reminderId: state.plantReminder(event.reminderType)?.id ?? '',
+            date: event.date,
+            reminderType: event.reminderType,
+            repeatType: event.repeatType,
+          );
+        } else {
+          output = await getIt<AppApiService>().addReminder(
+            myPlantId: state.myPlant?.id ?? '',
+            date: event.date,
+            reminderType: event.reminderType,
+            repeatType: event.repeatType,
+          );
+        }
+        final listPlantReminder = state.myPlant?.reminder ?? [];
+        final indexItem = listPlantReminder
+            .indexWhere((element) => output.data?.id == element.id);
+        if (indexItem < 0) {
+          listPlantReminder.add(output.data!);
+        } else {
+          listPlantReminder[indexItem] = output.data!;
+        }
+        state.copyWith(
+          myPlant: state.myPlant?.copyWith(reminder: listPlantReminder),
+        );
+      },
+      doOnError: (e) async {
+        Log.e(e);
+      },
+    );
   }
 
   Future<void> _onInitState(
@@ -40,5 +64,43 @@ class MyPlantDetailBloc
     Emitter<MyPlantDetailState> emit,
   ) async {
     emit(state.copyWith(myPlant: event.myPlant));
+  }
+
+  Future<void> _onSwitchActiveStateReminder(
+    SwitchActiveStateReminder event,
+    Emitter<MyPlantDetailState> emit,
+  ) async {
+    await runBlocCatching(
+      action: () async {
+        final reminder = state.myPlant?.reminder
+            ?.firstOrNullWhere((element) => element.id == event.reminderId);
+        late DataResponse<PlantReminder> output;
+        output = await getIt<AppApiService>().switchActiveStateReminder(
+          reminderId: event.reminderId,
+          isActive: event.isActive,
+          repeatType: reminder!.repeat!,
+          reminderType: reminder.reminderType!,
+          date: reminder.time!,
+        );
+        final listPlantReminder =
+            List<PlantReminder>.from(state.myPlant?.reminder ?? []);
+        final indexItem = listPlantReminder
+            .indexWhere((element) => output.data?.id == element.id);
+        if (indexItem < 0) {
+          listPlantReminder.add(output.data!);
+        } else {
+          listPlantReminder[indexItem] = output.data!;
+        }
+
+        emit(
+          state.copyWith(
+            myPlant: state.myPlant?.copyWith(reminder: listPlantReminder),
+          ),
+        );
+      },
+      doOnError: (e) async {
+        Log.e(e);
+      },
+    );
   }
 }

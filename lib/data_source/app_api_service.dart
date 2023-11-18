@@ -85,7 +85,9 @@ class AppApiService {
       successResponseMapperType: SuccessResponseMapperType.dataJsonObject,
       decoder: PlantIdentifyModel.fromJson,
       headers: {
-        'x-csrf-token': SpUtil.getString(AppPreferencesKey.xCsrfTokenKey)
+        'x-csrf-token': SpUtil.getString(AppPreferencesKey.xCsrfTokenKey),
+        'Authorization':
+            SpUtil.getString(AppPreferencesKey.apiTokenAuthentication)
       },
     );
   }
@@ -245,14 +247,69 @@ class AppApiService {
   }
 
   Future<DataResponse<PlantReminder>> addReminder({
-    required int plantId,
+    required String myPlantId,
     required ReminderType reminderType,
     required DateTime date,
     required RepeatType repeatType,
   }) async {
     return plantApiClient.request<DataResponse<PlantReminder>, PlantReminder>(
       method: RestMethod.post,
-      path: '$versionPrefix$myGardenPrefix/reminders/$plantId',
+      path: '$versionPrefix$myGardenPrefix/reminders/$myPlantId',
+      body: {
+        'reminderType': reminderType.name,
+        'repeat': repeatType.name,
+        'time': date.toIso8601String()
+      },
+      successResponseMapperType: SuccessResponseMapperType.dataJsonObject,
+      decoder: PlantReminder.fromJson,
+      headers: {
+        'x-csrf-token': SpUtil.getString(AppPreferencesKey.xCsrfTokenKey),
+        'Authorization':
+            SpUtil.getString(AppPreferencesKey.apiTokenAuthentication)
+      },
+    );
+  }
+
+  Future<DataResponse<PlantReminder>> updateReminder({
+    required String reminderId,
+    required ReminderType reminderType,
+    required DateTime date,
+    required RepeatType repeatType,
+  }) async {
+    return plantApiClient.request<DataResponse<PlantReminder>, PlantReminder>(
+      method: RestMethod.patch,
+      path: '$versionPrefix$myGardenPrefix/reminders/$reminderId',
+      body: {
+        'reminderType': reminderType.name,
+        'repeat': repeatType.name,
+        'time': date.toIso8601String()
+      },
+      successResponseMapperType: SuccessResponseMapperType.dataJsonObject,
+      decoder: PlantReminder.fromJson,
+      headers: {
+        'x-csrf-token': SpUtil.getString(AppPreferencesKey.xCsrfTokenKey),
+        'Authorization':
+            SpUtil.getString(AppPreferencesKey.apiTokenAuthentication)
+      },
+    );
+  }
+
+  Future<DataResponse<PlantReminder>> switchActiveStateReminder({
+    required String reminderId,
+    required bool isActive,
+    required ReminderType reminderType,
+    required DateTime date,
+    required RepeatType repeatType,
+  }) async {
+    return plantApiClient.request<DataResponse<PlantReminder>, PlantReminder>(
+      method: RestMethod.patch,
+      path: '$versionPrefix$myGardenPrefix/reminders/$reminderId',
+      body: {
+        'isActive': isActive,
+        'reminderType': reminderType.name,
+        'repeat': repeatType.name,
+        'time': date.toIso8601String()
+      },
       successResponseMapperType: SuccessResponseMapperType.dataJsonObject,
       decoder: PlantReminder.fromJson,
       headers: {

@@ -15,6 +15,7 @@ class MyGardenBloc extends BaseBloc<MyGardenEvent, MyGardenState> {
   MyGardenBloc() : super(const MyGardenState()) {
     on<GetMyPlant>(_onGetMyPlant);
     on<GetMyPlantLoadMore>(_onGetMyPlantLoadMore);
+    on<GetMyPlantRefreshed>(_onGetMyPlantRefreshed);
   }
 
   Future<void> _onGetMyPlant(
@@ -76,6 +77,75 @@ class MyGardenBloc extends BaseBloc<MyGardenEvent, MyGardenState> {
       },
       handleLoading: false,
       handleRetry: false,
+      handleError: false,
+    );
+  }
+
+  Future<void> _onGetMyPlantRefreshed(
+    GetMyPlantRefreshed event,
+    Emitter<MyGardenState> emit,
+  ) async {
+    // return runBlocCatching(
+    //   action: () async {
+    //     final output = await getIt<AppApiService>()
+    //         .getMyPlant(page: event.page, perPage: event.perPage);
+    //     emit(
+    //       state.copyWith(
+    //         myPlants: LoadMoreOutput<MyPlantModel>(
+    //           data: output.data,
+    //           page: event.page,
+    //           isLastPage: output.data.isEmpty,
+    //         ),
+    //       ),
+    //     );
+    //   },
+    //   doOnError: (e) async {
+    //     emit(
+    //       state.copyWith(
+    //         exception: e,
+    //       ),
+    //     );
+    //   },
+    // doOnSuccessOrError: () async {
+    //   emit(state.copyWith(isShimmerLoading: false));
+    //   if (!event.completer.isCompleted) {
+    //     event.completer.complete();
+    //   }
+    // },
+    //   handleLoading: false,
+    //   handleRetry: false,
+    //   handleError: false,
+    // );
+    await runBlocCatching(
+      action: () async {
+        final output = await getIt<AppApiService>()
+            .getMyPlant(page: event.page, perPage: event.perPage);
+        emit(
+          state.copyWith(
+            myPlants: LoadMoreOutput(
+              data: output.data,
+              isRefreshSuccess: true,
+              page: event.page,
+              isLastPage: output.data.length < event.perPage,
+            ),
+          ),
+        );
+      },
+      doOnSuccessOrError: () async {
+        emit(state.copyWith(isShimmerLoading: false));
+        if (!event.completer.isCompleted) {
+          event.completer.complete();
+        }
+      },
+      doOnError: (e) async {
+        Log.e(e);
+        emit(
+          state.copyWith(
+            exception: e,
+          ),
+        );
+      },
+      handleLoading: false,
       handleError: false,
     );
   }

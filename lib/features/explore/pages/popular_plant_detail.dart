@@ -19,12 +19,15 @@ class PopularPlantDetail extends StatefulWidget {
 
 class _PopularPlantDetailState
     extends BasePageState<PopularPlantDetail, PopularPlantListDetailBloc> {
+  final ScrollController _scrollController = ScrollController();
   @override
   Widget buildPage(BuildContext context) {
     return CommonScaffold(
       body: CustomScrollView(
+        controller: _scrollController,
         slivers: [
           SliverAppBar(
+            stretch: true,
             pinned: true,
             expandedHeight: ScreenUtil().screenWidth * 9 / 16,
             leading: IconButton.filled(
@@ -39,12 +42,29 @@ class _PopularPlantDetailState
               },
               icon: Image.asset(AppIcons.iconArrowLeft),
             ),
-            // title: Visibility(
-            //   visible: innerBoxIsScrolled,
-            //   child: Text(
-            //     widget.data.name ?? '',
-            //   ),
-            // ),
+            title: ChangeNotifierProvider.value(
+              value: _scrollController,
+              child: Consumer<ScrollController>(
+                builder: (context, value, child) {
+                  return AnimatedSwitcher(
+                    duration: const Duration(milliseconds: 120),
+                    transitionBuilder: (child, animation) {
+                      return SlideTransition(
+                        position: Tween<Offset>(
+                          begin: const Offset(0, -1),
+                          end: Offset.zero,
+                        ).animate(animation),
+                        child: child,
+                      );
+                    },
+                    child: value.position.pixels <
+                            ScreenUtil().screenWidth * 9 / 16
+                        ? const SizedBox()
+                        : Text(widget.data.name ?? ''),
+                  );
+                },
+              ),
+            ),
             flexibleSpace: FlexibleSpaceBar(
               // aspectRatio: 16 / 9,
               background: CachedImageWidget(

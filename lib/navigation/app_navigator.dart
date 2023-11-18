@@ -270,24 +270,4 @@ class AppNavigatorImpl extends AppNavigator with LogMixin {
 
   @override
   void showSuccessSnackBar(String message, {Duration? duration}) {}
-
-  // Future<T?> showRequestPermission<T extends Object?>(
-  //   PermissionType type, {
-  //   bool barrierDismissible = true,
-  //   bool useSafeArea = false,
-  //   bool useRootNavigator = true,
-  // }) async {
-  //   final context = navigatorKey.currentContext!;
-  //   await showDialog<T>(
-  //     barrierDismissible: barrierDismissible,
-  //     useSafeArea: useSafeArea,
-  //     useRootNavigator: useRootNavigator,
-  //     barrierColor: AppColors.black.withOpacity(0.2),
-  //     context: context,
-  //     builder: (context) {
-  //       return PermissionPopup(type: type);
-  //     },
-  //   );
-  //   return null;
-  // }
 }

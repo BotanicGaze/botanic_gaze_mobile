@@ -58,7 +58,7 @@ class FirebaseDynamicLinksService {
   }) async {
     try {
       final packageInfo = await PackageInfo.fromPlatform();
-
+      print(packageInfo.packageName);
       final parameters = DynamicLinkParameters(
         uriPrefix: 'https://botanicgaze.page.link',
         link: Uri(

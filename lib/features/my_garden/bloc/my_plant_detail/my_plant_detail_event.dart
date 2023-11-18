@@ -16,16 +16,24 @@ class InitState extends MyPlantDetailEvent {
 class AddReminder extends MyPlantDetailEvent {
   AddReminder({
     required this.reminderType,
-    required this.plantId,
     required this.date,
     required this.repeatType,
   });
 
   final ReminderType reminderType;
-  final int plantId;
   final DateTime date;
   final RepeatType repeatType;
 
   @override
-  List<Object?> get props => [reminderType, plantId, date, repeatType];
+  List<Object?> get props => [reminderType, date, repeatType];
+}
+
+class SwitchActiveStateReminder extends MyPlantDetailEvent {
+  SwitchActiveStateReminder(this.reminderId, {required this.isActive});
+
+  final String reminderId;
+  final bool isActive;
+
+  @override
+  List<Object?> get props => [reminderId, isActive];
 }

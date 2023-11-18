@@ -29,7 +29,7 @@ class LocalPushNotificationService with LogMixin {
   static const _channelId = 'jp.flutter.app';
   static const _channelName = 'NFT';
   static const _channelDescription = 'NFT';
-  static const _androidDefaultIcon = 'ic_app_logo';
+  static const _androidDefaultIcon = 'ic_launcher';
   static const _bitCount = 31;
 
   int get _randomNotificationId =>
