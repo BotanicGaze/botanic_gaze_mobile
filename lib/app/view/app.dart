@@ -5,7 +5,6 @@ import 'package:botanic_gaze/app/index.dart';
 import 'package:botanic_gaze/di/di.dart';
 import 'package:botanic_gaze/features/profile/index.dart';
 import 'package:botanic_gaze/l10n/l10n.dart';
-import 'package:botanic_gaze/services/dynamic_link_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:shared/shared.dart' hide DeviceConstants;
@@ -27,7 +26,6 @@ class _AppState extends BasePageState<App, AppBloc> {
   void initState() {
     super.initState();
     bloc.add(AppInitialized());
-    FirebaseDynamicLinksService.initDynamicLinks();
     ViewUtils.setPreferredOrientations(
       [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown],
     );

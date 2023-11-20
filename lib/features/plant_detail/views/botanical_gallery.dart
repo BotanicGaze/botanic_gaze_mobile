@@ -92,10 +92,10 @@ class BotanicalGallery extends StatelessWidget {
                       _galleryCustom(plantNetImages?.otherSmall ?? [], 5),
                     ],
                   ),
-                )
+                ),
               ],
             ),
-          )
+          ),
         ],
       ),
     );
@@ -128,10 +128,10 @@ class BotanicalGallery extends StatelessWidget {
             GestureDetector(
               onTap: () {
                 context.pushNamed(
-                  NavigationContains.galleryPhotoWrapper,
+                  ScreenPaths.galleryPhotoWrapper,
                   extra: {
                     // 'initial_index': index,
-                    'gallery_images': [data[index].m ?? '']
+                    'gallery_images': [data[index].m ?? ''],
                   },
                 );
               },
@@ -174,7 +174,7 @@ class BotanicalGallery extends StatelessWidget {
                   ),
                 ),
               ),
-            )
+            ),
           ],
         ),
         childCount: data.length,

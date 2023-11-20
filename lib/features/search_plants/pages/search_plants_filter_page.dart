@@ -96,7 +96,7 @@ class _SearchPlantsFilterPageState
                     );
                   },
                 ),
-              )
+              ),
             ],
           ),
         ),
@@ -174,7 +174,7 @@ class SeasonOfInterestSelected extends StatelessWidget {
                           bloc.add(SelectedSeasonOfInterest(clearAll: true)),
                       child: const Text('Clear'),
                     ),
-                  )
+                  ),
                 ],
               ),
               SizedBox(height: Dimens.d8.responsive()),
@@ -230,7 +230,7 @@ class SeasonOfInterestSelected extends StatelessWidget {
                     ),
                   );
                 }),
-              )
+              ),
             ],
           ),
         );
@@ -276,7 +276,7 @@ class SoilTypeSelected extends StatelessWidget {
                           bloc.add(SelectedSoilType(clearAll: true)),
                       child: const Text('Clear'),
                     ),
-                  )
+                  ),
                 ],
               ),
               SizedBox(height: Dimens.d8.responsive()),
@@ -297,7 +297,7 @@ class SoilTypeSelected extends StatelessWidget {
                     );
                   }),
                 ),
-              )
+              ),
             ],
           ),
         );
@@ -345,7 +345,7 @@ class SunlightSelected extends StatelessWidget {
                           bloc.add(SelectedSunlight(clearAll: true)),
                       child: const Text('Clear'),
                     ),
-                  )
+                  ),
                 ],
               ),
               SizedBox(height: Dimens.d8.responsive()),
@@ -369,7 +369,7 @@ class SunlightSelected extends StatelessWidget {
                     },
                   ),
                 ),
-              )
+              ),
             ],
           ),
         );
@@ -417,7 +417,7 @@ class PlantingTypeSelected extends StatelessWidget {
                           bloc.add(SelectedPlantingType(clearAll: true)),
                       child: const Text('Clear'),
                     ),
-                  )
+                  ),
                 ],
               ),
               SizedBox(height: Dimens.d8.responsive()),

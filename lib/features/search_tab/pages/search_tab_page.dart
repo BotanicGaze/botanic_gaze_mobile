@@ -71,7 +71,7 @@ class _SearchTabPageState extends BasePageState<SearchTabPage, SearchTabBloc>
                 Expanded(
                   child: GestureDetector(
                     onTap: () {
-                      context.pushNamed(NavigationContains.searchPage);
+                      context.pushNamed(ScreenPaths.searchPage);
                     },
                     child: AppTextField(
                       hintText: 'Monstera Albo',
@@ -90,19 +90,19 @@ class _SearchTabPageState extends BasePageState<SearchTabPage, SearchTabBloc>
                 IconButton.outlined(
                   onPressed: () async {
                     final result = await context.pushNamed(
-                      NavigationContains.searchPlantsFilterPage,
+                      ScreenPaths.searchPlantsFilterPage,
                     );
                     if (result != null && result is SearchPlantsFilter) {
                       if (context.mounted) {
                         await context.pushNamed(
-                          NavigationContains.searchPage,
+                          ScreenPaths.searchPage,
                           extra: {'search_plants_filter': result},
                         );
                       }
                     }
                   },
                   icon: Image.asset(AppIcons.iconFilter),
-                )
+                ),
               ],
             ),
             SizedBox(height: Dimens.d72.responsive()),
@@ -124,7 +124,7 @@ class _SearchTabPageState extends BasePageState<SearchTabPage, SearchTabBloc>
                   height: Dimens.d116.responsive(),
                   child: GestureDetector(
                     onTap: () {
-                      context.pushNamed(NavigationContains.scanPage);
+                      context.pushNamed(ScreenPaths.scanPage);
                     },
                     child: CircleAvatar(
                       backgroundColor: Theme.of(context).primaryColor,

@@ -10,7 +10,7 @@ extension SunlightX on Sunlight {
   static final List<String> _titles = [
     'Full sun',
     'Partial shade',
-    'Full shade'
+    'Full shade',
   ];
   static final List<int> _ids = [1, 2, 3];
 

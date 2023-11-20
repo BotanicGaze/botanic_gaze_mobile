@@ -32,7 +32,7 @@ class WeatherView extends StatelessWidget {
                     Text(
                       state?.location?.name ?? '',
                       style: Theme.of(context).textTheme.headlineMedium,
-                    )
+                    ),
                   ],
                 ),
               ),

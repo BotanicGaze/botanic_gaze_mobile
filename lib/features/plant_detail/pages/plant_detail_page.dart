@@ -101,7 +101,7 @@ class _PlantDetailPageState
                               return GestureDetector(
                                 onTap: () {
                                   context.pushNamed(
-                                    NavigationContains.galleryPhotoWrapper,
+                                    ScreenPaths.galleryPhotoWrapper,
                                     extra: {
                                       'initial_index': index,
                                       'gallery_images': state
@@ -109,7 +109,7 @@ class _PlantDetailPageState
                                           ?.map(
                                             (e) => '${e.baseUrl}' '${e.image}',
                                           )
-                                          .toList()
+                                          .toList(),
                                     },
                                   );
                                 },
@@ -148,10 +148,10 @@ class _PlantDetailPageState
                                                     color:
                                                         AppColors.borderColor,
                                                   ),
-                                            )
+                                            ),
                                           ],
                                         ),
-                                      )
+                                      ),
                                     ],
                                   ),
                                 ),
@@ -159,7 +159,7 @@ class _PlantDetailPageState
                             },
                           ),
                         ),
-                      )
+                      ),
                     ];
                   },
                   body: SingleChildScrollView(
@@ -260,7 +260,7 @@ class _PlantDetailPageState
                                         ),
                                     ],
                                   ),
-                                )
+                                ),
                               ],
                             ),
                           ),
@@ -284,7 +284,7 @@ class _PlantDetailPageState
                               Text(
                                 state.plantDetailModel?.entityDescription ?? '',
                                 style: Theme.of(context).textTheme.bodySmall,
-                              )
+                              ),
                             ],
                           ),
                         ),
@@ -405,7 +405,7 @@ class CareInstructionView extends StatelessWidget {
                     style: Theme.of(context).textTheme.titleMedium?.copyWith(
                           color: Theme.of(context).primaryColor,
                         ),
-                  )
+                  ),
                 ],
               ),
               SizedBox(height: Dimens.d8.responsive()),
@@ -438,7 +438,7 @@ class CareInstructionView extends StatelessWidget {
                     style: Theme.of(context).textTheme.titleMedium?.copyWith(
                           color: Theme.of(context).primaryColor,
                         ),
-                  )
+                  ),
                 ],
               ),
               SizedBox(height: Dimens.d8.responsive()),
@@ -463,7 +463,7 @@ class CareInstructionView extends StatelessWidget {
                     style: Theme.of(context).textTheme.titleMedium?.copyWith(
                           color: Theme.of(context).primaryColor,
                         ),
-                  )
+                  ),
                 ],
               ),
               SizedBox(height: Dimens.d8.responsive()),
@@ -522,9 +522,9 @@ class CareInstructionView extends StatelessWidget {
                     ),
                   ),
                 ),
-              )
+              ),
             ],
-          )
+          ),
         ],
       ),
     );

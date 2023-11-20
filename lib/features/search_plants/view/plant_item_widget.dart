@@ -19,7 +19,7 @@ class PlantItemWidget extends StatelessWidget {
     return InkWell(
       onTap: () {
         context.pushNamed(
-          NavigationContains.plantDetailPage,
+          ScreenPaths.plantDetailPage,
           pathParameters: {'id': plantData.id.toString()},
         );
       },
@@ -71,7 +71,7 @@ class PlantItemWidget extends StatelessWidget {
                 AppIcons.iconChevronRight,
                 width: Dimens.d24.responsive(),
                 height: Dimens.d24.responsive(),
-              )
+              ),
             ],
           ),
         ),

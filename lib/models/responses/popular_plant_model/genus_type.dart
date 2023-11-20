@@ -1,11 +1,6 @@
 import 'package:equatable/equatable.dart';
 
 class GenusType extends Equatable {
-	final String? name;
-	final String? uniqueId;
-	final int? id;
-	final int? displayOrder;
-	final String? modified;
 
 	const GenusType({
 		this.name, 
@@ -22,6 +17,11 @@ class GenusType extends Equatable {
 				displayOrder: json['displayOrder'] as int?,
 				modified: json['modified'] as String?,
 			);
+	final String? name;
+	final String? uniqueId;
+	final int? id;
+	final int? displayOrder;
+	final String? modified;
 
 	Map<String, dynamic> toJson() => {
 				'name': name,

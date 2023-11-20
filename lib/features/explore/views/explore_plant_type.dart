@@ -41,7 +41,7 @@ class ExplorePlantTypes extends StatelessWidget {
               return GestureDetector(
                 onTap: () {
                   context.pushNamed(
-                    NavigationContains.searchPage,
+                    ScreenPaths.searchPage,
                     extra: {
                       'search_plants_filter': SearchPlantsFilter(
                         plantTypesSelected: [PlantType.values[index]],
@@ -67,7 +67,7 @@ class ExplorePlantTypes extends StatelessWidget {
                               fontWeight: FontWeight.bold,
                             ),
                       ),
-                    )
+                    ),
                   ],
                 ),
               );

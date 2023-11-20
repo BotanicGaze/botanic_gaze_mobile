@@ -142,7 +142,7 @@ class _AppDialogState extends State<AppDialog> {
                     widget.onClose?.call();
                   },
                   child: const Text('Ok'),
-                )
+                ),
               ],
             ),
           ),

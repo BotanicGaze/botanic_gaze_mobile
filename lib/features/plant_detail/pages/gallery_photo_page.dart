@@ -102,7 +102,7 @@ class _GalleryPhotoPageState extends State<GalleryPhotoPage>
                 _galleryCustom(widget.plantNetImages?.other ?? []),
               ],
             ),
-          )
+          ),
         ],
       ),
     );
@@ -126,10 +126,10 @@ class _GalleryPhotoPageState extends State<GalleryPhotoPage>
         (context, index) => GestureDetector(
           onTap: () {
             context.pushNamed(
-              NavigationContains.galleryPhotoWrapper,
+              ScreenPaths.galleryPhotoWrapper,
               extra: {
                 'initial_index': index,
-                'gallery_images': data.map((e) => e.m ?? '').toSet().toList()
+                'gallery_images': data.map((e) => e.m ?? '').toSet().toList(),
               },
             );
           },

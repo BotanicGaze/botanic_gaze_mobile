@@ -37,7 +37,7 @@ class PlantSearchRequest extends Equatable {
       'plantTypes': plantTypes,
       'soilType': soilType,
       'seasonOfInterest': seasonOfInterest,
-      'sunlight': sunlight
+      'sunlight': sunlight,
     };
 
     jsonData.removeWhere((k, v) => v == null || v.toString().isEmpty);

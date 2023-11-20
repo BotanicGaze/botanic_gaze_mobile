@@ -41,7 +41,7 @@ class CameraPreviewView extends StatelessWidget {
                   context.pop();
                 },
                 icon: Image.asset(AppIcons.iconClose),
-              )
+              ),
             ],
           ),
           Expanded(
@@ -52,7 +52,7 @@ class CameraPreviewView extends StatelessWidget {
                 height: Dimens.d290.responsive(),
               ),
             ),
-          )
+          ),
         ],
       ),
     );

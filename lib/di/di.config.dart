@@ -12,8 +12,8 @@
 import 'package:base_bloc/base_bloc.dart' as _i5;
 import 'package:botanic_gaze/app/bloc/app_bloc.dart' as _i4;
 import 'package:botanic_gaze/data_source/app_api_service.dart' as _i24;
-import 'package:botanic_gaze/data_source/clients/random_user_api_client.dart'
-    as _i17;
+import 'package:botanic_gaze/data_source/app_api_service_impl.dart' as _i25;
+import 'package:botanic_gaze/data_source/clients/plant_api_client.dart' as _i17;
 import 'package:botanic_gaze/features/camera/bloc/analysis_image/analysis_image_bloc.dart'
     as _i3;
 import 'package:botanic_gaze/features/camera/bloc/camera/camera_bloc.dart'
@@ -81,7 +81,7 @@ extension GetItInjectableX on _i1.GetIt {
         () => _i22.SearchPlantsFilterBloc());
     gh.factory<_i23.SearchTabBloc>(() => _i23.SearchTabBloc());
     gh.lazySingleton<_i24.AppApiService>(
-        () => _i24.AppApiService(gh<_i17.PlantApiClient>()));
+        () => _i25.AppApiServiceImpl(gh<_i17.PlantApiClient>()));
     return this;
   }
 }

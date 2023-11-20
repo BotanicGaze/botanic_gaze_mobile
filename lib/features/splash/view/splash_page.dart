@@ -38,7 +38,7 @@ class _SplashPageState extends State<SplashPage> {
             ..add(DailyCheckIn());
           count++;
           if (count == 2) {
-            context.go(NavigationContains.dashBoardPage);
+            context.go(ScreenPaths.dashBoardPage);
           }
         }
       },
@@ -91,7 +91,7 @@ class _SplashPageState extends State<SplashPage> {
                         onFinished: () {
                           count++;
                           if (count == 2) {
-                            context.go(NavigationContains.dashBoardPage);
+                            context.go(ScreenPaths.dashBoardPage);
                           }
                         },
                         animatedTexts: [
@@ -109,7 +109,7 @@ class _SplashPageState extends State<SplashPage> {
                         ],
                       ),
                     ),
-                  )
+                  ),
                 ],
               ),
             ),
@@ -147,7 +147,7 @@ class _SplashPageState extends State<SplashPage> {
             width: ScreenUtil().screenHeight * 0.2,
           ),
         ),
-      )
+      ),
     ];
   }
 }

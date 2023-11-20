@@ -28,7 +28,7 @@ class IconTitleWidget extends StatelessWidget {
           style: Theme.of(context).textTheme.titleMedium?.copyWith(
                 color: Theme.of(context).primaryColor,
               ),
-        )
+        ),
       ],
     );
   }

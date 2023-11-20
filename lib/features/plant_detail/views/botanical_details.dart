@@ -103,7 +103,7 @@ class _BotanicalDetailsState extends State<BotanicalDetails> {
               content: value.value,
               index: index,
             );
-          })
+          }),
         ],
       ),
     );

@@ -57,7 +57,7 @@ class FlowerOfSeasonView extends StatelessWidget {
                           child: GestureDetector(
                             onTap: () {
                               context.pushNamed(
-                                NavigationContains.plantDetailPage,
+                                ScreenPaths.plantDetailPage,
                                 pathParameters: {'id': data.id.toString()},
                               );
                             },
@@ -88,7 +88,7 @@ class FlowerOfSeasonView extends StatelessWidget {
                                       maxLines: 2,
                                       overflow: TextOverflow.ellipsis,
                                     ),
-                                  )
+                                  ),
                                 ],
                               ),
                             ),
@@ -97,11 +97,11 @@ class FlowerOfSeasonView extends StatelessWidget {
                       }),
                     ),
                   ),
-                )
+                ),
               ],
             );
           },
-        )
+        ),
       ],
     );
   }

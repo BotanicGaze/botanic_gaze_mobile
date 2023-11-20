@@ -91,7 +91,7 @@ class _GalleryPhotoWrapperState extends State<GalleryPhotoWrapper> {
                   ),
                 ),
               ),
-            )
+            ),
           ],
         ),
       ),

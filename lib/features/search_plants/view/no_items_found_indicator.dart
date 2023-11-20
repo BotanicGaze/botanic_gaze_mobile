@@ -53,7 +53,7 @@ class NoItemsFoundIndicator extends StatelessWidget {
               onPressed: () {},
               child: const Text('Scan to identify'),
             ),
-          )
+          ),
         ],
       ),
     );

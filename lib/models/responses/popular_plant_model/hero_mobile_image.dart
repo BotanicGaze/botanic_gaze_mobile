@@ -1,9 +1,6 @@
 import 'package:equatable/equatable.dart';
 
 class HeroMobileImage extends Equatable {
-	final String? uniqueId;
-	final String? modified;
-	final String? url;
 
 	const HeroMobileImage({this.uniqueId, this.modified, this.url});
 
@@ -14,6 +11,9 @@ class HeroMobileImage extends Equatable {
 			url: json['url'] as String?,
 		);
 	}
+	final String? uniqueId;
+	final String? modified;
+	final String? url;
 
 
 

@@ -45,6 +45,8 @@ class AppImages {
   static const String imageDefaultUser = 'assets/images/image_default_user.png';
   static const String imageJournalEmpty =
       'assets/images/image_journal_empty.png';
+  static String imagePlantType(String name) =>
+      'assets/images/plant_type/$name.png';
 }
 
 class AppIcons {

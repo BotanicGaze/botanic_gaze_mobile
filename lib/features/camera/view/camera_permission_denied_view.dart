@@ -51,7 +51,7 @@ class CameraPermissionDeniedView extends StatelessWidget {
               },
               child: const Text('No, I’m not sure.'),
             ),
-          )
+          ),
         ],
       ),
     );

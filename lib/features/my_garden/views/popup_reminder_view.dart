@@ -71,7 +71,7 @@ class _PopupReminderTypeState extends State<PopupReminderType> {
             const Divider(),
             _reminderTypeSelected(),
             _repeatTypeSelected(),
-            _timeSelected()
+            _timeSelected(),
           ],
         ),
         bottomNavigationBar: AppSafeArea(

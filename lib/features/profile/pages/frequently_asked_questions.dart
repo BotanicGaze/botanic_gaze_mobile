@@ -46,7 +46,7 @@ class _FrequentlyAskedQuestionsState extends State<FrequentlyAskedQuestions> {
                     ),
                   ),
                 );
-              })
+              }),
             ],
           ),
         ),
@@ -129,7 +129,7 @@ I’m glad to hear that you’d like to share the information with your friends.
     title: 'Is my information safe?',
     content:
         'We are cautious about sharing personal information. Although we require access to your photo gallery, we never process any photos without your permission. Rest assured that we will NEVER share your information with anyone.',
-  )
+  ),
 ];
 
 class FrequentlyAskedQuestionsData {

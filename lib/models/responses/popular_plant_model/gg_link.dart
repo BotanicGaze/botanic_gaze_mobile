@@ -1,13 +1,13 @@
 import 'package:equatable/equatable.dart';
 
 class GgLink extends Equatable {
-	final String? url;
 
 	const GgLink({this.url});
 
 	factory GgLink.fromJson(Map<String, dynamic> json) => GgLink(
 				url: json['url'] as String?,
 			);
+	final String? url;
 
 	Map<String, dynamic> toJson() => {
 				'url': url,

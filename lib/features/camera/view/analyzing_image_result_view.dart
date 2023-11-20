@@ -62,7 +62,7 @@ class _AnalyzingImageResultViewState extends State<AnalyzingImageResultView> {
                 child: GestureDetector(
                   onTap: () {
                     context.pushNamed(
-                      NavigationContains.plantDetailPage,
+                      ScreenPaths.plantDetailPage,
                       pathParameters: {'id': plant?.rhsPlantId ?? ''},
                     );
                   },
@@ -88,7 +88,7 @@ class _AnalyzingImageResultViewState extends State<AnalyzingImageResultView> {
                                   ?.copyWith(
                                     color: Colors.red.shade700,
                                   ),
-                            )
+                            ),
                           ],
                         ),
                         SizedBox(height: Dimens.d8.responsive()),
@@ -109,7 +109,7 @@ class _AnalyzingImageResultViewState extends State<AnalyzingImageResultView> {
               child: GestureDetector(
                 onTap: () {
                   context.pushNamed(
-                    NavigationContains.plantDetailPage,
+                    ScreenPaths.plantDetailPage,
                     pathParameters: {'id': plant?.rhsPlantId ?? ''},
                   );
                 },

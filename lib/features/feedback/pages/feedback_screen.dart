@@ -57,7 +57,7 @@ Your input is the secret ingredient to make ${getIt<AppInfo>().appName} even mor
                         style: TextStyle(
                           color: Colors.red,
                         ),
-                      )
+                      ),
                     ],
                   ),
                 ),
@@ -84,7 +84,7 @@ Your input is the secret ingredient to make ${getIt<AppInfo>().appName} even mor
                         style: TextStyle(
                           color: Colors.red,
                         ),
-                      )
+                      ),
                     ],
                   ),
                 ),
@@ -108,7 +108,7 @@ Your input is the secret ingredient to make ${getIt<AppInfo>().appName} even mor
                         style: TextStyle(
                           color: Colors.red,
                         ),
-                      )
+                      ),
                     ],
                   ),
                 ),
@@ -121,7 +121,7 @@ Your input is the secret ingredient to make ${getIt<AppInfo>().appName} even mor
                     if (value?.isEmpty ?? true) return 'We Need Your Input! 🌐';
                     return null;
                   },
-                )
+                ),
               ],
             ),
           ),

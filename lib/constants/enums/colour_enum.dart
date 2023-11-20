@@ -36,7 +36,7 @@ extension ColourTypeX on ColourType {
     'variegated',
     'white',
     'yellow',
-    'gold'
+    'gold',
   ];
   static final List<int> _ids = [
     1,
@@ -73,7 +73,7 @@ extension ColourTypeX on ColourType {
     [const Color(0xFFf2f0d8), const Color(0xFFb2d1bd)],
     [const Color(0xFFffffff), const Color(0xFFffffff)],
     [const Color(0xFFfaf30f), const Color(0xFFfaf30f)],
-    [const Color(0xFFdbb800), const Color(0xFFdbb800)]
+    [const Color(0xFFdbb800), const Color(0xFFdbb800)],
   ];
 
   String get title => _titles[index];

@@ -80,7 +80,7 @@ class _PermissionPopupState extends State<PermissionPopup> {
                   },
                   child: const Text('No, I’m not sure.'),
                 ),
-              )
+              ),
             ],
           ),
         ),
@@ -101,7 +101,7 @@ extension PermissionTypeX on PermissionType {
   static final List<String> _contents = [
     'Please allow us the access to your camera so we can scan objects.',
     'Please allow us the access to your photos so we can scan objects.',
-    'Please allow us the access to your camera so we can scan objects.'
+    'Please allow us the access to your camera so we can scan objects.',
   ];
 
   String get content => _contents[index];
@@ -116,7 +116,7 @@ extension PermissionTypeX on PermissionType {
   static final List<String> _images = [
     AppImages.imageCameraPermission,
     AppImages.imageCameraPermission,
-    AppImages.imageCameraPermission
+    AppImages.imageCameraPermission,
   ];
 
   String get image => _images[index];

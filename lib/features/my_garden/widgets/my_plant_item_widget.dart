@@ -18,7 +18,7 @@ class MyPlantItemWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        context.pushNamed(NavigationContains.myPlantDetail, extra: item);
+        context.pushNamed(ScreenPaths.myPlantDetail, extra: item);
       },
       child: Padding(
         padding: EdgeInsets.symmetric(horizontal: Dimens.d16.responsive()),

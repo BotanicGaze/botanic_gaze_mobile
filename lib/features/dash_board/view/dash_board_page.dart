@@ -7,6 +7,7 @@ import 'package:botanic_gaze/features/explore/pages/view.dart';
 import 'package:botanic_gaze/features/my_garden/index.dart';
 import 'package:botanic_gaze/features/profile/index.dart';
 import 'package:botanic_gaze/features/search_tab/index.dart';
+import 'package:botanic_gaze/services/dynamic_link_service.dart';
 import 'package:botanic_gaze/services/global_callback.dart';
 import 'package:botanic_gaze/widgets/index.dart';
 import 'package:flutter/material.dart';
@@ -46,6 +47,7 @@ class _DashBoardViewState extends State<DashBoardView> {
   @override
   void initState() {
     super.initState();
+    FirebaseDynamicLinksService.initDynamicLinks();
     getIt<GlobalCallback>().changeDashboardTab = _changeDashboardTab;
   }
 
@@ -58,7 +60,7 @@ class _DashBoardViewState extends State<DashBoardView> {
     const SearchTabPage(),
     const MyGardenPage(),
     const ExplorePage(),
-    const ProfilePage()
+    const ProfilePage(),
   ];
 
   List<BottomNavigationBarItem> get bottomNavigationBarItems => [
@@ -138,7 +140,7 @@ class _DashBoardViewState extends State<DashBoardView> {
                   ),
                   // color: Colors.amber,
                 ),
-              )
+              ),
             ],
           ),
         );

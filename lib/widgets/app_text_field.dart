@@ -118,7 +118,7 @@ class _AppTextFieldState extends State<AppTextField> {
               ),
             );
           },
-        )
+        ),
       ],
     );
   }

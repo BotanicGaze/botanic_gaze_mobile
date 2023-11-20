@@ -1,10 +1,6 @@
 import 'package:equatable/equatable.dart';
 
 class Item extends Equatable {
-	final int? id;
-	final String? name;
-	final bool? isAgm;
-	final dynamic price;
 
 	const Item({this.id, this.name, this.isAgm, this.price});
 
@@ -14,6 +10,10 @@ class Item extends Equatable {
 				isAgm: json['isAgm'] as bool?,
 				price: json['price'] as dynamic,
 			);
+	final int? id;
+	final String? name;
+	final bool? isAgm;
+	final dynamic price;
 
 	Map<String, dynamic> toJson() => {
 				'id': id,

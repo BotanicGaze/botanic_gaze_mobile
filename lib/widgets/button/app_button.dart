@@ -134,7 +134,7 @@ class _AppButtonState extends State<AppButton>
                   ? LinearGradient(
                       colors: [
                         Theme.of(context).primaryColor,
-                        Theme.of(context).primaryColor
+                        Theme.of(context).primaryColor,
                       ],
                     )
                   : null,
