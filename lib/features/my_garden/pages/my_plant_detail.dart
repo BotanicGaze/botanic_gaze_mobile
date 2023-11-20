@@ -4,6 +4,7 @@ import 'package:botanic_gaze/constants/index.dart';
 import 'package:botanic_gaze/features/my_garden/index.dart';
 import 'package:botanic_gaze/models/index.dart';
 import 'package:botanic_gaze/widgets/index.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:shared/shared.dart';
 
@@ -31,6 +32,7 @@ class _MyPlantDetailScreenState
     return BlocBuilder<MyPlantDetailBloc, MyPlantDetailState>(
       builder: (context, state) {
         return CommonScaffold(
+          backgroundColor: Colors.transparent,
           body: CustomScrollView(
             controller: _scrollController,
             slivers: [
@@ -122,7 +124,73 @@ class _MyPlantDetailScreenState
                     })
                   ],
                 ),
+              ),
+              const SliverAppBar(
+                automaticallyImplyLeading: false,
+                title: Text('Journal'),
+                pinned: true,
+                primary: false,
+                centerTitle: false,
+                backgroundColor: Colors.transparent,
+              ),
+              SliverToBoxAdapter(
+                child: SizedBox(
+                  // height: AppDimen.current.screenHeight,
+                  child: Padding(
+                    padding: EdgeInsets.all(Dimens.d16.responsive()),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Image.asset(AppImages.imageJournalEmpty),
+                        SizedBox(height: Dimens.d16.responsive()),
+                        const Text(
+                          'Within the untouched soil of this plant care journal, cultivate a symphony of growth and vitality as each entry becomes a testament to the flourishing journey of your green companions.',
+                          textAlign: TextAlign.center,
+                        ),
+                        // SizedBox(height: Dimens.d16.responsive()),
+                        AppSafeArea(
+                          child: AppButton.large(
+                            child: const Text('Add journal'),
+                            onPressed: () {
+                              showModalBottomSheet<dynamic>(
+                                backgroundColor: Colors.transparent,
+                                context: context,
+                                builder: (context) {
+                                  return CupertinoActionSheet(
+                                    actions: [
+                                      const Text('ahihi'),
+                                      CupertinoActionSheetAction(
+                                        isDestructiveAction: true,
+                                        onPressed: () {
+                                          Navigator.pop(context);
+                                        },
+                                        child: const Text('Action'),
+                                      ),
+                                    ],
+                                    cancelButton: CupertinoActionSheetAction(
+                                      isDestructiveAction: true,
+                                      onPressed: () {
+                                        Navigator.pop(context);
+                                      },
+                                      child: const Text('Action'),
+                                    ),
+                                  );
+                                },
+                              );
+                            },
+                          ),
+                        )
+                      ],
+                    ),
+                  ),
+                ),
               )
+              // SliverList.list(
+              //   children: List.generate(
+              //     100,
+              //     (index) => ListTile(title: Text(index.toString())),
+              //   ),
+              // )
             ],
           ),
         );

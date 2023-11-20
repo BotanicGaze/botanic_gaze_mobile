@@ -43,6 +43,8 @@ class AppImages {
       'assets/images/image_facebook_logo.png';
   static const String imageGoogleLogo = 'assets/images/image_google_logo.png';
   static const String imageDefaultUser = 'assets/images/image_default_user.png';
+  static const String imageJournalEmpty =
+      'assets/images/image_journal_empty.png';
 }
 
 class AppIcons {
