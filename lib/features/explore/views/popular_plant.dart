@@ -2,7 +2,7 @@ import 'package:app_ui/app_ui.dart';
 import 'package:base_bloc/base_bloc.dart';
 import 'package:botanic_gaze/features/explore/index.dart';
 import 'package:botanic_gaze/models/index.dart';
-import 'package:botanic_gaze/navigation/navigation_contains.dart';
+import 'package:botanic_gaze/navigation/screen_paths.dart';
 import 'package:botanic_gaze/widgets/index.dart';
 import 'package:flutter/material.dart';
 import 'package:paging_view/paging_view.dart';
@@ -58,7 +58,7 @@ class _PopularPlantViewState extends State<PopularPlantView> {
               return GestureDetector(
                 onTap: () {
                   context.pushNamed(
-                    NavigationContains.popularPlantDetail,
+                    ScreenPaths.popularPlantDetail,
                     extra: {'popular_plant_model': item},
                   );
                 },
@@ -87,7 +87,7 @@ class _PopularPlantViewState extends State<PopularPlantView> {
                               Colors.black.withOpacity(0.25),
                               Colors.black.withOpacity(0.5),
                               Colors.black.withOpacity(0.75),
-                              Colors.black
+                              Colors.black,
                             ],
                           ),
                         ),
@@ -105,7 +105,7 @@ class _PopularPlantViewState extends State<PopularPlantView> {
                                 ),
                           ),
                         ),
-                      )
+                      ),
                     ],
                   ),
                 ),

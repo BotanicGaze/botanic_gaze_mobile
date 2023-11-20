@@ -10,7 +10,7 @@ extension AccountLoginTypeX on AccountLoginType {
     'facebook',
     'google',
     'apple',
-    'email'
+    'email',
   ];
 
   String get apiEndpoint => _apiEndpoints[index];

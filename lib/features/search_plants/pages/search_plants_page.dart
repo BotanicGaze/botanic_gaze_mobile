@@ -203,7 +203,7 @@ class _SearchPlantsPageState
                       ),
                       onPressed: () async {
                         final result = await context.pushNamed(
-                          NavigationContains.searchPlantsFilterPage,
+                          ScreenPaths.searchPlantsFilterPage,
                           extra: {
                             'init_filter': SearchPlantsFilter(
                               sunlightSelected: SunlightX.datasFromListId(
@@ -267,12 +267,12 @@ class _SearchPlantsPageState
                           ),
                         ),
                       ),
-                    )
+                    ),
                   ],
                 );
               },
             ),
-          )
+          ),
         ],
       ),
     );
@@ -306,7 +306,7 @@ class _SearchPlantsPageState
             width: ScreenUtil().screenHeight * 0.2,
           ),
         ),
-      )
+      ),
     ];
   }
 }

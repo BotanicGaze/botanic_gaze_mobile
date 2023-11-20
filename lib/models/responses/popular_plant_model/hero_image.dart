@@ -1,9 +1,6 @@
 import 'package:equatable/equatable.dart';
 
 class HeroImage extends Equatable {
-	final String? uniqueId;
-	final String? modified;
-	final String? url;
 
 	const HeroImage({this.uniqueId, this.modified, this.url});
 
@@ -12,6 +9,9 @@ class HeroImage extends Equatable {
 				modified: json['modified'] as String?,
 				url: json['url'] as String?,
 			);
+	final String? uniqueId;
+	final String? modified;
+	final String? url;
 
 	Map<String, dynamic> toJson() => {
 				'uniqueId': uniqueId,

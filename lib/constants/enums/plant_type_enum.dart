@@ -1,3 +1,4 @@
+import 'package:botanic_gaze/constants/index.dart';
 import 'package:shared/shared.dart';
 
 enum PlantType {
@@ -46,7 +47,7 @@ extension PlantTypesX on PlantType {
     18,
     19,
     20,
-    21
+    21,
   ];
   static const List<String> _titles = [
     'Herbaceous Perennial',
@@ -75,8 +76,7 @@ extension PlantTypesX on PlantType {
   int get id => _ids[index];
   String get title => _titles[index];
   String get titleWithNewLine => _titles[index].split(' ').join('\n');
-  String get imagePath =>
-      'assets/images/plant_type/${ReCase(name).snakeCase}.png';
+  String get imagePath => AppImages.imagePlantType(ReCase(name).snakeCase);
 
   static List<PlantType> datasFromListId(List<int> ids) {
     final data = <PlantType>[];

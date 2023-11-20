@@ -1,10 +1,6 @@
 import 'package:equatable/equatable.dart';
 
 class GgImage extends Equatable {
-	final String? alternativeText;
-	final String? uniqueId;
-	final String? modified;
-	final String? url;
 
 	const GgImage({
 		this.alternativeText, 
@@ -19,6 +15,10 @@ class GgImage extends Equatable {
 				modified: json['modified'] as String?,
 				url: json['url'] as String?,
 			);
+	final String? alternativeText;
+	final String? uniqueId;
+	final String? modified;
+	final String? url;
 
 	Map<String, dynamic> toJson() => {
 				'alternativeText': alternativeText,

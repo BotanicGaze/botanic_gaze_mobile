@@ -81,7 +81,7 @@ class _LoadingPageState extends State<LoadingPage>
             child: const CircleAvatar(
               backgroundImage: AssetImage(AppImages.appLogo),
             ),
-          )
+          ),
         ],
       ),
     );

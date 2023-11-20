@@ -43,6 +43,8 @@ class AppImages {
       'assets/images/image_facebook_logo.png';
   static const String imageGoogleLogo = 'assets/images/image_google_logo.png';
   static const String imageDefaultUser = 'assets/images/image_default_user.png';
+  static String imagePlantType(String name) =>
+      'assets/images/plant_type/$name.png';
 }
 
 class AppIcons {

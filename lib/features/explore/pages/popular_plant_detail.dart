@@ -122,7 +122,7 @@ class _PopularPlantDetailState
             child: PopularPlantListDetailView(
               plantNames: widget.data.name ?? '',
             ),
-          )
+          ),
         ],
       ),
     );

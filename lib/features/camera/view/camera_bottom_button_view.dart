@@ -40,7 +40,7 @@ class CameraBottomButtonView extends StatelessWidget {
                         ),
                       ),
                     ],
-                  )
+                  ),
                 ],
               ),
             ),

@@ -51,7 +51,7 @@ class HowToGrowView extends StatelessWidget {
                       );
                     }
                   },
-                )
+                ),
               ],
             ),
           ),
@@ -78,7 +78,7 @@ class HowToGrowView extends StatelessWidget {
                       );
                     }
                   },
-                )
+                ),
               ],
             ),
           ),
@@ -122,7 +122,7 @@ class HowToGrowView extends StatelessWidget {
                       );
                     }
                   },
-                )
+                ),
               ],
             ),
           ),
@@ -171,7 +171,7 @@ class HowToGrowView extends StatelessWidget {
                       );
                     }
                   },
-                )
+                ),
               ],
             ),
           ),

@@ -50,7 +50,7 @@ class _ProfilePageState extends BasePageState<ProfilePage, ProfileBloc> {
                   onPressed: () {
                     context.pop();
                   },
-                )
+                ),
               ],
             );
           },
@@ -176,7 +176,7 @@ class _ProfilePageState extends BasePageState<ProfilePage, ProfileBloc> {
                                   ),
                                 ),
                               ),
-                            ]
+                            ],
                           ],
                         ),
                       ),
@@ -277,7 +277,7 @@ class _ProfilePageState extends BasePageState<ProfilePage, ProfileBloc> {
                           icon: AppIcons.iconFaq,
                           onTap: () {
                             context.pushNamed(
-                              NavigationContains.frequentlyAskedQuestions,
+                              ScreenPaths.frequentlyAskedQuestions,
                             );
                           },
                           rightInfo: const Icon(
@@ -295,8 +295,7 @@ class _ProfilePageState extends BasePageState<ProfilePage, ProfileBloc> {
                             size: 16,
                           ),
                           onTap: () {
-                            context
-                                .pushNamed(NavigationContains.feedbackScreen);
+                            context.pushNamed(ScreenPaths.feedbackScreen);
                           },
                         ),
                         // const Divider(),
@@ -384,7 +383,7 @@ class _ProfilePageState extends BasePageState<ProfilePage, ProfileBloc> {
                           ),
                         ),
                       ),
-                    )
+                    ),
                   ],
                 );
               },
@@ -457,7 +456,7 @@ class _ProfilePageState extends BasePageState<ProfilePage, ProfileBloc> {
             width: ScreenUtil().screenHeight * 0.2,
           ),
         ),
-      )
+      ),
     ];
   }
 

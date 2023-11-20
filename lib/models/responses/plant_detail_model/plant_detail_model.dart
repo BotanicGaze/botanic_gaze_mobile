@@ -401,7 +401,7 @@ class PlantDetailModel extends Equatable {
         'plantEntityId': plantEntityId,
         'gbif': gbif?.toJson(),
         'powo': powo?.toJson(),
-        'links': links?.map((x) => x).toList()
+        'links': links?.map((x) => x).toList(),
       };
 
   PlantDetailModel copyWith({

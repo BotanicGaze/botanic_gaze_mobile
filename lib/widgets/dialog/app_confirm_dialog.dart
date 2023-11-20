@@ -96,7 +96,7 @@ class _AppConfirmDialogState extends State<AppConfirmDialog> {
                     },
                   ),
                 ],
-              )
+              ),
             ],
           ),
         ),

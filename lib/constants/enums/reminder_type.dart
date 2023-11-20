@@ -5,7 +5,7 @@ extension ReminderTypeX on ReminderType {
     'watering',
     'misting',
     'fertilizing',
-    'rotating'
+    'rotating',
   ];
 
   String get name => _names[index];

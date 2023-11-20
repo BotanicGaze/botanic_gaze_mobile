@@ -75,7 +75,7 @@ class _AnalysisImagePageState
             width: ScreenUtil().screenHeight * 0.2,
           ),
         ),
-      )
+      ),
     ];
   }
 }

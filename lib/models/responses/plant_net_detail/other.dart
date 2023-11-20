@@ -1,19 +1,8 @@
 import 'package:equatable/equatable.dart';
 
-import 'plus.dart';
+import 'package:botanic_gaze/models/responses/plant_net_detail/plus.dart';
 
 class Other extends Equatable {
-	final String? id;
-	final String? o;
-	final String? m;
-	final String? s;
-	final String? author;
-	final String? license;
-	final String? date;
-	final Plus? plus;
-	final String? observationId;
-	final bool? hasGeoloc;
-	final String? licenseUrl;
 
 	const Other({
 		this.id, 
@@ -44,6 +33,17 @@ class Other extends Equatable {
 				hasGeoloc: json['hasGeoloc'] as bool?,
 				licenseUrl: json['licenseUrl'] as String?,
 			);
+	final String? id;
+	final String? o;
+	final String? m;
+	final String? s;
+	final String? author;
+	final String? license;
+	final String? date;
+	final Plus? plus;
+	final String? observationId;
+	final bool? hasGeoloc;
+	final String? licenseUrl;
 
 	Map<String, dynamic> toJson() => {
 				'id': id,

@@ -8,7 +8,7 @@ extension FoliageX on Foliage {
   static final List<String> _titles = [
     'Deciduous',
     'Evergreen',
-    'Semi evergreen'
+    'Semi evergreen',
   ];
   static final List<int> _ids = [1, 2, 3];
 

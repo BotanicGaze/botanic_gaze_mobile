@@ -119,13 +119,13 @@ class _AnalyzingImageViewState extends State<AnalyzingImageView>
                   fit: BoxFit.cover,
                 ),
               ),
-            )
+            ),
           ],
         ),
         SizedBox(height: Dimens.d20.responsive()),
         const Text('Just a sec. Collecting leaves...'),
         SizedBox(height: Dimens.d8.responsive()),
-        const Text('It may take a few seconds.')
+        const Text('It may take a few seconds.'),
       ],
     );
   }

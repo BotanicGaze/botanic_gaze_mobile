@@ -10,7 +10,7 @@ import 'package:botanic_gaze/features/profile/index.dart';
 import 'package:botanic_gaze/features/search_plants/index.dart';
 import 'package:botanic_gaze/features/splash/index.dart';
 import 'package:botanic_gaze/models/index.dart';
-import 'package:botanic_gaze/navigation/navigation_contains.dart';
+import 'package:botanic_gaze/navigation/screen_paths.dart';
 import 'package:botanic_gaze/widgets/index.dart';
 import 'package:flutter/material.dart';
 import 'package:shared/shared.dart';
@@ -25,8 +25,8 @@ class AppNavigatorImpl extends AppNavigator with LogMixin {
         debugLogDiagnostics: true,
         routes: [
           GoRoute(
-            path: NavigationContains.rootPage,
-            name: NavigationContains.rootPage,
+            path: ScreenPaths.rootPage,
+            name: ScreenPaths.rootPage,
             pageBuilder: (context, state) => CustomTransitionPage<void>(
               key: state.pageKey,
               child: const SplashPage(),
@@ -36,8 +36,8 @@ class AppNavigatorImpl extends AppNavigator with LogMixin {
             ),
           ),
           GoRoute(
-            path: NavigationContains.dashBoardPage,
-            name: NavigationContains.dashBoardPage,
+            path: ScreenPaths.dashBoardPage,
+            name: ScreenPaths.dashBoardPage,
             pageBuilder: (context, state) => CustomTransitionPage<void>(
               key: state.pageKey,
               child: const DashBoardPage(),
@@ -47,8 +47,8 @@ class AppNavigatorImpl extends AppNavigator with LogMixin {
             ),
           ),
           GoRoute(
-            path: NavigationContains.searchPage,
-            name: NavigationContains.searchPage,
+            path: ScreenPaths.searchPage,
+            name: ScreenPaths.searchPage,
             builder: (context, state) {
               final extra = state.extra as Map<String, dynamic>?;
               return SearchPlantsPage(
@@ -58,8 +58,8 @@ class AppNavigatorImpl extends AppNavigator with LogMixin {
             },
             routes: [
               GoRoute(
-                path: NavigationContains.searchPlantsFilterPage,
-                name: NavigationContains.searchPlantsFilterPage,
+                path: ScreenPaths.searchPlantsFilterPage,
+                name: ScreenPaths.searchPlantsFilterPage,
                 builder: (context, state) {
                   final extra = state.extra as Map<String, dynamic>?;
                   return SearchPlantsFilterPage(
@@ -71,13 +71,13 @@ class AppNavigatorImpl extends AppNavigator with LogMixin {
             ],
           ),
           GoRoute(
-            path: NavigationContains.scanPage,
-            name: NavigationContains.scanPage,
+            path: ScreenPaths.scanPage,
+            name: ScreenPaths.scanPage,
             builder: (context, state) => const CameraPage(),
           ),
           GoRoute(
-            path: NavigationContains.analysisImagePage,
-            name: NavigationContains.analysisImagePage,
+            path: ScreenPaths.analysisImagePage,
+            name: ScreenPaths.analysisImagePage,
             builder: (context, state) {
               final extra = state.extra as Map<String, String?>?;
               return AnalysisImagePage(
@@ -86,8 +86,8 @@ class AppNavigatorImpl extends AppNavigator with LogMixin {
             },
           ),
           GoRoute(
-            path: '${NavigationContains.plantDetailPage}:id',
-            name: NavigationContains.plantDetailPage,
+            path: '${ScreenPaths.plantDetailPage}:id',
+            name: ScreenPaths.plantDetailPage,
             builder: (context, state) {
               return PlantDetailPage(
                 plantId: int.tryParse(state.pathParameters['id'] ?? '') ?? 0,
@@ -95,8 +95,8 @@ class AppNavigatorImpl extends AppNavigator with LogMixin {
             },
           ),
           GoRoute(
-            path: NavigationContains.galleryPhotoWrapper,
-            name: NavigationContains.galleryPhotoWrapper,
+            path: ScreenPaths.galleryPhotoWrapper,
+            name: ScreenPaths.galleryPhotoWrapper,
             pageBuilder: (context, state) {
               final extra = state.extra as Map<String, dynamic>?;
               return CustomTransitionPage<void>(
@@ -113,8 +113,8 @@ class AppNavigatorImpl extends AppNavigator with LogMixin {
             },
           ),
           GoRoute(
-            path: NavigationContains.popularPlantDetail,
-            name: NavigationContains.popularPlantDetail,
+            path: ScreenPaths.popularPlantDetail,
+            name: ScreenPaths.popularPlantDetail,
             builder: (context, state) {
               final extra = state.extra as Map<String, dynamic>?;
 
@@ -124,8 +124,8 @@ class AppNavigatorImpl extends AppNavigator with LogMixin {
             },
           ),
           GoRoute(
-            path: NavigationContains.myPlantDetail,
-            name: NavigationContains.myPlantDetail,
+            path: ScreenPaths.myPlantDetail,
+            name: ScreenPaths.myPlantDetail,
             builder: (context, state) {
               final extra = state.extra as MyPlantModel?;
               return MyPlantDetailScreen(
@@ -134,16 +134,16 @@ class AppNavigatorImpl extends AppNavigator with LogMixin {
             },
           ),
           GoRoute(
-            path: NavigationContains.feedbackScreen,
-            name: NavigationContains.feedbackScreen,
+            path: ScreenPaths.feedbackScreen,
+            name: ScreenPaths.feedbackScreen,
             builder: (context, state) {
               // final extra = state.extra as MyPlantModel?;
               return const FeedbackScreen();
             },
           ),
           GoRoute(
-            path: NavigationContains.frequentlyAskedQuestions,
-            name: NavigationContains.frequentlyAskedQuestions,
+            path: ScreenPaths.frequentlyAskedQuestions,
+            name: ScreenPaths.frequentlyAskedQuestions,
             builder: (context, state) {
               // final extra = state.extra as MyPlantModel?;
               return const FrequentlyAskedQuestions();

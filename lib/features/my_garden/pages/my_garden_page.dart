@@ -105,7 +105,7 @@ class _MyGardenPageState extends BasePageState<MyGardenPage, MyGardenBloc> {
                 Expanded(
                   child: GestureDetector(
                     onTap: () {
-                      context.pushNamed(NavigationContains.searchPage);
+                      context.pushNamed(ScreenPaths.searchPage);
                     },
                     child: AppTextField(
                       hintText: 'Monstera Albo',
@@ -121,7 +121,7 @@ class _MyGardenPageState extends BasePageState<MyGardenPage, MyGardenBloc> {
                 SizedBox(
                   child: GestureDetector(
                     onTap: () {
-                      context.pushNamed(NavigationContains.scanPage);
+                      context.pushNamed(ScreenPaths.scanPage);
                     },
                     child: SizedBox(
                       // width: Dimens.d50.responsive(),

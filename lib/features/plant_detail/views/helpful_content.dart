@@ -134,7 +134,7 @@ class HelpfulContentView extends StatelessWidget {
                       ),
                     ),
                   ],
-                )
+                ),
               ],
             ),
           ),

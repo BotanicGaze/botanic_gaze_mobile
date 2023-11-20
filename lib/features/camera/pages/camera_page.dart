@@ -1,6 +1,6 @@
 import 'package:base_bloc/base_bloc.dart';
 import 'package:botanic_gaze/features/camera/index.dart';
-import 'package:botanic_gaze/navigation/navigation_contains.dart';
+import 'package:botanic_gaze/navigation/screen_paths.dart';
 import 'package:botanic_gaze/widgets/index.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -40,7 +40,7 @@ class _CameraPageState extends BasePageState<CameraPage, CameraBloc>
         }
         if (state.imageTaken != null) {
           context.pushReplacementNamed(
-            NavigationContains.analysisImagePage,
+            ScreenPaths.analysisImagePage,
             extra: {
               'image_path': state.imageTaken?.path,
             },

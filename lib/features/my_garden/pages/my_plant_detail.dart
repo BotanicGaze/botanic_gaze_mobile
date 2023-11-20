@@ -119,10 +119,10 @@ class _MyPlantDetailScreenState
                           },
                         ),
                       );
-                    })
+                    }),
                   ],
                 ),
-              )
+              ),
             ],
           ),
         );

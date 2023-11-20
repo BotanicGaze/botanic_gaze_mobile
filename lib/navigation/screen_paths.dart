@@ -9,7 +9,7 @@ import 'package:botanic_gaze/features/profile/index.dart';
 import 'package:botanic_gaze/features/search_plants/index.dart';
 import 'package:botanic_gaze/features/splash/index.dart';
 
-class NavigationContains {
+class ScreenPaths {
   // static const String pathPrefix = '/';
 
   ///go to [SplashPage]

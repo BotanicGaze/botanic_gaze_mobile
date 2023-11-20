@@ -1,2 +1,2 @@
 export 'app_navigator.dart';
-export 'navigation_contains.dart';
+export 'screen_paths.dart';
