@@ -16,8 +16,8 @@ part 'profile_state.dart';
 
 @LazySingleton()
 class ProfileBloc extends BaseBloc<ProfileEvent, ProfileState> {
-  ProfileBloc(this.appCommonBloc) : super(const ProfileState()) {
-    commonBloc = appCommonBloc;
+  ProfileBloc() : super(const ProfileState()) {
+    // commonBloc = appCommonBloc;
     on<GetUserInfo>(_onGetUserInfo);
     on<LoginWithFacebook>(_onLoginWithFacebook);
     on<LoginWithGoogle>(_onLoginWithGoogle);
@@ -28,7 +28,7 @@ class ProfileBloc extends BaseBloc<ProfileEvent, ProfileState> {
     on<Logout>(_onLogout);
   }
 
-  final CommonBloc appCommonBloc;
+  // final CommonBloc appCommonBloc;
 
   Future<void> _onLoginWithFacebook(
     LoginWithFacebook event,

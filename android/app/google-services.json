@@ -9,7 +9,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:544238475290:android:56ea0e5859e5a33282d9a3",
         "android_client_info": {
-          "package_name": "com.example.verygoodcore.botanic_gaze"
+          "package_name": "com.botanic_gaze.botanic_gaze"
         }
       },
       "oauth_client": [
@@ -45,7 +45,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:544238475290:android:acf50192bb16faf682d9a3",
         "android_client_info": {
-          "package_name": "com.example.verygoodcore.botanic_gaze.dev"
+          "package_name": "com.botanic_gaze.botanic_gaze.dev"
         }
       },
       "oauth_client": [
