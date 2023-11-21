@@ -7,12 +7,20 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:544238475290:android:56ea0e5859e5a33282d9a3",
+        "mobilesdk_app_id": "1:544238475290:android:7ebec59844b85f5c82d9a3",
         "android_client_info": {
-          "package_name": "com.botanic_gaze.botanic_gaze"
+          "package_name": "com.zenithtech.botanicgaze"
         }
       },
       "oauth_client": [
+        {
+          "client_id": "544238475290-i6m5nhgbnecmftfc96gneefh1v1936bk.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.zenithtech.botanicgaze",
+            "certificate_hash": "96184345c4bd6c1cbdf096406e90dba6e106b6b8"
+          }
+        },
         {
           "client_id": "544238475290-k0rhhls5biu38sditostclgat2k6mos5.apps.googleusercontent.com",
           "client_type": 3
@@ -31,46 +39,10 @@
               "client_type": 3
             },
             {
-              "client_id": "544238475290-sajfhjthbu6tt5e6273bl7fuausqhemn.apps.googleusercontent.com",
+              "client_id": "544238475290-92a9uv8dvmc410f3q1uh2go6ra7aicj0.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
-                "bundle_id": "com.verygoodcore.botanic-gaze.dev"
-              }
-            }
-          ]
-        }
-      }
-    },
-    {
-      "client_info": {
-        "mobilesdk_app_id": "1:544238475290:android:acf50192bb16faf682d9a3",
-        "android_client_info": {
-          "package_name": "com.botanic_gaze.botanic_gaze.dev"
-        }
-      },
-      "oauth_client": [
-        {
-          "client_id": "544238475290-k0rhhls5biu38sditostclgat2k6mos5.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
-      "api_key": [
-        {
-          "current_key": "AIzaSyAa4A0VnHb8NZ9hUg3OmvFMUUB4IDadjKA"
-        }
-      ],
-      "services": {
-        "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "544238475290-k0rhhls5biu38sditostclgat2k6mos5.apps.googleusercontent.com",
-              "client_type": 3
-            },
-            {
-              "client_id": "544238475290-sajfhjthbu6tt5e6273bl7fuausqhemn.apps.googleusercontent.com",
-              "client_type": 2,
-              "ios_info": {
-                "bundle_id": "com.verygoodcore.botanic-gaze.dev"
+                "bundle_id": "com.zenithtech.botanicgaze"
               }
             }
           ]

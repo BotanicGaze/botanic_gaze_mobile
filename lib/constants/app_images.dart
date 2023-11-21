@@ -14,7 +14,6 @@ class AppImages {
   static const String imageBackground3 = 'assets/images/image_background_3.png';
   static const String imageBackground4 = 'assets/images/image_background_4.png';
   static const String imageBackground5 = 'assets/images/image_background_5.png';
-
   static const String imageNotFound = 'assets/images/image_not_found.png';
   static const String imageFullSun = 'assets/images/image_full_sun.png';
   static const String imageFullShade = 'assets/images/image_full_shade.png';

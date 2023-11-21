@@ -3,11 +3,10 @@ import 'package:base_bloc/base_bloc.dart';
 import 'package:botanic_gaze/constants/index.dart';
 import 'package:botanic_gaze/features/profile/index.dart';
 import 'package:botanic_gaze/navigation/index.dart';
-import 'package:botanic_gaze/services/dynamic_link_service.dart';
+import 'package:botanic_gaze/services/appsflyer_config.dart';
 import 'package:botanic_gaze/widgets/index.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:share_plus/share_plus.dart';
 import 'package:shared/shared.dart';
 
 class ProfilePage extends StatefulWidget {
@@ -213,14 +212,15 @@ class _ProfilePageState extends BasePageState<ProfilePage, ProfileBloc> {
                           icon: AppIcons.iconInviteFriend,
                           rightInfo: const CupertinoListTileChevron(),
                           onTap: () async {
-                            final result = await FirebaseDynamicLinksService
-                                .createReferralLink(
-                              referralCode: state.userInfo?.inviteCode ?? '',
-                            );
-                            Log.d(result);
-                            await Share.share(
-                              'My referral code is ${state.userInfo?.inviteCode}, access now $result',
-                            );
+                            // final result = await FirebaseDynamicLinksService
+                            //     .createReferralLink(
+                            //   referralCode: state.userInfo?.inviteCode ?? '',
+                            // );
+                            // Log.d(result);
+                            // await Share.share(
+                            //   'My referral code is ${state.userInfo?.inviteCode}, access now $result',
+                            // );
+                            await AppsflyerConfig().init();
                           },
                         ),
                         // const Divider(),

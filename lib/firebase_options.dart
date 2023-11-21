@@ -2,7 +2,7 @@
 // ignore_for_file: lines_longer_than_80_chars, avoid_classes_with_only_static_members
 import 'package:firebase_core/firebase_core.dart' show FirebaseOptions;
 import 'package:flutter/foundation.dart'
-    show TargetPlatform, defaultTargetPlatform, kIsWeb;
+    show defaultTargetPlatform, kIsWeb, TargetPlatform;
 
 /// Default [FirebaseOptions] for use with your Firebase apps.
 ///
@@ -51,7 +51,7 @@ class DefaultFirebaseOptions {
 
   static const FirebaseOptions android = FirebaseOptions(
     apiKey: 'AIzaSyAa4A0VnHb8NZ9hUg3OmvFMUUB4IDadjKA',
-    appId: '1:544238475290:android:56ea0e5859e5a33282d9a3',
+    appId: '1:544238475290:android:7ebec59844b85f5c82d9a3',
     messagingSenderId: '544238475290',
     projectId: 'botanic-gaze',
     storageBucket: 'botanic-gaze.appspot.com',
@@ -59,10 +59,12 @@ class DefaultFirebaseOptions {
 
   static const FirebaseOptions ios = FirebaseOptions(
     apiKey: 'AIzaSyApuoRqx84p2wFU_Y4RTznBnZKNBq5lZbI',
-    appId: '1:544238475290:ios:26b6c6e13933fa3a82d9a3',
+    appId: '1:544238475290:ios:13e064ae768058f882d9a3',
     messagingSenderId: '544238475290',
     projectId: 'botanic-gaze',
     storageBucket: 'botanic-gaze.appspot.com',
-    iosBundleId: 'com.verygoodcore.botanic-gaze.dev',
+    androidClientId: '544238475290-12g6pujdv82jqgj5hh7hm0pk8ig27ovj.apps.googleusercontent.com',
+    iosClientId: '544238475290-92a9uv8dvmc410f3q1uh2go6ra7aicj0.apps.googleusercontent.com',
+    iosBundleId: 'com.zenithtech.botanicgaze',
   );
 }

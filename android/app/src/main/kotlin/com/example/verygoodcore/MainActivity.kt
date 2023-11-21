@@ -1,4 +1,4 @@
-package com.botanic_gaze.botanic_gaze
+package com.zenithtech.botanicgaze
 
 import io.flutter.embedding.android.FlutterActivity
 
