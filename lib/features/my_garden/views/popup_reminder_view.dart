@@ -57,46 +57,55 @@ class _PopupReminderTypeState extends State<PopupReminderType> {
 
   @override
   Widget build(BuildContext context) {
-    return ClipRRect(
-      borderRadius: BorderRadius.circular(
-        Dimens.d16.responsive(),
-      ),
-      child: Scaffold(
-        appBar: AppBar(
-          leading: const CloseButton(),
-          title: const Text('Set reminder'),
+    return BlocListener<MyPlantDetailBloc, MyPlantDetailState>(
+      listenWhen: (previous, current) {
+        return previous.myPlant?.reminder != current.myPlant?.reminder;
+      },
+      listener: (context, state) {
+        context.pop();
+      },
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(
+          Dimens.d16.responsive(),
         ),
-        body: Column(
-          children: [
-            const Divider(),
-            _reminderTypeSelected(),
-            _repeatTypeSelected(),
-            _timeSelected(),
-          ],
-        ),
-        bottomNavigationBar: AppSafeArea(
-          minimum: EdgeInsets.all(
-            Dimens.d16.responsive(),
+        child: Scaffold(
+          appBar: AppBar(
+            leading: const CloseButton(),
+            title: const Text('Set reminder'),
           ),
-          child: AppButton.fullSize(
-            child:
-                Text(isAddNewReminder ? 'Add new reminder' : 'Update reminder'),
-            onPressed: () {
-              final now = DateTime.now();
-              context.read<MyPlantDetailBloc>().add(
-                    AddReminder(
-                      repeatType: repeatType,
-                      reminderType: reminderType,
-                      date: DateTime(
-                        now.year,
-                        now.month,
-                        now.day,
-                        time.hour,
-                        time.minute,
+          body: Column(
+            children: [
+              const Divider(),
+              _reminderTypeSelected(),
+              _repeatTypeSelected(),
+              _timeSelected(),
+            ],
+          ),
+          bottomNavigationBar: AppSafeArea(
+            minimum: EdgeInsets.all(
+              Dimens.d16.responsive(),
+            ),
+            child: AppButton.fullSize(
+              child: Text(
+                isAddNewReminder ? 'Add new reminder' : 'Update reminder',
+              ),
+              onPressed: () {
+                final now = DateTime.now();
+                context.read<MyPlantDetailBloc>().add(
+                      AddReminder(
+                        repeatType: repeatType,
+                        reminderType: reminderType,
+                        date: DateTime(
+                          now.year,
+                          now.month,
+                          now.day,
+                          time.hour,
+                          time.minute,
+                        ),
                       ),
-                    ),
-                  );
-            },
+                    );
+              },
+            ),
           ),
         ),
       ),

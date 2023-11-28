@@ -32,6 +32,7 @@ class MyPlantDetailBloc
             date: event.date,
             reminderType: event.reminderType,
             repeatType: event.repeatType,
+            isActive: true,
           );
         } else {
           output = await getIt<AppApiService>().addReminder(
@@ -39,9 +40,11 @@ class MyPlantDetailBloc
             date: event.date,
             reminderType: event.reminderType,
             repeatType: event.repeatType,
+            isActive: true,
           );
         }
-        final listPlantReminder = state.myPlant?.reminder ?? [];
+        final listPlantReminder =
+            List<PlantReminder>.from(state.myPlant?.reminder ?? []);
         final indexItem = listPlantReminder
             .indexWhere((element) => output.data?.id == element.id);
         if (indexItem < 0) {
@@ -49,8 +52,10 @@ class MyPlantDetailBloc
         } else {
           listPlantReminder[indexItem] = output.data!;
         }
-        state.copyWith(
-          myPlant: state.myPlant?.copyWith(reminder: listPlantReminder),
+        emit(
+          state.copyWith(
+            myPlant: state.myPlant?.copyWith(reminder: listPlantReminder),
+          ),
         );
       },
       doOnError: (e) async {

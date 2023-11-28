@@ -4,7 +4,6 @@ import 'package:botanic_gaze/constants/index.dart';
 import 'package:botanic_gaze/features/my_garden/index.dart';
 import 'package:botanic_gaze/models/index.dart';
 import 'package:botanic_gaze/widgets/index.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:shared/shared.dart';
 
@@ -112,12 +111,20 @@ class _MyPlantDetailScreenState
                         trailing: Switch(
                           value: state.reminderIsActive(type),
                           onChanged: (value) async {
-                            bloc.add(
-                              SwitchActiveStateReminder(
-                                state.plantReminder(type)?.id ?? '',
-                                isActive: value,
-                              ),
-                            );
+                            if (state.reminderAlreadyExist(type)) {
+                              bloc.add(
+                                SwitchActiveStateReminder(
+                                  state.plantReminder(type)?.id ?? '',
+                                  isActive: value,
+                                ),
+                              );
+                            } else {
+                              await PopupReminderType.show(
+                                context,
+                                plantReminder: state.plantReminder(type) ??
+                                    PlantReminder(reminderType: type),
+                              );
+                            }
                           },
                         ),
                       );
@@ -153,26 +160,38 @@ class _MyPlantDetailScreenState
                             child: const Text('Add journal'),
                             onPressed: () {
                               showModalBottomSheet<dynamic>(
-                                backgroundColor: Colors.transparent,
                                 context: context,
                                 builder: (context) {
-                                  return CupertinoActionSheet(
-                                    actions: [
-                                      const Text('ahihi'),
-                                      CupertinoActionSheetAction(
-                                        isDestructiveAction: true,
-                                        onPressed: () {
-                                          Navigator.pop(context);
-                                        },
-                                        child: const Text('Action'),
-                                      ),
-                                    ],
-                                    cancelButton: CupertinoActionSheetAction(
-                                      isDestructiveAction: true,
-                                      onPressed: () {
-                                        Navigator.pop(context);
-                                      },
-                                      child: const Text('Action'),
+                                  return AppSafeArea(
+                                    child: Column(
+                                      mainAxisSize: MainAxisSize.min,
+                                      children: [
+                                        Padding(
+                                          padding: EdgeInsets.all(
+                                            Dimens.d16.responsive(),
+                                          ),
+                                          child: Center(
+                                            child: Text(
+                                              'Your Action',
+                                              style: Theme.of(context)
+                                                  .textTheme
+                                                  .titleLarge,
+                                            ),
+                                          ),
+                                        ),
+                                        const Divider(),
+                                        ...List.generate(
+                                            ReminderType.values.length,
+                                            (index) {
+                                          final type =
+                                              ReminderType.values[index];
+                                          return ListTile(
+                                            onTap: () {},
+                                            // contentPadding: EdgeInsets.zero,
+                                            title: Text(type.name),
+                                          );
+                                        }),
+                                      ],
                                     ),
                                   );
                                 },
@@ -184,13 +203,7 @@ class _MyPlantDetailScreenState
                     ),
                   ),
                 ),
-              )
-              // SliverList.list(
-              //   children: List.generate(
-              //     100,
-              //     (index) => ListTile(title: Text(index.toString())),
-              //   ),
-              // )
+              ),
             ],
           ),
         );

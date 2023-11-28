@@ -51,6 +51,7 @@ abstract class AppApiService {
     required ReminderType reminderType,
     required DateTime date,
     required RepeatType repeatType,
+    bool? isActive,
   });
 
   Future<DataResponse<PlantReminder>> updateReminder({
@@ -58,6 +59,7 @@ abstract class AppApiService {
     required ReminderType reminderType,
     required DateTime date,
     required RepeatType repeatType,
+    bool? isActive,
   });
 
   Future<DataResponse<PlantReminder>> switchActiveStateReminder({
@@ -76,4 +78,10 @@ abstract class AppApiService {
   });
 
   Future<String> getLocationFromLatLng(double lat, double lng);
+
+  Future<ResultsListResponse<PlantJournalModel>> getPlantJournal(
+    String myPlantId, {
+    int page = 1,
+    int perPage = 20,
+  });
 }

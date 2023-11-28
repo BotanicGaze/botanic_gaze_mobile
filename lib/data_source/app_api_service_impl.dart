@@ -246,11 +246,18 @@ class AppApiServiceImpl implements AppApiService {
     required ReminderType reminderType,
     required DateTime date,
     required RepeatType repeatType,
+    bool? isActive,
   }) async {
+    final body = <String, dynamic>{
+      'reminderType': reminderType.name,
+      'repeat': repeatType.name,
+      'time': date.toIso8601String(),
+    };
+    if (isActive != null) body['isActive'] = isActive;
     return plantApiClient.request<DataResponse<PlantReminder>, PlantReminder>(
       method: RestMethod.post,
       path: '$versionPrefix$myGardenPrefix/reminders/$myPlantId',
-      body: authHeader,
+      body: body,
       successResponseMapperType: SuccessResponseMapperType.dataJsonObject,
       decoder: PlantReminder.fromJson,
       headers: authHeader,
@@ -263,15 +270,18 @@ class AppApiServiceImpl implements AppApiService {
     required ReminderType reminderType,
     required DateTime date,
     required RepeatType repeatType,
+    bool? isActive,
   }) async {
+    final body = <String, dynamic>{
+      'reminderType': reminderType.name,
+      'repeat': repeatType.name,
+      'time': date.toIso8601String(),
+    };
+    if (isActive != null) body['isActive'] = isActive;
     return plantApiClient.request<DataResponse<PlantReminder>, PlantReminder>(
       method: RestMethod.patch,
       path: '$versionPrefix$myGardenPrefix/reminders/$reminderId',
-      body: {
-        'reminderType': reminderType.name,
-        'repeat': repeatType.name,
-        'time': date.toIso8601String(),
-      },
+      body: body,
       successResponseMapperType: SuccessResponseMapperType.dataJsonObject,
       decoder: PlantReminder.fromJson,
       headers: authHeader,
@@ -342,5 +352,25 @@ class AppApiServiceImpl implements AppApiService {
     }
 
     return '';
+  }
+
+  @override
+  Future<ResultsListResponse<PlantJournalModel>> getPlantJournal(
+    String myPlantId, {
+    int page = 1,
+    int perPage = 20,
+  }) {
+    return plantApiClient
+        .request<ResultsListResponse<PlantJournalModel>, PlantJournalModel>(
+      method: RestMethod.get,
+      path: '$myGardenPrefix/reminders/journal/$myPlantId',
+      queryParameters: {
+        'page': page,
+        'perPage': perPage,
+      },
+      successResponseMapperType: SuccessResponseMapperType.dataJsonArray,
+      decoder: PlantJournalModel.fromJson,
+      headers: authHeader,
+    );
   }
 }
