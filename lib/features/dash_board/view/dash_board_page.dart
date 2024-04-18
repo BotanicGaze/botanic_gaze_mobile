@@ -38,7 +38,7 @@ class _DashBoardViewState extends State<DashBoardView> {
 
   double get bottomNavPadding => Dimens.d16.w;
 
-  double get indicatorWidth => width / bottomNavigationBarItems.length;
+  double get indicatorWidth => width / bottomNavigationBarItemsV2.length;
 
   double get indicatorHeight => Dimens.d3.responsive();
 
@@ -58,23 +58,38 @@ class _DashBoardViewState extends State<DashBoardView> {
 
   List<Widget> tabView = [
     const SearchTabPage(),
-    const MyGardenPage(),
     const ExplorePage(),
-    const ProfilePage(),
   ];
-
   List<BottomNavigationBarItem> get bottomNavigationBarItems => [
         BottomNavigationBarItem(
           icon: _bottomIcon(AppIcons.iconIdentifyTab, 0),
           label: 'Identify',
         ),
         BottomNavigationBarItem(
-          icon: _bottomIcon(AppIcons.iconDiagnoseTab, 1),
-          label: 'Diagnosis',
+          icon: _bottomIcon(AppIcons.iconExploreTab, 1),
+          label: 'Explore',
+        ),
+      ];
+
+  List<Widget> tabViewV2 = [
+    const ExplorePage(),
+    const SearchTabPage(),
+    const MyGardenPage(),
+    const ProfilePage(),
+  ];
+
+  List<BottomNavigationBarItem> get bottomNavigationBarItemsV2 => [
+        BottomNavigationBarItem(
+          icon: _bottomIcon(AppIcons.iconExploreTab, 0),
+          label: 'Explore',
         ),
         BottomNavigationBarItem(
-          icon: _bottomIcon(AppIcons.iconExploreTab, 2),
-          label: 'Explore',
+          icon: _bottomIcon(AppIcons.iconIdentifyTab, 1),
+          label: 'Identify',
+        ),
+        BottomNavigationBarItem(
+          icon: _bottomIcon(AppIcons.iconMyPlant, 2),
+          label: 'My Plant',
         ),
         BottomNavigationBarItem(
           icon: _bottomIcon(AppIcons.iconProfileTab, 3),
@@ -104,9 +119,9 @@ class _DashBoardViewState extends State<DashBoardView> {
           body: PageView.builder(
             controller: pageController,
             physics: const NeverScrollableScrollPhysics(),
-            itemCount: tabView.length,
+            itemCount: tabViewV2.length,
             itemBuilder: (context, index) {
-              return tabView[index];
+              return tabViewV2[index];
             },
           ),
           bottomNavigationBar: Stack(
@@ -117,7 +132,7 @@ class _DashBoardViewState extends State<DashBoardView> {
                 type: BottomNavigationBarType.fixed,
                 showSelectedLabels: true,
                 showUnselectedLabels: true,
-                items: bottomNavigationBarItems,
+                items: bottomNavigationBarItemsV2,
                 currentIndex: currentIndex,
                 selectedFontSize: 12,
                 onTap: (value) {

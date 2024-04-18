@@ -1,5 +1,7 @@
 import 'package:app_ui/app_ui.dart';
+import 'package:base_bloc/base_bloc.dart';
 import 'package:botanic_gaze/constants/index.dart';
+import 'package:botanic_gaze/di/di.dart';
 import 'package:botanic_gaze/widgets/index.dart';
 import 'package:flutter/material.dart';
 
@@ -62,7 +64,13 @@ class HelpfulContentView extends StatelessWidget {
                             ),
                           ),
                           child: InkWell(
-                            onTap: () {},
+                            onTap: () {
+                              getIt<AppNavigator>().showAppDialog(
+                                const AppPopupInfo.successDialog(
+                                  message: 'Thank you for your feedback',
+                                ),
+                              );
+                            },
                             child: Container(
                               padding: EdgeInsets.symmetric(
                                 horizontal: Dimens.d10.responsive(),
@@ -105,7 +113,13 @@ class HelpfulContentView extends StatelessWidget {
                             ),
                           ),
                           child: InkWell(
-                            onTap: () {},
+                            onTap: () {
+                              getIt<AppNavigator>().showAppDialog(
+                                const AppPopupInfo.successDialog(
+                                  message: 'Thank you for your feedback',
+                                ),
+                              );
+                            },
                             child: Container(
                               padding: EdgeInsets.symmetric(
                                 horizontal: Dimens.d10.responsive(),

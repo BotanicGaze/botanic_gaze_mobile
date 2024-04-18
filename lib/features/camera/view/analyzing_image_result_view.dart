@@ -77,17 +77,8 @@ class _AnalyzingImageResultViewState extends State<AnalyzingImageResultView> {
                             Expanded(
                               child: Text(
                                 plant?.providerPlantName ?? '',
-                                style: Theme.of(context).textTheme.titleLarge,
+                                style: Theme.of(context).textTheme.titleMedium,
                               ),
-                            ),
-                            Text(
-                              '${((plant?.score ?? 0) * 100).toStringAsFixed(2)}%',
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .titleLarge
-                                  ?.copyWith(
-                                    color: Colors.red.shade700,
-                                  ),
                             ),
                           ],
                         ),
@@ -95,7 +86,15 @@ class _AnalyzingImageResultViewState extends State<AnalyzingImageResultView> {
                         Text(
                           plant?.providerPreferredCommonPlantName.toString() ??
                               '',
-                          style: Theme.of(context).textTheme.bodyMedium,
+                          style: Theme.of(context).textTheme.bodySmall,
+                        ),
+                        const Spacer(),
+                        Text(
+                          'Match rate: ${((plant?.score ?? 0) * 100).toStringAsFixed(2)}%',
+                          style:
+                              Theme.of(context).textTheme.titleMedium?.copyWith(
+                                    color: Colors.red.shade700,
+                                  ),
                         ),
                       ],
                     ),

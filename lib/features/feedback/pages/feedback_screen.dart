@@ -38,7 +38,7 @@ class _FeedbackScreenState extends BasePageState<FeedbackScreen, FeedbackBloc> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'Dear ${profileBloc?.niceName ?? ""}',
+                  'Dear plant lover',
                   style: Theme.of(context).textTheme.titleMedium,
                 ),
                 SizedBox(height: Dimens.d8.responsive()),

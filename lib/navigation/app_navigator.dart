@@ -91,6 +91,9 @@ class AppNavigatorImpl extends AppNavigator with LogMixin {
             builder: (context, state) {
               return PlantDetailPage(
                 plantId: int.tryParse(state.pathParameters['id'] ?? '') ?? 0,
+                showAddGarden:
+                    ((state.extra as Map?)?['show_add_garden'] as bool?) ??
+                        true,
               );
             },
           ),

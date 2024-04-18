@@ -13,8 +13,13 @@ import 'package:scroll_to_index/scroll_to_index.dart';
 import 'package:shared/shared.dart';
 
 class PlantDetailPage extends StatefulWidget {
-  const PlantDetailPage({required this.plantId, super.key});
+  const PlantDetailPage({
+    required this.plantId,
+    super.key,
+    this.showAddGarden = true,
+  });
   final int plantId;
+  final bool showAddGarden;
 
   @override
   State<PlantDetailPage> createState() => _PlantDetailPageState();
@@ -42,7 +47,7 @@ class _PlantDetailPageState
             message: exception?.generalServerMessage ?? '',
             onNegative: () {
               context.pop();
-              getIt<GlobalCallback>().changeDashboardTab?.call(1);
+              getIt<GlobalCallback>().changeDashboardTab?.call(3);
             },
           ),
         );
@@ -349,19 +354,20 @@ class _PlantDetailPageState
                     ),
                   ),
                 ),
-          bottomNavigationBar: state.plantDetailModel == null
-              ? const SizedBox()
-              : AppSafeArea(
-                  minimum: EdgeInsets.all(Dimens.d16.responsive()),
-                  child: AppButton.fullSize(
-                    onPressed: () {
-                      bloc.add(
-                        AddPlantToGarden(state.plantDetailModel?.id ?? 0),
-                      );
-                    },
-                    child: const Text('Add to my garden'),
-                  ),
-                ),
+          bottomNavigationBar:
+              state.plantDetailModel == null || !widget.showAddGarden
+                  ? const SizedBox()
+                  : AppSafeArea(
+                      minimum: EdgeInsets.all(Dimens.d16.responsive()),
+                      child: AppButton.fullSize(
+                        onPressed: () {
+                          bloc.add(
+                            AddPlantToGarden(state.plantDetailModel?.id ?? 0),
+                          );
+                        },
+                        child: const Text('Add to my garden'),
+                      ),
+                    ),
         );
       },
     );

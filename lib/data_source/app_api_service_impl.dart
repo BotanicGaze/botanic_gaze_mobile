@@ -24,6 +24,7 @@ class AppApiServiceImpl implements AppApiService {
   static const myGardenPrefix = '/my-garden/';
 
   Map<String, dynamic> get authHeader => {
+        // 'x-device-id': DeviceUtils.getDeviceId(),
         'x-csrf-token': SpUtil.getString(AppPreferencesKey.xCsrfTokenKey),
         'Authorization':
             SpUtil.getString(AppPreferencesKey.apiTokenAuthentication),
@@ -82,6 +83,11 @@ class AppApiServiceImpl implements AppApiService {
 
   @override
   Future<DataResponse<PlantIdentifyModel>> identifyPlant(File file) async {
+    // 'x-device-id': DeviceUtils.getDeviceId()
+    final deviceId = await DeviceUtils.getDeviceId();
+    final newHeader = authHeader;
+    newHeader['x-device-id'] = deviceId;
+
     return plantApiClient
         .request<DataResponse<PlantIdentifyModel>, PlantIdentifyModel>(
       method: RestMethod.post,
@@ -96,7 +102,7 @@ class AppApiServiceImpl implements AppApiService {
       contentType: 'multipart/form-data',
       successResponseMapperType: SuccessResponseMapperType.dataJsonObject,
       decoder: PlantIdentifyModel.fromJson,
-      headers: authHeader,
+      headers: newHeader,
     );
   }
 

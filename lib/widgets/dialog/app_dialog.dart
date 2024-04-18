@@ -123,7 +123,10 @@ class _AppDialogState extends State<AppDialog> {
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
-                widget.style.dialogIcon,
+                SizedBox(
+                  width: Dimens.d56.responsive(),
+                  child: widget.style.dialogIcon,
+                ),
                 SizedBox(height: 8.h),
                 Text(
                   widget.title ?? 'Success',

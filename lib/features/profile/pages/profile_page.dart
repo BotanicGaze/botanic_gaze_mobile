@@ -193,19 +193,19 @@ class _ProfilePageState extends BasePageState<ProfilePage, ProfileBloc> {
                           ),
                         ),
                         // SizedBox(height: Dimens.d16.responsive()),
-                        Visibility(
-                          visible: state.userInfo != null,
-                          child: profileSettingItem(
-                            context,
-                            title: 'Coin',
-                            icon: AppIcons.iconPlantCoin,
-                            rightInfo: Text(
-                              state.userInfo?.coin?.coinBalance.toString() ??
-                                  '',
-                            ),
-                            onTap: () {},
-                          ),
-                        ),
+                        // Visibility(
+                        //   visible: state.userInfo != null,
+                        //   child: profileSettingItem(
+                        //     context,
+                        //     title: 'Coin',
+                        //     icon: AppIcons.iconPlantCoin,
+                        //     rightInfo: Text(
+                        //       state.userInfo?.coin?.coinBalance.toString() ??
+                        //           '',
+                        //     ),
+                        //     onTap: () {},
+                        //   ),
+                        // ),
                         profileSettingItem(
                           context,
                           title: 'Invite friends',
@@ -239,29 +239,29 @@ class _ProfilePageState extends BasePageState<ProfilePage, ProfileBloc> {
                           },
                         ),
                         // const Divider(),
-                        profileSettingItem(
-                          context,
-                          title: 'Weather alerts',
-                          icon: AppIcons.iconWeatherAlert,
-                          rightInfo: CupertinoSwitch(
-                            value: state.weatherAlert,
-                            onChanged: (value) {
-                              bloc.add(SwitchWeatherAlert());
-                            },
-                          ),
-                        ),
+                        // profileSettingItem(
+                        //   context,
+                        //   title: 'Weather alerts',
+                        //   icon: AppIcons.iconWeatherAlert,
+                        //   rightInfo: CupertinoSwitch(
+                        //     value: state.weatherAlert,
+                        //     onChanged: (value) {
+                        //       bloc.add(SwitchWeatherAlert());
+                        //     },
+                        //   ),
+                        // ),
                         // const Divider(),
-                        profileSettingItem(
-                          context,
-                          title: 'Care reminders',
-                          icon: AppIcons.iconCareReminder,
-                          rightInfo: CupertinoSwitch(
-                            value: state.careReminder,
-                            onChanged: (value) {
-                              bloc.add(SwitchCareReminders());
-                            },
-                          ),
-                        ),
+                        // profileSettingItem(
+                        //   context,
+                        //   title: 'Care reminders',
+                        //   icon: AppIcons.iconCareReminder,
+                        //   rightInfo: CupertinoSwitch(
+                        //     value: state.careReminder,
+                        //     onChanged: (value) {
+                        //       bloc.add(SwitchCareReminders());
+                        //     },
+                        //   ),
+                        // ),
                         // const Divider(),
                         SizedBox(height: Dimens.d32.responsive()),
                         Padding(
@@ -271,20 +271,20 @@ class _ProfilePageState extends BasePageState<ProfilePage, ProfileBloc> {
                             style: Theme.of(context).textTheme.titleLarge,
                           ),
                         ),
-                        profileSettingItem(
-                          context,
-                          title: 'FAQ',
-                          icon: AppIcons.iconFaq,
-                          onTap: () {
-                            context.pushNamed(
-                              ScreenPaths.frequentlyAskedQuestions,
-                            );
-                          },
-                          rightInfo: const Icon(
-                            Icons.arrow_forward_ios_sharp,
-                            size: 16,
-                          ),
-                        ),
+                        // profileSettingItem(
+                        //   context,
+                        //   title: 'FAQ',
+                        //   icon: AppIcons.iconFaq,
+                        //   onTap: () {
+                        //     context.pushNamed(
+                        //       ScreenPaths.frequentlyAskedQuestions,
+                        //     );
+                        //   },
+                        //   rightInfo: const Icon(
+                        //     Icons.arrow_forward_ios_sharp,
+                        //     size: 16,
+                        //   ),
+                        // ),
                         // const Divider(),
                         profileSettingItem(
                           context,
@@ -309,15 +309,15 @@ class _ProfilePageState extends BasePageState<ProfilePage, ProfileBloc> {
                           ),
                         ),
                         // const Divider(),
-                        profileSettingItem(
-                          context,
-                          title: 'Contacts us',
-                          icon: AppIcons.iconContact,
-                          rightInfo: const Icon(
-                            Icons.arrow_forward_ios_sharp,
-                            size: 16,
-                          ),
-                        ),
+                        // profileSettingItem(
+                        //   context,
+                        //   title: 'Contacts us',
+                        //   icon: AppIcons.iconContact,
+                        //   rightInfo: const Icon(
+                        //     Icons.arrow_forward_ios_sharp,
+                        //     size: 16,
+                        //   ),
+                        // ),
                         // const Divider(),
                         profileSettingItem(
                           context,

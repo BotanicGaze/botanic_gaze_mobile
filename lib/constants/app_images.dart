@@ -113,4 +113,5 @@ class AppIcons {
   static const String iconPlantCoin = 'assets/icons/icon_plant_coin.png';
   static const String iconCheck = 'assets/icons/icon_check.png';
   static const String iconError = 'assets/icons/icon_error.png';
+  static const String iconMyPlant = 'assets/icons/icon_my_plant.png';
 }

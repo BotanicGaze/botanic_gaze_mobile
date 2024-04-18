@@ -31,7 +31,7 @@ class _MyGardenPageState extends BasePageState<MyGardenPage, MyGardenBloc> {
   @override
   void initState() {
     super.initState();
-    getIt<GlobalCallback>().onAddMyPlantSuccess = _pagingController.refresh;
+    getIt<GlobalCallback>().onAddMyPlantSuccess = _onRefresh;
     bloc.add(
       GetMyPlant(page: _pagingController.firstPageKey, perPage: perPage),
     );
@@ -119,18 +119,15 @@ class _MyGardenPageState extends BasePageState<MyGardenPage, MyGardenBloc> {
                 ),
                 SizedBox(width: Dimens.d8.responsive()),
                 SizedBox(
-                  child: GestureDetector(
-                    onTap: () {
-                      context.pushNamed(ScreenPaths.scanPage);
-                    },
-                    child: SizedBox(
-                      // width: Dimens.d50.responsive(),
-                      child: IconButton.filled(
-                        onPressed: () {},
-                        icon: Image.asset(
-                          AppIcons.iconCamera,
-                          // width: Dimens.d64.responsive(),
-                        ),
+                  child: SizedBox(
+                    // width: Dimens.d50.responsive(),
+                    child: IconButton.filled(
+                      onPressed: () {
+                        context.pushNamed(ScreenPaths.scanPage);
+                      },
+                      icon: Image.asset(
+                        AppIcons.iconCamera,
+                        // width: Dimens.d64.responsive(),
                       ),
                     ),
                   ),

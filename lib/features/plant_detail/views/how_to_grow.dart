@@ -3,7 +3,6 @@ import 'package:botanic_gaze/constants/index.dart';
 import 'package:botanic_gaze/features/plant_detail/index.dart';
 import 'package:botanic_gaze/models/index.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_html/flutter_html.dart';
 import 'package:shared/shared.dart';
 
 class HowToGrowView extends StatelessWidget {
@@ -39,18 +38,18 @@ class HowToGrowView extends StatelessWidget {
                   color: Theme.of(context).primaryColor,
                 ),
                 SizedBox(height: Dimens.d8.responsive()),
-                Html(
-                  data: plantDetailModel?.cultivation ?? '',
-                  onLinkTap: (url, attributes, element) {
-                    if (url?.isNotEmpty ?? false) {
-                      IntentUtils.openBrowserURL(
-                        url: Uri.parse(
-                          url ?? '',
-                        ),
-                        inApp: true,
-                      );
-                    }
-                  },
+                Text(
+                  (plantDetailModel?.cultivation ?? '').parseHtmlString(),
+                  // onLinkTap: (url, attributes, element) {
+                  //   if (url?.isNotEmpty ?? false) {
+                  //     IntentUtils.openBrowserURL(
+                  //       url: Uri.parse(
+                  //         url ?? '',
+                  //       ),
+                  //       inApp: true,
+                  //     );
+                  //   }
+                  // },
                 ),
               ],
             ),
@@ -66,19 +65,20 @@ class HowToGrowView extends StatelessWidget {
                   color: Theme.of(context).primaryColor,
                 ),
                 SizedBox(height: Dimens.d8.responsive()),
-                Html(
-                  data: plantDetailModel?.propagation ?? '',
-                  onLinkTap: (url, attributes, element) {
-                    if (url?.isNotEmpty ?? false) {
-                      IntentUtils.openBrowserURL(
-                        url: Uri.parse(
-                          url ?? '',
-                        ),
-                        inApp: true,
-                      );
-                    }
-                  },
-                ),
+                Text((plantDetailModel?.propagation ?? '').parseHtmlString()),
+                // Html(
+                //   data: plantDetailModel?.propagation ?? '',
+                //   onLinkTap: (url, attributes, element) {
+                //     if (url?.isNotEmpty ?? false) {
+                //       IntentUtils.openBrowserURL(
+                //         url: Uri.parse(
+                //           url ?? '',
+                //         ),
+                //         inApp: true,
+                //       );
+                //     }
+                //   },
+                // ),
               ],
             ),
           ),
@@ -110,19 +110,21 @@ class HowToGrowView extends StatelessWidget {
                   color: Theme.of(context).primaryColor,
                 ),
                 SizedBox(height: Dimens.d8.responsive()),
-                Html(
-                  data: plantDetailModel?.pruning ?? '',
-                  onLinkTap: (url, attributes, element) {
-                    if (url?.isNotEmpty ?? false) {
-                      IntentUtils.openBrowserURL(
-                        url: Uri.parse(
-                          url ?? '',
-                        ),
-                        inApp: true,
-                      );
-                    }
-                  },
-                ),
+                Text((plantDetailModel?.pruning ?? '').parseHtmlString()),
+
+                // Html(
+                //   data: plantDetailModel?.pruning ?? '',
+                //   onLinkTap: (url, attributes, element) {
+                //     if (url?.isNotEmpty ?? false) {
+                //       IntentUtils.openBrowserURL(
+                //         url: Uri.parse(
+                //           url ?? '',
+                //         ),
+                //         inApp: true,
+                //       );
+                //     }
+                //   },
+                // ),
               ],
             ),
           ),
@@ -141,37 +143,44 @@ class HowToGrowView extends StatelessWidget {
                   'Pests',
                   style: Theme.of(context).textTheme.bodyLarge,
                 ),
-                Html(
-                  data: plantDetailModel?.pestResistance ?? '',
-                  onLinkTap: (url, attributes, element) {
-                    if (url?.isNotEmpty ?? false) {
-                      IntentUtils.openBrowserURL(
-                        url: Uri.parse(
-                          url ?? '',
-                        ),
-                        inApp: true,
-                      );
-                    }
-                  },
+                Text(
+                  (plantDetailModel?.pestResistance ?? '').parseHtmlString(),
                 ),
+
+                // Html(
+                //   data: plantDetailModel?.pestResistance ?? '',
+                //   onLinkTap: (url, attributes, element) {
+                //     if (url?.isNotEmpty ?? false) {
+                //       IntentUtils.openBrowserURL(
+                //         url: Uri.parse(
+                //           url ?? '',
+                //         ),
+                //         inApp: true,
+                //       );
+                //     }
+                //   },
+                // ),
                 SizedBox(height: Dimens.d8.responsive()),
                 Text(
                   'Diseases',
                   style: Theme.of(context).textTheme.bodyLarge,
                 ),
-                Html(
-                  data: plantDetailModel?.diseaseResistance ?? '',
-                  onLinkTap: (url, attributes, element) {
-                    if (url?.isNotEmpty ?? false) {
-                      IntentUtils.openBrowserURL(
-                        url: Uri.parse(
-                          url ?? '',
-                        ),
-                        inApp: true,
-                      );
-                    }
-                  },
+                Text(
+                  (plantDetailModel?.diseaseResistance ?? '').parseHtmlString(),
                 ),
+                // Html(
+                //   data: plantDetailModel?.diseaseResistance ?? '',
+                //   onLinkTap: (url, attributes, element) {
+                //     if (url?.isNotEmpty ?? false) {
+                //       IntentUtils.openBrowserURL(
+                //         url: Uri.parse(
+                //           url ?? '',
+                //         ),
+                //         inApp: true,
+                //       );
+                //     }
+                //   },
+                // ),
               ],
             ),
           ),

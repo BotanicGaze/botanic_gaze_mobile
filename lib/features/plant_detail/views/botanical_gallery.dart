@@ -35,6 +35,7 @@ class BotanicalGallery extends StatelessWidget {
               children: [
                 TabBar(
                   isScrollable: true,
+                  tabAlignment: TabAlignment.start,
                   tabs: [
                     CustomTab(
                       icon: SizedBox(
@@ -209,6 +210,7 @@ class CustomTab extends Tab {
       calculatedHeight = kTextAndIconTabHeight;
       label = Row(
         mainAxisAlignment: MainAxisAlignment.center,
+        mainAxisSize: MainAxisSize.min,
         children: <Widget>[
           Container(
             margin: iconMargin,

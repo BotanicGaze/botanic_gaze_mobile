@@ -6,6 +6,7 @@ import 'package:base_network/base_network.dart';
 import 'package:botanic_gaze/constants/index.dart';
 import 'package:botanic_gaze/data_source/index.dart';
 import 'package:botanic_gaze/models/index.dart';
+import 'package:botanic_gaze/services/global_callback.dart';
 import 'package:botanic_gaze/services/location_service.dart';
 import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
@@ -61,6 +62,7 @@ class ProfileBloc extends BaseBloc<ProfileEvent, ProfileState> {
         emit(state.copyWith(exception: e));
       },
       doOnSuccessOrError: () async {
+        getIt<GlobalCallback>().onAddMyPlantSuccess?.call();
         if (state.accessToken != null) {
           await SpUtil.putString(
             AppPreferencesKey.apiTokenAuthentication,
@@ -99,6 +101,8 @@ class ProfileBloc extends BaseBloc<ProfileEvent, ProfileState> {
       handleError: false,
       handleLoading: false,
       doOnSuccessOrError: () async {
+        getIt<GlobalCallback>().onAddMyPlantSuccess?.call();
+
         if (state.accessToken != null) {
           await SpUtil.putString(
             AppPreferencesKey.apiTokenAuthentication,
@@ -161,6 +165,7 @@ class ProfileBloc extends BaseBloc<ProfileEvent, ProfileState> {
 
   Future<void> _onLogout(Logout event, Emitter<ProfileState> emit) async {
     await SpUtil.remove(AppPreferencesKey.apiTokenAuthentication);
+    getIt<GlobalCallback>().onAddMyPlantSuccess?.call();
     emit(
       ProfileState(
         weatherAlert: state.weatherAlert,

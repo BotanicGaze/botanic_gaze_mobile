@@ -18,7 +18,15 @@ class MyPlantItemWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        context.pushNamed(ScreenPaths.myPlantDetail, extra: item);
+        context.pushNamed(
+          ScreenPaths.plantDetailPage,
+          pathParameters: {
+            'id': item.plantInfo?.id.toString() ?? '',
+          },
+          extra: {
+            'show_add_garden': false,
+          },
+        );
       },
       child: Padding(
         padding: EdgeInsets.symmetric(horizontal: Dimens.d16.responsive()),

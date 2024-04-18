@@ -103,10 +103,10 @@ List<FrequentlyAskedQuestionsData> data = [
   FrequentlyAskedQuestionsData(
     title: 'How do I know if the plant is a weed or not?',
     content:
-        'PictureThis can identify weeds and advise on how to get rid of them. The weed indication info will be displayed on the identification result page if the plant is considered as invasive or unwanted in most cases. You can then tap “More” to learn more about how to identify and get rid of this type of weeds.',
+        'Botanic Gaze can identify weeds and advise on how to get rid of them. The weed indication info will be displayed on the identification result page if the plant is considered as invasive or unwanted in most cases. You can then tap “More” to learn more about how to identify and get rid of this type of weeds.',
   ),
   FrequentlyAskedQuestionsData(
-    title: 'How can I diagnose my plant with PictureThis?',
+    title: 'How can I diagnose my plant with Botanic Gaze?',
     content:
         'To diagnose a plant problem, please tap “Diagnose” on the homepage, and upload the pictures of this plant. If you are not satisfied with the auto diagnosis result, it is suggested to tap the “Ask Expert for Help” button at the bottom of the “Diagnose” page. Once we receive your consultation ticket, our botanist team will customize a treatment plan for your plant within 24 hours.',
   ),
@@ -121,9 +121,9 @@ I’m glad to hear that you’d like to share the information with your friends.
 ''',
   ),
   FrequentlyAskedQuestionsData(
-    title: 'Can I use PictureThis offline?',
+    title: 'Can I use Botanic Gaze offline?',
     content:
-        "Since PictureThis runs on a big plant database, the identification process requires a network connection. When offline, the photos taken with PictureThis will be saved automatically to the My Plants section and will be identified once you are back online. An alternative is to take photos offline with your phone's camera roll and upload the photos to identify when the connection is back.",
+        "Since Botanic Gaze runs on a big plant database, the identification process requires a network connection. When offline, the photos taken with Botanic Gaze will be saved automatically to the My Plants section and will be identified once you are back online. An alternative is to take photos offline with your phone's camera roll and upload the photos to identify when the connection is back.",
   ),
   FrequentlyAskedQuestionsData(
     title: 'Is my information safe?',

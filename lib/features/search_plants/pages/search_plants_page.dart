@@ -46,9 +46,12 @@ class _SearchPlantsPageState
       ),
     );
     _pagingController.listen(
-      onLoadMore: (pageKey) => bloc.add(
-        SearchPageLoadMore(request: plantsRequest.copyWith(page: pageKey)),
-      ),
+      onLoadMore: (pageKey) {
+        print(pageKey);
+        bloc.add(
+          SearchPageLoadMore(request: plantsRequest.copyWith(page: pageKey)),
+        );
+      },
     );
   }
 

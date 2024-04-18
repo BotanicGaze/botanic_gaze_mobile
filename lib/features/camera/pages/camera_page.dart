@@ -21,32 +21,49 @@ class _CameraPageState extends BasePageState<CameraPage, CameraBloc>
     bloc.add(CheckPermissionCamera());
   }
 
+  // @override
+  // void deactivate() {
+  //   bloc.state.cameraController?.dispose();
+  //   super.deactivate();
+  // }
+
   @override
-  void deactivate() {
+  void dispose() {
     bloc.state.cameraController?.dispose();
-    super.deactivate();
+    super.dispose();
   }
 
   @override
   Widget buildPage(BuildContext context) {
-    return BlocListener<CameraBloc, CameraState>(
-      listenWhen: (previous, current) {
-        return current.permissionStatus != previous.permissionStatus ||
-            current.imageTaken != null;
-      },
-      listener: (context, state) {
-        if (state.permissionStatus.isGranted) {
-          bloc.add(InitializeCamera());
-        }
-        if (state.imageTaken != null) {
-          context.pushReplacementNamed(
-            ScreenPaths.analysisImagePage,
-            extra: {
-              'image_path': state.imageTaken?.path,
-            },
-          );
-        }
-      },
+    return MultiBlocListener(
+      listeners: [
+        BlocListener<CameraBloc, CameraState>(
+          listenWhen: (previous, current) {
+            return previous.imageTaken != current.imageTaken &&
+                current.imageTaken != null;
+          },
+          listener: (context, state) {
+            if (state.imageTaken != null) {
+              context.pushReplacementNamed(
+                ScreenPaths.analysisImagePage,
+                extra: {
+                  'image_path': state.imageTaken?.path,
+                },
+              );
+            }
+          },
+        ),
+        BlocListener<CameraBloc, CameraState>(
+          listenWhen: (previous, current) {
+            return current.permissionStatus != previous.permissionStatus;
+          },
+          listener: (context, state) {
+            if (state.permissionStatus.isGranted) {
+              bloc.add(InitializeCamera());
+            }
+          },
+        ),
+      ],
       child: CommonScaffold(
         appBar: AppBar(
           toolbarHeight: 0,
